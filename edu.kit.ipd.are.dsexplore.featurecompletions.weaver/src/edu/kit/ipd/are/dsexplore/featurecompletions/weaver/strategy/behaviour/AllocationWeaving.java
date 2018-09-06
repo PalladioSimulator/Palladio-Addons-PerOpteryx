@@ -1,6 +1,8 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 
 import java.util.List;
+import java.util.Random;
+
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
@@ -8,6 +10,7 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.InstructionGenerator;
 
 /**
  * This class handles weaving of the PCM allocation model.
@@ -34,15 +37,19 @@ public class AllocationWeaving {
 	 */
 	public void weave(IWeavingInstruction instruction) throws FCCWeaverException {
 		FCCModule.logger.debug("Allocation Behaviour Weaving");
-		
-		List<? extends IWeavingLocation> locations = instruction.getWeavingLocations();
-		for (IWeavingLocation location : locations) {
+		//TODO aufräumen wenn fertig
+		//List<? extends IWeavingLocation> locations = instruction.getWeavingLocations();
+		//for (IWeavingLocation location : locations) {
 				
-			RepositoryComponent allocatedComponent = location.getAffectedComponent();
-			AllocationContext allocationContext = this.parent.getPCMAllocationManager().getAllocationContextContaining(allocatedComponent);
-			resourceContainer = allocationContext.getResourceContainer_AllocationContext();
+//			RepositoryComponent allocatedComponent = location.getAffectedComponent();
+//			AllocationContext allocationContext = this.parent.getPCMAllocationManager().getAllocationContextContaining(allocatedComponent);
+//			resourceContainer = allocationContext.getResourceContainer_AllocationContext();
+			
+			//determine random resource container
+			int bound = this.parent.getPCMToAdapt().getResourceEnvironment().getResourceContainer_ResourceEnvironment().size();
+			resourceContainer = this.parent.getPCMToAdapt().getResourceEnvironment().getResourceContainer_ResourceEnvironment().get(new Random().nextInt(bound));
 
-			//add allocation contexts for unallocated assembly contexts (aka FCC ac)
+			//add allocation contexts for unallocated assembly contexts (that is all FCC and Complementum components)
 			List<AssemblyContext> allContexts = this.parent.getPCMSystemManager().getAssemblyContextsBy(context -> true);
 			for (AssemblyContext assemblyContext : allContexts) {
 				if (!this.parent.getPCMAllocationManager().existAllocationContextWith(assemblyContext)) {
@@ -50,9 +57,6 @@ public class AllocationWeaving {
 					this.parent.getPCMAllocationManager().addAllocationContext(newAssemblyContext);
 				}
 			}	
-		}
+		//}
 	}
-	
-
-
 }

@@ -5,7 +5,6 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.Connector;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.Signature;
 
 /**
@@ -15,25 +14,20 @@ import org.palladiosimulator.pcm.repository.Signature;
  * 
  */
 public class ExternalCallWeavingLocation implements IWeavingLocation {
-	
+	//TODO was wird wirklich benötigt?
 	private final Signature affectedSignature;
 	
 	private final Connector affectedConnector;
 	
-	private final RepositoryComponent affectedComponent; //TODO Componenten oder COntext??
-	
-	private final AssemblyContext affectedContext; //TODO Componenten oder COntext??
-	
-	private AssemblyContext addedFCCAssemblyContext;
+	private final AssemblyContext affectedContext;
 
 	/**
 	 * @param affectedSignature
 	 * @param affectedConnector
 	 */
-	public ExternalCallWeavingLocation(Signature affectedSignature, Connector affectedConnector, RepositoryComponent affectedComponent, AssemblyContext affectedContext) {
+	public ExternalCallWeavingLocation(Signature affectedSignature, Connector affectedConnector, AssemblyContext affectedContext) {
 		this.affectedSignature = affectedSignature;
 		this.affectedConnector = affectedConnector;
-		this.affectedComponent = affectedComponent;
 		this.affectedContext = affectedContext;
 	}
 
@@ -52,35 +46,9 @@ public class ExternalCallWeavingLocation implements IWeavingLocation {
 	}
 
 	/**
-	 * @return the affectedComponent
-	 */
-	public RepositoryComponent getAffectedComponent() {
-		return affectedComponent;
-	}
-
-	/**
 	 * @return the affectedContext
 	 */
 	public AssemblyContext getAffectedContext() {
 		return affectedContext;
 	}
-
-	/* (non-Javadoc)
-	 * @see edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.IWeavingLocation#getAddedFCCAssemblyContext()
-	 */
-	@Override
-	public AssemblyContext getAddedFCCAssemblyContext() {
-		return addedFCCAssemblyContext;
-	}
-
-	/* (non-Javadoc)
-	 * @see edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.IWeavingLocation#setAddedFCCAssemblyContext(org.palladiosimulator.pcm.core.composition.AssemblyContext)
-	 */
-	@Override
-	public void setAddedFCCAssemblyContext(AssemblyContext assemblyContext) {
-		this.addedFCCAssemblyContext = assemblyContext;
-	}
-	
-	
-
 }

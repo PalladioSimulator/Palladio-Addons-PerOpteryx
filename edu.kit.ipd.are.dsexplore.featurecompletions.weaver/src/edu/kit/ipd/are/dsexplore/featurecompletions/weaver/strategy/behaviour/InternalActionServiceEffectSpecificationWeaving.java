@@ -5,7 +5,7 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.eclipse.emf.common.util.EList;
+
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
@@ -24,11 +24,6 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
  */
 public class InternalActionServiceEffectSpecificationWeaving extends ServiceEffectSpecificationWeaving {
 
-	
-	
-	/**
-	 * @param parent
-	 */
 	public InternalActionServiceEffectSpecificationWeaving(IBehaviourWeaving parent) {
 		super(parent);
 	}
@@ -39,7 +34,7 @@ public class InternalActionServiceEffectSpecificationWeaving extends ServiceEffe
 	 * 
 	 * @param instruction the weaving instruction to apply.
 	 */
-	public void weave(IWeavingInstruction instruction) { //TODO gleiche Code teilen in Oberklasse ziehen?
+	public void weave(IWeavingInstruction instruction) {
 		FCCModule.logger.debug("Internal Action SEFF Behaviour Weaving");
 		
 		List<? extends IWeavingLocation> locations = instruction.getWeavingLocations();
@@ -47,30 +42,36 @@ public class InternalActionServiceEffectSpecificationWeaving extends ServiceEffe
 			//This is ok, as we know we only have InternalActionWeavingLocations in this Strategy
 			InternalActionWeavingLocation location = (InternalActionWeavingLocation) weavingLocation; 
 			AssemblyContext context = location.getAffectedContext();
-			//TODO implement for composite component
+			//TODO implement for composite component?
 			BasicComponent component = (BasicComponent) context.getEncapsulatedComponent__AssemblyContext();
-			EList<ServiceEffectSpecification> seffs = component.getServiceEffectSpecifications__BasicComponent();
-			
+			List<ServiceEffectSpecification> seffs = component.getServiceEffectSpecifications__BasicComponent();
 			
 			for (ServiceEffectSpecification seff : seffs) {
-				//get all internal Actions
-				List<AbstractAction> affectedActions = new ArrayList<>();
-				EList<AbstractAction> steps = ((ResourceDemandingBehaviour) seff).getSteps_Behaviour();
-				for (AbstractAction abstractAction : steps) {
-					if (abstractAction instanceof InternalAction) {
-						affectedActions.add(abstractAction);
-					}
-				}
+				List<AbstractAction> affectedActions = getAllInternalActions(seff);
 				
 				//add fc call to the affected locations
 				for (AbstractAction internalAction : affectedActions) {
 					addFCCallTo((ResourceDemandingBehaviour) seff, internalAction, instruction.getAdvice().getAppears(), ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond())); 
 				}
 			}
-
 		}
 	}
-	
-	
 
+	/**
+	 * Determines all internal actions in the given SEFF.
+	 * 
+	 * @param seff the SEFF.
+	 * @return all internal actions.
+	 */
+	private List<AbstractAction> getAllInternalActions(ServiceEffectSpecification seff) {
+		//get all internal Actions
+		List<AbstractAction> affectedActions = new ArrayList<>();
+		List<AbstractAction> steps = ((ResourceDemandingBehaviour) seff).getSteps_Behaviour();
+		for (AbstractAction abstractAction : steps) {
+			if (abstractAction instanceof InternalAction) {
+				affectedActions.add(abstractAction);
+			}
+		}
+		return affectedActions;
+	}
 }

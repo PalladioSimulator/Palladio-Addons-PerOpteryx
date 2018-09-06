@@ -23,7 +23,7 @@ public class UsageModelWeaving {
 	 * @param instruction
 	 */
 	public void weave(IWeavingInstruction instruction) {
-		//nothing to do here in this strategy
+		//nothing to do here in the behaviour inclusion mechanism
 		//but good to have it in case of future modifications
 	}
 }

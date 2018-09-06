@@ -3,14 +3,6 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 import java.util.HashMap;
 import java.util.function.Function;
 
-import org.palladiosimulator.pcm.core.composition.Connector;
-import org.palladiosimulator.pcm.core.composition.impl.AssemblyConnectorImpl;
-import org.palladiosimulator.pcm.core.composition.impl.ProvidedDelegationConnectorImpl;
-
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
-import featureSolution.ControlFlowPlacementStrategy;
-import featureSolution.ExternalCallPlacementStrategy;
-import featureSolution.InternalActionPlacementStrategy;
 import featureSolution.PlacementStrategy;
 import featureSolution.impl.ControlFlowPlacementStrategyImpl;
 import featureSolution.impl.ExternalCallPlacementStrategyImpl;

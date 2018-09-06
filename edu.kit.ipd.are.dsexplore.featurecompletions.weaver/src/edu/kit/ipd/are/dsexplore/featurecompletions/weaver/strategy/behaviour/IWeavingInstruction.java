@@ -9,25 +9,23 @@ import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
 import FeatureCompletionModel.CompletionComponent;
+
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
+
 import featureSolution.Advice;
 import featureSolution.InclusionMechanism;
 
 /**
+ * Interface for all weaving instructions.
+ * 
  * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
- *
  */
 public interface IWeavingInstruction {
 
 	public List<? extends IWeavingLocation> getWeavingLocations();
 	
 	public Advice getAdvice();
-
-	/**
-	 * @return
-	 */
-	public ResourceContainer getResourceContainer();
 	
 	public Pair<CompletionComponent, ProvidedRole> getFccWithProvidedRole();
 	

@@ -4,6 +4,7 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -35,7 +36,10 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.Role
  * 
  */
 public class AssemblyWeaving {
+	
 	protected final IBehaviourWeaving parent;
+	
+	private FCCStructureHandler fccHandler;
 
 	public AssemblyWeaving(IBehaviourWeaving parent) {
 		this.parent = parent;
@@ -55,63 +59,28 @@ public class AssemblyWeaving {
 		
 		CompletionComponent perimeterProvidingFCC = instruction.getFccWithProvidedRole().first;
 		ProvidedRole providedRole = instruction.getFccWithProvidedRole().getSecond(); 
+		fccHandler = new FCCStructureHandler(perimeterProvidingFCC, this.parent.getMergedRepoManager());
+		
 		//1. determine all needed other feature completion components
-		FCCStructureHandler fccHandler = new FCCStructureHandler(perimeterProvidingFCC, this.parent.getMergedRepoManager());
-		List<CompletionComponent> allFCCs = fccHandler.getFCCsRequiredBy(perimeterProvidingFCC);
-		allFCCs.add(perimeterProvidingFCC);
+		List<CompletionComponent> allFCCs = determineAllFCCs(perimeterProvidingFCC);
+		
 		//2. choose realizing component for each fcc according to selected solution/CV
 		List<RepositoryComponent> realizingComponents = this.parent.getMergedRepoManager().getRealizingComponentsByFCCList(allFCCs, providedRole, parent.getSelectedCVs());
 		
 		//3. in case of any required complementa -> add additional components
-		if (fccHandler.requiresComplementa(realizingComponents)) {
-			realizingComponents.addAll(fccHandler.getRequiredComplementa(realizingComponents));
-		}
+		realizingComponents.addAll(determineAdditionalComplementaComponents(realizingComponents));
 		
 		//4. weave in components
 		for (IWeavingLocation location : instruction.getWeavingLocations()) {
-			List<AssemblyContext> createdAssemblyContexts = new ArrayList<>();
-			for (RepositoryComponent repositoryComponent : realizingComponents) {	
-				//decide if solution components are added multiple times
-				if (instruction.getInclusionMechanism().isMultiple()) {
-					AssemblyContext newAssemblyContext = this.parent.getPCMSystemManager().createAssemblyContextOf(repositoryComponent);
-					createdAssemblyContexts.add(newAssemblyContext);
-				}
-				else if (this.parent.getPCMSystemManager().getAssemblyContextsInstantiating(repositoryComponent).isEmpty()) {
-					AssemblyContext newAssemblyContext = this.parent.getPCMSystemManager().createAssemblyContextOf(repositoryComponent);	
-					createdAssemblyContexts.add(newAssemblyContext);
-				}
-			}
+			//create assembly context for realizing components
+			List<AssemblyContext> createdAssemblyContexts = createAssemblyContexts(instruction, realizingComponents);
+			//create assembly connectors for realizing components
+			List<Connector> createdConnectors = createAssemblyConnectors(instruction, createdAssemblyContexts);
 			
-			List<Connector> createdConnectors = new ArrayList<>();
-			for (AssemblyContext assemblyContext : createdAssemblyContexts) { 
-				//create connectors
-				for (RequiredRole requiredRole : assemblyContext.getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity()) {
-					ProvidedRole compProvidedRole = (ProvidedRole) this.getComplimentaryRoleOf(requiredRole, getAllProvidedRolesOf(createdAssemblyContexts));
-					AssemblyContext providedAssemblyContext = getAssemblyContextProviding(compProvidedRole, createdAssemblyContexts);
-	
-					AssemblyConnector connector = this.parent.getPCMSystemManager().createAssemblyConnectorBy(Pair.of((OperationRequiredRole) requiredRole, assemblyContext),
-							Pair.of((OperationProvidedRole) compProvidedRole, providedAssemblyContext));
-					if (instruction.getInclusionMechanism().isMultiple()) {
-						//only add if solution components are added multiple times
-						createdConnectors.add(connector);
-					} else if (!this.parent.getPCMSystemManager().existConnector(connector)) {
-						//only add if not already existing 
-						createdConnectors.add(connector);
-					}
-				}
-			}
+			//create assembly connector to FC
+			AssemblyConnector connector = createAssemblyConnectorToFC(providedRole, location, createdAssemblyContexts);
 			
-			//
-			AssemblyContext providedAssemblyContext = null;
-			if (createdAssemblyContexts.isEmpty()) {
-				providedAssemblyContext = getAssemblyContextProviding(providedRole, this.parent.getPCMSystemManager().getAssemblyContextsBy(context -> true));
-			} else {
-				providedAssemblyContext = getAssemblyContextProviding(providedRole, createdAssemblyContexts);
-			}
-			AssemblyContext requiredAssemblyContext = location.getAffectedContext();
-			RequiredRole requiredRole = requiredAssemblyContext.getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity().stream().filter(role -> ((OperationRequiredRole) role).getRequiredInterface__OperationRequiredRole().getId().equals(((OperationProvidedRole) providedRole).getProvidedInterface__OperationProvidedRole().getId())).collect(Collectors.toList()).get(0); //TODO sollte eigentlich nur 1 required role geben??
-			AssemblyConnector connector = this.parent.getPCMSystemManager().createAssemblyConnectorBy(Pair.of((OperationRequiredRole) requiredRole, requiredAssemblyContext),
-					Pair.of((OperationProvidedRole) providedRole, providedAssemblyContext));
+			//add to system if not already added by another instruction
 			if (!this.parent.getPCMSystemManager().existConnector(connector)) {
 				this.parent.getPCMSystemManager().addAssemblyContexts(createdAssemblyContexts);;
 				this.parent.getPCMSystemManager().addConnectors(createdConnectors);
@@ -119,12 +88,108 @@ public class AssemblyWeaving {
 			}
 		}
 	}
+
+	/**
+	 * Creates the assembly connector from the modified assembly context to the assembly contexts belonging to the FC.
+	 * 
+	 * @param providedRole the provided role of the modified assembly context.
+	 * @param location the location containing the modified assembly context.
+	 * @param createdAssemblyContexts the created assembly contexts belonging to the FC.
+	 * @return the assembly connector from the modified assembly context to the assembly contexts belonging to the FC.
+	 */
+	private AssemblyConnector createAssemblyConnectorToFC(ProvidedRole providedRole, IWeavingLocation location, List<AssemblyContext> createdAssemblyContexts) {
+		AssemblyContext providedAssemblyContext = null;
+		if (createdAssemblyContexts.isEmpty()) {
+			providedAssemblyContext = getAssemblyContextProviding(providedRole, this.parent.getPCMSystemManager().getAssemblyContextsBy(context -> true));
+		} else {
+			providedAssemblyContext = getAssemblyContextProviding(providedRole, createdAssemblyContexts);
+		}
+		AssemblyContext requiredAssemblyContext = location.getAffectedContext();
+		RequiredRole requiredRole = requiredAssemblyContext.getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity().stream().filter(role -> ((OperationRequiredRole) role).getRequiredInterface__OperationRequiredRole().getId().equals(((OperationProvidedRole) providedRole).getProvidedInterface__OperationProvidedRole().getId())).collect(Collectors.toList()).get(0); //TODO sollte eigentlich nur 1 required role geben??
+		AssemblyConnector connector = this.parent.getPCMSystemManager().createAssemblyConnectorBy(Pair.of((OperationRequiredRole) requiredRole, requiredAssemblyContext),
+				Pair.of((OperationProvidedRole) providedRole, providedAssemblyContext));
+		return connector;
+	}
+
+	/**
+	 * Creates all assembly connectors that connect the created assembly contexts of the realizing components, while taking the multiple flag into account.
+	 * 
+	 * @param instruction weaving instruction containing the multiple flag.
+	 * @param createdAssemblyContexts the created assembly contexts of the realizing components.
+	 * @return all assembly connectors that connect the created assembly contexts.
+	 */
+	private List<Connector> createAssemblyConnectors(IWeavingInstruction instruction, List<AssemblyContext> createdAssemblyContexts) {
+		List<Connector> createdConnectors = new ArrayList<Connector>();
+		for (AssemblyContext assemblyContext : createdAssemblyContexts) { 
+			//create connectors
+			for (RequiredRole requiredRole : assemblyContext.getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity()) {
+				ProvidedRole compProvidedRole = (ProvidedRole) this.getComplimentaryRoleOf(requiredRole, getAllProvidedRolesOf(createdAssemblyContexts));
+				AssemblyContext providedAssemblyContext = getAssemblyContextProviding(compProvidedRole, createdAssemblyContexts);
+
+				AssemblyConnector connector = this.parent.getPCMSystemManager().createAssemblyConnectorBy(Pair.of((OperationRequiredRole) requiredRole, assemblyContext),
+						Pair.of((OperationProvidedRole) compProvidedRole, providedAssemblyContext));
+				if (instruction.getInclusionMechanism().isMultiple()) {
+					//only add if solution components are added multiple times
+					createdConnectors.add(connector);
+				} else if (!this.parent.getPCMSystemManager().existConnector(connector)) {
+					//only add if not already existing 
+					createdConnectors.add(connector);
+				}
+			}
+		}
+		return createdConnectors;
+	}
+
+	/**
+	 * Creates all assembly contexts for the realizing components, while taking the multiple flag into account.
+	 * 
+	 * @param instruction weaving instruction containing the multiple flag.
+	 * @param realizingComponents the realizing components.
+	 * @return all assembly contexts for the realizing components.
+	 */
+	private List<AssemblyContext> createAssemblyContexts(IWeavingInstruction instruction, List<RepositoryComponent> realizingComponents) {
+		List<AssemblyContext> createdAssemblyContexts = new ArrayList<AssemblyContext>();
+		for (RepositoryComponent repositoryComponent : realizingComponents) {	
+			//decide if solution components are added multiple times
+			if (instruction.getInclusionMechanism().isMultiple()) {
+				AssemblyContext newAssemblyContext = this.parent.getPCMSystemManager().createAssemblyContextOf(repositoryComponent);
+				createdAssemblyContexts.add(newAssemblyContext);
+			}
+			else if (this.parent.getPCMSystemManager().getAssemblyContextsInstantiating(repositoryComponent).isEmpty()) {
+				AssemblyContext newAssemblyContext = this.parent.getPCMSystemManager().createAssemblyContextOf(repositoryComponent);	
+				createdAssemblyContexts.add(newAssemblyContext);
+			}
+		}
+		return createdAssemblyContexts;
+	}
 	
 
 	/**
-	 * @param createdAssemblyContexts
-	 * @return
+	 * Determines all complementum components that are required by the realizing components.
+	 * 
+	 * @param realizingComponents the realizing components.
+	 * @return all complementum components that are required.
 	 */
+	private Collection<? extends RepositoryComponent> determineAdditionalComplementaComponents(List<RepositoryComponent> realizingComponents) {
+		List<RepositoryComponent> additionalComplementaComponents = new ArrayList<RepositoryComponent>();
+		if (this.fccHandler.requiresComplementa(realizingComponents)) {
+			additionalComplementaComponents.addAll(this.fccHandler.getRequiredComplementa(realizingComponents));
+		}
+		return additionalComplementaComponents;
+	}
+
+	/**
+	 * Determines all required FCCs starting from the providing FCC.
+	 * 
+	 * @param perimeterProvidingFCC the providing FCC.
+	 * @return all required FCCs.
+	 */
+	private List<CompletionComponent> determineAllFCCs(CompletionComponent perimeterProvidingFCC) {
+		List<CompletionComponent> allFCCs = this.fccHandler.getFCCsRequiredBy(perimeterProvidingFCC);
+		allFCCs.add(perimeterProvidingFCC);
+		return allFCCs;
+	}
+
 	private List<ProvidedRole> getAllProvidedRolesOf(List<AssemblyContext> createdAssemblyContexts) {
 		return createdAssemblyContexts.stream().flatMap(ac -> ac.getEncapsulatedComponent__AssemblyContext().getProvidedRoles_InterfaceProvidingEntity().stream()).collect(Collectors.toList());
 	}
@@ -143,11 +208,6 @@ public class AssemblyWeaving {
 		return assemblyContext -> FCCUtil.areEqual(assemblyContext.getEncapsulatedComponent__AssemblyContext(), component);
 	}
 	
-	/**
-	 * @param providedRole
-	 * @param createdAssemblyContexts
-	 * @return
-	 */
 	private AssemblyContext getAssemblyContextProviding(ProvidedRole providedRole, List<AssemblyContext> assemblyContexts) {
 		for (AssemblyContext ac : assemblyContexts) {
 			if (ac.getEncapsulatedComponent__AssemblyContext().getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedRole.getId()))) {

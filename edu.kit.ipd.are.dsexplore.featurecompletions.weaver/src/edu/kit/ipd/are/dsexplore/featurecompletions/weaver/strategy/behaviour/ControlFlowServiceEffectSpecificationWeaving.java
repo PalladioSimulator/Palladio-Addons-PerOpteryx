@@ -3,12 +3,10 @@
  */
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 
-import java.util.ArrayList;
 import java.util.List;
-import org.eclipse.emf.common.util.EList;
+
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.BasicComponent;
-import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.seff.AbstractAction;
 import org.palladiosimulator.pcm.seff.AbstractBranchTransition;
 import org.palladiosimulator.pcm.seff.AbstractLoopAction;
@@ -17,11 +15,8 @@ import org.palladiosimulator.pcm.seff.ForkAction;
 import org.palladiosimulator.pcm.seff.ForkedBehaviour;
 import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
-import org.palladiosimulator.pcm.seff.StartAction;
-import org.palladiosimulator.pcm.seff.StopAction;
 
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
-import featureSolution.Appearance;
 
 /**
  * This class handles weaving of the PCM repository model specifically for the control flow placement strategy. 
@@ -31,9 +26,6 @@ import featureSolution.Appearance;
  */
 public class ControlFlowServiceEffectSpecificationWeaving extends ServiceEffectSpecificationWeaving {
 
-	/**
-	 * @param parent
-	 */
 	public ControlFlowServiceEffectSpecificationWeaving(IBehaviourWeaving parent) {
 		super(parent);
 	}
@@ -54,62 +46,22 @@ public class ControlFlowServiceEffectSpecificationWeaving extends ServiceEffectS
 			AssemblyContext context = location.getAffectedContext();
 			//TODO implement for composite component
 			BasicComponent component = (BasicComponent) context.getEncapsulatedComponent__AssemblyContext();
-			EList<ServiceEffectSpecification> seffs = component.getServiceEffectSpecifications__BasicComponent();
-			
+			List<ServiceEffectSpecification> seffs = component.getServiceEffectSpecifications__BasicComponent();
 			
 			for (ServiceEffectSpecification seff : seffs) {
 				//get all internal Actions
-				List<AbstractAction> affectedActions = new ArrayList<>();
-				EList<AbstractAction> steps = ((ResourceDemandingBehaviour) seff).getSteps_Behaviour();
+				List<AbstractAction> steps = ((ResourceDemandingBehaviour) seff).getSteps_Behaviour();
+				//TODO search recursively??
 				for (AbstractAction abstractAction : steps) {
 					if (abstractAction instanceof BranchAction) { 
-						EList<AbstractBranchTransition> branches = ((BranchAction) abstractAction).getBranches_Branch();
-						for (AbstractBranchTransition abstractBranchTransition : branches) {
-							EList<AbstractAction> branchSteps = abstractBranchTransition.getBranchBehaviour_BranchTransition().getSteps_Behaviour();
-							if (instruction.getAdvice().getAppears() == Appearance.BEFORE) {
-								AbstractAction start = getStartAction(branchSteps);
-								addFCCallTo(abstractBranchTransition.getBranchBehaviour_BranchTransition(), start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
-							} else if (instruction.getAdvice().getAppears() == Appearance.AFTER) {
-								AbstractAction stop = getStopAction(branchSteps);
-								addFCCallTo(abstractBranchTransition.getBranchBehaviour_BranchTransition(), stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
-							} else if (instruction.getAdvice().getAppears() == Appearance.AROUND) {
-								AbstractAction start = getStartAction(branchSteps);
-								AbstractAction stop = getStopAction(branchSteps);
-								addFCCallTo(abstractBranchTransition.getBranchBehaviour_BranchTransition(), start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
-								addFCCallTo(abstractBranchTransition.getBranchBehaviour_BranchTransition(), stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
-							}
-						}
+						//handle branch actions
+						handleBranchAction(instruction, abstractAction);
 					} else if (abstractAction instanceof AbstractLoopAction) {
-						//same for loop actions
-						ResourceDemandingBehaviour loopSEFF = ((AbstractLoopAction) abstractAction).getBodyBehaviour_Loop();
-						if (instruction.getAdvice().getAppears() == Appearance.BEFORE) {
-							AbstractAction start = getStartAction(loopSEFF.getSteps_Behaviour());
-							addFCCallTo(loopSEFF, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
-						} else if (instruction.getAdvice().getAppears() == Appearance.AFTER) {
-							AbstractAction stop = getStopAction(loopSEFF.getSteps_Behaviour());
-							addFCCallTo(loopSEFF, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
-						} else if (instruction.getAdvice().getAppears() == Appearance.AROUND) {
-							AbstractAction start = getStartAction(loopSEFF.getSteps_Behaviour());
-							AbstractAction stop = getStopAction(loopSEFF.getSteps_Behaviour());
-							addFCCallTo(loopSEFF, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
-							addFCCallTo(loopSEFF, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
-						}
+						//handle loop actions
+						handleLoopActions(instruction, abstractAction);
 					} else if (abstractAction instanceof ForkAction) {
-						EList<ForkedBehaviour> forkedSEFFs = ((ForkAction) abstractAction).getAsynchronousForkedBehaviours_ForkAction();
-						for (ForkedBehaviour forkedSEFF : forkedSEFFs) {
-							if (instruction.getAdvice().getAppears() == Appearance.BEFORE) {
-								AbstractAction start = getStartAction(forkedSEFF.getSteps_Behaviour());
-								addFCCallTo(forkedSEFF, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
-							} else if (instruction.getAdvice().getAppears() == Appearance.AFTER) {
-								AbstractAction stop = getStopAction(forkedSEFF.getSteps_Behaviour());
-								addFCCallTo(forkedSEFF, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
-							} else if (instruction.getAdvice().getAppears() == Appearance.AROUND) {
-								AbstractAction start = getStartAction(forkedSEFF.getSteps_Behaviour());
-								AbstractAction stop = getStopAction(forkedSEFF.getSteps_Behaviour());
-								addFCCallTo(forkedSEFF, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
-								addFCCallTo(forkedSEFF, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
-							}
-						}
+						//handle fork actions
+						handleForkAction(instruction, abstractAction);
 					}
 				}
 			}
@@ -117,19 +69,40 @@ public class ControlFlowServiceEffectSpecificationWeaving extends ServiceEffectS
 	}
 
 	/**
-	 * @param branchSteps
-	 * @return
+	 * Handles weaving of fork SEFFs.
+	 * 
+	 * @param instruction
+	 * @param abstractAction
 	 */
-	private AbstractAction getStopAction(EList<AbstractAction> steps) {
-		return steps.stream().filter(action -> action instanceof StopAction).findFirst().get();
+	private void handleForkAction(IWeavingInstruction instruction, AbstractAction abstractAction) {
+		List<ForkedBehaviour> forkedSEFFs = ((ForkAction) abstractAction).getAsynchronousForkedBehaviours_ForkAction();
+		for (ForkedBehaviour forkedSEFF : forkedSEFFs) {
+			addFCCallToSEFF(instruction, forkedSEFF);
+		}
 	}
 
 	/**
-	 * @param branchSteps
-	 * @return
+	 * Handles weaving of loop SEFFs.
+	 * 
+	 * @param instruction
+	 * @param abstractAction
 	 */
-	private AbstractAction getStartAction(EList<AbstractAction> steps) {
-		return steps.stream().filter(action -> action instanceof StartAction).findFirst().get();
+	private void handleLoopActions(IWeavingInstruction instruction, AbstractAction abstractAction) {
+		ResourceDemandingBehaviour loopSEFF = ((AbstractLoopAction) abstractAction).getBodyBehaviour_Loop();
+		addFCCallToSEFF(instruction, loopSEFF);
 	}
 
+	/**
+	 * Handles weaving of branch SEFFs.
+	 * 
+	 * @param instruction
+	 * @param abstractAction
+	 */
+	private void handleBranchAction(IWeavingInstruction instruction, AbstractAction abstractAction) {
+		List<AbstractBranchTransition> branches = ((BranchAction) abstractAction).getBranches_Branch();
+		for (AbstractBranchTransition abstractBranchTransition : branches) {
+			ResourceDemandingBehaviour branchSEFF = abstractBranchTransition.getBranchBehaviour_BranchTransition();
+			addFCCallToSEFF(instruction, branchSEFF);
+		}
+	}
 }

@@ -30,9 +30,6 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
  */
 public class ExternalCallServiceEffectSpecificationWeaving extends ServiceEffectSpecificationWeaving {
 
-	/**
-	 * @param parent
-	 */
 	public ExternalCallServiceEffectSpecificationWeaving(IBehaviourWeaving parent) {
 		super(parent);
 	}
@@ -52,27 +49,13 @@ public class ExternalCallServiceEffectSpecificationWeaving extends ServiceEffect
 			ExternalCallWeavingLocation location = (ExternalCallWeavingLocation) weavingLocation; 
 			Signature sig = location.getAffectedSignature();
 
-			List<RepositoryComponent> affectedComponents = new ArrayList<>();
-			List<AssemblyContext> allContexts = parent.getPCMSystemManager().getAssemblyContextsBy(ac -> true);
-			for (AssemblyContext assemblyContext : allContexts) {
-				List<RequiredRole> reqRoles = assemblyContext.getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity();
-				List<Signature> sigs = reqRoles.stream().flatMap(role -> ((OperationRequiredRole) role).getRequiredInterface__OperationRequiredRole().getSignatures__OperationInterface().stream()).collect(Collectors.toList());
-				if (sigs.stream().anyMatch(s -> s.getId().equals(sig.getId()))) {
-					affectedComponents.add(assemblyContext.getEncapsulatedComponent__AssemblyContext());
-				}
-			}
+			//TODO hier alle affected comp bestimmen oder von anfang an instruction für jede comp erstellen??
+			List<RepositoryComponent> affectedComponents = determineAffectedComponents(sig);
 			
 			List<ServiceEffectSpecification> seffs = affectedComponents.stream().flatMap(component -> ((BasicComponent) component).getServiceEffectSpecifications__BasicComponent().stream()).collect(Collectors.toList());
 			
 			for (ServiceEffectSpecification seff : seffs) {
-				//get all internal Actions
-				List<AbstractAction> affectedActions = new ArrayList<>();
-				EList<AbstractAction> steps = ((ResourceDemandingBehaviour) seff).getSteps_Behaviour();
-				for (AbstractAction abstractAction : steps) {
-					if (abstractAction instanceof ExternalCallAction && ((ExternalCallAction) abstractAction).getCalledService_ExternalService().getId().equals(sig.getId())) {
-						affectedActions.add(abstractAction);
-					}
-				}
+				List<AbstractAction> affectedActions = getAllExternalActionsCalling(sig, seff);
 				
 				//add fc call to the affected locations
 				for (AbstractAction internalAction : affectedActions) {
@@ -83,4 +66,41 @@ public class ExternalCallServiceEffectSpecificationWeaving extends ServiceEffect
 		}
 	}
 
+	/**
+	 * Determines all external actions in the given SEFF that call the service with given signature.
+	 * 
+	 * @param sig the given signature.
+	 * @param seff the given SEFF.
+	 * @return all external actions.
+	 */
+	private List<AbstractAction> getAllExternalActionsCalling(Signature sig, ServiceEffectSpecification seff) {
+		//get all external Actions
+		List<AbstractAction> affectedActions = new ArrayList<>();
+		EList<AbstractAction> steps = ((ResourceDemandingBehaviour) seff).getSteps_Behaviour();
+		for (AbstractAction abstractAction : steps) {
+			if (abstractAction instanceof ExternalCallAction && ((ExternalCallAction) abstractAction).getCalledService_ExternalService().getId().equals(sig.getId())) {
+				affectedActions.add(abstractAction);
+			}
+		}
+		return affectedActions;
+	}
+
+	/**
+	 * Determines all components that have external calls to the given signature.
+	 * 
+	 * @param sig the given signature.
+	 * @return all components that have external calls to the given signature.
+	 */
+	private List<RepositoryComponent> determineAffectedComponents(Signature sig) {
+		List<RepositoryComponent> affectedComponents = new ArrayList<>();
+		List<AssemblyContext> allContexts = parent.getPCMSystemManager().getAssemblyContextsBy(ac -> true);
+		for (AssemblyContext assemblyContext : allContexts) {
+			List<RequiredRole> reqRoles = assemblyContext.getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity();
+			List<Signature> sigs = reqRoles.stream().flatMap(role -> ((OperationRequiredRole) role).getRequiredInterface__OperationRequiredRole().getSignatures__OperationInterface().stream()).collect(Collectors.toList());
+			if (sigs.stream().anyMatch(s -> s.getId().equals(sig.getId()))) {
+				affectedComponents.add(assemblyContext.getEncapsulatedComponent__AssemblyContext());
+			}
+		}
+		return affectedComponents;
+	}
 }

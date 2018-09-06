@@ -4,7 +4,6 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 /**
  * Models an internal action weaving location; that is a component in which a fc will be added to all internal actions. 
@@ -14,26 +13,14 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
  */
 public class InternalActionWeavingLocation implements IWeavingLocation {
 
-	private final RepositoryComponent affectedComponent; //TODO Componenten oder COntext??
-	
-	private final AssemblyContext affectedContext; //TODO Componenten oder COntext??
-	
-	private AssemblyContext addedFCCAssemblyContext;
+	private final AssemblyContext affectedContext; 
 
 	/**
 	 * @param affectedComponent
 	 * @param affectedContext
 	 */
-	public InternalActionWeavingLocation(RepositoryComponent affectedComponent, AssemblyContext affectedContext) {
-		this.affectedComponent = affectedComponent;
+	public InternalActionWeavingLocation(AssemblyContext affectedContext) {
 		this.affectedContext = affectedContext;
-	}
-
-	/**
-	 * @return the affectedComponent
-	 */
-	public RepositoryComponent getAffectedComponent() {
-		return affectedComponent;
 	}
 
 	/**
@@ -41,21 +28,5 @@ public class InternalActionWeavingLocation implements IWeavingLocation {
 	 */
 	public AssemblyContext getAffectedContext() {
 		return affectedContext;
-	}
-
-	/* (non-Javadoc)
-	 * @see edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.IWeavingLocation#getAddedFCCAssemblyContext()
-	 */
-	@Override
-	public AssemblyContext getAddedFCCAssemblyContext() {
-		return addedFCCAssemblyContext;
-	}
-
-	/* (non-Javadoc)
-	 * @see edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.IWeavingLocation#setAddedFCCAssemblyContext(org.palladiosimulator.pcm.core.composition.AssemblyContext)
-	 */
-	@Override
-	public void setAddedFCCAssemblyContext(AssemblyContext assemblyContext) {
-		this.addedFCCAssemblyContext = assemblyContext;
 	}
 }

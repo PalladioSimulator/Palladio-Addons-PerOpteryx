@@ -4,6 +4,7 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
