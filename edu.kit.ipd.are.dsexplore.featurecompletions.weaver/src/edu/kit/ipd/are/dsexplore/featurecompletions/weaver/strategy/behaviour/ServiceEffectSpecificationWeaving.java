@@ -103,7 +103,7 @@ public abstract class ServiceEffectSpecificationWeaving {
 	 */
 	ExternalCallAction createExternalCallAction(OperationInterface operationInterface, OperationRequiredRole fcRequiredRole) {
 			ExternalCallAction externalCallAction = this.seffFactory.createExternalCallAction();
-			OperationSignature calledService = this.parent.getMergedRepoManager().getFulfillingSignatureFrom(operationInterface, this.parent.getSelectedOptionalCV());
+			OperationSignature calledService = this.parent.getMergedRepoManager().getFulfillingSignatureFrom(operationInterface);
 					//(OperationSignature) operationInterface.getSignatures__OperationInterface().get(0); //TODO add all Signatures from Interface??
 			externalCallAction.setEntityName(calledService.getEntityName());
 			externalCallAction.setCalledService_ExternalService(calledService);

@@ -43,8 +43,7 @@ public final class InstructionGenerator {
 		return this.generateWeavingInstructionFrom(fccWithReqFeatures, location.second);
 	}
 
-	// TODO changed for Behaviour
-	public CompletionComponent getFCCByVisnetis(ComplementumVisnetis cv) {
+	private CompletionComponent getFCCByVisnetis(ComplementumVisnetis cv) {
 		String featureID = cv.getComplementaryFeature().getId();
 		for (CompletionComponent fccCurrent : this.fc.getCompletionComponents()) {
 			for (Feature fccCurrentProvidedFeature : fccCurrent.getPerimeterProviding().getFeatureProviding()) {
@@ -56,8 +55,7 @@ public final class InstructionGenerator {
 		throw new FCCWeaverException("No FCC found for Complementum Visnetis with ID " + cv.getId());
 	}
 
-	// TODO changed for Behaviour
-	public Pair<CompletionComponent, List<ProvidedRole>> getFCCWithRequiredFeaturesFrom(ComplementumVisnetis cv) {
+	private Pair<CompletionComponent, List<ProvidedRole>> getFCCWithRequiredFeaturesFrom(ComplementumVisnetis cv) {
 		CompletionComponent fcc = this.getFCCByVisnetis(cv);
 		return Pair.of(fcc, this.fccfh.getProvidedFeaturesOf(fcc));
 	}

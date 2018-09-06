@@ -13,7 +13,9 @@ import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.impl.ComplementumImpl;
+
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
+
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 
 public class FCCStructureHandler {
@@ -38,7 +40,12 @@ public class FCCStructureHandler {
 		// resolvingFunction.apply(eachComponent).stream()).collect(Collectors.toList());
 	}
 
-	// TODO new for Behaviour
+	/**
+	 * Determines all FCCs that are required by a specific FCC recursively.
+	 * 
+	 * @param fcc the FCC.
+	 * @return all FCCs that are required by the FCC.
+	 */
 	public List<CompletionComponent> getFCCsRequiredBy(CompletionComponent fcc) {
 		List<CompletionComponent> result = new ArrayList<>();
 		if (!fcc.getRequiredComponents().isEmpty()) {
@@ -88,8 +95,10 @@ public class FCCStructureHandler {
 	}
 
 	/**
-	 * @param realizingComponents
-	 * @return
+	 * Checks if any of the specified FCCs requires an additional complementum.
+	 * 
+	 * @param realizingComponents the specified FCCs.
+	 * @return whether any of the specified FCCs requires a complementum.
 	 */
 	public boolean requiresComplementa(List<RepositoryComponent> realizingComponents) {
 		return realizingComponents.stream().anyMatch(component -> !StereotypeAPIHelper.getViaStereoTypeFrom(component, ComplementumImpl.class).stream()
@@ -97,24 +106,21 @@ public class FCCStructureHandler {
 	}
 
 	/**
-	 * @param realizingComponents
-	 * @return
+	 * Determines all complementa that are required by the specified components.
+	 * 
+	 * @param realizingComponents the specified components.
+	 * @return all complementa that are required.
 	 */
 	public List<RepositoryComponent> getRequiredComplementa(List<RepositoryComponent> realizingComponents) {
 		List<RepositoryComponent> result = new ArrayList<>();
 		for (RepositoryComponent repositoryComponent : realizingComponents) {
-			List<ComplementumImpl> requiredComplementa = StereotypeAPIHelper.getViaStereoTypeFrom(repositoryComponent, ComplementumImpl.class);
+			List<ComplementumImpl> requiredComplementa = StereotypeAPIHelper.getViaStereoTypeFrom(repositoryComponent, ComplementumImpl.class); //TODO kann auch an sig/iface sein??
 			requiredComplementa = requiredComplementa.stream().filter(compl -> compl.getClass().equals(ComplementumImpl.class)).collect(Collectors.toList()); // TODO
-																																								// nur
-																																								// ComplementumImpl
-																																								// hier
-																																								// betrachten,
-																																								// keine
-																																								// ComplVisnetis
+																																				// ComplVisnetis
 			if (!requiredComplementa.isEmpty()) {
-				result.add(this.mergedRepoManager.getFulfillingComponentForComplementum(requiredComplementa.get(0))); // TODO
-																														// mehrere
-																														// Complementa?
+				for (ComplementumImpl complementumImpl : requiredComplementa) {
+					result.add(this.mergedRepoManager.getFulfillingComponentForComplementum(complementumImpl));
+				}
 			}
 		}
 		return result;
