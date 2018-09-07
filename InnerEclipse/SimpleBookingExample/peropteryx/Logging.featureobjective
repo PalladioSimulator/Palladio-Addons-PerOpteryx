@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <featureObjective:FeatureObjective xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:featureObjective="http://are.ipd.kit.edu/FeatureObjectivesModel/1.0.0" id="_zEouQOGgEeemVJ0YF1ddSA" name="LoggingFeatures">
   <featureGroups operation="XOR">
-    <features id="_OqOOELAREeiJ85rCmZWp5w" name="Logging"/>
-    <features id="_PBv9QLAREeiJ85rCmZWp5w" name="LocationInfoLogging"/>
+    <features id="_OqOOELAREeiJ85rCmZWp5w" name="SimpleCollecting"/>
+    <features id="_PBv9QLAREeiJ85rCmZWp5w" name="LocationInfoCollecting"/>
   </featureGroups>
   <featureGroups operation="XOR">
-    <features id="_yZ06kLAQEeiJ85rCmZWp5w" name="Console"/>
-    <features id="_zD2vALAQEeiJ85rCmZWp5w" name="File"/>
-    <features id="_0OCqMLAQEeiJ85rCmZWp5w" name="SQLDatabase"/>
-    <features id="_0gg6QLAQEeiJ85rCmZWp5w" name="NoSQLDatabase"/>
+    <features id="_yZ06kLAQEeiJ85rCmZWp5w" name="ConsoleAppending"/>
+    <features id="_zD2vALAQEeiJ85rCmZWp5w" name="FileAppending"/>
+    <features id="_0OCqMLAQEeiJ85rCmZWp5w" name="SQLDatabaseAppending"/>
+    <features id="_0gg6QLAQEeiJ85rCmZWp5w" name="NoSQLDatabaseAppending"/>
   </featureGroups>
   <featureGroups operation="XOR">
     <features id="_5fsxELAQEeiJ85rCmZWp5w" name="PatternLayout"/>

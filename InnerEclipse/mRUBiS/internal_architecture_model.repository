@@ -600,7 +600,7 @@
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_DuPk-Cj-EeelRJRTle_aYg" describedService__SEFF="_Dt0HKyj-EeelRJRTle_aYg">
       <steps_Behaviour xsi:type="seff:StartAction" id="_DumKQCj-EeelRJRTle_aYg" successor_AbstractAction="_5N2sBJvsEei9aYoBlPueUg"/>
       <steps_Behaviour xsi:type="seff:LoopAction" id="_5N2sBJvsEei9aYoBlPueUg" entityName="loop" predecessor_AbstractAction="_DumKQCj-EeelRJRTle_aYg" successor_AbstractAction="_DumKQSj-EeelRJRTle_aYg">
-        <bodyBehaviour_Loop xsi:type="seff:ResourceDemandingSEFF" id="_8y3q45vsEei9aYoBlPueUg">
+        <bodyBehaviour_Loop id="_uTdYkrJ1EeiNQtUs4yKe-A">
           <steps_Behaviour xsi:type="seff:StartAction" id="_-HRSApvsEei9aYoBlPueUg" successor_AbstractAction="_DumKQij-EeelRJRTle_aYg"/>
           <steps_Behaviour xsi:type="seff:InternalAction" id="_DumKQij-EeelRJRTle_aYg" entityName="IA  @position: de.hpi.sam.rubis.queryservice.impl.BasicQueryServiceBean.java.BasicQueryServiceBean.findUserByNickname() from 7735 to 7970" predecessor_AbstractAction="_-HRSApvsEei9aYoBlPueUg" successor_AbstractAction="_AUNqsJvtEei9aYoBlPueUg">
             <resourceDemand_Action>
@@ -612,7 +612,7 @@
         </bodyBehaviour_Loop>
         <iterationCount_LoopAction specification="20"/>
       </steps_Behaviour>
-      <steps_Behaviour xsi:type="seff:StopAction" id="_DumKQSj-EeelRJRTle_aYg" predecessor_AbstractAction="_5N2sBJvsEei9aYoBlPueUg"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_DumKQSj-EeelRJRTle_aYg" entityName="stop loop" predecessor_AbstractAction="_5N2sBJvsEei9aYoBlPueUg"/>
     </serviceEffectSpecifications__BasicComponent>
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_DuPk-Sj-EeelRJRTle_aYg" describedService__SEFF="_Dt0HLCj-EeelRJRTle_aYg">
       <steps_Behaviour xsi:type="seff:StartAction" id="_DumKQyj-EeelRJRTle_aYg" successor_AbstractAction="_DumKRSj-EeelRJRTle_aYg"/>

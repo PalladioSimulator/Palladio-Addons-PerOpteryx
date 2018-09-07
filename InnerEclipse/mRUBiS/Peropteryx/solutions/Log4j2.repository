@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FeatureCompletionProfile="http://are.ipd.kit.edu/FeatureCompletionProfile" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:featureSolution="http://are.ipd.kit.edu/FeatureSolutionModel/1.0.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2">
   <repository:Repository id="_xrUmkHueEeiQ2-JKBP-N_g" entityName="Log4j2" repositoryDescription="">
-    <components__Repository xsi:type="repository:BasicComponent" id="_sabowPiZEeeT85tFTnTIqQ" entityName="Log4j2XMLFormatter">
-      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_-JwKMPiZEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Format" providedInterface__OperationProvidedRole="_t3dn0OfMEeeT85tFTnTIqQ"/>
-      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_-JwKMfiZEeeT85tFTnTIqQ" describedService__SEFF="_m_hDIOfNEeeT85tFTnTIqQ">
-        <steps_Behaviour xsi:type="seff:StartAction" id="_-JwKMviZEeeT85tFTnTIqQ" successor_AbstractAction="_FHBs0PkzEeeT85tFTnTIqQ"/>
-        <steps_Behaviour xsi:type="seff:StopAction" id="_-JwKM_iZEeeT85tFTnTIqQ" predecessor_AbstractAction="_FHBs0PkzEeeT85tFTnTIqQ"/>
-        <steps_Behaviour xsi:type="seff:InternalAction" id="_FHBs0PkzEeeT85tFTnTIqQ" entityName="format XML layout" predecessor_AbstractAction="_-JwKMviZEeeT85tFTnTIqQ" successor_AbstractAction="_-JwKM_iZEeeT85tFTnTIqQ">
-          <resourceDemand_Action>
-            <specification_ParametericResourceDemand specification="0.000000002 * DoublePMF[(385200.0; 0.999959)(9630000.0; 0.00003)(1.605E7; 0.000008)(2.568E7; 0.000002)]"/>
-            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
-          </resourceDemand_Action>
-        </steps_Behaviour>
-      </serviceEffectSpecifications__BasicComponent>
-    </components__Repository>
     <components__Repository xsi:type="repository:BasicComponent" id="_JKkMoOfNEeeT85tFTnTIqQ" entityName="Log4j2Logger">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_gOiekOfNEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Log" providedInterface__OperationProvidedRole="_jgVb8OfMEeeT85tFTnTIqQ"/>
       <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_jGwo4OfNEeeT85tFTnTIqQ" entityName="OperationRequiredRole_Append" requiredInterface__OperationRequiredRole="_qdZ7wOfMEeeT85tFTnTIqQ"/>
@@ -27,6 +14,34 @@
           </resourceDemand_Action>
         </steps_Behaviour>
         <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_qHwioPk1EeeT85tFTnTIqQ" entityName="call append" predecessor_AbstractAction="_XzCVcPkyEeeT85tFTnTIqQ" successor_AbstractAction="_gOsPkufNEeeT85tFTnTIqQ" calledService_ExternalService="_mI0rsOfNEeeT85tFTnTIqQ" role_ExternalService="_jGwo4OfNEeeT85tFTnTIqQ"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_QVCrwLJvEei_guymyM03IA" entityName="Log4j2LocationInfoLogger">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_VAa12LJvEei_guymyM03IA" entityName="OperationProvidedRole_Log" providedInterface__OperationProvidedRole="_jgVb8OfMEeeT85tFTnTIqQ"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_VmaexbJvEei_guymyM03IA" entityName="OperationRequiredRole_Append" requiredInterface__OperationRequiredRole="_qdZ7wOfMEeeT85tFTnTIqQ"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_WJIKR7JvEei_guymyM03IA" describedService__SEFF="_oRT3oOfMEeeT85tFTnTIqQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_9FsFgrJvEei_guymyM03IA" successor_AbstractAction="_9jMg7LJvEei_guymyM03IA"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_9jMg7LJvEei_guymyM03IA" entityName="locationlog" predecessor_AbstractAction="_9FsFgrJvEei_guymyM03IA" successor_AbstractAction="_-iezprJvEei_guymyM03IA">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="0.000000002 * 64000"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_-iezprJvEei_guymyM03IA" entityName="call appendl" predecessor_AbstractAction="_9jMg7LJvEei_guymyM03IA" successor_AbstractAction="__aziwLJvEei_guymyM03IA" calledService_ExternalService="_mI0rsOfNEeeT85tFTnTIqQ" role_ExternalService="_VmaexbJvEei_guymyM03IA"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="__aziwLJvEei_guymyM03IA" predecessor_AbstractAction="_-iezprJvEei_guymyM03IA"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_sabowPiZEeeT85tFTnTIqQ" entityName="Log4j2XMLFormatter">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_-JwKMPiZEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Format" providedInterface__OperationProvidedRole="_t3dn0OfMEeeT85tFTnTIqQ"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_-JwKMfiZEeeT85tFTnTIqQ" describedService__SEFF="_m_hDIOfNEeeT85tFTnTIqQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_-JwKMviZEeeT85tFTnTIqQ" successor_AbstractAction="_FHBs0PkzEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_-JwKM_iZEeeT85tFTnTIqQ" predecessor_AbstractAction="_FHBs0PkzEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_FHBs0PkzEeeT85tFTnTIqQ" entityName="format XML layout" predecessor_AbstractAction="_-JwKMviZEeeT85tFTnTIqQ" successor_AbstractAction="_-JwKM_iZEeeT85tFTnTIqQ">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="0.000000002 * DoublePMF[(385200.0; 0.999959)(9630000.0; 0.00003)(1.605E7; 0.000008)(2.568E7; 0.000002)]"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
     <components__Repository xsi:type="repository:BasicComponent" id="_PA5G0OfNEeeT85tFTnTIqQ" entityName="Log4j2ConsoleAppender">
@@ -199,7 +214,7 @@
     </stereotypeApplications>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:transformation" appliedTo="_xrUmkHueEeiQ2-JKBP-N_g">
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_B1s7IBfhEeixnp8iZNZNhA"/>
-      <usesMechanism xsi:type="featureSolution:ExtensionInclusion" href="../extension.fcdsl#_ZZ"/>
+      <usesMechanism xsi:type="featureSolution:BehaviourInclusion" href="../behaviour.fcdsl#_ZZ"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_JKkMoOfNEeeT85tFTnTIqQ">
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
@@ -275,7 +290,7 @@
     </stereotypeApplications>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_JKkMoOfNEeeT85tFTnTIqQ">
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaHYVEeirzP2CXhR6Fg"/>
-      <fulfills href="../Logging.featurecompletion#_CPxWwpNNEei8wsTJtgXi_w"/>
+      <fulfills href="../Logging.featurecompletion#_rbG_grAREeiJ85rCmZWp5w"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementum" appliedTo="_QT0ikO8FEeeT85tFTnTIqQ">
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#__L2VgJY7EeiFlpJZKhVb7g"/>
@@ -288,6 +303,14 @@
     <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementum" appliedTo="_O5moIPiZEeeT85tFTnTIqQ">
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#__L2VgJY7EeiFlpJZKhVb7g"/>
       <provides href="../Logging.featurecompletion#_c0hwwOZXEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_QVCrwLJvEei_guymyM03IA">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaHYVEeirzP2CXhR6Fg"/>
+      <fulfills href="../Logging.featurecompletion#_zgq9Epr3EeiGWdCH8kHCMA"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:isSolutionFor" appliedTo="_QVCrwLJvEei_guymyM03IA">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uEmRaHYVEeirzP2CXhR6Fg"/>
+      <realizes href="../Logging.featurecompletion#_dpty0OTXEeeT85tFTnTIqQ"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>

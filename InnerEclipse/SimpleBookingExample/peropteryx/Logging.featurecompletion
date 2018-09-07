@@ -10,7 +10,7 @@
       <perimeterProviding id="_MifWsuTYEeeT85tFTnTIqQ"/>
       <perimeterRequiring id="_M1H-0eTYEeeT85tFTnTIqQ"/>
     </completionComponents>
-    <completionComponents id="_dpty0OTXEeeT85tFTnTIqQ" name="Logger" requiredComponents="_qGwiUOTXEeeT85tFTnTIqQ">
+    <completionComponents id="_dpty0OTXEeeT85tFTnTIqQ" name="DataCollector" requiredComponents="_qGwiUOTXEeeT85tFTnTIqQ">
       <perimeterProviding id="_e3NgsOTXEeeT85tFTnTIqQ">
         <featureProviding href="Logging.featureobjective#_yZ06kLAQEeiJ85rCmZWp5w"/>
         <featureProviding href="Logging.featureobjective#_5zOKALAQEeiJ85rCmZWp5w"/>
@@ -25,16 +25,22 @@
       </perimeterProviding>
       <perimeterRequiring id="_fhZGIeTXEeeT85tFTnTIqQ"/>
     </completionComponents>
-    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_tGBoc-TaEeeT85tFTnTIqQ" name="ConsoleLogging" visnetum="INTERFACE">
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_rbG_grAREeiJ85rCmZWp5w" name="SimpleCollecting">
+      <complementaryFeature href="Logging.featureobjective#_OqOOELAREeiJ85rCmZWp5w"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_zgq9Epr3EeiGWdCH8kHCMA" name="LocationInfoCollecting">
+      <complementaryFeature href="Logging.featureobjective#_PBv9QLAREeiJ85rCmZWp5w"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_tGBoc-TaEeeT85tFTnTIqQ" name="ConsoleAppending" visnetum="INTERFACE">
       <complementaryFeature href="Logging.featureobjective#_yZ06kLAQEeiJ85rCmZWp5w"/>
     </complementa>
-    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_JysxkeWGEeeT85tFTnTIqQ" name="FileLogging" visnetum="INTERFACE">
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_JysxkeWGEeeT85tFTnTIqQ" name="FileAppending" visnetum="INTERFACE">
       <complementaryFeature href="Logging.featureobjective#_zD2vALAQEeiJ85rCmZWp5w"/>
     </complementa>
-    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_Lb-cgeWGEeeT85tFTnTIqQ" name="SQLDatabaseLogging" visnetum="INTERFACE">
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_Lb-cgeWGEeeT85tFTnTIqQ" name="SQLDatabaseAppending" visnetum="INTERFACE">
       <complementaryFeature href="Logging.featureobjective#_0OCqMLAQEeiJ85rCmZWp5w"/>
     </complementa>
-    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_MX218eWGEeeT85tFTnTIqQ" name="NoSQLDatabaseLogging" description="" visnetum="INTERFACE">
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_MX218eWGEeeT85tFTnTIqQ" name="NoSQLDatabaseAppending" description="" visnetum="INTERFACE">
       <complementaryFeature href="Logging.featureobjective#_0gg6QLAQEeiJ85rCmZWp5w"/>
     </complementa>
     <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_1XUJMeTaEeeT85tFTnTIqQ" name="PatternLayout" visnetum="INTERFACE">
@@ -51,11 +57,5 @@
     </complementa>
     <complementa id="_RVapIOZXEeeT85tFTnTIqQ" name="SQLDatabase" visnetum="COMPONENT"/>
     <complementa id="_c0hwwOZXEeeT85tFTnTIqQ" name="NoSQLDatabase" visnetum="COMPONENT"/>
-    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_zgq9Epr3EeiGWdCH8kHCMA" name="LocationInfoLogging">
-      <complementaryFeature href="Logging.featureobjective#_PBv9QLAREeiJ85rCmZWp5w"/>
-    </complementa>
-    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_rbG_grAREeiJ85rCmZWp5w" name="Logging">
-      <complementaryFeature href="Logging.featureobjective#_OqOOELAREeiJ85rCmZWp5w"/>
-    </complementa>
   </featureCompletions>
 </FeatureCompletion:FeatureCompletionRepository>

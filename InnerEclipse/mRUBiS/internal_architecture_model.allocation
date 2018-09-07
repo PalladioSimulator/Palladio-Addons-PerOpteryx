@@ -7,7 +7,7 @@
     <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzECj-EeelRJRTle_aYg"/>
   </allocationContexts_Allocation>
   <allocationContexts_Allocation id="_DuQzFSj-EeelRJRTle_aYg" entityName="QueryServiceBean">
-    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_0-1EYbJ1EeiNQtUs4yKe-A"/>
     <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzFCj-EeelRJRTle_aYg"/>
   </allocationContexts_Allocation>
   <allocationContexts_Allocation id="_DuQzGSj-EeelRJRTle_aYg" entityName="AboutMeServiceBean">
@@ -27,7 +27,7 @@
     <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzJCj-EeelRJRTle_aYg"/>
   </allocationContexts_Allocation>
   <allocationContexts_Allocation id="_DuQzKSj-EeelRJRTle_aYg" entityName="BusinessObjectsPersistenceServiceBean">
-    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_0-1EYbJ1EeiNQtUs4yKe-A"/>
     <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzKCj-EeelRJRTle_aYg"/>
   </allocationContexts_Allocation>
   <allocationContexts_Allocation id="_DuQzLSj-EeelRJRTle_aYg" entityName="BrowseRegionsServiceBean">
@@ -39,7 +39,7 @@
     <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzMCj-EeelRJRTle_aYg"/>
   </allocationContexts_Allocation>
   <allocationContexts_Allocation id="_DuQzNSj-EeelRJRTle_aYg" entityName="BasicQueryServiceBean">
-    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_t5OwkCjpEeelRJRTle_aYg"/>
+    <resourceContainer_AllocationContext href="internal_architecture_model.resourceenvironment#_0-1EYbJ1EeiNQtUs4yKe-A"/>
     <assemblyContext_AllocationContext href="internal_architecture_model.system#_DuQzNCj-EeelRJRTle_aYg"/>
   </allocationContexts_Allocation>
   <allocationContexts_Allocation id="_DuQzOSj-EeelRJRTle_aYg" entityName="QuantificationServiceBean">

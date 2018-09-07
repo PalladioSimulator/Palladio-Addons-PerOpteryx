@@ -20,7 +20,7 @@ BehaviourInclusion behaviourIncl _ZZ {
 			}
 		}
 	}
-	featureCompletion Logging({Logging, LocationInfoLogging}, {ConsoleLogging,FileLogging}, {PatternLayout})
+	featureCompletion Logging({SimpleCollecting, LocationInfoCollecting}, {ConsoleAppending,FileAppending}, {PatternLayout})
 	advice {
 		Advice {
 			appears BEFORE 
