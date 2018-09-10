@@ -1,7 +1,7 @@
 import "platform:/resource/mRUBiS/internal_architecture_model.repository"
 import "platform:/resource/mRUBiS/Peropteryx/Logging.featurecompletion"
 
-multiple BehaviourInclusion behaviourIncl _ZZ {
+BehaviourInclusion behaviourIncl _ZZ {
 	description bla
 	pointCut {
 		PointCut allCalls {
@@ -25,27 +25,29 @@ multiple BehaviourInclusion behaviourIncl _ZZ {
 			}
 		}
 	}
-	featureCompletion Logging({SimpleCollecting,LocationInfoCollecting}, {ConsoleAppending,FileAppending}, {PatternLayout,optional JSONLayout})
+//	featureCompletion Logging({SimpleCollecting,LocationInfoCollecting}, {ConsoleAppending,FileAppending}, {PatternLayout,optional JSONLayout})
+	featureCompletion Logging({LocationInfoCollecting}, {SQLDatabaseAppending}, {JSONLayout})
 	advice {
 		Advice {
 			appears BEFORE 
 			pointCut allCalls
-			placementPolicy OPTIONAL
-		},
-		Advice {
-			appears BEFORE 
-			pointCut allActionsInQueryServiceBean
-			placementPolicy OPTIONAL
-		},
-		Advice {
-			appears BEFORE 
-			pointCut allActionsInBasicQueryServiceBean
-			placementPolicy OPTIONAL
-		},
-		Advice {
-			appears BEFORE 
-			pointCut allControlFlowsIn
-			placementPolicy OPTIONAL
+			placementPolicy MANDATORY
 		}
+//		,
+//		Advice {
+//			appears BEFORE 
+//			pointCut allActionsInQueryServiceBean
+//			placementPolicy OPTIONAL
+//		},
+//		Advice {
+//			appears BEFORE 
+//			pointCut allActionsInBasicQueryServiceBean
+//			placementPolicy OPTIONAL
+//		},
+//		Advice {
+//			appears AROUND 
+//			pointCut allControlFlowsIn
+//			placementPolicy OPTIONAL
+//		}
 	}
 }

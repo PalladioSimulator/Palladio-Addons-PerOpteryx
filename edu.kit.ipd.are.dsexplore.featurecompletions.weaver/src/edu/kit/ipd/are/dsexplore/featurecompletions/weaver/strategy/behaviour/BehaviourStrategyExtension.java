@@ -28,7 +28,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.Multip
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IStrategyExtension;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
-
+import featureSolution.BehaviourInclusion;
 import featureSolution.InclusionMechanism;
 import featureSolution.SelectedCV;
 
@@ -155,9 +155,11 @@ public class BehaviourStrategyExtension implements IStrategyExtension {
 	}
 
 	private void createMultipleInclusionDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, InclusionMechanism im) {
-		BoolChoice choice = new MultipleInclusionDesignDecision(im).generateMultipleInclusionDegree();
-
-		initialCandidate.add(choice);
-		dds.add(choice.getDegreeOfFreedomInstance());
+		if (((BehaviourInclusion) im).isMultiple()) {
+			BoolChoice choice = new MultipleInclusionDesignDecision(im).generateMultipleInclusionDegree();
+	
+			initialCandidate.add(choice);
+			dds.add(choice.getDegreeOfFreedomInstance());
+		}
 	}
 }

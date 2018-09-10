@@ -111,7 +111,7 @@
 <booleanAttribute key="markovModelTracesEnabled" value="false"/>
 <booleanAttribute key="markovStatistics" value="false"/>
 <intAttribute key="maxDomain" value="256"/>
-<stringAttribute key="maxIterations" value="200"/>
+<stringAttribute key="maxIterations" value="100"/>
 <stringAttribute key="maximum" value=""/>
 <stringAttribute key="maximumMeasurementCount" value="100"/>
 <stringAttribute key="minimum" value=""/>

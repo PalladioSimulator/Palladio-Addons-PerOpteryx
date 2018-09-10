@@ -40,7 +40,7 @@ public class ExternalCallServiceEffectSpecificationWeaving extends ServiceEffect
 	 * 
 	 * @param instruction the weaving instruction to apply.
 	 */
-	public void weave(IWeavingInstruction instruction) { //TODO gleiche Code teilen in Oberklasse ziehen?
+	public void weave(IWeavingInstruction instruction) {
 		FCCModule.logger.debug("External Call SEFF Behaviour Weaving");
 		
 		List<? extends IWeavingLocation> locations = instruction.getWeavingLocations();
@@ -50,9 +50,13 @@ public class ExternalCallServiceEffectSpecificationWeaving extends ServiceEffect
 			Signature sig = location.getAffectedSignature();
 
 			//TODO hier alle affected comp bestimmen oder von anfang an instruction für jede comp erstellen??
-			List<RepositoryComponent> affectedComponents = determineAffectedComponents(sig);
-			
-			List<ServiceEffectSpecification> seffs = affectedComponents.stream().flatMap(component -> ((BasicComponent) component).getServiceEffectSpecifications__BasicComponent().stream()).collect(Collectors.toList());
+//			List<RepositoryComponent> affectedComponents = determineAffectedComponents(sig);			
+//			List<ServiceEffectSpecification> seffs = affectedComponents.stream().flatMap(component -> ((BasicComponent) component).getServiceEffectSpecifications__BasicComponent().stream()).collect(Collectors.toList());
+			//TODO
+			AssemblyContext assemblyContext = weavingLocation.getAffectedContext();
+			//Assumption: Behaviour inclusion approach is only defined on non-composite components!
+			BasicComponent component = (BasicComponent) assemblyContext.getEncapsulatedComponent__AssemblyContext();
+			List<ServiceEffectSpecification> seffs = component.getServiceEffectSpecifications__BasicComponent();
 			
 			for (ServiceEffectSpecification seff : seffs) {
 				List<AbstractAction> affectedActions = getAllExternalActionsCalling(sig, seff);

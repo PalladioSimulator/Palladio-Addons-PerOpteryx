@@ -115,8 +115,7 @@ public class FCCStructureHandler {
 		List<RepositoryComponent> result = new ArrayList<>();
 		for (RepositoryComponent repositoryComponent : realizingComponents) {
 			List<ComplementumImpl> requiredComplementa = StereotypeAPIHelper.getViaStereoTypeFrom(repositoryComponent, ComplementumImpl.class); //TODO kann auch an sig/iface sein??
-			requiredComplementa = requiredComplementa.stream().filter(compl -> compl.getClass().equals(ComplementumImpl.class)).collect(Collectors.toList()); // TODO
-																																				// ComplVisnetis
+			requiredComplementa = requiredComplementa.stream().filter(compl -> compl.getClass().equals(ComplementumImpl.class)).collect(Collectors.toList());
 			if (!requiredComplementa.isEmpty()) {
 				for (ComplementumImpl complementumImpl : requiredComplementa) {
 					result.add(this.mergedRepoManager.getFulfillingComponentForComplementum(complementumImpl));

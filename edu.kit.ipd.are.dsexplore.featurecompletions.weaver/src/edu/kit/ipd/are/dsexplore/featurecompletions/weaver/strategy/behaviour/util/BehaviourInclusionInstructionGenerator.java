@@ -5,6 +5,7 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour.u
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
@@ -103,9 +104,10 @@ public class BehaviourInclusionInstructionGenerator {
 
 			if (match) {
 				AssemblyContext affectedContext = ((AssemblyConnector) connector).getRequiringAssemblyContext_AssemblyConnector();
-				locations.add(new ExternalCallWeavingLocation(sig, connector,affectedContext));
+				locations.add(new ExternalCallWeavingLocation(sig, affectedContext));
 			}
 		}
+		locations = locations.stream().distinct().collect(Collectors.toList());
 		return locations;
 	}
 

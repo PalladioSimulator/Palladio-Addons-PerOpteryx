@@ -4,6 +4,7 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.BasicComponent;
@@ -36,7 +37,7 @@ public class ControlFlowServiceEffectSpecificationWeaving extends ServiceEffectS
 	 * 
 	 * @param instruction the weaving instruction to apply.
 	 */
-	public void weave(IWeavingInstruction instruction) { //TODO gleiche Code teilen in Oberklasse ziehen?
+	public void weave(IWeavingInstruction instruction) {
 		FCCModule.logger.debug("Control Flow SEFF Behaviour Weaving");
 		
 		List<? extends IWeavingLocation> locations = instruction.getWeavingLocations();
@@ -44,14 +45,13 @@ public class ControlFlowServiceEffectSpecificationWeaving extends ServiceEffectS
 			//This is ok, as we know we only have InternalActionWeavingLocations in this Strategy
 			ControlFlowWeavingLocation location = (ControlFlowWeavingLocation) weavingLocation; 
 			AssemblyContext context = location.getAffectedContext();
-			//TODO implement for composite component
+			//Assumption: Behaviour inclusion approach is only defined on non-composite components!
 			BasicComponent component = (BasicComponent) context.getEncapsulatedComponent__AssemblyContext();
 			List<ServiceEffectSpecification> seffs = component.getServiceEffectSpecifications__BasicComponent();
 			
 			for (ServiceEffectSpecification seff : seffs) {
 				//get all internal Actions
 				List<AbstractAction> steps = ((ResourceDemandingBehaviour) seff).getSteps_Behaviour();
-				//TODO search recursively??
 				for (AbstractAction abstractAction : steps) {
 					if (abstractAction instanceof BranchAction) { 
 						//handle branch actions

@@ -42,7 +42,7 @@ public class InternalActionServiceEffectSpecificationWeaving extends ServiceEffe
 			//This is ok, as we know we only have InternalActionWeavingLocations in this Strategy
 			InternalActionWeavingLocation location = (InternalActionWeavingLocation) weavingLocation; 
 			AssemblyContext context = location.getAffectedContext();
-			//TODO implement for composite component?
+			//Assumption: Behaviour inclusion approach is only defined on non-composite components!
 			BasicComponent component = (BasicComponent) context.getEncapsulatedComponent__AssemblyContext();
 			List<ServiceEffectSpecification> seffs = component.getServiceEffectSpecifications__BasicComponent();
 			

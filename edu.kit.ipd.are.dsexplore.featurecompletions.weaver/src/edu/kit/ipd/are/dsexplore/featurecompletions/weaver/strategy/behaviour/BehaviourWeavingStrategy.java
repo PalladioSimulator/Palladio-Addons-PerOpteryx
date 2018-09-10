@@ -170,7 +170,12 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 		this.cvChoices = ese.cvChoices;
 		
 		//set chosen multiple flag
-		this.im.setMultiple(((BoolChoice) this.multipleInclusionChoice).isChosenValue());
+		if (this.multipleInclusionChoice != null) {
+			this.im.setMultiple(((BoolChoice) this.multipleInclusionChoice).isChosenValue());
+		} else {
+			this.im.setMultiple(false);
+		}
+		
 		//set selected cv choices
 		this.setSelectedCVs();
 
@@ -264,7 +269,7 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 
 		FCCModule.logger.debug("Behaviour Weaving Strategy: Weaving Finished");
 		//DEBUG print pcm
-		// savePcmInstanceToFile(pcmToAdapt, "C:/Users/Maxi/git/PerOpteryxPlus/InnerEclipse/SimplePerOpteryx/pcm_debug/pcm_debug");
+//		 savePcmInstanceToFile(pcmToAdapt, "C:/Users/Maxi/git/PerOpteryxPlus/InnerEclipse/SimplePerOpteryx/pcm_debug/pcm_debug");
 		//DEBUG print pcm
 	}
 
