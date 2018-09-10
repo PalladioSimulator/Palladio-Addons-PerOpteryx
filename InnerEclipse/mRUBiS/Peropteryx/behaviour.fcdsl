@@ -26,28 +26,29 @@ BehaviourInclusion behaviourIncl _ZZ {
 		}
 	}
 //	featureCompletion Logging({SimpleCollecting,LocationInfoCollecting}, {ConsoleAppending,FileAppending}, {PatternLayout,optional JSONLayout})
-	featureCompletion Logging({LocationInfoCollecting}, {SQLDatabaseAppending}, {JSONLayout})
+	featureCompletion Logging({SimpleCollecting}, {SQLDatabaseAppending}, {PatternLayout})
 	advice {
-		Advice {
-			appears BEFORE 
-			pointCut allCalls
-			placementPolicy MANDATORY
-		}
+//		Advice {
+//			appears BEFORE 
+//			pointCut allCalls
+//			placementPolicy MANDATORY
+//		}
 //		,
 //		Advice {
 //			appears BEFORE 
 //			pointCut allActionsInQueryServiceBean
-//			placementPolicy OPTIONAL
+//			placementPolicy MANDATORY
 //		},
-//		Advice {
-//			appears BEFORE 
-//			pointCut allActionsInBasicQueryServiceBean
-//			placementPolicy OPTIONAL
-//		},
+		Advice {
+			appears BEFORE 
+			pointCut allActionsInBasicQueryServiceBean
+			placementPolicy OPTIONAL
+		}
+//		,
 //		Advice {
 //			appears AROUND 
 //			pointCut allControlFlowsIn
-//			placementPolicy OPTIONAL
+//			placementPolicy MANDATORY
 //		}
 	}
 }
