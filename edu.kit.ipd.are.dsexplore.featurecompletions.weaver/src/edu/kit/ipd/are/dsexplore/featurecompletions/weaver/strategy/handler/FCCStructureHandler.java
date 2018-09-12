@@ -9,8 +9,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
+import org.palladiosimulator.pcm.repository.BasicComponent;
+import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
+import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.impl.ComplementumImpl;
 
@@ -114,7 +117,21 @@ public class FCCStructureHandler {
 	public List<RepositoryComponent> getRequiredComplementa(List<RepositoryComponent> realizingComponents) {
 		List<RepositoryComponent> result = new ArrayList<>();
 		for (RepositoryComponent repositoryComponent : realizingComponents) {
-			List<ComplementumImpl> requiredComplementa = StereotypeAPIHelper.getViaStereoTypeFrom(repositoryComponent, ComplementumImpl.class); //TODO kann auch an sig/iface sein??
+			List<ComplementumImpl> requiredComplementa = new ArrayList<ComplementumImpl>();
+			// complementa required by component
+			List<ComplementumImpl> requiredComplementaByComponent = StereotypeAPIHelper.getViaStereoTypeFrom(repositoryComponent, ComplementumImpl.class);
+			// complementa required by signatures
+			List<ComplementumImpl> requiredComplementaByInterface = repositoryComponent.getProvidedRoles_InterfaceProvidingEntity().stream()
+					.flatMap(role -> StereotypeAPIHelper.getViaStereoTypeFrom(((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole(), ComplementumImpl.class).stream())
+					.collect(Collectors.toList());
+			// complementa required by interfaces
+			List<ComplementumImpl> requiredComplementaBySignature = repositoryComponent.getProvidedRoles_InterfaceProvidingEntity().stream()
+					.flatMap(role -> ((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface().stream())
+					.flatMap(signature -> StereotypeAPIHelper.getViaStereoTypeFrom(signature, ComplementumImpl.class).stream()).collect(Collectors.toList());
+			//add all
+			requiredComplementa.addAll(requiredComplementaByComponent);
+			requiredComplementa.addAll(requiredComplementaByInterface);
+			requiredComplementa.addAll(requiredComplementaBySignature);
 			requiredComplementa = requiredComplementa.stream().filter(compl -> compl.getClass().equals(ComplementumImpl.class)).collect(Collectors.toList());
 			if (!requiredComplementa.isEmpty()) {
 				for (ComplementumImpl complementumImpl : requiredComplementa) {

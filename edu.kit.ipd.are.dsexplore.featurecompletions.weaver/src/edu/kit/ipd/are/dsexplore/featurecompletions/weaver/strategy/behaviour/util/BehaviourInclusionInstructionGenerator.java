@@ -97,7 +97,7 @@ public class BehaviourInclusionInstructionGenerator {
 		List<Connector> connectors = this.psm.getConnectorsBy(connector -> connector instanceof AssemblyConnector ? true : false);
 
 		for (Connector connector : connectors) {
-			// TODO alle Komp-SEFFs nach ExternalCalls mit entsprechender Sig durchsuchen -> dann fällt aber Suche in ExternalCall SeffWeaving weg!!
+			// search for components with call the given signature
 			RepositoryComponent comp = ((AssemblyConnector) connector).getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext();
 			boolean match = ((BasicComponent) comp).getServiceEffectSpecifications__BasicComponent().stream().anyMatch(seff -> ((ResourceDemandingBehaviour) seff).getSteps_Behaviour().stream()
 					.anyMatch(action -> action instanceof ExternalCallAction && ((ExternalCallAction) action).getCalledService_ExternalService().getId().equals(sig.getId())));

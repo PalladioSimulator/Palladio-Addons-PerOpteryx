@@ -49,10 +49,6 @@ public class ExternalCallServiceEffectSpecificationWeaving extends ServiceEffect
 			ExternalCallWeavingLocation location = (ExternalCallWeavingLocation) weavingLocation; 
 			Signature sig = location.getAffectedSignature();
 
-			//TODO hier alle affected comp bestimmen oder von anfang an instruction für jede comp erstellen??
-//			List<RepositoryComponent> affectedComponents = determineAffectedComponents(sig);			
-//			List<ServiceEffectSpecification> seffs = affectedComponents.stream().flatMap(component -> ((BasicComponent) component).getServiceEffectSpecifications__BasicComponent().stream()).collect(Collectors.toList());
-			//TODO
 			AssemblyContext assemblyContext = weavingLocation.getAffectedContext();
 			//Assumption: Behaviour inclusion approach is only defined on non-composite components!
 			BasicComponent component = (BasicComponent) assemblyContext.getEncapsulatedComponent__AssemblyContext();
