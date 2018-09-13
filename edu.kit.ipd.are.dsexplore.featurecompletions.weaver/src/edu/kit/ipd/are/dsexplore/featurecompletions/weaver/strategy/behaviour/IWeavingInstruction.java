@@ -12,7 +12,7 @@ import FeatureCompletionModel.CompletionComponent;
 
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 
-import featureSolution.Advice;
+import placementDescription.Advice;
 import featureSolution.InclusionMechanism;
 
 /**

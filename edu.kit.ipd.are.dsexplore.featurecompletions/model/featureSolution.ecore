@@ -13,63 +13,17 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BehaviourInclusion" eSuperTypes="#//InclusionMechanism">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pointCut" upperBound="-1"
-        eType="#//PointCut" containment="true"/>
+        eType="ecore:EClass placementDescription.ecore#//PointCut" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="advice" upperBound="-1"
-        eType="#//Advice" containment="true"/>
+        eType="ecore:EClass placementDescription.ecore#//Advice" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="imports" upperBound="-1"
-        eType="#//Import" containment="true"/>
+        eType="ecore:EClass placementDescription.ecore#//Import" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="featureCompletion" lowerBound="1"
-        eType="#//FeatureSelection" containment="true"/>
+        eType="ecore:EClass placementDescription.ecore#//FeatureSelection" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Appearance">
     <eLiterals name="BEFORE"/>
     <eLiterals name="AFTER" value="1"/>
     <eLiterals name="AROUND" value="2"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PlacementStrategy"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExternalCallPlacementStrategy" eSuperTypes="#//PlacementStrategy">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="matchingSignature" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//repository/Signature"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InternalActionPlacementStrategy" eSuperTypes="#//PlacementStrategy">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="forAllInternalActionsIn"
-        eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//repository/RepositoryComponent"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ControlFlowPlacementStrategy" eSuperTypes="#//PlacementStrategy">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="forAllControlFlowsIn" eType="ecore:EClass ../../org.palladiosimulator.pcm/model/pcm.ecore#//repository/RepositoryComponent"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ControlFlow">
-    <eLiterals name="LOOP" literal="LOOP"/>
-    <eLiterals name="BRANCH" value="1" literal="BRANCH"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PointCut">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="placementStrategy" eType="#//PlacementStrategy"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Advice" eSuperTypes="../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pointCut" eType="#//PointCut"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="appears" lowerBound="1"
-        eType="#//Appearance" defaultValueLiteral="BEFORE"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="placementPolicy" lowerBound="1"
-        eType="ecore:EEnum featureCompletions.ecore#//PlacementPolicy" defaultValueLiteral="MANDATORY"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Import">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureSelection" eSuperTypes="../../org.palladiosimulator.pcm/model/pcm.ecore#//core/entity/NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Completion" lowerBound="1"
-        eType="ecore:EClass featureCompletions.ecore#//FeatureCompletion"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="featureLists" lowerBound="1"
-        upperBound="-1" eType="#//FeatureList" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureList">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="features" lowerBound="1"
-        upperBound="-1" eType="#//SelectedCV" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SelectedCV">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="complementumVisnetis" lowerBound="1"
-        eType="ecore:EClass featureCompletions.ecore#//ComplementumVisnetis"/>
   </eClassifiers>
 </ecore:EPackage>

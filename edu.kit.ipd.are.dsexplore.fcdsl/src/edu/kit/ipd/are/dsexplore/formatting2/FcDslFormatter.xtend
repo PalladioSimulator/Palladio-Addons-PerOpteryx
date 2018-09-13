@@ -5,10 +5,10 @@ package edu.kit.ipd.are.dsexplore.formatting2
 
 import com.google.inject.Inject
 import edu.kit.ipd.are.dsexplore.services.FcDslGrammarAccess
-import featureSolution.Advice
+import placementDescription.Advice
 import featureSolution.BehaviourInclusion
-import featureSolution.Import
-import featureSolution.PointCut
+import placementDescription.Import
+import placementDescription.PointCut
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
 

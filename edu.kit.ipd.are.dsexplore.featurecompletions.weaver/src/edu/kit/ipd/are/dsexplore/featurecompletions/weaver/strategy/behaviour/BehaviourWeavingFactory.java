@@ -3,10 +3,10 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 import java.util.HashMap;
 import java.util.function.Function;
 
-import featureSolution.PlacementStrategy;
-import featureSolution.impl.ControlFlowPlacementStrategyImpl;
-import featureSolution.impl.ExternalCallPlacementStrategyImpl;
-import featureSolution.impl.InternalActionPlacementStrategyImpl;
+import placementDescription.PlacementStrategy;
+import placementDescription.impl.ControlFlowPlacementStrategyImpl;
+import placementDescription.impl.ExternalCallPlacementStrategyImpl;
+import placementDescription.impl.InternalActionPlacementStrategyImpl;
 
 
 

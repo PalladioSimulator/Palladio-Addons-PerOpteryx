@@ -210,6 +210,7 @@ import org.palladiosimulator.pcm.subsystem.provider.SubsystemItemProviderAdapter
 import org.palladiosimulator.pcm.system.provider.SystemItemProviderAdapterFactory;
 
 import org.palladiosimulator.pcm.usagemodel.provider.UsagemodelItemProviderAdapterFactory;
+import placementDescription.provider.PlacementDescriptionItemProviderAdapterFactory;
 
 
 /**
@@ -757,6 +758,7 @@ public class FeatureCompletionEditor
 		adapterFactory.addAdapterFactory(new FeatureCompletionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new FeatureObjectiveItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new FeatureSolutionItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new PlacementDescriptionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new IdentifierItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new PcmItemProviderAdapterFactory());

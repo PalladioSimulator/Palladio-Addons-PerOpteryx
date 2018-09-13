@@ -68,7 +68,7 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.RangeDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ResourceContainerReplicationDegreeWithComponentChange;
 import de.uka.ipd.sdq.pcm.designdecision.specific.SchedulingPolicyDegree;
-import featureSolution.SelectedCV;
+import placementDescription.SelectedCV;
 
 /**
  * The {@link DSEDecoder} is responsible for converting the genotypes into

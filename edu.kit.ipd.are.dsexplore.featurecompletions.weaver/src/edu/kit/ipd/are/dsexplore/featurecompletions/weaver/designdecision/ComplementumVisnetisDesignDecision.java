@@ -14,9 +14,9 @@ import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 
 import featureSolution.BehaviourInclusion;
-import featureSolution.FeatureList;
+import placementDescription.FeatureList;
 import featureSolution.InclusionMechanism;
-import featureSolution.SelectedCV;
+import placementDescription.SelectedCV;
 
 /**
  * Responsible for creating the complementum visnetis degrees in the behaviour inclusion mechanism. 

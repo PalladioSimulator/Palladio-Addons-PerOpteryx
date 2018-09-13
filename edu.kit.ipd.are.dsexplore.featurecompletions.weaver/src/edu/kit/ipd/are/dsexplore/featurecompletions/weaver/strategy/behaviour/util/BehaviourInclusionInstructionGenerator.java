@@ -22,9 +22,9 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour.In
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmSystemManager;
 
-import featureSolution.impl.ControlFlowPlacementStrategyImpl;
-import featureSolution.impl.ExternalCallPlacementStrategyImpl;
-import featureSolution.impl.InternalActionPlacementStrategyImpl;
+import placementDescription.impl.ControlFlowPlacementStrategyImpl;
+import placementDescription.impl.ExternalCallPlacementStrategyImpl;
+import placementDescription.impl.InternalActionPlacementStrategyImpl;
 
 /**
  * Utility class for determining the join points and generating the corresponding weaving instructions for the behaviour inclusion mechanism.

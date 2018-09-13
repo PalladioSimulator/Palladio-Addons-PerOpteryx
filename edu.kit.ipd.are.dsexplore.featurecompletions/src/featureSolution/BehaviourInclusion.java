@@ -3,6 +3,10 @@
 package featureSolution;
 
 import org.eclipse.emf.common.util.EList;
+import placementDescription.Advice;
+import placementDescription.FeatureSelection;
+import placementDescription.Import;
+import placementDescription.PointCut;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
 public interface BehaviourInclusion extends InclusionMechanism {
 	/**
 	 * Returns the value of the '<em><b>Point Cut</b></em>' containment reference list.
-	 * The list contents are of type {@link featureSolution.PointCut}.
+	 * The list contents are of type {@link placementDescription.PointCut}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Point Cut</em>' containment reference list isn't clear,
@@ -42,7 +46,7 @@ public interface BehaviourInclusion extends InclusionMechanism {
 
 	/**
 	 * Returns the value of the '<em><b>Advice</b></em>' containment reference list.
-	 * The list contents are of type {@link featureSolution.Advice}.
+	 * The list contents are of type {@link placementDescription.Advice}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Advice</em>' containment reference list isn't clear,
@@ -58,7 +62,7 @@ public interface BehaviourInclusion extends InclusionMechanism {
 
 	/**
 	 * Returns the value of the '<em><b>Imports</b></em>' containment reference list.
-	 * The list contents are of type {@link featureSolution.Import}.
+	 * The list contents are of type {@link placementDescription.Import}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Imports</em>' containment reference list isn't clear,

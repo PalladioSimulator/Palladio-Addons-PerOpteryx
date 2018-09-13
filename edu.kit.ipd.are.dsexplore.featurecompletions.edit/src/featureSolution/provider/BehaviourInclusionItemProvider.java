@@ -4,7 +4,6 @@ package featureSolution.provider;
 
 
 import featureSolution.BehaviourInclusion;
-import featureSolution.FeatureSolutionFactory;
 import featureSolution.FeatureSolutionPackage;
 
 import java.util.Collection;
@@ -17,6 +16,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import placementDescription.PlacementDescriptionFactory;
 
 /**
  * This is the item provider adapter for a {@link featureSolution.BehaviourInclusion} object.
@@ -145,22 +146,22 @@ public class BehaviourInclusionItemProvider extends InclusionMechanismItemProvid
 		newChildDescriptors.add
 			(createChildParameter
 				(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__POINT_CUT,
-				 FeatureSolutionFactory.eINSTANCE.createPointCut()));
+				 PlacementDescriptionFactory.eINSTANCE.createPointCut()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__ADVICE,
-				 FeatureSolutionFactory.eINSTANCE.createAdvice()));
+				 PlacementDescriptionFactory.eINSTANCE.createAdvice()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__IMPORTS,
-				 FeatureSolutionFactory.eINSTANCE.createImport()));
+				 PlacementDescriptionFactory.eINSTANCE.createImport()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(FeatureSolutionPackage.Literals.BEHAVIOUR_INCLUSION__FEATURE_COMPLETION,
-				 FeatureSolutionFactory.eINSTANCE.createFeatureSelection()));
+				 PlacementDescriptionFactory.eINSTANCE.createFeatureSelection()));
 	}
 
 }

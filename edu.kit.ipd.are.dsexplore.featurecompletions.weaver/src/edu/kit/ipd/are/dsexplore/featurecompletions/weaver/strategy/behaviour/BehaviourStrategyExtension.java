@@ -30,7 +30,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCF
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 import featureSolution.BehaviourInclusion;
 import featureSolution.InclusionMechanism;
-import featureSolution.SelectedCV;
+import placementDescription.SelectedCV;
 
 public class BehaviourStrategyExtension implements IStrategyExtension {
 

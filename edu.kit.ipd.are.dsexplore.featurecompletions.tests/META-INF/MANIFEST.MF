@@ -10,7 +10,8 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: FeatureCompletionModel.tests,
  featureObjective.tests,
- featureSolution.tests
+ featureSolution.tests,
+ placementDescription.tests
 Require-Bundle: org.eclipse.core.runtime,
  edu.kit.ipd.are.dsexplore.featurecompletions;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,

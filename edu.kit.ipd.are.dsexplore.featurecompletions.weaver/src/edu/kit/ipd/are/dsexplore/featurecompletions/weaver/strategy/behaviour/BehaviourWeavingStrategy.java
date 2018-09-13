@@ -41,16 +41,16 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmS
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmUsageModelManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 
-import featureSolution.Advice;
-import featureSolution.SelectedCV;
+import placementDescription.Advice;
+import placementDescription.SelectedCV;
 import featureSolution.BehaviourInclusion;
 import featureSolution.InclusionMechanism;
-import featureSolution.PlacementStrategy;
-import featureSolution.PointCut;
-import featureSolution.impl.ControlFlowPlacementStrategyImpl;
+import placementDescription.PlacementStrategy;
+import placementDescription.PointCut;
+import placementDescription.impl.ControlFlowPlacementStrategyImpl;
 import featureSolution.impl.BehaviourInclusionImpl;
-import featureSolution.impl.ExternalCallPlacementStrategyImpl;
-import featureSolution.impl.InternalActionPlacementStrategyImpl;
+import placementDescription.impl.ExternalCallPlacementStrategyImpl;
+import placementDescription.impl.InternalActionPlacementStrategyImpl;
 
 /**
  * This is the central class handling the Behaviour weaving mechanism. It is

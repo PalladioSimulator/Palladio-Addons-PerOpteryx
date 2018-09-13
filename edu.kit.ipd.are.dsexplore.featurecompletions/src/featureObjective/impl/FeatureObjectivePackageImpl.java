@@ -35,6 +35,8 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.palladiosimulator.pcm.PcmPackage;
+import placementDescription.PlacementDescriptionPackage;
+import placementDescription.impl.PlacementDescriptionPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -151,16 +153,19 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 		// Obtain or create and register interdependencies
 		FeatureCompletionPackageImpl theFeatureCompletionPackage = (FeatureCompletionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI) instanceof FeatureCompletionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI) : FeatureCompletionPackage.eINSTANCE);
 		FeatureSolutionPackageImpl theFeatureSolutionPackage = (FeatureSolutionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI) instanceof FeatureSolutionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI) : FeatureSolutionPackage.eINSTANCE);
+		PlacementDescriptionPackageImpl thePlacementDescriptionPackage = (PlacementDescriptionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PlacementDescriptionPackage.eNS_URI) instanceof PlacementDescriptionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PlacementDescriptionPackage.eNS_URI) : PlacementDescriptionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theFeatureObjectivePackage.createPackageContents();
 		theFeatureCompletionPackage.createPackageContents();
 		theFeatureSolutionPackage.createPackageContents();
+		thePlacementDescriptionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theFeatureObjectivePackage.initializePackageContents();
 		theFeatureCompletionPackage.initializePackageContents();
 		theFeatureSolutionPackage.initializePackageContents();
+		thePlacementDescriptionPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put

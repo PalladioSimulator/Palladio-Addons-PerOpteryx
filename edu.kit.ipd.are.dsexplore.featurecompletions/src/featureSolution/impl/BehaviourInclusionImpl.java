@@ -2,12 +2,8 @@
  */
 package featureSolution.impl;
 
-import featureSolution.Advice;
 import featureSolution.BehaviourInclusion;
-import featureSolution.FeatureSelection;
 import featureSolution.FeatureSolutionPackage;
-import featureSolution.Import;
-import featureSolution.PointCut;
 
 import java.util.Collection;
 
@@ -20,8 +16,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import placementDescription.Advice;
+import placementDescription.FeatureSelection;
+import placementDescription.Import;
+import placementDescription.PointCut;
 
 /**
  * <!-- begin-user-doc -->

@@ -13,7 +13,7 @@ import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AdvicePlacementDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 
-import featureSolution.Advice;
+import placementDescription.Advice;
 import featureSolution.BehaviourInclusion;
 import featureSolution.InclusionMechanism;
 
