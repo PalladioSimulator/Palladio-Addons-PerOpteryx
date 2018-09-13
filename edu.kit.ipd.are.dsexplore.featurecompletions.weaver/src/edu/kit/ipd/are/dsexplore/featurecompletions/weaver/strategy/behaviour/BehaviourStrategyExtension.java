@@ -133,7 +133,12 @@ public class BehaviourStrategyExtension implements IStrategyExtension {
 		this.createAdvicePlacementDegree(dds, initialCandidate, weaver.getInclusionMechanism());
 		//add dof for cv selection
 		this.createComplementumVisnetisDegree(degree, dds, initialCandidate, weaver.getInclusionMechanism());
+		//add dof for allocation
+		this.createFCCAllocationDegree(degree, dds, initialCandidate, weaver.getInclusionMechanism());
+	}
 
+	private void createFCCAllocationDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, InclusionMechanism inclusionMechanism) {
+		// nothing to do here, as this is done in the weaving process 
 	}
 
 	private void createComplementumVisnetisDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, InclusionMechanism im) {

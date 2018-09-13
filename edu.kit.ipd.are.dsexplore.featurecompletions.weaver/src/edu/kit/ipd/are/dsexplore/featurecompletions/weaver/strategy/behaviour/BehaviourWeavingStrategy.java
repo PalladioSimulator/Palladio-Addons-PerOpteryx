@@ -10,6 +10,7 @@ import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
 import org.palladiosimulator.solver.transformations.EMFHelper;
 
@@ -164,7 +165,9 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 		
 		//set choices
 		this.solutionChoice = solutionChoice;
-		this.allocationChoices = allocationChoices;
+		//TODO allocation choices
+		//this.allocationChoices = allocationChoices;
+		this.allocationChoices = new ArrayList<Choice>();
 		this.multipleInclusionChoice = ese.multipleInclusionChoice;
 		this.advicePlacementChoices = ese.advicePlacementChoices;
 		this.cvChoices = ese.cvChoices;
@@ -311,26 +314,23 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 	 */
 	@Override
 	public List<Choice> getConvertedFCCClassChoices() {
-		List<Choice> allocChoices = new ArrayList<>();
-		for (Choice fccClassChoice : this.allocationChoices) {
-			CompletionComponent fcc = (CompletionComponent) fccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
-			List<AssemblyContext> assemblyContexts = this.getComponentsIntantiatingFCC(fcc);
-			for (AssemblyContext assemblyContext : assemblyContexts) {
-				try {
-					AllocationContext alloc = this.getPCMAllocationManager().getAllocationContextBy(ac -> ac.getAssemblyContext_AllocationContext().getId().equals(assemblyContext.getId())).get();
-					AllocationDegree ad = specificFactoryImpl.init().createAllocationDegree();
-					ad.setPrimaryChanged(alloc);
-					ClassChoice choice = designdecisionFactoryImpl.init().createClassChoice();
-					choice.setDegreeOfFreedomInstance(ad);
-					choice.setChosenValue(((ClassChoice) fccClassChoice).getChosenValue());
-					allocChoices.add(choice);
-				} catch (Exception e) {
-					FCCModule.logger.warn(e.getMessage());
-				}
-			}
-		}
-		return allocChoices;
+		return this.allocationChoices;
 	}
+	
+	/**
+	 * Adds an allocation choice for a given assembly context.
+	 * 
+	 */
+	public void addAllocationChoice(AssemblyContext assemblyContext, ResourceContainer container) {
+		AllocationContext alloc = this.getPCMAllocationManager().getAllocationContextBy(ac -> ac.getAssemblyContext_AllocationContext().getId().equals(assemblyContext.getId())).get();
+		AllocationDegree ad = specificFactoryImpl.init().createAllocationDegree();
+		ad.setPrimaryChanged(alloc);
+		ClassChoice choice = designdecisionFactoryImpl.init().createClassChoice();
+		choice.setDegreeOfFreedomInstance(ad);
+		choice.setChosenValue(container);
+		allocationChoices.add(choice);
+	}
+	
 
 	/**
 	 * Determines all components that realize the given FCC.

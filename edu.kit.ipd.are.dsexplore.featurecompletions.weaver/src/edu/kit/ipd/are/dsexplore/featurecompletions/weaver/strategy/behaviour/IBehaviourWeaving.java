@@ -2,6 +2,8 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 
 import java.util.List;
 
+import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.ComplementumVisnetis;
@@ -35,4 +37,6 @@ interface IBehaviourWeaving {
 
 	//Utilities
 	List<ComplementumVisnetis> getSelectedCVs();
+	
+	void addAllocationChoice(AssemblyContext assemblyContext, ResourceContainer container);
 }
