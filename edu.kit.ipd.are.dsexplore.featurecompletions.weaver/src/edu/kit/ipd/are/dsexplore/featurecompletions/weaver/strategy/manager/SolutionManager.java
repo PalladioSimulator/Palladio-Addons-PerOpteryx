@@ -132,7 +132,7 @@ public final class SolutionManager {
 		throw new WeavingException("no realizing component for a cv in " + cvs.stream().map(cv -> cv.getName()).reduce((s1,s2) -> s1 + "," + s2).get() + " found or ambigous components found in solution repo " + this.solution.getEntityName());
 	}
 
-	private static boolean anyCVcontainedInList(List<ComplementumVisnetis> fullfilledCVs, List<ComplementumVisnetis> cvs) {
+	public static boolean anyCVcontainedInList(List<ComplementumVisnetis> fullfilledCVs, List<ComplementumVisnetis> cvs) {
 		for (ComplementumVisnetis complementumVisnetis : fullfilledCVs) {
 			if (cvs.stream().anyMatch(cv -> cv.getId().equals(complementumVisnetis.getId()))) {
 				return true;

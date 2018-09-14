@@ -165,8 +165,7 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 		
 		//set choices
 		this.solutionChoice = solutionChoice;
-		//TODO allocation choices
-		//this.allocationChoices = allocationChoices;
+		//allocation choices will be filled while weaving when actually needed allocations are knwon
 		this.allocationChoices = new ArrayList<Choice>();
 		this.multipleInclusionChoice = ese.multipleInclusionChoice;
 		this.advicePlacementChoices = ese.advicePlacementChoices;
@@ -240,8 +239,10 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 
 			// create for current solution choice
 			//TODO bestimmung der providedRole!!
-			Pair<CompletionComponent, ProvidedRole> pair = new Pair<>(new FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(cv, this.fc),
-					new FCCFeatureHandler(this.mrm).getPerimeterProvidedRoleFor(cv, this.fc, (Repository) this.solutionChoice.getValue()));
+			CompletionComponent completionComponent = new FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(this.selectedCVs, this.fc);
+			List<ProvidedRole> providedRoles = new FCCFeatureHandler(this.mrm).getPerimeterProvidedRolesFor(completionComponent, this.selectedCVs, this.fc);
+			Pair<CompletionComponent, ProvidedRole> pair = new Pair<>(completionComponent, providedRoles.get(0));
+//					new FCCFeatureHandler(this.mrm).getPerimeterProvidedRoleFor(cv, this.fc, (Repository) this.solutionChoice.getValue()));
 			instructions.add(new BehaviourWeavingInstruction(pair, advice, locations, behaviourIncl));
 		}
 		return instructions;
