@@ -5,6 +5,7 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 
 import java.util.List;
 
+import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
@@ -27,7 +28,7 @@ public interface IWeavingInstruction {
 	
 	public Advice getAdvice();
 	
-	public Pair<CompletionComponent, ProvidedRole> getFccWithProvidedRole();
+	public Pair<CompletionComponent, List<OperationSignature>> getFccWithProvidedRole();
 	
 	public InclusionMechanism getInclusionMechanism();
 }

@@ -3,6 +3,7 @@
  */
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,7 @@ import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.seff.AbstractAction;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
@@ -52,24 +54,22 @@ public abstract class ServiceEffectSpecificationWeaving {
 	 * @param seff the SEFF.
 	 * @param internalAction the position at which the fc call will be added.
 	 * @param appears specifies whether the call will be added BEFORE, AFTER or AROUND the specified position
-	 * @param operationProvidedRole provided role of the fc call to add.
+	 * @param list provided role of the fc call to add.
 	 */
-	protected void addFCCallTo(ResourceDemandingBehaviour seff, AbstractAction internalAction, Appearance appears, OperationProvidedRole operationProvidedRole) {	
+	protected void addFCCallTo(ResourceDemandingBehaviour seff, AbstractAction internalAction, Appearance appears, List<OperationSignature> list) {	
 		AbstractAction predecessor = internalAction.getPredecessor_AbstractAction();
 		AbstractAction successor = internalAction.getSuccessor_AbstractAction();
 		
-		OperationRequiredRole fcRequiredRole = getFcRequiredRole(internalAction, operationProvidedRole.getProvidedInterface__OperationProvidedRole());
-		
 		switch (appears) {
 			case BEFORE:
-				addFCBetween(predecessor, internalAction, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole(), fcRequiredRole), seff);
+				addFCBetween(predecessor, internalAction, createExternalCallAction(list, internalAction), seff);
 				break;
 			case AFTER:
-				addFCBetween(internalAction, successor, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole(), fcRequiredRole), seff);		
+				addFCBetween(internalAction, successor, createExternalCallAction(list, internalAction), seff);		
 				break;
 			case AROUND:
-				addFCBetween(predecessor, internalAction, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole(), fcRequiredRole), seff);
-				addFCBetween(internalAction, successor, createExternalCallAction(operationProvidedRole.getProvidedInterface__OperationProvidedRole(), fcRequiredRole), seff);	
+				addFCBetween(predecessor, internalAction, createExternalCallAction(list, internalAction), seff);
+				addFCBetween(internalAction, successor, createExternalCallAction(list, internalAction), seff);	
 				break;
 			default:
 				break;
@@ -102,36 +102,49 @@ public abstract class ServiceEffectSpecificationWeaving {
 	/**
 	 * Creates an external call action with the specified interface and required role.
 	 * 
-	 * @param operationInterface the interface of the external call.
+	 * @param list the interface of the external call.
+	 * @param internalAction 
+	 * @param fcRequiredRole 
 	 * @param fcRequiredRole the required role of the component.
 	 * @return an external call action with the specified interface and required role.
 	 */
-	ExternalCallAction createExternalCallAction(OperationInterface operationInterface, OperationRequiredRole fcRequiredRole) {
+	List<ExternalCallAction> createExternalCallAction(List<OperationSignature> list, AbstractAction internalAction) {
+		List<ExternalCallAction> externalCallActions = new ArrayList<ExternalCallAction>();
+		for (OperationSignature sig : list) {
 			ExternalCallAction externalCallAction = this.seffFactory.createExternalCallAction();
-			//TODO add all Signatures from Interface?? was genau aufrfen??
-			OperationSignature calledService = this.parent.getMergedRepoManager().getFulfillingSignatureFrom(operationInterface); 
+			OperationSignature calledService = sig; 
 			externalCallAction.setEntityName(calledService.getEntityName());
 			externalCallAction.setCalledService_ExternalService(calledService);
 			//add role to ext call
+			OperationRequiredRole fcRequiredRole = getFcRequiredRole(internalAction, sig.getInterface__OperationSignature());
 			externalCallAction.setRole_ExternalService(fcRequiredRole);
-	
-			return externalCallAction;
+			externalCallActions.add(externalCallAction);
 		}
+
+		return externalCallActions;
+	}
 
 	/**
 	 * Adds an external call action between two actions of a SEFF.
 	 * 
 	 * @param previous first action.
 	 * @param next second action.
-	 * @param externalCallAction external call action to add.
+	 * @param list external call action to add.
 	 * @param seff the seff.
 	 */
-	void addFCBetween(AbstractAction previous, AbstractAction next, ExternalCallAction externalCallAction, ResourceDemandingBehaviour seff) {
-		seff.getSteps_Behaviour().add(externalCallAction);
-		previous.setSuccessor_AbstractAction(externalCallAction);
-		externalCallAction.setPredecessor_AbstractAction(previous);
-		externalCallAction.setSuccessor_AbstractAction(next);
-		next.setPredecessor_AbstractAction(externalCallAction);
+	void addFCBetween(AbstractAction previous, AbstractAction next, List<ExternalCallAction> list, ResourceDemandingBehaviour seff) {
+		for (ExternalCallAction externalCallAction : list) {
+			addFCAfter(previous, externalCallAction, seff);
+		}
+	}
+	
+	void addFCAfter(AbstractAction action, ExternalCallAction externalCall, ResourceDemandingBehaviour seff) {
+		seff.getSteps_Behaviour().add(externalCall);
+		AbstractAction next = action.getSuccessor_AbstractAction();
+		action.setSuccessor_AbstractAction(externalCall);
+		externalCall.setPredecessor_AbstractAction(action);
+		externalCall.setSuccessor_AbstractAction(next);
+		next.setPredecessor_AbstractAction(externalCall);
 	}
 
 	/**
@@ -143,15 +156,15 @@ public abstract class ServiceEffectSpecificationWeaving {
 	protected void addFCCallToSEFF(IWeavingInstruction instruction, ResourceDemandingBehaviour seff) {
 		if (instruction.getAdvice().getAppears() == Appearance.BEFORE) {
 			AbstractAction start = getStartAction(seff.getSteps_Behaviour());
-			addFCCallTo(seff, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
+			addFCCallTo(seff, start, Appearance.AFTER, instruction.getFccWithProvidedRole().getSecond());
 		} else if (instruction.getAdvice().getAppears() == Appearance.AFTER) {
 			AbstractAction stop = getStopAction(seff.getSteps_Behaviour());
-			addFCCallTo(seff, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
+			addFCCallTo(seff, stop, Appearance.BEFORE, instruction.getFccWithProvidedRole().getSecond());
 		} else if (instruction.getAdvice().getAppears() == Appearance.AROUND) {
 			AbstractAction start = getStartAction(seff.getSteps_Behaviour());
 			AbstractAction stop = getStopAction(seff.getSteps_Behaviour());
-			addFCCallTo(seff, start, Appearance.AFTER, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
-			addFCCallTo(seff, stop, Appearance.BEFORE, ((OperationProvidedRole) instruction.getFccWithProvidedRole().getSecond()));
+			addFCCallTo(seff, start, Appearance.AFTER, instruction.getFccWithProvidedRole().getSecond());
+			addFCCallTo(seff, stop, Appearance.BEFORE, instruction.getFccWithProvidedRole().getSecond());
 		}
 	}
 	

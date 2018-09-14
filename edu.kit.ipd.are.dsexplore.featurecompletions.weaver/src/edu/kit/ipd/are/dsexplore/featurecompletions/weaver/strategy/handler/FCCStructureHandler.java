@@ -9,6 +9,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
+import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
@@ -140,5 +141,16 @@ public class FCCStructureHandler {
 			}
 		}
 		return result;
+	}
+
+	public AssemblyContext getComponentsIntantiatingFCC(CompletionComponent fcc, List<AssemblyContext> contexts) {
+		// search for component instantiating fcc
+		for (AssemblyContext ac : contexts) {
+			List<CompletionComponent> fccs = StereotypeAPIHelper.getViaStereoTypeFrom(ac.getEncapsulatedComponent__AssemblyContext(), CompletionComponent.class);
+			if (fccs.size() == 1 && fccs.get(0).getId().equals(fcc.getId())) { // 1 component should only realize 1 fcc
+				return ac;
+			}
+		}
+		return null;
 	}
 }

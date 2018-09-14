@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
@@ -232,17 +233,12 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 			} else if (placementStrategy instanceof ControlFlowPlacementStrategyImpl) {
 				locations.addAll(ig.generateControlFlowWeavingLocations((ControlFlowPlacementStrategyImpl) placementStrategy));
 			}
-			
-
-			// TODO anhand der kompletten CVs  Menge CompeltionComponents bestimmen!
-			ComplementumVisnetis cv = this.selectedCVs.get(0);
 
 			// create for current solution choice
-			//TODO bestimmung der providedRole!!
 			CompletionComponent completionComponent = new FCCFeatureHandler(this.mrm).getPerimeterProvidingFCCFor(this.selectedCVs, this.fc);
-			List<ProvidedRole> providedRoles = new FCCFeatureHandler(this.mrm).getPerimeterProvidedRolesFor(completionComponent, this.selectedCVs, this.fc);
-			Pair<CompletionComponent, ProvidedRole> pair = new Pair<>(completionComponent, providedRoles.get(0));
-//					new FCCFeatureHandler(this.mrm).getPerimeterProvidedRoleFor(cv, this.fc, (Repository) this.solutionChoice.getValue()));
+			List<OperationSignature> providedRoles = new FCCFeatureHandler(this.mrm).getPerimeterProvidedRolesFor(completionComponent, this.selectedCVs, this.fc);
+			Pair<CompletionComponent, List<OperationSignature>> pair = new Pair<>(completionComponent, providedRoles);
+
 			instructions.add(new BehaviourWeavingInstruction(pair, advice, locations, behaviourIncl));
 		}
 		return instructions;
@@ -330,26 +326,6 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 		choice.setDegreeOfFreedomInstance(ad);
 		choice.setChosenValue(container);
 		allocationChoices.add(choice);
-	}
-	
-
-	/**
-	 * Determines all components that realize the given FCC.
-	 * 
-	 * @param fcc the given FCC.
-	 * @return all components that realize the given FCC.
-	 */
-	//TODO auslagern in handler?
-	private List<AssemblyContext> getComponentsIntantiatingFCC(CompletionComponent fcc) {
-		List<AssemblyContext> result = new ArrayList<>();
-		// search for component instantiating fcc
-		for (AssemblyContext ac : this.psm.getAssemblyContextsBy(ac -> true)) {
-			List<CompletionComponent> fccs = StereotypeAPIHelper.getViaStereoTypeFrom(ac.getEncapsulatedComponent__AssemblyContext(), CompletionComponent.class);
-			if (fccs.size() == 1 && fccs.get(0).getId().equals(fcc.getId())) { // 1 component should only realize 1 fcc
-				result.add(ac);
-			}
-		}
-		return result;
 	}
 
 	@Override

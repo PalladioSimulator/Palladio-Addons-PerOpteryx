@@ -5,6 +5,7 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour;
 
 import java.util.List;
 
+import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
@@ -23,7 +24,7 @@ import featureSolution.InclusionMechanism;
  */
 public class BehaviourWeavingInstruction implements IWeavingInstruction {
 	
-	private final Pair<CompletionComponent, ProvidedRole> fccWithProvidedRole;
+	private final Pair<CompletionComponent, List<OperationSignature>> fccWithProvidedRole;
 	
 	private final Advice advice;
 	
@@ -35,10 +36,10 @@ public class BehaviourWeavingInstruction implements IWeavingInstruction {
 	 * @param advice
 	 * @param weavingLocations
 	 */
-	public BehaviourWeavingInstruction(Pair<CompletionComponent, ProvidedRole> fccWithProvidedRole, Advice advice, List<? extends IWeavingLocation> weavingLocations, InclusionMechanism inclusonMechanism) {
+	public BehaviourWeavingInstruction(Pair<CompletionComponent, List<OperationSignature>> pair, Advice advice, List<? extends IWeavingLocation> weavingLocations, InclusionMechanism inclusonMechanism) {
 		this.advice = advice;
 		this.weavingLocations = weavingLocations;
-		this.fccWithProvidedRole = fccWithProvidedRole;
+		this.fccWithProvidedRole = pair;
 		this.inclusionMechanism = inclusonMechanism;
 	}
 
@@ -59,7 +60,7 @@ public class BehaviourWeavingInstruction implements IWeavingInstruction {
 	/**
 	 * @return the fccWithConsumedFeatures
 	 */
-	public Pair<CompletionComponent, ProvidedRole> getFccWithProvidedRole() {
+	public Pair<CompletionComponent, List<OperationSignature>> getFccWithProvidedRole() {
 		return fccWithProvidedRole;
 	}
 

@@ -50,7 +50,6 @@ public class FCCFeatureHandler {
 	 *             - Will be thrown if the ECC is incorrectly annotated.
 	 */
 	public List<ProvidedRole> getProvidedFeaturesOf(CompletionComponent fcc) throws FCCWeaverException {
-		// TODO Welche Provided Roles?
 		Feature providedFCCFeature = this.getFeatureProvidedBy(fcc);
 		List<ProvidedRole> result = new ArrayList<>();
 
@@ -128,8 +127,8 @@ public class FCCFeatureHandler {
 	 * @param fc the fc to be weaved.
 	 * @return the perimeter provided roles of the solution component.
 	 */
-	public List<ProvidedRole> getPerimeterProvidedRolesFor(CompletionComponent completionComponent, List<ComplementumVisnetis> selectedCVs, FeatureCompletion fc) {
-		List<ProvidedRole> result = new ArrayList<>();
+	public List<OperationSignature> getPerimeterProvidedRolesFor(CompletionComponent completionComponent, List<ComplementumVisnetis> selectedCVs, FeatureCompletion fc) {
+		List<OperationSignature> result = new ArrayList<>();
 		
 		//get solution components fulfilling fcc
 		List<RepositoryComponent> components = this.solutionManager.getAffectedComponentsByFCCList(Arrays.asList(completionComponent));
@@ -138,20 +137,20 @@ public class FCCFeatureHandler {
 		//fulfilled by component
 		List<ComplementumVisnetis> fullfilledByComponentCVs = StereotypeAPIHelper.getViaStereoTypeFrom(component, ComplementumVisnetis.class);
 		if (SolutionManager.anyCVcontainedInList(fullfilledByComponentCVs, selectedCVs)) {
-			result.addAll(component.getProvidedRoles_InterfaceProvidingEntity());
+			result.addAll(component.getProvidedRoles_InterfaceProvidingEntity().stream().flatMap(role -> ((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface().stream()).collect(Collectors.toList()));
 		}
 		
 		//fulfilled by interface
 		for (OperationInterface iface : component.getProvidedRoles_InterfaceProvidingEntity().stream().map(role -> ((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole()).collect(Collectors.toList())) {
 			List<ComplementumVisnetis> fullfilledByInterfaceCVs = StereotypeAPIHelper.getViaStereoTypeFrom(iface, ComplementumVisnetis.class);
 			if (SolutionManager.anyCVcontainedInList(fullfilledByInterfaceCVs, selectedCVs)) {
-				result.addAll(component.getProvidedRoles_InterfaceProvidingEntity());
+				result.addAll(iface.getSignatures__OperationInterface());
 			}
 			//fulfilled by signature
 			for (OperationSignature sig : iface.getSignatures__OperationInterface()) {
 				List<ComplementumVisnetis> fullfilledBySignatureCVs = StereotypeAPIHelper.getViaStereoTypeFrom(sig, ComplementumVisnetis.class);
 				if (SolutionManager.anyCVcontainedInList(fullfilledBySignatureCVs, selectedCVs)) {
-					result.addAll(component.getProvidedRoles_InterfaceProvidingEntity());
+					result.add(sig);
 				}
 			}
 		}

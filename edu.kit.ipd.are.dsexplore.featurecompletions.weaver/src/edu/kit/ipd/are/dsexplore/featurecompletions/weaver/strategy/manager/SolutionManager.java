@@ -80,11 +80,11 @@ public final class SolutionManager {
 	 * Determines the set of solution components that realize the given FCCs and provide the given CVs.
 	 * 
 	 * @param fccs the given FCCs corresponding to the fc meta architecture.
-	 * @param providedRole the perimeter provided role.
+	 * @param providedSigs the perimeter provided role.
 	 * @param cvs the given CVs.
 	 * @return the set of solution components that realize the given FCCs and provide the given CVs.
 	 */
-	public List<RepositoryComponent> getRealizingComponentsByFCCList(List<CompletionComponent> fccs, ProvidedRole providedRole, List<ComplementumVisnetis> cvs) {
+	public List<RepositoryComponent> getRealizingComponentsByFCCList(List<CompletionComponent> fccs, List<OperationSignature> providedSigs, List<ComplementumVisnetis> cvs) {
 		List<RepositoryComponent> affectedComponents = new ArrayList<>();
 		for (CompletionComponent completionComponent : fccs) {
 			List<RepositoryComponent> realizingComponents = new ArrayList<>();
@@ -97,10 +97,11 @@ public final class SolutionManager {
 			RepositoryComponent component = this.getComponentFullfillingCV(realizingComponents, cvs);
 			affectedComponents.add(component);
 		}
-		if (affectedComponents.stream().anyMatch(component -> component.getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedRole.getId())))) {
-			return affectedComponents;
-		}
-		return null;
+		//if (affectedComponents.stream().anyMatch(component -> component.getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedSigs.getId())))) {
+//			return affectedComponents;
+//		}
+//		return null;
+		return affectedComponents;
 	}
 
 	/**
@@ -180,6 +181,14 @@ public final class SolutionManager {
 	 */
 	public RequiredRole createRequiredRoleBy(OperationProvidedRole providedRole) {
 		OperationInterface referencedInterface = providedRole.getProvidedInterface__OperationProvidedRole();
+		OperationRequiredRole requiredRole = RepositoryFactory.eINSTANCE.createOperationRequiredRole();
+		requiredRole.setEntityName(String.format("requires%2s", referencedInterface.getEntityName()));
+		requiredRole.setRequiredInterface__OperationRequiredRole(referencedInterface);
+		return requiredRole;
+	}
+	
+	public RequiredRole createRequiredRoleBy(OperationSignature signature) {
+		OperationInterface referencedInterface = signature.getInterface__OperationSignature();
 		OperationRequiredRole requiredRole = RepositoryFactory.eINSTANCE.createOperationRequiredRole();
 		requiredRole.setEntityName(String.format("requires%2s", referencedInterface.getEntityName()));
 		requiredRole.setRequiredInterface__OperationRequiredRole(referencedInterface);
@@ -287,15 +296,6 @@ public final class SolutionManager {
 		}
 		return null;
 	}
-
-	/**
-	 * Determines the signature that has to be called to fulfill the CV.
-	 * 
-	 * @param operationInterface the interface containing all possible signatures.
-	 * @return the signature that has to be called to fulfill the CV.
-	 */
-	public OperationSignature getFulfillingSignatureFrom(OperationInterface operationInterface) {
-		return operationInterface.getSignatures__OperationInterface().get(0);	//TODO welche Signatur nehmen???
-	}
-
+	
+	
 }

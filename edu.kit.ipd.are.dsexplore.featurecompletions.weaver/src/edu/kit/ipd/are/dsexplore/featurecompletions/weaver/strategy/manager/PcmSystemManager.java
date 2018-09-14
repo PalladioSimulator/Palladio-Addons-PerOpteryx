@@ -74,6 +74,15 @@ public class PcmSystemManager {
 		// return this.getAllConnectors().anyMatch(eachConnector ->
 		// this.areEqual(eachConnector, searchedConnector));
 	}
+	
+	public boolean existConnectors(List<Connector> searchedConnectors) {
+		for (Connector c : searchedConnectors) {
+			if (!existConnector(c)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	private boolean areEqual(Connector givenConnector, Connector searchedConnector) {
 		if (!givenConnector.getClass().equals(searchedConnector.getClass())) {
