@@ -46,8 +46,6 @@ public class AllocationWeaving {
 			if (!this.parent.getPCMAllocationManager().existAllocationContextWith(assemblyContext)) {
 				AllocationContext newAllocationContext = this.parent.getPCMAllocationManager().createAllocationContextBy(assemblyContext, resourceContainer);
 				this.parent.getPCMAllocationManager().addAllocationContext(newAllocationContext);
-				//add allocation degree for newly added allocation context
-				this.parent.addAllocationChoice(assemblyContext, resourceContainer);
 			}
 		}	
 	}

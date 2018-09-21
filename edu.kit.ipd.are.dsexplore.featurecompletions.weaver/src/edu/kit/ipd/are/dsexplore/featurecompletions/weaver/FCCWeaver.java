@@ -51,6 +51,7 @@ public final class FCCWeaver {
 	private final FeatureCompletion fc;
 	private final InclusionMechanism im;
 	private final System initialSystem;
+	private final PCMResourceSetPartition initialPartition;
 
 	// ConnectorID -> CV
 	private final List<Pair<String, ComplementumVisnetis>> availableCVs;
@@ -59,6 +60,7 @@ public final class FCCWeaver {
 	public FCCWeaver(MDSDBlackboard blackboard, List<Repository> solutions, CostRepository costModel) {
 		this.solutions = solutions;
 		PCMResourceSetPartition initial = (PCMResourceSetPartition) blackboard.getPartition(FCCProblemExtension.INITIAL_PCM_MODEL_PARTITION_ID);
+		this.initialPartition = initial;
 		this.initialSystem = initial.getSystem();
 		this.fc = this.determineFC(initial);
 		this.im = this.determineIM(this.solutions);
@@ -233,5 +235,9 @@ public final class FCCWeaver {
 
 	public System getInitialSystem() {
 		return this.initialSystem;
+	}
+	
+	public PCMResourceSetPartition getInitialPartition() {
+		return this.initialPartition;
 	}
 }

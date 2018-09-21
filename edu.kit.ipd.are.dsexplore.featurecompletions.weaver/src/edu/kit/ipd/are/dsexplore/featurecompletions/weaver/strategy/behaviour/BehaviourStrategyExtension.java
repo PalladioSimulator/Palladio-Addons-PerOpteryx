@@ -5,22 +5,29 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import org.opt4j.genotype.ListGenotype;
-
+import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.repository.Repository;
+import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.pcm.system.System;
+import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.ComplementumVisnetis;
-
+import FeatureCompletionModel.CompletionComponent;
 import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
+import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
+import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AdvicePlacementDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.ComplementumVisnetisDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.MultipleInclusionDegree;
-
+import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCWeaver;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.AdvicePlacementDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.ComplementumVisnetisDesignDecision;
@@ -134,11 +141,23 @@ public class BehaviourStrategyExtension implements IStrategyExtension {
 		//add dof for cv selection
 		this.createComplementumVisnetisDegree(degree, dds, initialCandidate, weaver.getInclusionMechanism());
 		//add dof for allocation
-		this.createFCCAllocationDegree(degree, dds, initialCandidate, weaver.getInclusionMechanism());
+		this.createFCCAllocationDegree(degree, dds, initialCandidate, weaver.getInclusionMechanism(), weaver.getInitialPartition());
 	}
 
-	private void createFCCAllocationDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, InclusionMechanism inclusionMechanism) {
-		// nothing to do here, as this is done in the weaving process 
+	private void createFCCAllocationDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, InclusionMechanism inclusionMechanism, PCMResourceSetPartition pcmResourceSetPartition) {
+		//add allocation degrees for FCCs
+		List<ResourceContainer> allPcmResourceContainer = pcmResourceSetPartition.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
+		List<CompletionComponent> fccs = ((BehaviourInclusion) inclusionMechanism).getFeatureCompletion().getCompletion().getCompletionComponents();
+		for (CompletionComponent fcc : fccs) {
+			AllocationDegree allocDegree = specificFactory.eINSTANCE.createAllocationDegree();
+			allocDegree.setPrimaryChanged(fcc);
+			allocDegree.getClassDesignOptions().addAll(allPcmResourceContainer);
+			ClassChoice choice = designdecisionFactory.eINSTANCE.createClassChoice();
+			choice.setDegreeOfFreedomInstance(allocDegree);
+			choice.setChosenValue(allocDegree.getClassDesignOptions().get(0));
+			initialCandidate.add(choice);
+			dds.add(allocDegree);
+		}
 	}
 
 	private void createComplementumVisnetisDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, InclusionMechanism im) {

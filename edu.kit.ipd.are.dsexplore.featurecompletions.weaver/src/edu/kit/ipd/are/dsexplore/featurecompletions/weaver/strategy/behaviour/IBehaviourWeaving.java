@@ -37,6 +37,5 @@ interface IBehaviourWeaving {
 
 	//Utilities
 	List<ComplementumVisnetis> getSelectedCVs();
-	
-	void addAllocationChoice(AssemblyContext assemblyContext, ResourceContainer container);
+
 }

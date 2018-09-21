@@ -36,6 +36,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocat
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingStrategies;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour.util.BehaviourInclusionInstructionGenerator;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCStructureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmAllocationManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmServiceEffectSpecificationManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmSystemManager;
@@ -166,8 +167,9 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 		
 		//set choices
 		this.solutionChoice = solutionChoice;
-		//allocation choices will be filled while weaving when actually needed allocations are knwon
-		this.allocationChoices = new ArrayList<Choice>();
+		//allocation choices will be filled after weaving when actually needed allocations are known
+		//this.allocationChoices = new ArrayList<Choice>();
+		this.allocationChoices = allocationChoices;
 		this.multipleInclusionChoice = ese.multipleInclusionChoice;
 		this.advicePlacementChoices = ese.advicePlacementChoices;
 		this.cvChoices = ese.cvChoices;
@@ -311,21 +313,23 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 	 */
 	@Override
 	public List<Choice> getConvertedFCCClassChoices() {
-		return this.allocationChoices;
-	}
-	
-	/**
-	 * Adds an allocation choice for a given assembly context.
-	 * 
-	 */
-	public void addAllocationChoice(AssemblyContext assemblyContext, ResourceContainer container) {
-		AllocationContext alloc = this.getPCMAllocationManager().getAllocationContextBy(ac -> ac.getAssemblyContext_AllocationContext().getId().equals(assemblyContext.getId())).get();
-		AllocationDegree ad = specificFactoryImpl.init().createAllocationDegree();
-		ad.setPrimaryChanged(alloc);
-		ClassChoice choice = designdecisionFactoryImpl.init().createClassChoice();
-		choice.setDegreeOfFreedomInstance(ad);
-		choice.setChosenValue(container);
-		allocationChoices.add(choice);
+		List<Choice> allocChoices = new ArrayList<>();
+		for (Choice fccClassChoice : this.allocationChoices) {
+			CompletionComponent fcc = (CompletionComponent) fccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
+			AssemblyContext assemblyContext = new FCCStructureHandler(fcc, mrm).getComponentsIntantiatingFCC(fcc, this.psm.getAssemblyContextsBy(context -> true));
+				try {
+					AllocationContext alloc = this.getPCMAllocationManager().getAllocationContextBy(ac -> ac.getAssemblyContext_AllocationContext().getId().equals(assemblyContext.getId())).get();
+					AllocationDegree ad = specificFactoryImpl.init().createAllocationDegree();
+					ad.setPrimaryChanged(alloc);
+					ClassChoice choice = designdecisionFactoryImpl.init().createClassChoice();
+					choice.setDegreeOfFreedomInstance(ad);
+					choice.setChosenValue(((ClassChoice) fccClassChoice).getChosenValue());
+					allocChoices.add(choice);
+				} catch (Exception e) {
+					FCCModule.logger.warn(e.getMessage());
+				}
+		}
+		return allocChoices;
 	}
 
 	@Override
