@@ -166,25 +166,26 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 		InstructionGenerator ig = new InstructionGenerator(this.fc, this.im, fccfh, this.pcmToAdapt);
 		List<WeavingInstruction> instructions = new ArrayList<>();
 
-		List<Connector> notShallConnectors = new ArrayList<>();
+		List<String> notShallConnectors = new ArrayList<>();
 		this.getNotShallConnectorsFeatures(optionalFeatures, notShallConnectors);
 
 		for (Pair<ComplementumVisnetis, WeavingLocation> targetLoc : locations) {
-			instructions.add(ig.generate(targetLoc));
+			WeavingInstruction instruction = ig.generate(targetLoc);
+			instructions.add(instruction);
 		}
 
-		instructions.removeIf(i -> notShallConnectors.contains(i.getWeavingLocation().getLocation()));
+		instructions.removeIf(i -> notShallConnectors.contains(i.getWeavingLocation().getLocation().getId()));
 		return instructions;
 
 	}
 
-	private void getNotShallConnectorsFeatures(List<BoolChoice> optionalFeatures, List<Connector> notShall) {
+	private void getNotShallConnectorsFeatures(List<BoolChoice> optionalFeatures, List<String> notShall) {
 		for (BoolChoice ch : optionalFeatures) {
 			FeatureDegree fd = (FeatureDegree) ch.getDegreeOfFreedomInstance();
 			@SuppressWarnings("unchecked")
 			Pair<Connector, ComplementumVisnetis> f = (Pair<Connector, ComplementumVisnetis>) fd.getPrimaryChanged();
 			if (!ch.isChosenValue()) {
-				notShall.add(f.first);
+				notShall.add(f.first.getId());
 			}
 		}
 	}

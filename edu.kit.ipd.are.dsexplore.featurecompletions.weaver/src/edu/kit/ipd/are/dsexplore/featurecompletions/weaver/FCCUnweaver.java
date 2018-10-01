@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.allocation.Allocation;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
@@ -19,12 +20,10 @@ import org.palladiosimulator.pcm.core.composition.CompositionFactory;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.repository.BasicComponent;
-import org.palladiosimulator.pcm.repository.Interface;
-import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
-import org.palladiosimulator.pcm.repository.Repository;
-import org.palladiosimulator.pcm.repository.RepositoryFactory;
+import org.palladiosimulator.pcm.repository.ProvidedRole;
+import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.seff.AbstractAction;
 import org.palladiosimulator.pcm.seff.AbstractBranchTransition;
 import org.palladiosimulator.pcm.seff.AbstractLoopAction;
@@ -39,6 +38,7 @@ import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.ComplementumVisnetis;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
+import de.uka.ipd.sdq.identifier.Identifier;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.extensions.FCCProblemExtension;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.AssemblyConnectorData;
@@ -170,10 +170,15 @@ public final class FCCUnweaver {
 		AssemblyConnector assemblyConnector = CompositionFactory.eINSTANCE.createAssemblyConnector();
 		assemblyConnector.setEntityName(acd.name);
 		assemblyConnector.setId(currentId);
-		assemblyConnector.setRequiredRole_AssemblyConnector(this.getRoleByRequiredInterfaceId(pcmToAdopt, acd.operationRequiredRoleInterfaceId, acd.operationRequiredRoleId));
-		assemblyConnector.setRequiringAssemblyContext_AssemblyConnector(this.getAssemblyContextById(system, acd.requiredAssemblyContextId));
-		assemblyConnector.setProvidedRole_AssemblyConnector(this.getRoleByProvidedInterfaceId(pcmToAdopt, acd.operationProvidedRoleInterfaceId, acd.operationProvidedRoleId));
-		assemblyConnector.setProvidingAssemblyContext_AssemblyConnector(this.getAssemblyContextById(system, acd.providedAssemblyContextId));
+
+		AssemblyContext ctxReq = this.getAssemblyContextById(system, acd.requiredAssemblyContextId);
+
+		assemblyConnector.setRequiringAssemblyContext_AssemblyConnector(ctxReq);
+		assemblyConnector.setRequiredRole_AssemblyConnector(this.getRoleByRequiredInterfaceId(pcmToAdopt, ctxReq, acd.operationRequiredRoleInterfaceId, acd.operationRequiredRoleId));
+
+		AssemblyContext ctxPro = this.getAssemblyContextById(system, acd.providedAssemblyContextId);
+		assemblyConnector.setProvidingAssemblyContext_AssemblyConnector(ctxPro);
+		assemblyConnector.setProvidedRole_AssemblyConnector(this.getRoleByProvidedInterfaceId(pcmToAdopt, ctxPro, acd.operationProvidedRoleInterfaceId, acd.operationProvidedRoleId));
 
 		system.getConnectors__ComposedStructure().add(assemblyConnector);
 
@@ -197,32 +202,74 @@ public final class FCCUnweaver {
 		return null;
 	}
 
-	private Interface getInterfaceById(PCMInstance pcmInstance, String id) {
-		for (Repository repo : pcmInstance.getRepositories()) {
-			for (Interface oi : repo.getInterfaces__Repository()) {
-				if (oi.getId().equals(id)) {
-					return oi;
-				}
+	// private Interface getInterfaceById(PCMInstance pcmInstance, String id) {
+	// for (Repository repo : pcmInstance.getRepositories()) {
+	// for (Interface oi : repo.getInterfaces__Repository()) {
+	// if (oi.getId().equals(id)) {
+	// return oi;
+	// }
+	//
+	// }
+	// }
+	// return null;
+	// }
 
+	private OperationProvidedRole getRoleByProvidedInterfaceId(PCMInstance pcmInstance, AssemblyContext ctxPro, String operationProvidedRoleInterfaceId, String operationProvidedRoleId) {
+		// OperationProvidedRole opr =
+		// RepositoryFactory.eINSTANCE.createOperationProvidedRole();
+		// opr.setId(operationProvidedRoleId);
+
+		OperationProvidedRole opr = this.getOperationProvidedRoleById(ctxPro, operationProvidedRoleInterfaceId);
+
+		// Interface opi = this.getInterfaceById(pcmInstance,
+		// operationProvidedRoleInterfaceId);
+		// opr.setProvidedInterface__OperationProvidedRole((OperationInterface)
+		// opi);
+		return opr;
+	}
+
+	private OperationProvidedRole getOperationProvidedRoleById(AssemblyContext ctxPro, String operationProvidedRoleInterfaceId) {
+		for (ProvidedRole role : ctxPro.getEncapsulatedComponent__AssemblyContext().getProvidedRoles_InterfaceProvidingEntity()) {
+			List<EObject> xRefs = role.eCrossReferences();
+			xRefs.removeIf(r -> !(r instanceof Identifier) || !((Identifier) r).getId().equals(operationProvidedRoleInterfaceId));
+			if (!xRefs.isEmpty()) {
+				return (OperationProvidedRole) role;
 			}
 		}
 		return null;
 	}
 
-	private OperationProvidedRole getRoleByProvidedInterfaceId(PCMInstance pcmInstance, String operationProvidedRoleInterfaceId, String operationProvidedRoleId) {
-		OperationProvidedRole opr = RepositoryFactory.eINSTANCE.createOperationProvidedRole();
-		opr.setId(operationProvidedRoleId);
-		Interface opi = this.getInterfaceById(pcmInstance, operationProvidedRoleInterfaceId);
-		opr.setProvidedInterface__OperationProvidedRole((OperationInterface) opi);
-		return opr;
+	private OperationRequiredRole getRoleByRequiredInterfaceId(PCMInstance pcmInstance, AssemblyContext ctxReq, String operationRequiredRoleInterfaceId, String operationRequiredRoleId) {
+		// OperationRequiredRole orr =
+		// RepositoryFactory.eINSTANCE.createOperationRequiredRole();
+		// orr.setId(operationRequiredRoleId);
+		OperationRequiredRole orr = this.getOperationRequiredRoleById(ctxReq, operationRequiredRoleInterfaceId);
+
+		// Interface opi = this.getInterfaceById(pcmInstance,
+		// operationRequiredRoleInterfaceId);
+		// orr.setRequiredInterface__OperationRequiredRole((OperationInterface)
+		// opi);
+		return orr;
 	}
 
-	private OperationRequiredRole getRoleByRequiredInterfaceId(PCMInstance pcmInstance, String operationRequiredRoleInterfaceId, String operationRequiredRoleId) {
-		OperationRequiredRole orr = RepositoryFactory.eINSTANCE.createOperationRequiredRole();
-		orr.setId(operationRequiredRoleId);
-		Interface opi = this.getInterfaceById(pcmInstance, operationRequiredRoleInterfaceId);
-		orr.setRequiredInterface__OperationRequiredRole((OperationInterface) opi);
-		return orr;
+	private OperationRequiredRole getOperationRequiredRoleById(AssemblyContext ctxReq, String operationRequiredRoleInterfaceId) {
+		for (RequiredRole role : ctxReq.getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity()) {
+			List<EObject> xRefs = role.eCrossReferences();
+			xRefs.removeIf(r -> !(r instanceof Identifier) || !((Identifier) r).getId().equals(operationRequiredRoleInterfaceId));
+			if (!xRefs.isEmpty()) {
+				return (OperationRequiredRole) role;
+			}
+		}
+		return null;
+
+		// for (RequiredRole role :
+		// ctxReq.getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity())
+		// {
+		// if (role.getId().equals(operationRequiredRoleId)) {
+		// return (OperationRequiredRole) role;
+		// }
+		// }
+		// return null;
 	}
 
 	private void handleProvidedDelegationConnector(ProvidedDelegationConnector c, PCMInstance pcmToAdopt) {
