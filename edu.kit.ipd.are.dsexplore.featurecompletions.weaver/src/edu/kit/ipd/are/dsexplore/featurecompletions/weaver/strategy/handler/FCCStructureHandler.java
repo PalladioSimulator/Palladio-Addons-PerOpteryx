@@ -9,11 +9,17 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
+import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.repository.BasicComponent;
+import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
+import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.impl.ComplementumImpl;
+
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
+
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 
 public class FCCStructureHandler {
@@ -38,7 +44,12 @@ public class FCCStructureHandler {
 		// resolvingFunction.apply(eachComponent).stream()).collect(Collectors.toList());
 	}
 
-	// TODO new for extension
+	/**
+	 * Determines all FCCs that are required by a specific FCC recursively.
+	 * 
+	 * @param fcc the FCC.
+	 * @return all FCCs that are required by the FCC.
+	 */
 	public List<CompletionComponent> getFCCsRequiredBy(CompletionComponent fcc) {
 		List<CompletionComponent> result = new ArrayList<>();
 		if (!fcc.getRequiredComponents().isEmpty()) {
@@ -88,8 +99,10 @@ public class FCCStructureHandler {
 	}
 
 	/**
-	 * @param realizingComponents
-	 * @return
+	 * Checks if any of the specified FCCs requires an additional complementum.
+	 * 
+	 * @param realizingComponents the specified FCCs.
+	 * @return whether any of the specified FCCs requires a complementum.
 	 */
 	public boolean requiresComplementa(List<RepositoryComponent> realizingComponents) {
 		return realizingComponents.stream().anyMatch(component -> !StereotypeAPIHelper.getViaStereoTypeFrom(component, ComplementumImpl.class).stream()
@@ -97,26 +110,47 @@ public class FCCStructureHandler {
 	}
 
 	/**
-	 * @param realizingComponents
-	 * @return
+	 * Determines all complementa that are required by the specified components.
+	 * 
+	 * @param realizingComponents the specified components.
+	 * @return all complementa that are required.
 	 */
 	public List<RepositoryComponent> getRequiredComplementa(List<RepositoryComponent> realizingComponents) {
 		List<RepositoryComponent> result = new ArrayList<>();
 		for (RepositoryComponent repositoryComponent : realizingComponents) {
-			List<ComplementumImpl> requiredComplementa = StereotypeAPIHelper.getViaStereoTypeFrom(repositoryComponent, ComplementumImpl.class);
-			requiredComplementa = requiredComplementa.stream().filter(compl -> compl.getClass().equals(ComplementumImpl.class)).collect(Collectors.toList()); // TODO
-																																								// nur
-																																								// ComplementumImpl
-																																								// hier
-																																								// betrachten,
-																																								// keine
-																																								// ComplVisnetis
+			List<ComplementumImpl> requiredComplementa = new ArrayList<ComplementumImpl>();
+			// complementa required by component
+			List<ComplementumImpl> requiredComplementaByComponent = StereotypeAPIHelper.getViaStereoTypeFrom(repositoryComponent, ComplementumImpl.class);
+			// complementa required by signatures
+			List<ComplementumImpl> requiredComplementaByInterface = repositoryComponent.getProvidedRoles_InterfaceProvidingEntity().stream()
+					.flatMap(role -> StereotypeAPIHelper.getViaStereoTypeFrom(((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole(), ComplementumImpl.class).stream())
+					.collect(Collectors.toList());
+			// complementa required by interfaces
+			List<ComplementumImpl> requiredComplementaBySignature = repositoryComponent.getProvidedRoles_InterfaceProvidingEntity().stream()
+					.flatMap(role -> ((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface().stream())
+					.flatMap(signature -> StereotypeAPIHelper.getViaStereoTypeFrom(signature, ComplementumImpl.class).stream()).collect(Collectors.toList());
+			//add all
+			requiredComplementa.addAll(requiredComplementaByComponent);
+			requiredComplementa.addAll(requiredComplementaByInterface);
+			requiredComplementa.addAll(requiredComplementaBySignature);
+			requiredComplementa = requiredComplementa.stream().filter(compl -> compl.getClass().equals(ComplementumImpl.class)).collect(Collectors.toList());
 			if (!requiredComplementa.isEmpty()) {
-				result.add(this.mergedRepoManager.getFulfillingComponentForComplementum(requiredComplementa.get(0))); // TODO
-																														// mehrere
-																														// Complementa?
+				for (ComplementumImpl complementumImpl : requiredComplementa) {
+					result.add(this.mergedRepoManager.getFulfillingComponentForComplementum(complementumImpl));
+				}
 			}
 		}
 		return result;
+	}
+
+	public AssemblyContext getComponentsIntantiatingFCC(CompletionComponent fcc, List<AssemblyContext> contexts) {
+		// search for component instantiating fcc
+		for (AssemblyContext ac : contexts) {
+			List<CompletionComponent> fccs = StereotypeAPIHelper.getViaStereoTypeFrom(ac.getEncapsulatedComponent__AssemblyContext(), CompletionComponent.class);
+			if (fccs.size() == 1 && fccs.get(0).getId().equals(fcc.getId())) { // 1 component should only realize 1 fcc
+				return ac;
+			}
+		}
+		return null;
 	}
 }

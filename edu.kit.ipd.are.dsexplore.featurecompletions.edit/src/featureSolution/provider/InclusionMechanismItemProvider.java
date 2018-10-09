@@ -90,7 +90,7 @@ public class InclusionMechanismItemProvider extends DescribedElementItemProvider
 			getString("_UI_InclusionMechanism_type") :
 			getString("_UI_InclusionMechanism_type") + " " + label;
 	}
-
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

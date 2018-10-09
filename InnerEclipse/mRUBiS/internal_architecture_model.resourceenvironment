@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resourceenvironment:ResourceEnvironment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:resourceenvironment="http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2" entityName="SoMoX Default ResourceEnvironment">
-  <resourceContainer_ResourceEnvironment id="_t5OwkCjpEeelRJRTle_aYg" entityName="SoMoX Default ResourceContainer">
+  <linkingResources__ResourceEnvironment id="_wrd28LTUEeiwSak6TX5PPg" entityName="Internet_Link" connectedResourceContainers_LinkingResource="_t5OwkCjpEeelRJRTle_aYg _0-1EYbJ1EeiNQtUs4yKe-A">
+    <communicationLinkResourceSpecifications_LinkingResource id="_163UA7TUEeiwSak6TX5PPg">
+      <communicationLinkResourceType_CommunicationLinkResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_o3sScH2AEdyH8uerKnHYug"/>
+      <latency_CommunicationLinkResourceSpecification specification="0.00001"/>
+      <throughput_CommunicationLinkResourceSpecification specification="200000000.0"/>
+    </communicationLinkResourceSpecifications_LinkingResource>
+  </linkingResources__ResourceEnvironment>
+  <resourceContainer_ResourceEnvironment id="_t5OwkCjpEeelRJRTle_aYg" entityName="ApplicationServer">
     <activeResourceSpecifications_ResourceContainer id="_t5OwkSjpEeelRJRTle_aYg">
       <schedulingPolicy href="pathmap://PCM_MODELS/Palladio.resourcetype#ProcessorSharing"/>
       <activeResourceType_ActiveResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
       <processingRate_ProcessingResourceSpecification specification="2.85"/>
+    </activeResourceSpecifications_ResourceContainer>
+  </resourceContainer_ResourceEnvironment>
+  <resourceContainer_ResourceEnvironment id="_0-1EYbJ1EeiNQtUs4yKe-A" entityName="DatabaseServer">
+    <activeResourceSpecifications_ResourceContainer id="_32QkhbJ1EeiNQtUs4yKe-A">
+      <schedulingPolicy href="pathmap://PCM_MODELS/Palladio.resourcetype#ProcessorSharing"/>
+      <activeResourceType_ActiveResourceSpecification href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+      <processingRate_ProcessingResourceSpecification specification="3.15"/>
     </activeResourceSpecifications_ResourceContainer>
   </resourceContainer_ResourceEnvironment>
 </resourceenvironment:ResourceEnvironment>

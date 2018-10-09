@@ -18,7 +18,7 @@
       <actions_ScenarioBehaviour xsi:type="usagemodel:Stop" id="_HzI-45MwEeih2OfurufoBg" entityName="stop" predecessor="_jJGmMJP7Eei07dcnOGCiFQ"/>
     </scenarioBehaviour_UsageScenario>
     <workload_UsageScenario xsi:type="usagemodel:OpenWorkload">
-      <interArrivalTime_OpenWorkload specification="50"/>
+      <interArrivalTime_OpenWorkload specification="500"/>
     </workload_UsageScenario>
   </usageScenario_UsageModel>
 </usagemodel:UsageModel>

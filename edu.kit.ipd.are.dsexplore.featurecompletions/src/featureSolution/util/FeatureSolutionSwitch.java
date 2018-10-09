@@ -90,72 +90,13 @@ public class FeatureSolutionSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeatureSolutionPackage.EXTENSION_INCLUSION: {
-				ExtensionInclusion extensionInclusion = (ExtensionInclusion)theEObject;
-				T result = caseExtensionInclusion(extensionInclusion);
-				if (result == null) result = caseInclusionMechanism(extensionInclusion);
-				if (result == null) result = caseDescribedElement(extensionInclusion);
-				if (result == null) result = caseNamedElement(extensionInclusion);
-				if (result == null) result = caseIdentifier(extensionInclusion);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureSolutionPackage.PLACEMENT_STRATEGY: {
-				PlacementStrategy placementStrategy = (PlacementStrategy)theEObject;
-				T result = casePlacementStrategy(placementStrategy);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureSolutionPackage.EXTERNAL_CALL_PLACEMENT_STRATEGY: {
-				ExternalCallPlacementStrategy externalCallPlacementStrategy = (ExternalCallPlacementStrategy)theEObject;
-				T result = caseExternalCallPlacementStrategy(externalCallPlacementStrategy);
-				if (result == null) result = casePlacementStrategy(externalCallPlacementStrategy);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureSolutionPackage.INTERNAL_ACTION_PLACEMENT_STRATEGY: {
-				InternalActionPlacementStrategy internalActionPlacementStrategy = (InternalActionPlacementStrategy)theEObject;
-				T result = caseInternalActionPlacementStrategy(internalActionPlacementStrategy);
-				if (result == null) result = casePlacementStrategy(internalActionPlacementStrategy);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureSolutionPackage.CONTROL_FLOW_PLACEMENT_STRATEGY: {
-				ControlFlowPlacementStrategy controlFlowPlacementStrategy = (ControlFlowPlacementStrategy)theEObject;
-				T result = caseControlFlowPlacementStrategy(controlFlowPlacementStrategy);
-				if (result == null) result = casePlacementStrategy(controlFlowPlacementStrategy);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureSolutionPackage.POINT_CUT: {
-				PointCut pointCut = (PointCut)theEObject;
-				T result = casePointCut(pointCut);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureSolutionPackage.ADVICE: {
-				Advice advice = (Advice)theEObject;
-				T result = caseAdvice(advice);
-				if (result == null) result = caseEntity_NamedElement(advice);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureSolutionPackage.IMPORT: {
-				Import import_ = (Import)theEObject;
-				T result = caseImport(import_);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureSolutionPackage.FEATURE_SELECTION: {
-				FeatureSelection featureSelection = (FeatureSelection)theEObject;
-				T result = caseFeatureSelection(featureSelection);
-				if (result == null) result = caseEntity_NamedElement(featureSelection);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureSolutionPackage.FEATURE_LIST: {
-				FeatureList featureList = (FeatureList)theEObject;
-				T result = caseFeatureList(featureList);
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION: {
+				BehaviourInclusion behaviourInclusion = (BehaviourInclusion)theEObject;
+				T result = caseBehaviourInclusion(behaviourInclusion);
+				if (result == null) result = caseInclusionMechanism(behaviourInclusion);
+				if (result == null) result = caseDescribedElement(behaviourInclusion);
+				if (result == null) result = caseNamedElement(behaviourInclusion);
+				if (result == null) result = caseIdentifier(behaviourInclusion);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -194,152 +135,17 @@ public class FeatureSolutionSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Extension Inclusion</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Behaviour Inclusion</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Extension Inclusion</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Behaviour Inclusion</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExtensionInclusion(ExtensionInclusion object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Placement Strategy</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Placement Strategy</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePlacementStrategy(PlacementStrategy object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>External Call Placement Strategy</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>External Call Placement Strategy</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseExternalCallPlacementStrategy(ExternalCallPlacementStrategy object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Internal Action Placement Strategy</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Internal Action Placement Strategy</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInternalActionPlacementStrategy(InternalActionPlacementStrategy object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Control Flow Placement Strategy</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Control Flow Placement Strategy</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseControlFlowPlacementStrategy(ControlFlowPlacementStrategy object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Point Cut</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Point Cut</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePointCut(PointCut object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Advice</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Advice</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAdvice(Advice object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Import</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Import</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseImport(Import object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Feature Selection</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Feature Selection</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFeatureSelection(FeatureSelection object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Feature List</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Feature List</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFeatureList(FeatureList object) {
+	public T caseBehaviourInclusion(BehaviourInclusion object) {
 		return null;
 	}
 
@@ -385,21 +191,6 @@ public class FeatureSolutionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDescribedElement(DescribedElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEntity_NamedElement(org.palladiosimulator.pcm.core.entity.NamedElement object) {
 		return null;
 	}
 

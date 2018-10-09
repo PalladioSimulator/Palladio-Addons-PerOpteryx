@@ -4,12 +4,9 @@
 package edu.kit.ipd.are.dsexplore.scoping
 
 import FeatureCompletionModel.ComplementumVisnetis
-import featureSolution.Advice
-import featureSolution.ControlFlowPlacementStrategy
-import featureSolution.ExternalCallPlacementStrategy
-import featureSolution.FeatureSolutionPackage
-import featureSolution.Import
-import featureSolution.InternalActionPlacementStrategy
+import FeatureCompletionModel.FeatureCompletion
+import placementDescription.FeatureSelection
+import placementDescription.SelectedCV
 import java.util.ArrayList
 import java.util.List
 import org.eclipse.emf.common.util.URI
@@ -25,9 +22,12 @@ import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.SimpleScope
 import org.palladiosimulator.pcm.repository.RepositoryComponent
 import org.palladiosimulator.pcm.repository.Signature
-import featureSolution.FeatureSelection
-import FeatureCompletionModel.FeatureCompletion
-import featureSolution.FeatureList
+import placementDescription.Advice
+import placementDescription.ControlFlowPlacementStrategy
+import placementDescription.ExternalCallPlacementStrategy
+import placementDescription.Import
+import placementDescription.InternalActionPlacementStrategy
+import placementDescription.PlacementDescriptionPackage
 
 /**
  * This class contains custom scoping description.
@@ -41,27 +41,27 @@ class FcDslScopeProvider extends AbstractFcDslScopeProvider {
 	private static final String FEATURE_COMPLETION_FILE_EXTENSION = ".featurecompletion"
 
 	override getScope(EObject ctx, EReference ref) {
-	   if (ctx instanceof ExternalCallPlacementStrategy && ref == FeatureSolutionPackage.Literals.EXTERNAL_CALL_PLACEMENT_STRATEGY__MATCHING_SIGNATURE) {
+	   if (ctx instanceof ExternalCallPlacementStrategy && ref == PlacementDescriptionPackage.Literals.EXTERNAL_CALL_PLACEMENT_STRATEGY__MATCHING_SIGNATURE) {
 			scope_ExternalCallPlacementStrategy_matchingSignature(ctx as ExternalCallPlacementStrategy, ref)
-	   } else if (ctx instanceof InternalActionPlacementStrategy && ref == FeatureSolutionPackage.Literals.INTERNAL_ACTION_PLACEMENT_STRATEGY__FOR_ALL_INTERNAL_ACTIONS_IN) {
+	   } else if (ctx instanceof InternalActionPlacementStrategy && ref == PlacementDescriptionPackage.Literals.INTERNAL_ACTION_PLACEMENT_STRATEGY__FOR_ALL_INTERNAL_ACTIONS_IN) {
 	   		scope_InternalActionPlacementStrategy_forAllInternalActionsIn(ctx as InternalActionPlacementStrategy, ref)
-	   } else if (ctx instanceof ControlFlowPlacementStrategy && ref == FeatureSolutionPackage.Literals.CONTROL_FLOW_PLACEMENT_STRATEGY__FOR_ALL_CONTROL_FLOWS_IN) {
+	   } else if (ctx instanceof ControlFlowPlacementStrategy && ref == PlacementDescriptionPackage.Literals.CONTROL_FLOW_PLACEMENT_STRATEGY__FOR_ALL_CONTROL_FLOWS_IN) {
 	   		scope_ControlFlowPlacementStrategy_forAllControlFLowsIn(ctx as ControlFlowPlacementStrategy, ref)
 //	   } else if (ctx instanceof Advice && ref == FeatureSolutionPackage.Literals.ADVICE__COMPLETION) {
 //	   		scope_Advice_completion(ctx as Advice, ref)	
-	   } else if (ctx instanceof FeatureSelection && ref == FeatureSolutionPackage.Literals.FEATURE_SELECTION__COMPLETION) {
+	   } else if (ctx instanceof FeatureSelection && ref == PlacementDescriptionPackage.Literals.FEATURE_SELECTION__COMPLETION) {
 	   		scope_FeatureSelection_completion(ctx as FeatureSelection, ref)
-	   } else if (ctx instanceof FeatureList && ref == FeatureSolutionPackage.Literals.FEATURE_LIST__FEATURES) {
-	   		scope_FeatureList_features(ctx as FeatureList, ref)
+	   } else if (ctx instanceof SelectedCV && ref == PlacementDescriptionPackage.Literals.SELECTED_CV__COMPLEMENTUM_VISNETIS) {
+	   		scope_SelectedCV_ComplementumVisnetis(ctx as SelectedCV, ref)
 	   } else {
 	   		super.getScope(ctx, ref)
 	   }
 	}
 	
-	def scope_FeatureList_features(FeatureList selection, EReference reference) {
+	def scope_SelectedCV_ComplementumVisnetis(SelectedCV selectedCV, EReference reference) {
 		var List<IEObjectDescription> descriptions = new ArrayList<IEObjectDescription>
 		
-		val rootElement = EcoreUtil2.getRootContainer(selection)
+		val rootElement = EcoreUtil2.getRootContainer(selectedCV)
 		val resource = getRepositoryResource(rootElement, FEATURE_COMPLETION_FILE_EXTENSION)
 
 		val candidates = EcoreUtil2.getAllContentsOfType(resource.contents.get(0), ComplementumVisnetis)

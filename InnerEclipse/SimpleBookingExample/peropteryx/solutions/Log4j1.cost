@@ -4,6 +4,9 @@
     <repositoryComponent xsi:type="repository:BasicComponent" href="Log4j1.repository#_zCcD8OQTEeeDc5WJsIYxgA"/>
   </cost>
   <cost xsi:type="cost:ComponentCost" componentInitialCost="100.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="Log4j1.repository#_LqYLQLAxEei9-ucuJtAM2g"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="100.0">
     <repositoryComponent xsi:type="repository:BasicComponent" href="Log4j1.repository#_2hBDoOQTEeeDc5WJsIYxgA"/>
   </cost>
   <cost xsi:type="cost:ComponentCost" componentInitialCost="100.0">

@@ -3,36 +3,33 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.EList;
-import org.modelversioning.emfprofileapplication.StereotypeApplication;
 import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
-import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.PerimeterProviding;
+
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EMFProfileFilter;
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EcoreReferenceResolver;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
+
 import featureObjective.Feature;
 
 /**
  * This class is responsible to resolve the corresponding provided roles a
  * particular ECC is providing.
  *
- * @author scheerer
+ * @author scheerer, Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  *
  */
 public class FCCFeatureHandler {
@@ -53,7 +50,6 @@ public class FCCFeatureHandler {
 	 *             - Will be thrown if the ECC is incorrectly annotated.
 	 */
 	public List<ProvidedRole> getProvidedFeaturesOf(CompletionComponent fcc) throws FCCWeaverException {
-		// TODO Welche Provided Roles?
 		Feature providedFCCFeature = this.getFeatureProvidedBy(fcc);
 		List<ProvidedRole> result = new ArrayList<>();
 
@@ -100,152 +96,71 @@ public class FCCFeatureHandler {
 		return result;
 	}
 
-	// TODO added for extension
-	public List<OperationInterface> getFullfillingInterfacesFor(ComplementumVisnetis cv) throws FCCWeaverException {
-
-		List<OperationInterface> result = new ArrayList<>();
-		List<OperationInterface> allInterfaces = this.solutionManager.getAllProvidedRoles().stream()
-				.map(providedRole -> ((OperationProvidedRole) providedRole).getProvidedInterface__OperationProvidedRole()).collect(Collectors.toList());
-		for (OperationInterface iface : allInterfaces) {
-			boolean match = this.isFeature(iface);
-			match = match && this.areEqual(cv, this.getCVOf(iface));
-			if (match) {
-				result.add(iface);
-			}
-		}
-		return result;
-	}
-
-	// TODO added for extension
-	public CompletionComponent getPerimeterProvidingFCCFor(ComplementumVisnetis cv, FeatureCompletion fc) throws FCCWeaverException {
-		Feature feature = cv.getComplementaryFeature();
+	/**
+	 * Determines the FCC of a FC that offers the specified complementum visnetis via its perimeter provided interface.
+	 * 
+	 * @param selectedCVs the complementum visnetis.
+	 * @param fc the feature completion.
+	 * @return the FCC that offers the specified complementum visnetis.
+	 * @throws FCCWeaverException
+	 */
+	public CompletionComponent getPerimeterProvidingFCCFor(List<ComplementumVisnetis> selectedCVs, FeatureCompletion fc) throws FCCWeaverException {
+		List<Feature> selectedFeatures = selectedCVs.stream().map(selectedCV -> selectedCV.getComplementaryFeature()).collect(Collectors.toList());
 		CompletionComponent fcc = null;
 
 		for (CompletionComponent fccCurrent : fc.getCompletionComponents()) {
-			if (fccCurrent.getPerimeterProviding().getFeatureProviding().stream().anyMatch(f -> f.getId().equals(feature.getId()))) {
+			List<Feature> providedFeatures = fccCurrent.getPerimeterProviding().getFeatureProviding();
+			//FCC has to provide all selected CVs in order to be the entry point
+			if (selectedFeatures.stream().allMatch(selectedFeature -> providedFeatures.stream().anyMatch(providedFeature -> providedFeature.getId().equals(selectedFeature.getId())))) {
 				fcc = fccCurrent;
+				return fcc;
 			}
 		}
 		return fcc;
 	}
-
-	// TODO added for extension
-	public List<ProvidedRole> getProvidedRolesOf(CompletionComponent fcc, ComplementumVisnetis cv) throws FCCWeaverException {
-
-		List<ProvidedRole> result = new ArrayList<>();
-		List<ProvidedRole> allProvidedRoles = this.solutionManager.getAllProvidedRoles();
-		for (ProvidedRole providedRole : allProvidedRoles) {
-			EList<OperationSignature> allSignatures = ((OperationProvidedRole) providedRole).getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface();
-			for (OperationSignature operationSignature : allSignatures) {
-				boolean match = this.isFeature(operationSignature);
-				match = match && this.areEqual(cv, this.getCVOf(operationSignature));
-				if (match) {
-					result.add(providedRole);
-					break;
+	
+	/**
+	 * Determines the perimeter provided roles of the solution component for a given fcc.
+	 * 
+	 * @param completionComponent the fcc.
+	 * @param selectedCVs the selected CVs.
+	 * @param fc the fc to be weaved.
+	 * @return the perimeter provided roles of the solution component.
+	 */
+	public List<OperationSignature> getPerimeterProvidedRolesFor(CompletionComponent completionComponent, List<ComplementumVisnetis> selectedCVs, FeatureCompletion fc) {
+		List<OperationSignature> result = new ArrayList<>();
+		
+		//get solution components fulfilling fcc
+		List<RepositoryComponent> components = this.solutionManager.getAffectedComponentsByFCCList(Arrays.asList(completionComponent));
+		RepositoryComponent component = this.solutionManager.getComponentFullfillingCV(components, selectedCVs);
+		
+		//fulfilled by component
+		List<ComplementumVisnetis> fullfilledByComponentCVs = StereotypeAPIHelper.getViaStereoTypeFrom(component, ComplementumVisnetis.class);
+		if (SolutionManager.anyCVcontainedInList(fullfilledByComponentCVs, selectedCVs)) {
+			result.addAll(component.getProvidedRoles_InterfaceProvidingEntity().stream().flatMap(role -> ((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface().stream()).collect(Collectors.toList()));
+		}
+		
+		//fulfilled by interface
+		for (OperationInterface iface : component.getProvidedRoles_InterfaceProvidingEntity().stream().map(role -> ((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole()).collect(Collectors.toList())) {
+			List<ComplementumVisnetis> fullfilledByInterfaceCVs = StereotypeAPIHelper.getViaStereoTypeFrom(iface, ComplementumVisnetis.class);
+			if (SolutionManager.anyCVcontainedInList(fullfilledByInterfaceCVs, selectedCVs)) {
+				result.addAll(iface.getSignatures__OperationInterface());
+			}
+			//fulfilled by signature
+			for (OperationSignature sig : iface.getSignatures__OperationInterface()) {
+				List<ComplementumVisnetis> fullfilledBySignatureCVs = StereotypeAPIHelper.getViaStereoTypeFrom(sig, ComplementumVisnetis.class);
+				if (SolutionManager.anyCVcontainedInList(fullfilledBySignatureCVs, selectedCVs)) {
+					result.add(sig);
 				}
 			}
 		}
+		
 		return result;
-	}
-
-	// TODO added for extension
-	public ProvidedRole getPerimeterProvidedRoleFor(ComplementumVisnetis cv, FeatureCompletion fc, Repository repo) throws FCCWeaverException {
-		Feature feature = cv.getComplementaryFeature();
-		List<ProvidedRole> result = new ArrayList<>();
-
-		for (CompletionComponent fccCurrent : fc.getCompletionComponents()) {
-			if (fccCurrent.getPerimeterProviding().getFeatureProviding().stream().anyMatch(f -> f.getId().equals(feature.getId()))) {
-				// List<RepositoryComponent> components =
-				// this.mergedRepoManager.getAffectedComponentsByFCCList(Arrays.asList(fccCurrent));
-				// TODO select only providedRoles for current solution Choice
-				List<RepositoryComponent> components = this.solutionManager.getAffectedComponentsByFCCList(Arrays.asList(fccCurrent), repo);
-				List<ProvidedRole> providedRoles = components.stream().map(component -> component.getProvidedRoles_InterfaceProvidingEntity().get(0)).collect(Collectors.toList()); // TODO
-				// Role
-				result.addAll(providedRoles);
-			}
-		}
-		if (result.size() != 1) {
-			throw new FCCWeaverException("there should only be one perimteter role providing the selected cv");
-		}
-		return result.get(0);
-	}
-
-	/**
-	 * @param operationSignature
-	 * @return
-	 */
-	private ComplementumVisnetis getCVOf(OperationSignature operationSignature) {
-		StereotypeApplication stereotypeApplication = EMFProfileFilter.getStereotypeApplicationsFrom(operationSignature).get(0);
-		return this.getCVFrom(stereotypeApplication).get();
-	}
-
-	/**
-	 * @param operationSignature
-	 * @return
-	 */
-	private boolean isFeature(OperationSignature operationSignature) {
-		return EMFProfileFilter.isAnnotated(operationSignature);
-	}
-
-	// TODO added for extension
-	private boolean isFeature(OperationInterface operationInterface) {
-		return EMFProfileFilter.isAnnotated(operationInterface);
-	}
-
-	/**
-	 * @param cv
-	 * @param cvOf
-	 * @return
-	 */
-	// TODO added for extension
-	private boolean areEqual(ComplementumVisnetis cv, ComplementumVisnetis cvOf) {
-		return cv.getId().equals(cvOf.getId());
-	}
-
-	/**
-	 * @param iface
-	 * @return
-	 */
-	// TODO added for extension
-	private ComplementumVisnetis getCVOf(OperationInterface iface) {
-		StereotypeApplication stereotypeApplication = EMFProfileFilter.getStereotypeApplicationsFrom(iface).get(0);
-		return this.getCVFrom(stereotypeApplication).get();
-	}
-
-	/**
-	 * @param stereotypeApplication
-	 * @return
-	 */
-	// TODO added for extension
-	private Optional<ComplementumVisnetis> getCVFrom(StereotypeApplication stereotypeApplication) {
-		List<ComplementumVisnetis> cvs = this.getCVsFrom(stereotypeApplication);
-		return cvs.isEmpty() ? Optional.empty() : Optional.of(cvs.get(0));
-	}
-
-	/**
-	 * @param stereotypeApplication
-	 * @return
-	 */
-	// TODO added for extension
-	private List<ComplementumVisnetis> getCVsFrom(StereotypeApplication stereotypeApplication) {
-		return new EcoreReferenceResolver(stereotypeApplication).getCrossReferencedElementsOfType(ComplementumVisnetis.class);
 	}
 
 	public List<Pair<Entity, ComplementumVisnetis>> extractProvidedCVs() {
 		return FeatureHelper.getCVsFromRepo(this.solutionManager.getRepository());
 	}
-
-	// private List<ProvidedRole> getProvidedRoleSpace() {
-	// return this.mergedRepoManager.getAllProvidedRoles();
-	// }
-	//
-	// private boolean isFeature(ProvidedRole providedRole) {
-	// return EMFProfileFilter.isAnnotated(providedRole);
-	// }
-	//
-	// private boolean areEqual(Feature feature1, Feature feature2) {
-	// return feature1.getId().equals(feature2.getId());
-	// }
 
 	private Feature getFeatureProvidedBy(CompletionComponent fcc) throws FCCWeaverException {
 		PerimeterProviding pp = fcc.getPerimeterProviding();
@@ -258,24 +173,4 @@ public class FCCFeatureHandler {
 		}
 		return features.get(0);
 	}
-
-	// private Feature getFeatureOf(ProvidedRole providedRole) {
-	// StereotypeApplication stereotypeApplication =
-	// EMFProfileFilter.getStereotypeApplicationsFrom(providedRole).get(0);
-	// return this.getFeatureFrom(stereotypeApplication).get();
-	// }
-
-	// private Optional<Feature> getFeatureFrom(StereotypeApplication
-	// stereotypeApplication) {
-	// List<Feature> features = this.getFeaturesFrom(stereotypeApplication);
-	// return features.isEmpty() ? Optional.empty() :
-	// Optional.of(features.get(0));
-	// }
-
-	// private List<Feature> getFeaturesFrom(StereotypeApplication
-	// stereotypeApplication) {
-	// return new
-	// EcoreReferenceResolver(stereotypeApplication).getCrossReferencedElementsOfType(Feature.class);
-	// }
-
 }

@@ -6,34 +6,16 @@ import FeatureCompletionModel.FeatureCompletionPackage;
 
 import FeatureCompletionModel.impl.FeatureCompletionPackageImpl;
 
-import de.uka.ipd.sdq.identifier.IdentifierPackage;
-
-import de.uka.ipd.sdq.probfunction.ProbfunctionPackage;
-
-import de.uka.ipd.sdq.stoex.StoexPackage;
-
-import de.uka.ipd.sdq.units.UnitsPackage;
-
 import featureObjective.FeatureObjectivePackage;
 
 import featureObjective.impl.FeatureObjectivePackageImpl;
 
 import featureSolution.AdapterInclusion;
-import featureSolution.Advice;
 import featureSolution.Appearance;
-import featureSolution.ControlFlow;
-import featureSolution.ControlFlowPlacementStrategy;
-import featureSolution.ExtensionInclusion;
-import featureSolution.ExternalCallPlacementStrategy;
-import featureSolution.FeatureList;
-import featureSolution.FeatureSelection;
+import featureSolution.BehaviourInclusion;
 import featureSolution.FeatureSolutionFactory;
 import featureSolution.FeatureSolutionPackage;
-import featureSolution.Import;
 import featureSolution.InclusionMechanism;
-import featureSolution.InternalActionPlacementStrategy;
-import featureSolution.PlacementStrategy;
-import featureSolution.PointCut;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -46,9 +28,9 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.palladiosimulator.pcm.PcmPackage;
 
-import org.palladiosimulator.pcm.core.entity.EntityPackage;
+import placementDescription.PlacementDescriptionPackage;
 
-import org.palladiosimulator.pcm.repository.RepositoryPackage;
+import placementDescription.impl.PlacementDescriptionPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -76,70 +58,7 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass extensionInclusionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass placementStrategyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass externalCallPlacementStrategyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass internalActionPlacementStrategyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass controlFlowPlacementStrategyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass pointCutEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass adviceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass importEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass featureSelectionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass featureListEClass = null;
+	private EClass behaviourInclusionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -147,13 +66,6 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * @generated
 	 */
 	private EEnum appearanceEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum controlFlowEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -183,7 +95,7 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 *
+	 * 
 	 * <p>This method is used to initialize {@link FeatureSolutionPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -197,38 +109,34 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		if (isInited) return (FeatureSolutionPackage)EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI);
 
 		// Obtain or create and register package
-		Object registeredFeatureSolutionPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		FeatureSolutionPackageImpl theFeatureSolutionPackage = registeredFeatureSolutionPackage instanceof FeatureSolutionPackageImpl ? (FeatureSolutionPackageImpl)registeredFeatureSolutionPackage : new FeatureSolutionPackageImpl();
+		FeatureSolutionPackageImpl theFeatureSolutionPackage = (FeatureSolutionPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FeatureSolutionPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new FeatureSolutionPackageImpl());
 
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-		IdentifierPackage.eINSTANCE.eClass();
 		PcmPackage.eINSTANCE.eClass();
-		ProbfunctionPackage.eINSTANCE.eClass();
-		StoexPackage.eINSTANCE.eClass();
-		UnitsPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI);
-		FeatureCompletionPackageImpl theFeatureCompletionPackage = (FeatureCompletionPackageImpl)(registeredPackage instanceof FeatureCompletionPackageImpl ? registeredPackage : FeatureCompletionPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI);
-		FeatureObjectivePackageImpl theFeatureObjectivePackage = (FeatureObjectivePackageImpl)(registeredPackage instanceof FeatureObjectivePackageImpl ? registeredPackage : FeatureObjectivePackage.eINSTANCE);
+		FeatureCompletionPackageImpl theFeatureCompletionPackage = (FeatureCompletionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI) instanceof FeatureCompletionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI) : FeatureCompletionPackage.eINSTANCE);
+		FeatureObjectivePackageImpl theFeatureObjectivePackage = (FeatureObjectivePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI) instanceof FeatureObjectivePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI) : FeatureObjectivePackage.eINSTANCE);
+		PlacementDescriptionPackageImpl thePlacementDescriptionPackage = (PlacementDescriptionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PlacementDescriptionPackage.eNS_URI) instanceof PlacementDescriptionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PlacementDescriptionPackage.eNS_URI) : PlacementDescriptionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theFeatureSolutionPackage.createPackageContents();
 		theFeatureCompletionPackage.createPackageContents();
 		theFeatureObjectivePackage.createPackageContents();
+		thePlacementDescriptionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theFeatureSolutionPackage.initializePackageContents();
 		theFeatureCompletionPackage.initializePackageContents();
 		theFeatureObjectivePackage.initializePackageContents();
+		thePlacementDescriptionPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theFeatureSolutionPackage.freeze();
 
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(FeatureSolutionPackage.eNS_URI, theFeatureSolutionPackage);
 		return theFeatureSolutionPackage;
@@ -275,8 +183,8 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExtensionInclusion() {
-		return extensionInclusionEClass;
+	public EClass getBehaviourInclusion() {
+		return behaviourInclusionEClass;
 	}
 
 	/**
@@ -284,8 +192,8 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtensionInclusion_PointCut() {
-		return (EReference)extensionInclusionEClass.getEStructuralFeatures().get(0);
+	public EReference getBehaviourInclusion_PointCut() {
+		return (EReference)behaviourInclusionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -293,8 +201,8 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtensionInclusion_Advice() {
-		return (EReference)extensionInclusionEClass.getEStructuralFeatures().get(1);
+	public EReference getBehaviourInclusion_Advice() {
+		return (EReference)behaviourInclusionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -302,8 +210,8 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtensionInclusion_Imports() {
-		return (EReference)extensionInclusionEClass.getEStructuralFeatures().get(2);
+	public EReference getBehaviourInclusion_Imports() {
+		return (EReference)behaviourInclusionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -311,197 +219,8 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPlacementStrategy() {
-		return placementStrategyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getExternalCallPlacementStrategy() {
-		return externalCallPlacementStrategyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getExternalCallPlacementStrategy_MatchingSignature() {
-		return (EReference)externalCallPlacementStrategyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getInternalActionPlacementStrategy() {
-		return internalActionPlacementStrategyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getInternalActionPlacementStrategy_ForAllInternalActionsIn() {
-		return (EReference)internalActionPlacementStrategyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getControlFlowPlacementStrategy() {
-		return controlFlowPlacementStrategyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getControlFlowPlacementStrategy_ForAllControlFlowsIn() {
-		return (EReference)controlFlowPlacementStrategyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getPointCut() {
-		return pointCutEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPointCut_PlacementStrategy() {
-		return (EReference)pointCutEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPointCut_Name() {
-		return (EAttribute)pointCutEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAdvice() {
-		return adviceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAdvice_PointCut() {
-		return (EReference)adviceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAdvice_Appears() {
-		return (EAttribute)adviceEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAdvice_Completion() {
-		return (EReference)adviceEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAdvice_PlacementPolicy() {
-		return (EAttribute)adviceEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getImport() {
-		return importEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getImport_ImportURI() {
-		return (EAttribute)importEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getFeatureSelection() {
-		return featureSelectionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFeatureSelection_Completion() {
-		return (EReference)featureSelectionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFeatureSelection_FeatureLists() {
-		return (EReference)featureSelectionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getFeatureList() {
-		return featureListEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFeatureList_Features() {
-		return (EReference)featureListEClass.getEStructuralFeatures().get(0);
+	public EReference getBehaviourInclusion_FeatureCompletion() {
+		return (EReference)behaviourInclusionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -511,15 +230,6 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 */
 	public EEnum getAppearance() {
 		return appearanceEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getControlFlow() {
-		return controlFlowEEnum;
 	}
 
 	/**
@@ -556,45 +266,14 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		adapterInclusionEClass = createEClass(ADAPTER_INCLUSION);
 		createEAttribute(adapterInclusionEClass, ADAPTER_INCLUSION__APPEARS);
 
-		extensionInclusionEClass = createEClass(EXTENSION_INCLUSION);
-		createEReference(extensionInclusionEClass, EXTENSION_INCLUSION__POINT_CUT);
-		createEReference(extensionInclusionEClass, EXTENSION_INCLUSION__ADVICE);
-		createEReference(extensionInclusionEClass, EXTENSION_INCLUSION__IMPORTS);
-
-		placementStrategyEClass = createEClass(PLACEMENT_STRATEGY);
-
-		externalCallPlacementStrategyEClass = createEClass(EXTERNAL_CALL_PLACEMENT_STRATEGY);
-		createEReference(externalCallPlacementStrategyEClass, EXTERNAL_CALL_PLACEMENT_STRATEGY__MATCHING_SIGNATURE);
-
-		internalActionPlacementStrategyEClass = createEClass(INTERNAL_ACTION_PLACEMENT_STRATEGY);
-		createEReference(internalActionPlacementStrategyEClass, INTERNAL_ACTION_PLACEMENT_STRATEGY__FOR_ALL_INTERNAL_ACTIONS_IN);
-
-		controlFlowPlacementStrategyEClass = createEClass(CONTROL_FLOW_PLACEMENT_STRATEGY);
-		createEReference(controlFlowPlacementStrategyEClass, CONTROL_FLOW_PLACEMENT_STRATEGY__FOR_ALL_CONTROL_FLOWS_IN);
-
-		pointCutEClass = createEClass(POINT_CUT);
-		createEReference(pointCutEClass, POINT_CUT__PLACEMENT_STRATEGY);
-		createEAttribute(pointCutEClass, POINT_CUT__NAME);
-
-		adviceEClass = createEClass(ADVICE);
-		createEReference(adviceEClass, ADVICE__POINT_CUT);
-		createEAttribute(adviceEClass, ADVICE__APPEARS);
-		createEReference(adviceEClass, ADVICE__COMPLETION);
-		createEAttribute(adviceEClass, ADVICE__PLACEMENT_POLICY);
-
-		importEClass = createEClass(IMPORT);
-		createEAttribute(importEClass, IMPORT__IMPORT_URI);
-
-		featureSelectionEClass = createEClass(FEATURE_SELECTION);
-		createEReference(featureSelectionEClass, FEATURE_SELECTION__COMPLETION);
-		createEReference(featureSelectionEClass, FEATURE_SELECTION__FEATURE_LISTS);
-
-		featureListEClass = createEClass(FEATURE_LIST);
-		createEReference(featureListEClass, FEATURE_LIST__FEATURES);
+		behaviourInclusionEClass = createEClass(BEHAVIOUR_INCLUSION);
+		createEReference(behaviourInclusionEClass, BEHAVIOUR_INCLUSION__POINT_CUT);
+		createEReference(behaviourInclusionEClass, BEHAVIOUR_INCLUSION__ADVICE);
+		createEReference(behaviourInclusionEClass, BEHAVIOUR_INCLUSION__IMPORTS);
+		createEReference(behaviourInclusionEClass, BEHAVIOUR_INCLUSION__FEATURE_COMPLETION);
 
 		// Create enums
 		appearanceEEnum = createEEnum(APPEARANCE);
-		controlFlowEEnum = createEEnum(CONTROL_FLOW);
 	}
 
 	/**
@@ -623,8 +302,7 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		// Obtain other dependent packages
 		FeatureCompletionPackage theFeatureCompletionPackage = (FeatureCompletionPackage)EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		RepositoryPackage theRepositoryPackage = (RepositoryPackage)EPackage.Registry.INSTANCE.getEPackage(RepositoryPackage.eNS_URI);
-		EntityPackage theEntityPackage = (EntityPackage)EPackage.Registry.INSTANCE.getEPackage(EntityPackage.eNS_URI);
+		PlacementDescriptionPackage thePlacementDescriptionPackage = (PlacementDescriptionPackage)EPackage.Registry.INSTANCE.getEPackage(PlacementDescriptionPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -633,12 +311,7 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		// Add supertypes to classes
 		inclusionMechanismEClass.getESuperTypes().add(theFeatureCompletionPackage.getDescribedElement());
 		adapterInclusionEClass.getESuperTypes().add(this.getInclusionMechanism());
-		extensionInclusionEClass.getESuperTypes().add(this.getInclusionMechanism());
-		externalCallPlacementStrategyEClass.getESuperTypes().add(this.getPlacementStrategy());
-		internalActionPlacementStrategyEClass.getESuperTypes().add(this.getPlacementStrategy());
-		controlFlowPlacementStrategyEClass.getESuperTypes().add(this.getPlacementStrategy());
-		adviceEClass.getESuperTypes().add(theEntityPackage.getNamedElement());
-		featureSelectionEClass.getESuperTypes().add(theEntityPackage.getNamedElement());
+		behaviourInclusionEClass.getESuperTypes().add(this.getInclusionMechanism());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(inclusionMechanismEClass, InclusionMechanism.class, "InclusionMechanism", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -647,51 +320,17 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		initEClass(adapterInclusionEClass, AdapterInclusion.class, "AdapterInclusion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAdapterInclusion_Appears(), this.getAppearance(), "appears", "BEFORE", 1, 1, AdapterInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(extensionInclusionEClass, ExtensionInclusion.class, "ExtensionInclusion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getExtensionInclusion_PointCut(), this.getPointCut(), null, "pointCut", null, 0, -1, ExtensionInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExtensionInclusion_Advice(), this.getAdvice(), null, "advice", null, 0, -1, ExtensionInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExtensionInclusion_Imports(), this.getImport(), null, "imports", null, 0, -1, ExtensionInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(placementStrategyEClass, PlacementStrategy.class, "PlacementStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(externalCallPlacementStrategyEClass, ExternalCallPlacementStrategy.class, "ExternalCallPlacementStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getExternalCallPlacementStrategy_MatchingSignature(), theRepositoryPackage.getSignature(), null, "matchingSignature", null, 0, 1, ExternalCallPlacementStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(internalActionPlacementStrategyEClass, InternalActionPlacementStrategy.class, "InternalActionPlacementStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInternalActionPlacementStrategy_ForAllInternalActionsIn(), theRepositoryPackage.getRepositoryComponent(), null, "forAllInternalActionsIn", null, 0, 1, InternalActionPlacementStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(controlFlowPlacementStrategyEClass, ControlFlowPlacementStrategy.class, "ControlFlowPlacementStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getControlFlowPlacementStrategy_ForAllControlFlowsIn(), theRepositoryPackage.getRepositoryComponent(), null, "forAllControlFlowsIn", null, 0, 1, ControlFlowPlacementStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(pointCutEClass, PointCut.class, "PointCut", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPointCut_PlacementStrategy(), this.getPlacementStrategy(), null, "placementStrategy", null, 0, 1, PointCut.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPointCut_Name(), ecorePackage.getEString(), "name", null, 0, 1, PointCut.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(adviceEClass, Advice.class, "Advice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAdvice_PointCut(), this.getPointCut(), null, "pointCut", null, 0, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAdvice_Appears(), this.getAppearance(), "appears", "BEFORE", 1, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAdvice_Completion(), this.getFeatureSelection(), null, "Completion", null, 0, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAdvice_PlacementPolicy(), theFeatureCompletionPackage.getPlacementPolicy(), "placementPolicy", "MANDATORY", 1, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImport_ImportURI(), ecorePackage.getEString(), "importURI", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(featureSelectionEClass, FeatureSelection.class, "FeatureSelection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeatureSelection_Completion(), theFeatureCompletionPackage.getFeatureCompletion(), null, "Completion", null, 1, 1, FeatureSelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFeatureSelection_FeatureLists(), this.getFeatureList(), null, "featureLists", null, 1, -1, FeatureSelection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(featureListEClass, FeatureList.class, "FeatureList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeatureList_Features(), theFeatureCompletionPackage.getComplementumVisnetis(), null, "features", null, 1, -1, FeatureList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(behaviourInclusionEClass, BehaviourInclusion.class, "BehaviourInclusion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBehaviourInclusion_PointCut(), thePlacementDescriptionPackage.getPointCut(), null, "pointCut", null, 0, -1, BehaviourInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviourInclusion_Advice(), thePlacementDescriptionPackage.getAdvice(), null, "advice", null, 0, -1, BehaviourInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviourInclusion_Imports(), thePlacementDescriptionPackage.getImport(), null, "imports", null, 0, -1, BehaviourInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviourInclusion_FeatureCompletion(), thePlacementDescriptionPackage.getFeatureSelection(), null, "featureCompletion", null, 1, 1, BehaviourInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(appearanceEEnum, Appearance.class, "Appearance");
 		addEEnumLiteral(appearanceEEnum, Appearance.BEFORE);
 		addEEnumLiteral(appearanceEEnum, Appearance.AFTER);
 		addEEnumLiteral(appearanceEEnum, Appearance.AROUND);
-
-		initEEnum(controlFlowEEnum, ControlFlow.class, "ControlFlow");
-		addEEnumLiteral(controlFlowEEnum, ControlFlow.LOOP);
-		addEEnumLiteral(controlFlowEEnum, ControlFlow.BRANCH);
 
 		// Create resource
 		createResource(eNS_URI);

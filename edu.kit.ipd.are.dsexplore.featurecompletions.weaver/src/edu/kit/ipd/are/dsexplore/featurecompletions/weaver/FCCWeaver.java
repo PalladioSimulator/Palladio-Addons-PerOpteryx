@@ -15,22 +15,33 @@ import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.FeatureCompletionPackage;
 import FeatureCompletionModel.FeatureCompletionRepository;
+
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
+
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.extensions.FCCProblemExtension;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingStrategies;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.util.LocationExtractor;
+
 import featureSolution.InclusionMechanism;
 
+/**
+ * This class represents the entry point for weaving feature completions into PCM models.
+ * All further actions are delegated to the corresponding weaving strategy (depending on the inclusion mechanism).
+ * 
+ * @author Dominik Fuchß, Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
+ * 
+ */
 public final class FCCWeaver {
 	public final static String ADAPTER_NAME = "Adapter";
 	public final static String CONCERN_REPOSITORY_NAME = "TemporaryConcernRepository";
@@ -40,6 +51,7 @@ public final class FCCWeaver {
 	private final FeatureCompletion fc;
 	private final InclusionMechanism im;
 	private final System initialSystem;
+	private final PCMResourceSetPartition initialPartition;
 
 	// ConnectorID -> CV
 	private final List<Pair<String, ComplementumVisnetis>> availableCVs;
@@ -48,6 +60,7 @@ public final class FCCWeaver {
 	public FCCWeaver(MDSDBlackboard blackboard, List<Repository> solutions, CostRepository costModel) {
 		this.solutions = solutions;
 		PCMResourceSetPartition initial = (PCMResourceSetPartition) blackboard.getPartition(FCCProblemExtension.INITIAL_PCM_MODEL_PARTITION_ID);
+		this.initialPartition = initial;
 		this.initialSystem = initial.getSystem();
 		this.fc = this.determineFC(initial);
 		this.im = this.determineIM(this.solutions);
@@ -75,12 +88,21 @@ public final class FCCWeaver {
 
 	private IWeavingStrategy strategy;
 
+	/**
+	 * Resets choices and weaving strategy for next weaving iteration.
+	 */
 	public void nextDecodeStart() {
 		this.fccChoice = null;
 		this.allocationChoices = new ArrayList<>();
 		WeavingStrategies.getStrategy(this.im).getExtension().nextDecodeStart();
 	}
 
+	/**
+	 * Extracts feature completion specific choices for solution and allocation from dofs.
+	 * Delegates all further choices to corresponding weaving strategy.
+	 * 
+	 * @param notTransformedChoices all choices.
+	 */
 	public void grabChoices(List<Choice> notTransformedChoices) {
 		for (Choice c : notTransformedChoices) {
 			if (c.getDegreeOfFreedomInstance() instanceof FeatureCompletionDegree) {
@@ -94,8 +116,7 @@ public final class FCCWeaver {
 			notTransformedChoices.remove(ac);
 		}
 
-		Repository solution = (Repository) this.fccChoice.getValue();
-		this.determineStrategy(this.im).getExtension().grabChoices(solution, notTransformedChoices);
+		this.determineStrategy(this.im).getExtension().grabChoices(fccChoice, notTransformedChoices);
 	}
 
 	private void addAllocationDegreeIfNeeded(Choice ac) {
@@ -110,6 +131,12 @@ public final class FCCWeaver {
 		return degreeOfFreedomInstance instanceof AllocationDegree && degreeOfFreedomInstance.getPrimaryChanged() instanceof CompletionComponent;
 	}
 
+	/**
+	 * Returns the weaved PCM instance according to the extracted choices and set inclusion mechanism.
+	 * 
+	 * @param pcmToAdopt the PCM instance to be adopted.
+	 * @return the weaved PCM instance.
+	 */
 	public PCMInstance getWeavedInstance(PCMInstance pcmToAdopt) {
 		this.unweaver.unweave(pcmToAdopt, this.availableCVs);
 
@@ -123,6 +150,11 @@ public final class FCCWeaver {
 		return pcmToAdopt;
 	}
 
+	/**
+	 * Returns the actual choices for FCC allocation. This can be done after the FCCs have been waved.
+	 * 
+	 * @return the actual choices for FCC allocation.
+	 */
 	public List<Choice> getConvertedFCCClassChoices() {
 		return this.strategy.getConvertedFCCClassChoices();
 	}
@@ -203,5 +235,9 @@ public final class FCCWeaver {
 
 	public System getInitialSystem() {
 		return this.initialSystem;
+	}
+	
+	public PCMResourceSetPartition getInitialPartition() {
+		return this.initialPartition;
 	}
 }

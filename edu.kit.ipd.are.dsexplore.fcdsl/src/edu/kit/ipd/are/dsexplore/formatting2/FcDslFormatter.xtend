@@ -5,10 +5,10 @@ package edu.kit.ipd.are.dsexplore.formatting2
 
 import com.google.inject.Inject
 import edu.kit.ipd.are.dsexplore.services.FcDslGrammarAccess
-import featureSolution.Advice
-import featureSolution.ExtensionInclusion
-import featureSolution.Import
-import featureSolution.PointCut
+import placementDescription.Advice
+import featureSolution.BehaviourInclusion
+import placementDescription.Import
+import placementDescription.PointCut
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
 
@@ -16,15 +16,15 @@ class FcDslFormatter extends AbstractFormatter2 {
 	
 	@Inject extension FcDslGrammarAccess
 
-	def dispatch void format(ExtensionInclusion extensionInclusion, extension IFormattableDocument document) {
+	def dispatch void format(BehaviourInclusion behaviourInclusion, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (Import _import : extensionInclusion.getImports()) {
+		for (Import _import : behaviourInclusion.getImports()) {
 			_import.format;
 		}
-		for (PointCut pointCut : extensionInclusion.getPointCut()) {
+		for (PointCut pointCut : behaviourInclusion.getPointCut()) {
 			pointCut.format;
 		}
-		for (Advice advice : extensionInclusion.getAdvice()) {
+		for (Advice advice : behaviourInclusion.getAdvice()) {
 			advice.format;
 		}
 	}

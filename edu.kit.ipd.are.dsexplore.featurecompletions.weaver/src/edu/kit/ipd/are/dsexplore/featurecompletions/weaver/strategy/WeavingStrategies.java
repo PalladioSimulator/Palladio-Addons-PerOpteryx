@@ -6,11 +6,11 @@ import org.palladiosimulator.solver.models.PCMInstance;
 import FeatureCompletionModel.FeatureCompletion;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.AdapterStrategyExtension;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.AdapterWeavingStrategy;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.ExtensionStrategyExtension;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.extension.ExtensionWeavingStrategy;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour.BehaviourStrategyExtension;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour.BehaviourWeavingStrategy;
 import featureSolution.InclusionMechanism;
 import featureSolution.impl.AdapterInclusionImpl;
-import featureSolution.impl.ExtensionInclusionImpl;
+import featureSolution.impl.BehaviourInclusionImpl;
 
 /**
  * Create mapping between {@link InclusionMechanism} and
@@ -21,7 +21,7 @@ import featureSolution.impl.ExtensionInclusionImpl;
  */
 public enum WeavingStrategies {
 	ADAPTER(AdapterInclusionImpl.class, AdapterWeavingStrategy::new, new AdapterStrategyExtension()), //
-	EXTENSION(ExtensionInclusionImpl.class, ExtensionWeavingStrategy::new, new ExtensionStrategyExtension());
+	BEHAVIOUR(BehaviourInclusionImpl.class, BehaviourWeavingStrategy::new, new BehaviourStrategyExtension());
 
 	private final Class<? extends InclusionMechanism> mechanism;
 	private final Constructor strategy;

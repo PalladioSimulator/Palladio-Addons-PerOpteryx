@@ -1,0 +1,41 @@
+import "platform:/resource/SimpleBookingExample/default.repository"
+import "platform:/resource/SimpleBookingExample/peropteryx/Logging.featurecompletion"
+
+BehaviourInclusion behaviourIncl _ZZ {
+	description bla
+	pointCut {
+		PointCut allPayCalls {
+			placementStrategy ExternalCallPlacementStrategy {
+				matchingSignature pay
+			}
+		},
+		PointCut allActionsIn {
+			placementStrategy InternalActionPlacementStrategy {
+				forAllInternalActionsIn "Payment System"
+			}
+		},
+		PointCut allControlFlowsIn {
+			placementStrategy ControlFlowPlacementStrategy {
+				forAllControlFlowsIn BookingSystem
+			}
+		}
+	}
+	featureCompletion Logging({SimpleCollecting, LocationInfoCollecting}, {ConsoleAppending,FileAppending}, {PatternLayout})
+	advice {
+		Advice {
+			appears BEFORE 
+			pointCut allPayCalls
+			placementPolicy MANDATORY
+		},
+		Advice {
+			appears BEFORE 
+			pointCut allActionsIn
+			placementPolicy MANDATORY
+		},
+		Advice {
+			appears AROUND 
+			pointCut allControlFlowsIn
+			placementPolicy MANDATORY
+		}
+	}
+}

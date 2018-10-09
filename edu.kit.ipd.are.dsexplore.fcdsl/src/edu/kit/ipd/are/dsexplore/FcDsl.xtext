@@ -3,28 +3,30 @@ grammar edu.kit.ipd.are.dsexplore.FcDsl with org.eclipse.xtext.common.Terminals
 
 import "http://are.ipd.kit.edu/FeatureObjectivesModel/1.0.0" 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "http://are.ipd.kit.edu/PlacementDescriptionModel/1.0.0" as placementDescription
 import "http://are.ipd.kit.edu/FeatureSolutionModel/1.0.0" as featureSolution
 import "http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1" as FeatureCompletionModel
 import "platform:/resource/org.palladiosimulator.pcm/model/pcm.ecore#//repository" as repository
 
-ExtensionInclusion returns featureSolution::ExtensionInclusion:
+BehaviourInclusion returns featureSolution::BehaviourInclusion:
 	(imports+=Import)*
 	(multiple?='multiple')?
-	'ExtensionInclusion'
+	'BehaviourInclusion'
 	name=EString
 	id=EString
 	'{'
 		'description' description=EString
 		('pointCut' '{' pointCut+=PointCut ( "," pointCut+=PointCut)* '}' )?
+		'featureCompletion' featureCompletion=FeatureSelection
 		('advice' '{' advice+=Advice ( "," advice+=Advice)* '}' )?
 	'}';
 
 
 InclusionMechanism returns featureSolution::InclusionMechanism:
-	ExtensionInclusion
+	BehaviourInclusion
 ;
 
-PlacementStrategy returns featureSolution::PlacementStrategy:
+PlacementStrategy returns placementDescription::PlacementStrategy:
 	PlacementStrategy_Impl | ExternalCallPlacementStrategy | InternalActionPlacementStrategy | ControlFlowPlacementStrategy;
 
 
@@ -35,57 +37,58 @@ EString returns ecore::EString:
 EBoolean returns ecore::EBoolean:
 	'true' | 'false';
 
-PointCut returns featureSolution::PointCut:
-	{featureSolution::PointCut}
+PointCut returns placementDescription::PointCut:
+	{placementDescription::PointCut}
 	'PointCut'
 	name=EString
 	'{'
 		('placementStrategy' placementStrategy=PlacementStrategy)?
 	'}';
 
-Advice returns featureSolution::Advice:
+Advice returns placementDescription::Advice:
 	'Advice'
 	'{'
 		'appears' appears=Appearance
-		('pointCut' pointCut=[featureSolution::PointCut|EString])?
-//		('Completion' Completion=[FeatureCompletionModel::ComplementumVisnetis|EString])?
-		('Completion' Completion=FeatureSelection)?
+		('pointCut' pointCut=[placementDescription::PointCut|EString])?		
 		'placementPolicy' placementPolicy=PlacementPolicy
 	'}';
 	
-FeatureSelection returns featureSolution::FeatureSelection:
+FeatureSelection returns placementDescription::FeatureSelection:
 	Completion=[FeatureCompletionModel::FeatureCompletion|EString]
 	'(' featureLists+=FeatureList ( "," featureLists+=FeatureList)* ')'
 ;
 
-FeatureList returns featureSolution::FeatureList:
-	'{' features+=[FeatureCompletionModel::ComplementumVisnetis|EString] ( "," features+=[FeatureCompletionModel::ComplementumVisnetis|EString])* '}'
+FeatureList returns placementDescription::FeatureList:
+	'{' features+=SelectedCV ( "," features+=SelectedCV)* '}'
 ;
 
-Import returns featureSolution::Import:
+SelectedCV returns placementDescription::SelectedCV:
+	(optional?='optional')? complementumVisnetis=[FeatureCompletionModel::ComplementumVisnetis|EString]; 
+
+Import returns placementDescription::Import:
 	'import' importURI=EString ;
 
-PlacementStrategy_Impl returns featureSolution::PlacementStrategy:
-	{featureSolution::PlacementStrategy}
+PlacementStrategy_Impl returns placementDescription::PlacementStrategy:
+	{placementDescription::PlacementStrategy}
 	'PlacementStrategy'
 	;
 
-ExternalCallPlacementStrategy returns featureSolution::ExternalCallPlacementStrategy:
-	{featureSolution::ExternalCallPlacementStrategy}
+ExternalCallPlacementStrategy returns placementDescription::ExternalCallPlacementStrategy:
+	{placementDescription::ExternalCallPlacementStrategy}
 	'ExternalCallPlacementStrategy'
 	'{'
 		('matchingSignature' matchingSignature=[repository::Signature|EString])?
 	'}';
 
-InternalActionPlacementStrategy returns featureSolution::InternalActionPlacementStrategy:
-	{featureSolution::InternalActionPlacementStrategy}
+InternalActionPlacementStrategy returns placementDescription::InternalActionPlacementStrategy:
+	{placementDescription::InternalActionPlacementStrategy}
 	'InternalActionPlacementStrategy'
 	'{'
 		('forAllInternalActionsIn' forAllInternalActionsIn=[repository::RepositoryComponent|EString])?
 	'}';
 
-ControlFlowPlacementStrategy returns featureSolution::ControlFlowPlacementStrategy:
-	{featureSolution::ControlFlowPlacementStrategy}
+ControlFlowPlacementStrategy returns placementDescription::ControlFlowPlacementStrategy:
+	{placementDescription::ControlFlowPlacementStrategy}
 	'ControlFlowPlacementStrategy'
 	'{'
 		('forAllControlFlowsIn' forAllControlFlowsIn=[repository::RepositoryComponent|EString])?
@@ -97,123 +100,3 @@ enum Appearance returns featureSolution::Appearance:
 
 enum PlacementPolicy returns FeatureCompletionModel::PlacementPolicy:
 				MANDATORY = 'MANDATORY' | OPTIONAL = 'OPTIONAL';
-
-/* Unused: Dsl elements for feature objective and feature completion definition 
-
-Complementum returns FeatureCompletionModel::Complementum:
-	Complementum_Impl | ComplementumVisnetis;
-
-Attribute returns Attribute:
-	IntegerAttribute | DoubleAttribute | StringAttribute | ExternalObjectAttribute;
-
-ChildRelation returns ChildRelation:
-	Simple | FeatureGroup;
-
-
-
-IntervalRange returns IntervalRange:
-	IntegerIntervalRange;
-
-
-ComplementumVisnetis returns FeatureCompletionModel::ComplementumVisnetis:
-	'ComplementumVisnetis'
-	name=EString
-	'{'
-		'description' description=EString
-		'replication' replication=Replication
-		'visnetum' visnetum=Visnetum
-		'complementaryFeature' complementaryFeature=[Feature|EString]
-		('requiresComplementum' '(' requiresComplementum+=[FeatureCompletionModel::Complementum|EString] ( "," requiresComplementum+=[FeatureCompletionModel::Complementum|EString])* ')' )?
-	'}';
-
-enum Replication returns FeatureCompletionModel::Replication:
-				SINGLE = 'SINGLE' | DOUBLE = 'DOUBLE' | ANY = 'ANY';
-
-enum Visnetum returns FeatureCompletionModel::Visnetum:
-				SIGNATURE = 'SIGNATURE' | INTERFACE = 'INTERFACE' | INTERFACE_REQUIRES = 'INTERFACE_REQUIRES' | INTERFACE_PROVIDES = 'INTERFACE_PROVIDES' | COMPONENT = 'COMPONENT';
-
-Feature returns Feature:
-	{Feature}
-	'Feature'
-	name=EString
-	'{'
-		('simpleMandatory' simpleMandatory=[Simple|EString])?
-		('simpleOptional' simpleOptional=[Simple|EString])?
-		('featuregroup' featuregroup=[FeatureGroup|EString])?
-		('attributes' '{' attributes+=Attribute ( "," attributes+=Attribute)* '}' )?
-		('childrelation' childrelation=ChildRelation)?
-	'}';
-
-Complementum_Impl returns FeatureCompletionModel::Complementum:
-	'Complementum'
-	name=EString
-	'{'
-		'description' description=EString
-		'replication' replication=Replication
-		'visnetum' visnetum=Visnetum
-	'}';
-
-Simple returns Simple:
-	{Simple}
-	'Simple'
-	'{'
-		('optionalChildren' '{' optionalChildren+=Feature ( "," optionalChildren+=Feature)* '}' )?
-		('mandatoryChildren' '{' mandatoryChildren+=Feature ( "," mandatoryChildren+=Feature)* '}' )?
-	'}';
-
-FeatureGroup returns FeatureGroup:
-	'FeatureGroup'
-	'{'
-		'min' min=EInt
-		'max' max=EInt
-		'children' '{' children+=Feature ( "," children+=Feature)* '}' 
-	'}';
-
-IntegerAttribute returns IntegerAttribute:
-	'IntegerAttribute'
-	name=EString
-	'{'
-		'defaultValue' defaultValue=EInt
-		('range' range=IntervalRange)?
-	'}';
-
-DoubleAttribute returns DoubleAttribute:
-	'DoubleAttribute'
-	name=EString
-	'{'
-		'defaultValue' defaultValue=EDouble
-		('range' range=IntervalRange)?
-	'}';
-
-StringAttribute returns StringAttribute:
-	'StringAttribute'
-	name=EString
-	'{'
-		'defaultValue' defaultValue=EString
-		('range' range=IntervalRange)?
-	'}';
-
-ExternalObjectAttribute returns ExternalObjectAttribute:
-	{ExternalObjectAttribute}
-	'ExternalObjectAttribute'
-	name=EString
-	'{'
-		('range' range=IntervalRange)?
-	'}';
-
-IntegerIntervalRange returns IntegerIntervalRange:
-	lowerBoundIncluded?='lowerBoundIncluded'
-	upperBoundIncluded?='upperBoundIncluded'
-	'IntegerIntervalRange'
-	'{'
-		'to' to=EInt
-		'from' from=EInt
-	'}';
-
-EInt returns ecore::EInt:
-	'-'? INT;
-
-EDouble returns ecore::EDouble:
-	'-'? INT? '.' INT (('E'|'e') '-'? INT)?;
-
-*/

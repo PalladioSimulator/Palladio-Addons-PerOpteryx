@@ -14,7 +14,7 @@ public interface IStrategyExtension {
 
 	void nextDecodeStart();
 
-	void grabChoices(Repository solution, List<Choice> notTransformedChoices);
+	void grabChoices(Choice fccChoice, List<Choice> notTransformedChoices);
 
 	void additionalCreateFCCDegreeBy(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, FCCWeaver fccWeaver);
 }
