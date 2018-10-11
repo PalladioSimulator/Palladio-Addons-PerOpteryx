@@ -96,7 +96,7 @@ public class DescribedElementItemProvider extends NamedElementItemProvider {
 			getString("_UI_DescribedElement_type") :
 			getString("_UI_DescribedElement_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

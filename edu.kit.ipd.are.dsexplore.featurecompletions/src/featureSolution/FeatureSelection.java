@@ -2,7 +2,6 @@
  */
 package featureSolution;
 
-import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.FeatureCompletion;
 
 import org.eclipse.emf.common.util.EList;
@@ -21,7 +20,7 @@ import org.palladiosimulator.pcm.core.entity.NamedElement;
  * </p>
  * <ul>
  *   <li>{@link featureSolution.FeatureSelection#getCompletion <em>Completion</em>}</li>
- *   <li>{@link featureSolution.FeatureSelection#getFeatures <em>Features</em>}</li>
+ *   <li>{@link featureSolution.FeatureSelection#getFeatureLists <em>Feature Lists</em>}</li>
  * </ul>
  *
  * @see featureSolution.FeatureSolutionPackage#getFeatureSelection()
@@ -56,19 +55,19 @@ public interface FeatureSelection extends EObject, NamedElement {
 	void setCompletion(FeatureCompletion value);
 
 	/**
-	 * Returns the value of the '<em><b>Features</b></em>' reference list.
-	 * The list contents are of type {@link FeatureCompletionModel.ComplementumVisnetis}.
+	 * Returns the value of the '<em><b>Feature Lists</b></em>' containment reference list.
+	 * The list contents are of type {@link featureSolution.FeatureList}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Features</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Feature Lists</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Features</em>' reference list.
-	 * @see featureSolution.FeatureSolutionPackage#getFeatureSelection_Features()
-	 * @model required="true"
+	 * @return the value of the '<em>Feature Lists</em>' containment reference list.
+	 * @see featureSolution.FeatureSolutionPackage#getFeatureSelection_FeatureLists()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<ComplementumVisnetis> getFeatures();
+	EList<FeatureList> getFeatureLists();
 
 } // FeatureSelection

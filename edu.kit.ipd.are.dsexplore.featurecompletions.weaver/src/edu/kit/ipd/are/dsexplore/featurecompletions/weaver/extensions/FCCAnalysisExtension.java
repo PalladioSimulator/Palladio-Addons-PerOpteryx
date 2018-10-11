@@ -22,7 +22,6 @@ public class FCCAnalysisExtension implements IAnalysisExtension {
 
 	@Override
 	public List<CostRepository> getAdditionalCostRepositories() {
-
 		FCCWeaver weaver = this.weaver.get();
 		if (weaver == null) {
 			return new ArrayList<>();

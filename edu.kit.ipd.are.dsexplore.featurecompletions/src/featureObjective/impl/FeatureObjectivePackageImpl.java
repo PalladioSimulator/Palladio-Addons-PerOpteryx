@@ -5,24 +5,16 @@ package featureObjective.impl;
 import FeatureCompletionModel.FeatureCompletionPackage;
 
 import FeatureCompletionModel.impl.FeatureCompletionPackageImpl;
-import featureObjective.Attribute;
 import featureObjective.AttributeTypes;
-import featureObjective.ChildRelation;
 import featureObjective.Constraint;
-import featureObjective.DoubleAttribute;
-import featureObjective.ExternalObjectAttribute;
 import featureObjective.Feature;
 import featureObjective.FeatureGroup;
 import featureObjective.FeatureObjective;
 import featureObjective.FeatureObjectiveFactory;
 import featureObjective.FeatureObjectivePackage;
-import featureObjective.IntegerAttribute;
-import featureObjective.IntegerIntervalRange;
-import featureObjective.IntervalRange;
+import featureObjective.LogicalOperation;
 import featureObjective.ProhibitsConstraint;
 import featureObjective.RequiredConstraint;
-import featureObjective.Simple;
-import featureObjective.StringAttribute;
 
 import featureObjective.util.FeatureObjectiveValidator;
 
@@ -41,7 +33,10 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.palladiosimulator.pcm.PcmPackage;
+import placementDescription.PlacementDescriptionPackage;
+import placementDescription.impl.PlacementDescriptionPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,34 +58,6 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 	 * @generated
 	 */
 	private EClass featureEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass attributeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass intervalRangeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass childRelationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass simpleEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -125,42 +92,14 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass integerIntervalRangeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass integerAttributeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass doubleAttributeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass stringAttributeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass externalObjectAttributeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EEnum attributeTypesEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum logicalOperationEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -214,16 +153,19 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 		// Obtain or create and register interdependencies
 		FeatureCompletionPackageImpl theFeatureCompletionPackage = (FeatureCompletionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI) instanceof FeatureCompletionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI) : FeatureCompletionPackage.eINSTANCE);
 		FeatureSolutionPackageImpl theFeatureSolutionPackage = (FeatureSolutionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI) instanceof FeatureSolutionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI) : FeatureSolutionPackage.eINSTANCE);
+		PlacementDescriptionPackageImpl thePlacementDescriptionPackage = (PlacementDescriptionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PlacementDescriptionPackage.eNS_URI) instanceof PlacementDescriptionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PlacementDescriptionPackage.eNS_URI) : PlacementDescriptionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theFeatureObjectivePackage.createPackageContents();
 		theFeatureCompletionPackage.createPackageContents();
 		theFeatureSolutionPackage.createPackageContents();
+		thePlacementDescriptionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theFeatureObjectivePackage.initializePackageContents();
 		theFeatureCompletionPackage.initializePackageContents();
 		theFeatureSolutionPackage.initializePackageContents();
+		thePlacementDescriptionPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
@@ -257,7 +199,7 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFeatureObjective_RootFeature() {
+	public EReference getFeatureObjective_FeatureGroups() {
 		return (EReference)featureObjectiveEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -293,125 +235,8 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFeature_Attributes() {
-		return (EReference)featureEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFeature_Childrelation() {
-		return (EReference)featureEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFeature_SimpleMandatory() {
-		return (EReference)featureEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFeature_SimpleOptional() {
-		return (EReference)featureEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getFeature_Featuregroup() {
-		return (EReference)featureEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAttribute() {
-		return attributeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAttribute_Range() {
-		return (EReference)attributeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getIntervalRange() {
-		return intervalRangeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getIntervalRange_LowerBoundIncluded() {
-		return (EAttribute)intervalRangeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getIntervalRange_UpperBoundIncluded() {
-		return (EAttribute)intervalRangeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getChildRelation() {
-		return childRelationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSimple() {
-		return simpleEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSimple_OptionalChildren() {
-		return (EReference)simpleEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSimple_MandatoryChildren() {
-		return (EReference)simpleEClass.getEStructuralFeatures().get(1);
+		return (EReference)featureEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -428,8 +253,8 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFeatureGroup_Min() {
-		return (EAttribute)featureGroupEClass.getEStructuralFeatures().get(0);
+	public EReference getFeatureGroup_Features() {
+		return (EReference)featureGroupEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -437,17 +262,8 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFeatureGroup_Max() {
+	public EAttribute getFeatureGroup_Operation() {
 		return (EAttribute)featureGroupEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFeatureGroup_Children() {
-		return (EReference)featureGroupEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -509,98 +325,17 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIntegerIntervalRange() {
-		return integerIntervalRangeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getIntegerIntervalRange_To() {
-		return (EAttribute)integerIntervalRangeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getIntegerIntervalRange_From() {
-		return (EAttribute)integerIntervalRangeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getIntegerAttribute() {
-		return integerAttributeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getIntegerAttribute_DefaultValue() {
-		return (EAttribute)integerAttributeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getDoubleAttribute() {
-		return doubleAttributeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDoubleAttribute_DefaultValue() {
-		return (EAttribute)doubleAttributeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getStringAttribute() {
-		return stringAttributeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getStringAttribute_DefaultValue() {
-		return (EAttribute)stringAttributeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getExternalObjectAttribute() {
-		return externalObjectAttributeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getAttributeTypes() {
 		return attributeTypesEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getLogicalOperation() {
+		return logicalOperationEEnum;
 	}
 
 	/**
@@ -632,34 +367,16 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 
 		// Create classes and their features
 		featureObjectiveEClass = createEClass(FEATURE_OBJECTIVE);
-		createEReference(featureObjectiveEClass, FEATURE_OBJECTIVE__ROOT_FEATURE);
+		createEReference(featureObjectiveEClass, FEATURE_OBJECTIVE__FEATURE_GROUPS);
 		createEReference(featureObjectiveEClass, FEATURE_OBJECTIVE__CONSTRAINTS);
 		createEReference(featureObjectiveEClass, FEATURE_OBJECTIVE__ANNOTATABLE_ELEMENT);
 
 		featureEClass = createEClass(FEATURE);
-		createEReference(featureEClass, FEATURE__ATTRIBUTES);
-		createEReference(featureEClass, FEATURE__CHILDRELATION);
-		createEReference(featureEClass, FEATURE__SIMPLE_MANDATORY);
-		createEReference(featureEClass, FEATURE__SIMPLE_OPTIONAL);
 		createEReference(featureEClass, FEATURE__FEATUREGROUP);
 
-		attributeEClass = createEClass(ATTRIBUTE);
-		createEReference(attributeEClass, ATTRIBUTE__RANGE);
-
-		intervalRangeEClass = createEClass(INTERVAL_RANGE);
-		createEAttribute(intervalRangeEClass, INTERVAL_RANGE__LOWER_BOUND_INCLUDED);
-		createEAttribute(intervalRangeEClass, INTERVAL_RANGE__UPPER_BOUND_INCLUDED);
-
-		childRelationEClass = createEClass(CHILD_RELATION);
-
-		simpleEClass = createEClass(SIMPLE);
-		createEReference(simpleEClass, SIMPLE__OPTIONAL_CHILDREN);
-		createEReference(simpleEClass, SIMPLE__MANDATORY_CHILDREN);
-
 		featureGroupEClass = createEClass(FEATURE_GROUP);
-		createEAttribute(featureGroupEClass, FEATURE_GROUP__MIN);
-		createEAttribute(featureGroupEClass, FEATURE_GROUP__MAX);
-		createEReference(featureGroupEClass, FEATURE_GROUP__CHILDREN);
+		createEReference(featureGroupEClass, FEATURE_GROUP__FEATURES);
+		createEAttribute(featureGroupEClass, FEATURE_GROUP__OPERATION);
 
 		constraintEClass = createEClass(CONSTRAINT);
 		createEReference(constraintEClass, CONSTRAINT__SOURCE);
@@ -670,23 +387,9 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 
 		prohibitsConstraintEClass = createEClass(PROHIBITS_CONSTRAINT);
 
-		integerIntervalRangeEClass = createEClass(INTEGER_INTERVAL_RANGE);
-		createEAttribute(integerIntervalRangeEClass, INTEGER_INTERVAL_RANGE__TO);
-		createEAttribute(integerIntervalRangeEClass, INTEGER_INTERVAL_RANGE__FROM);
-
-		integerAttributeEClass = createEClass(INTEGER_ATTRIBUTE);
-		createEAttribute(integerAttributeEClass, INTEGER_ATTRIBUTE__DEFAULT_VALUE);
-
-		doubleAttributeEClass = createEClass(DOUBLE_ATTRIBUTE);
-		createEAttribute(doubleAttributeEClass, DOUBLE_ATTRIBUTE__DEFAULT_VALUE);
-
-		stringAttributeEClass = createEClass(STRING_ATTRIBUTE);
-		createEAttribute(stringAttributeEClass, STRING_ATTRIBUTE__DEFAULT_VALUE);
-
-		externalObjectAttributeEClass = createEClass(EXTERNAL_OBJECT_ATTRIBUTE);
-
 		// Create enums
 		attributeTypesEEnum = createEEnum(ATTRIBUTE_TYPES);
+		logicalOperationEEnum = createEEnum(LOGICAL_OPERATION);
 	}
 
 	/**
@@ -723,71 +426,27 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 		// Add supertypes to classes
 		featureObjectiveEClass.getESuperTypes().add(theFeatureCompletionPackage.getDescribedElement());
 		featureEClass.getESuperTypes().add(theFeatureCompletionPackage.getNamedElement());
-		attributeEClass.getESuperTypes().add(theFeatureCompletionPackage.getNamedElement());
-		simpleEClass.getESuperTypes().add(this.getChildRelation());
-		featureGroupEClass.getESuperTypes().add(this.getChildRelation());
 		constraintEClass.getESuperTypes().add(theFeatureCompletionPackage.getNamedElement());
 		requiredConstraintEClass.getESuperTypes().add(this.getConstraint());
 		prohibitsConstraintEClass.getESuperTypes().add(this.getConstraint());
-		integerIntervalRangeEClass.getESuperTypes().add(this.getIntervalRange());
-		integerAttributeEClass.getESuperTypes().add(this.getAttribute());
-		doubleAttributeEClass.getESuperTypes().add(this.getAttribute());
-		stringAttributeEClass.getESuperTypes().add(this.getAttribute());
-		externalObjectAttributeEClass.getESuperTypes().add(this.getAttribute());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(featureObjectiveEClass, FeatureObjective.class, "FeatureObjective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeatureObjective_RootFeature(), this.getFeature(), null, "rootFeature", null, 1, 1, FeatureObjective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getFeatureObjective_FeatureGroups(), this.getFeatureGroup(), null, "featureGroups", null, 1, -1, FeatureObjective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getFeatureObjective_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1, FeatureObjective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getFeatureObjective_AnnotatableElement(), theEcorePackage.getEObject(), null, "annotatableElement", null, 0, -1, FeatureObjective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeature_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getFeature_Childrelation(), this.getChildRelation(), null, "childrelation", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getFeature_SimpleMandatory(), this.getSimple(), null, "simpleMandatory", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getFeature_SimpleOptional(), this.getSimple(), null, "simpleOptional", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getFeature_Featuregroup(), this.getFeatureGroup(), null, "featuregroup", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getFeature_Featuregroup(), this.getFeatureGroup(), null, "featuregroup", null, 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		EOperation op = addEOperation(featureEClass, ecorePackage.getEBoolean(), "EachAttributeNameDefinedJustOnce", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEClass(featureGroupEClass, FeatureGroup.class, "FeatureGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFeatureGroup_Features(), this.getFeature(), null, "features", null, 1, -1, FeatureGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFeatureGroup_Operation(), this.getLogicalOperation(), "operation", "OR", 1, 1, FeatureGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		EOperation op = addEOperation(featureGroupEClass, ecorePackage.getEBoolean(), "XORorORImpliesChildrenAreMandatory", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(attributeEClass, Attribute.class, "Attribute", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAttribute_Range(), this.getIntervalRange(), null, "range", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(intervalRangeEClass, IntervalRange.class, "IntervalRange", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIntervalRange_LowerBoundIncluded(), ecorePackage.getEBoolean(), "lowerBoundIncluded", null, 1, 1, IntervalRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getIntervalRange_UpperBoundIncluded(), ecorePackage.getEBoolean(), "upperBoundIncluded", null, 1, 1, IntervalRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(childRelationEClass, ChildRelation.class, "ChildRelation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(simpleEClass, Simple.class, "Simple", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSimple_OptionalChildren(), this.getFeature(), null, "optionalChildren", null, 0, -1, Simple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSimple_MandatoryChildren(), this.getFeature(), null, "mandatoryChildren", null, 0, -1, Simple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		op = addEOperation(simpleEClass, ecorePackage.getEBoolean(), "atLeastOneChild", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(featureGroupEClass, FeatureGroup.class, "FeatureGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFeatureGroup_Min(), ecorePackage.getEInt(), "min", "1", 1, 1, FeatureGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFeatureGroup_Max(), ecorePackage.getEInt(), "max", "1", 1, 1, FeatureGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getFeatureGroup_Children(), this.getFeature(), null, "children", null, 2, -1, FeatureGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		op = addEOperation(featureGroupEClass, ecorePackage.getEBoolean(), "XORorORImpliesChildrenAreMandatory", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
@@ -829,26 +488,15 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 
 		initEClass(prohibitsConstraintEClass, ProhibitsConstraint.class, "ProhibitsConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(integerIntervalRangeEClass, IntegerIntervalRange.class, "IntegerIntervalRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIntegerIntervalRange_To(), ecorePackage.getEInt(), "to", null, 1, 1, IntegerIntervalRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getIntegerIntervalRange_From(), ecorePackage.getEInt(), "from", "0", 1, 1, IntegerIntervalRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(integerAttributeEClass, IntegerAttribute.class, "IntegerAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIntegerAttribute_DefaultValue(), ecorePackage.getEInt(), "defaultValue", null, 1, 1, IntegerAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(doubleAttributeEClass, DoubleAttribute.class, "DoubleAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDoubleAttribute_DefaultValue(), ecorePackage.getEDouble(), "defaultValue", null, 1, 1, DoubleAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(stringAttributeEClass, StringAttribute.class, "StringAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStringAttribute_DefaultValue(), ecorePackage.getEString(), "defaultValue", null, 1, 1, StringAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(externalObjectAttributeEClass, ExternalObjectAttribute.class, "ExternalObjectAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		// Initialize enums and add enum literals
 		initEEnum(attributeTypesEEnum, AttributeTypes.class, "AttributeTypes");
 		addEEnumLiteral(attributeTypesEEnum, AttributeTypes.INT);
 		addEEnumLiteral(attributeTypesEEnum, AttributeTypes.STRING);
 		addEEnumLiteral(attributeTypesEEnum, AttributeTypes.REAL);
+
+		initEEnum(logicalOperationEEnum, LogicalOperation.class, "LogicalOperation");
+		addEEnumLiteral(logicalOperationEEnum, LogicalOperation.OR);
+		addEEnumLiteral(logicalOperationEEnum, LogicalOperation.XOR);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -866,18 +514,6 @@ public class FeatureObjectivePackageImpl extends EPackageImpl implements Feature
 	 */
 	protected void createGenModelAnnotations() {
 		String source = "http://www.eclipse.org/uml2/1.1.0/GenModel";	
-		addAnnotation
-		  (featureEClass.getEOperations().get(0), 
-		   source, 
-		   new String[] {
-			 "body", "true \r\n--each attribute name is unique for this feature\r\n--self.attributes->isUnique(attr | attr.name)\r\n"
-		   });	
-		addAnnotation
-		  (simpleEClass.getEOperations().get(0), 
-		   source, 
-		   new String[] {
-			 "body", "self.optionalChildren->size()+self.mandatoryChildren->size()>=1"
-		   });	
 		addAnnotation
 		  (featureGroupEClass.getEOperations().get(0), 
 		   source, 

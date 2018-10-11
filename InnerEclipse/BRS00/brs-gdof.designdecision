@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<designdecision:DecisionSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:designdecision="http://sdq.ipd.uka.de/DesignDecision/3.0" id="_p6pb8JNzEeWdxNDwu3zCoA">
-  <degreesOfFreedom entityName="Select GraphicalReporting Component">
-    <primaryChanged href="brs.system#_cmDYoFhJEd6UHd_VhJH9SQ"/>
-    <dof href="160329_graphicalReporting.gdof%202#_phVDoOXeEeW12YhmvkYeJg"/>
-    <changeableElements href="brs.repository#_NeaygFhGEd6UHd_VhJH9SQ"/>
-    <changeableElements href="brs.repository#_dNX4MGOIEeWmJ6LLpeOQRQ"/>
-  </degreesOfFreedom>
-</designdecision:DecisionSpace>

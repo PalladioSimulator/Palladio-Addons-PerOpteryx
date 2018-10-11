@@ -95,4 +95,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="complementum" upperBound="-1"
         eType="#//Complementum"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PlacementPolicy">
+    <eLiterals name="MANDATORY"/>
+    <eLiterals name="OPTIONAL" value="1"/>
+  </eClassifiers>
 </ecore:EPackage>

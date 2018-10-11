@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.featurecompletions.edit;singleton:=true
+Automatic-Module-Name: edu.kit.ipd.are.dsexplore.featurecompletions.edit
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: FeatureCompletionModel.provider.FeatureCompletionsEditPlugin$Implementation
@@ -10,7 +11,8 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: FeatureCompletionModel.provider,
  featureObjective.provider,
- featureSolution.provider
+ featureSolution.provider,
+ placementDescription.provider
 Require-Bundle: org.eclipse.core.runtime,
  edu.kit.ipd.are.dsexplore.featurecompletions;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
@@ -27,4 +29,3 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.units;visibility:=reexport,
  de.uka.ipd.sdq.units.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Automatic-Module-Name: edu.kit.ipd.are.dsexplore.featurecompletions.edit

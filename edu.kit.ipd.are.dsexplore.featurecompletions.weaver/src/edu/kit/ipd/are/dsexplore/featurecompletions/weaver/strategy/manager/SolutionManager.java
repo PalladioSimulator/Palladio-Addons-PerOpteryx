@@ -9,12 +9,14 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.hooks.weaving.WeavingException;
+
 import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.ComponentType;
 import org.palladiosimulator.pcm.repository.EventGroup;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
+import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
@@ -23,8 +25,11 @@ import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
 
+import FeatureCompletionModel.Complementum;
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
+import FeatureCompletionModel.impl.ComplementumImpl;
+
 import de.uka.ipd.sdq.dsexplore.tools.repository.MergedRepository;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 
@@ -32,7 +37,7 @@ import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
  * This class provides all operations performed on a {@link MergedRepository}
  * (former concern solution).
  *
- * @author scheerer
+ * @author scheerer, Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  *
  */
 public final class SolutionManager {
@@ -71,54 +76,43 @@ public final class SolutionManager {
 		return new ArrayList<>(affectedComponents);
 	}
 
-	// TODO new for extension
-	public List<RepositoryComponent> getAffectedComponentsByFCCList(List<CompletionComponent> fccs, Repository repo) {
-		Set<RepositoryComponent> affectedComponents = new HashSet<>();
-		// TODO wenn das MergedRepo dann eh nur noch eine Solution enthält, kann
-		// der repo-Parameter wegfallen
-		for (RepositoryComponent rcs : repo.getComponents__Repository()) {
-			List<CompletionComponent> realizedCCs = StereotypeAPIHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
-			if (this.anyContainedInList(realizedCCs, fccs)) {
-				affectedComponents.add(rcs);
-			}
-		}
-
-		return new ArrayList<>(affectedComponents);
-	}
-
-	// TODO new for extension
-	public List<RepositoryComponent> getRealizingComponentsByFCCList(List<CompletionComponent> fccs, ProvidedRole providedRole, List<ComplementumVisnetis> cvs) {
+	/**
+	 * Determines the set of solution components that realize the given FCCs and provide the given CVs.
+	 * 
+	 * @param fccs the given FCCs corresponding to the fc meta architecture.
+	 * @param providedSigs the perimeter provided role.
+	 * @param cvs the given CVs.
+	 * @return the set of solution components that realize the given FCCs and provide the given CVs.
+	 */
+	public List<RepositoryComponent> getRealizingComponentsByFCCList(List<CompletionComponent> fccs, List<OperationSignature> providedSigs, List<ComplementumVisnetis> cvs) {
 		List<RepositoryComponent> affectedComponents = new ArrayList<>();
 		for (CompletionComponent completionComponent : fccs) {
 			List<RepositoryComponent> realizingComponents = new ArrayList<>();
 			for (RepositoryComponent rcs : this.solution.getComponents__Repository()) {
 				List<CompletionComponent> realizedCCs = StereotypeAPIHelper.getViaStereoTypeFrom(rcs, CompletionComponent.class);
-				if (this.anyContainedInList(realizedCCs, Arrays.asList(
-						completionComponent)) /*
-												 * && anyCVcontainedInList (rcs,
-												 * cvs)
-												 */) {
+				if (this.anyContainedInList(realizedCCs, Arrays.asList(completionComponent))) {
 					realizingComponents.add(rcs);
 				}
 			}
-			if (realizingComponents.size() != 1) {
-				RepositoryComponent component = SolutionManager.getComponentFullfillingCV(realizingComponents, cvs);
-				affectedComponents.add(component);
-			} else {
-				affectedComponents.addAll(realizingComponents);
-			}
+			RepositoryComponent component = this.getComponentFullfillingCV(realizingComponents, cvs);
+			affectedComponents.add(component);
 		}
-		if (affectedComponents.stream().anyMatch(component -> component.getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedRole.getId())))) {
-			return affectedComponents;
-		}
-
-		return null;
+		//if (affectedComponents.stream().anyMatch(component -> component.getProvidedRoles_InterfaceProvidingEntity().stream().anyMatch(role -> role.getId().equals(providedSigs.getId())))) {
+//			return affectedComponents;
+//		}
+//		return null;
+		return affectedComponents;
 	}
 
-	// TODO new for extension
-	public static RepositoryComponent getComponentFullfillingCV(List<RepositoryComponent> realizingComponents, List<ComplementumVisnetis> cvs) {
+	/**
+	 * Determines a solution component in the set of realizing components that fulfills/provides a CV.
+	 * 
+	 * @param realizingComponents the set of realizing components.
+	 * @param cvs the CVs.
+	 * @return a solution component in the set of realizing components that fulfills/provides a CV.
+	 */
+	public RepositoryComponent getComponentFullfillingCV(List<RepositoryComponent> realizingComponents, List<ComplementumVisnetis> cvs) {
 		for (RepositoryComponent repositoryComponent : realizingComponents) {
-
 			// Visnetum at component
 			List<ComplementumVisnetis> fullfilledByComponentCVs = StereotypeAPIHelper.getViaStereoTypeFrom(repositoryComponent, ComplementumVisnetis.class);
 			// Visnetum at interface
@@ -129,17 +123,17 @@ public final class SolutionManager {
 			List<ComplementumVisnetis> fullfilledBySignatureCVs = repositoryComponent.getProvidedRoles_InterfaceProvidingEntity().stream()
 					.flatMap(role -> ((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface().stream())
 					.flatMap(signature -> StereotypeAPIHelper.getViaStereoTypeFrom(signature, ComplementumVisnetis.class).stream()).collect(Collectors.toList());
-			// TODO verschiedene targets betrachten -> component, interface,
-			// signature
-			if (SolutionManager.anyCVcontainedInList(fullfilledByComponentCVs, cvs) || SolutionManager.anyCVcontainedInList(fullfilledByInterfaceCVs, cvs)
+
+			if (SolutionManager.anyCVcontainedInList(fullfilledByComponentCVs, cvs) 
+					|| SolutionManager.anyCVcontainedInList(fullfilledByInterfaceCVs, cvs)
 					|| SolutionManager.anyCVcontainedInList(fullfilledBySignatureCVs, cvs)) {
 				return repositoryComponent;
 			}
 		}
-		throw new WeavingException("no realizing component for completion components found or ambigous components found");
+		throw new WeavingException("no realizing component for a cv in " + cvs.stream().map(cv -> cv.getName()).reduce((s1,s2) -> s1 + "," + s2).get() + " found or ambigous components found in solution repo " + this.solution.getEntityName());
 	}
 
-	private static boolean anyCVcontainedInList(List<ComplementumVisnetis> fullfilledCVs, List<ComplementumVisnetis> cvs) {
+	public static boolean anyCVcontainedInList(List<ComplementumVisnetis> fullfilledCVs, List<ComplementumVisnetis> cvs) {
 		for (ComplementumVisnetis complementumVisnetis : fullfilledCVs) {
 			if (cvs.stream().anyMatch(cv -> cv.getId().equals(complementumVisnetis.getId()))) {
 				return true;
@@ -148,7 +142,6 @@ public final class SolutionManager {
 		return false;
 	}
 
-	// TODO added for extension
 	private boolean anyContainedInList(List<CompletionComponent> realizedCCs, List<CompletionComponent> listToContainedIn) {
 		for (CompletionComponent completionComponent : realizedCCs) {
 			if (listToContainedIn.contains(completionComponent)) {
@@ -188,6 +181,14 @@ public final class SolutionManager {
 	 */
 	public RequiredRole createRequiredRoleBy(OperationProvidedRole providedRole) {
 		OperationInterface referencedInterface = providedRole.getProvidedInterface__OperationProvidedRole();
+		OperationRequiredRole requiredRole = RepositoryFactory.eINSTANCE.createOperationRequiredRole();
+		requiredRole.setEntityName(String.format("requires%2s", referencedInterface.getEntityName()));
+		requiredRole.setRequiredInterface__OperationRequiredRole(referencedInterface);
+		return requiredRole;
+	}
+	
+	public RequiredRole createRequiredRoleBy(OperationSignature signature) {
+		OperationInterface referencedInterface = signature.getInterface__OperationSignature();
 		OperationRequiredRole requiredRole = RepositoryFactory.eINSTANCE.createOperationRequiredRole();
 		requiredRole.setEntityName(String.format("requires%2s", referencedInterface.getEntityName()));
 		requiredRole.setRequiredInterface__OperationRequiredRole(referencedInterface);
@@ -278,4 +279,23 @@ public final class SolutionManager {
 		return this.solution;
 	}
 
+	/**
+	 * Determines a solution component that fulfills the given complementum.
+	 * 
+	 * @param complementum the given complementum.
+	 * @return a solution component that fulfills the given complementum.
+	 */
+	public RepositoryComponent getFulfillingComponentForComplementum(ComplementumImpl complementum) {
+		for (RepositoryComponent c : this.solution.getComponents__Repository()) { //Assumption: Complementum has to be in solution repo?
+			for (ProvidedRole role : c.getProvidedRoles_InterfaceProvidingEntity()) {
+				List<Complementum> complementa = StereotypeAPIHelper.getViaStereoTypeFrom(((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole(), Complementum.class);
+				if (!complementa.isEmpty() && complementa.get(0).getId().equals(complementum.getId())) {
+					return c;
+				}
+			}
+		}
+		return null;
+	}
+	
+	
 }

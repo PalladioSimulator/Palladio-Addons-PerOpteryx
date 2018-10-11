@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="ASCII"?>
+<componentInternalDependencies:ComponentInternalDependencyRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:componentInternalDependencies="http://sdq.ipd.uka.de/ComponentInternalDependencies/1.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" id="_mLi-0tYgEeWrM-HnT5f_ug">
+  <dependencies id="_Y2umUDM2Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_Dtunkij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW1yj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_rz6ucEuzEeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtsyYij-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtvOqCj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_HgwjkDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_Dtunkij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW2Cj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_GfCGMEu0EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtsyYij-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtnS1Sj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtnS1Cj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_IB9zMDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DuNvwCj-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW1Cj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_MR0kMEu0EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DuA7cSj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HKij-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_IXbs4DM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_Dt0HIij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW1ij-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_VC4KIEu0EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HISj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HMCj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_IlYCQDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DuNvxCj-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW3Cj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_adWOwEu0EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DuNvwyj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HMij-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt6NwSj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_IzbFUDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DuNvxCj-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW2yj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_kgxbgEu0EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DuNvwyj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtvOrCj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_JEYScDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DtunmSj-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW2Sj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_pK5oUEu0EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtunlSj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtnS1ij-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_JRzqcDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DtunmSj-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW2ij-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_xugoIEu0EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dtunlij-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HLCj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+    <operationToOperationDependency id="_1oi0wEu0EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dtunlyj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HLyj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+    <operationToOperationDependency id="_5j7sQEu0EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtunmCj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HNCj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_Jgp-wDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_Ds-ZoCj-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW3yj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_9BJaAEu0EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DsxlUij-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HLSj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HKij-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_J-H94DM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_Ds-ZoCj-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW3ij-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_EYR_oEu1EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DsxlUij-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtvOqCj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_KNTCUDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_Ds-ZoCj-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW3Sj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_I1Wn4Eu1EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DsxlUij-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dtv1sCj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_KZ5T4DM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DtvOqSj-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW4Cj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_MsOy0Eu1EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtvOqCj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HKyj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_Ks1eADM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DuAUYij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuO94ij-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_Rc1bEEu1EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt_tWij-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtvOqCj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_K784EDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DuAUYij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuO94yj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_W2Q94Eu1EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt_tWij-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HNSj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_La_kgDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DuAUYij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuO95Cj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_bMglYEu1EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt_tWij-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dtv1sSj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_Lot3cDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DuAUYij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuO95ij-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_e9fjsEu1EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt_tWij-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtvOoij-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_L3f6UDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DuAUYij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuO95Sj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_iq2mQEu1EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DuAUYCj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtglISj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+    <operationToOperationDependency id="_v3Q9MEu1EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DuAUYSj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtglICj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_MGy6kDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_Dt0HJij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW4Sj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_1E3DcEu1EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HJSj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtvOqCj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_MU9SYDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_Dt0HJij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW4ij-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_5LStUEu1EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HJSj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HNSj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_MhwYQDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_Dt0HJij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW4yj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_87VQcEu1EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HJSj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dtv1sij-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_M0lNoDM3Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_Dt0HJij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW5Cj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="__KvHQEu1EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HJSj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtvOoij-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtvOoyj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_BijqUDM4Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DtvOpSj-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuO94Sj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_I0YiEEu2EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtvOoyj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtzgESj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+    <operationToOperationDependency id="_RhUdAEu2EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtvOpCj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtzgEij-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_B3BecDM4Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DtvOpSj-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuO94Cj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_VDRg0Eu2EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtvOoij-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dtn54ij-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_CLpDkDM4Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DuAUZij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW0Cj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_ZRWq0Eu2EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DuAUZSj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtvOqCj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_CdMGkDM4Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DuAUZij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW0Sj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_l5_mUEu2EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DuAUZSj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HNij-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HNSj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dt0HKij-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_CwVsEDM4Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DuAUZij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW0yj-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_zh60kEu2EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DuAUZSj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtzgECj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+  <dependencies id="_DBTgQDM4Eei9QPikYegHcg">
+    <providedRole xsi:type="repository:OperationProvidedRole" href="internal_architecture_model.repository#_DuAUZij-EeelRJRTle_aYg"/>
+    <requiredRole xsi:type="repository:OperationRequiredRole" href="internal_architecture_model.repository#_DuOW0ij-EeelRJRTle_aYg"/>
+    <operationToOperationDependency id="_6UIvQEu2EeijRfyAByX4LQ">
+      <providedSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DuAUZSj-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_DtglIij-EeelRJRTle_aYg"/>
+      <requiredSignatures xsi:type="repository:OperationSignature" href="internal_architecture_model.repository#_Dtn54Sj-EeelRJRTle_aYg"/>
+    </operationToOperationDependency>
+  </dependencies>
+</componentInternalDependencies:ComponentInternalDependencyRepository>

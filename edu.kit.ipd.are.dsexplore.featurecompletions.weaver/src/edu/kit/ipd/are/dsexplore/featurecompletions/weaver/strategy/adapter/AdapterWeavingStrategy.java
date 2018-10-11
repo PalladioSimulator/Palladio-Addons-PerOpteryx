@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.solver.models.PCMInstance;
@@ -14,16 +15,19 @@ import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
+import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
+import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingStrategies;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCStructureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmAllocationManager;
@@ -149,27 +153,41 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 	private List<Choice> allocationChoices;
 
 	@Override
-	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> featureChoices, List<Choice> allocationChoices) {
-		// TODO featureChoices
-		List<WeavingInstruction> instructions = this.determineInstructions(locations);
+	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice fccChoice, List<Choice> allocationChoices) {
+		AdapterStrategyExtension ase = (AdapterStrategyExtension) WeavingStrategies.ADAPTER.getExtension();
+
+		List<WeavingInstruction> instructions = this.determineInstructions(locations, ase.optionalFeatures);
 		this.instructions = instructions;
 		this.allocationChoices = allocationChoices;
 	}
 
-	private List<WeavingInstruction> determineInstructions(List<Pair<ComplementumVisnetis, WeavingLocation>> locations) {
+	private List<WeavingInstruction> determineInstructions(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, List<BoolChoice> optionalFeatures) {
 		FCCFeatureHandler fccfh = new FCCFeatureHandler(this.mrm);
-		// System pcmSystem = this.pcmToAdapt.getSystem();
-		// List<Pair<Entity, ComplementumVisnetis>> providedCVs =
-		// this.extractProvidedCVs();
 		InstructionGenerator ig = new InstructionGenerator(this.fc, this.im, fccfh, this.pcmToAdapt);
 		List<WeavingInstruction> instructions = new ArrayList<>();
+
+		List<String> notShallConnectors = new ArrayList<>();
+		this.getNotShallConnectorsFeatures(optionalFeatures, notShallConnectors);
+
 		for (Pair<ComplementumVisnetis, WeavingLocation> targetLoc : locations) {
-			instructions.add(ig.generate(targetLoc));
+			WeavingInstruction instruction = ig.generate(targetLoc);
+			instructions.add(instruction);
 		}
 
-		// this.applyOptionalAsDegree(optChoice, instructions);
+		instructions.removeIf(i -> notShallConnectors.contains(i.getWeavingLocation().getLocation().getId()));
 		return instructions;
 
+	}
+
+	private void getNotShallConnectorsFeatures(List<BoolChoice> optionalFeatures, List<String> notShall) {
+		for (BoolChoice ch : optionalFeatures) {
+			FeatureDegree fd = (FeatureDegree) ch.getDegreeOfFreedomInstance();
+			@SuppressWarnings("unchecked")
+			Pair<Connector, ComplementumVisnetis> f = (Pair<Connector, ComplementumVisnetis>) fd.getPrimaryChanged();
+			if (!ch.isChosenValue()) {
+				notShall.add(f.first.getId());
+			}
+		}
 	}
 
 	@Override

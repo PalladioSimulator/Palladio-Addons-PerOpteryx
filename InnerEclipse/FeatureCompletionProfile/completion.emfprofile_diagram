@@ -24,6 +24,9 @@
       <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_uElqXHYVEeirzP2CXhR6Fg" name="includeComplementumVisnetis" lowerBound="1">
         <eType xmi:type="ecore:EClass" href="http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1#//ComplementumVisnetis"/>
       </eStructuralFeatures>
+      <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_RjJvIKayEeiQpbyw1Bc6XA" name="optional" lowerBound="1" defaultValueLiteral="false">
+        <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      </eStructuralFeatures>
       <extensions xmi:type="emfprofile:Extension" xmi:id="_uElqXnYVEeirzP2CXhR6Fg">
         <target xmi:type="ecore:EClass" href="http://palladiosimulator.org/PalladioComponentModel/5.2#//core/composition/AssemblyConnector"/>
       </extensions>
@@ -188,6 +191,9 @@
     <children xmi:type="notation:Node" xmi:id="_uEm4oHYVEeirzP2CXhR6Fg" type="2006" element="_uElqWnYVEeirzP2CXhR6Fg">
       <children xmi:type="notation:DecorationNode" xmi:id="_uEm4oXYVEeirzP2CXhR6Fg" type="5008"/>
       <children xmi:type="notation:DecorationNode" xmi:id="_uEm4onYVEeirzP2CXhR6Fg" type="7008">
+        <children xmi:type="notation:Node" xmi:id="_Rjz2cKayEeiQpbyw1Bc6XA" type="3001" element="_RjJvIKayEeiQpbyw1Bc6XA">
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_Rjz2caayEeiQpbyw1Bc6XA"/>
+        </children>
         <styles xmi:type="notation:SortingStyle" xmi:id="_uEm4o3YVEeirzP2CXhR6Fg"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_uEm4pHYVEeirzP2CXhR6Fg"/>
       </children>

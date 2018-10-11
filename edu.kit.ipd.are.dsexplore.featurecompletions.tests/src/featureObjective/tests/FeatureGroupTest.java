@@ -5,6 +5,8 @@ package featureObjective.tests;
 import featureObjective.FeatureGroup;
 import featureObjective.FeatureObjectiveFactory;
 
+import junit.framework.TestCase;
+
 import junit.textui.TestRunner;
 
 /**
@@ -22,7 +24,15 @@ import junit.textui.TestRunner;
  * </p>
  * @generated
  */
-public class FeatureGroupTest extends ChildRelationTest {
+public class FeatureGroupTest extends TestCase {
+
+	/**
+	 * The fixture for this Feature Group test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FeatureGroup fixture = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -44,14 +54,23 @@ public class FeatureGroupTest extends ChildRelationTest {
 	}
 
 	/**
+	 * Sets the fixture for this Feature Group test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void setFixture(FeatureGroup fixture) {
+		this.fixture = fixture;
+	}
+
+	/**
 	 * Returns the fixture for this Feature Group test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected FeatureGroup getFixture() {
-		return (FeatureGroup)fixture;
+		return fixture;
 	}
 
 	/**

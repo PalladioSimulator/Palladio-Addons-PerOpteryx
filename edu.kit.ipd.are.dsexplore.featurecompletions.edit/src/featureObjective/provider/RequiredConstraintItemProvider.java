@@ -69,7 +69,7 @@ public class RequiredConstraintItemProvider extends ConstraintItemProvider {
 			getString("_UI_RequiredConstraint_type") :
 			getString("_UI_RequiredConstraint_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

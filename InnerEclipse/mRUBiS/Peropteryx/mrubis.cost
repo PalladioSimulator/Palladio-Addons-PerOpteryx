@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cost:CostRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cost="http://sdq.ipd.uka.de/CostModel/1.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2">
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="500.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="../internal_architecture_model.repository#_Dt_tWCj-EeelRJRTle_aYg"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="500.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="../internal_architecture_model.repository#_DuAUZyj-EeelRJRTle_aYg"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="500.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="../internal_architecture_model.repository#_DtvOpij-EeelRJRTle_aYg"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="500.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="../internal_architecture_model.repository#_Dt0HJyj-EeelRJRTle_aYg"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="500.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="../internal_architecture_model.repository#_Ds-ZoSj-EeelRJRTle_aYg"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="500.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="../internal_architecture_model.repository#_DtvOoCj-EeelRJRTle_aYg"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="500.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="../internal_architecture_model.repository#_DtvOqij-EeelRJRTle_aYg"/>
+  </cost>
+  <cost xsi:type="cost:VariableProcessingResourceCost">
+    <processingresourcespecification href="../internal_architecture_model.resourceenvironment#_t5OwkSjpEeelRJRTle_aYg"/>
+    <processingRateInitialFunction specification="0.7665*((procRate.VALUE)^6.2539)+145"/>
+  </cost>
+  <cost xsi:type="cost:VariableProcessingResourceCost">
+    <processingresourcespecification href="../internal_architecture_model.resourceenvironment#_32QkhbJ1EeiNQtUs4yKe-A"/>
+    <processingRateInitialFunction specification="0.7665*((procRate.VALUE)^6.2539)+145"/>
+  </cost>
+</cost:CostRepository>

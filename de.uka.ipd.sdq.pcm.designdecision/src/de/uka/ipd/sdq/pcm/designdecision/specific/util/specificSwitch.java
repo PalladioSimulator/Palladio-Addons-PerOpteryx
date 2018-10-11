@@ -754,6 +754,47 @@ public class specificSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case specificPackage.MULTIPLE_INCLUSION_DEGREE: {
+			MultipleInclusionDegree multipleInclusionDegree = (MultipleInclusionDegree) theEObject;
+			T result = caseMultipleInclusionDegree(multipleInclusionDegree);
+			if (result == null)
+				result = caseIndicatorDegree(multipleInclusionDegree);
+			if (result == null)
+				result = caseDegreeOfFreedomInstance(multipleInclusionDegree);
+			if (result == null)
+				result = caseNamedElement(multipleInclusionDegree);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case specificPackage.ADVICE_PLACEMENT_DEGREE: {
+			AdvicePlacementDegree advicePlacementDegree = (AdvicePlacementDegree) theEObject;
+			T result = caseAdvicePlacementDegree(advicePlacementDegree);
+			if (result == null)
+				result = caseIndicatorDegree(advicePlacementDegree);
+			if (result == null)
+				result = caseDegreeOfFreedomInstance(advicePlacementDegree);
+			if (result == null)
+				result = caseNamedElement(advicePlacementDegree);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case specificPackage.COMPLEMENTUM_VISNETIS_DEGREE: {
+			ComplementumVisnetisDegree complementumVisnetisDegree = (ComplementumVisnetisDegree) theEObject;
+			T result = caseComplementumVisnetisDegree(complementumVisnetisDegree);
+			if (result == null)
+				result = caseClassAsReferenceDegree(complementumVisnetisDegree);
+			if (result == null)
+				result = caseClassDegree(complementumVisnetisDegree);
+			if (result == null)
+				result = caseDegreeOfFreedomInstance(complementumVisnetisDegree);
+			if (result == null)
+				result = caseNamedElement(complementumVisnetisDegree);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -1315,6 +1356,51 @@ public class specificSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIndicatorDegree(IndicatorDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multiple Inclusion Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multiple Inclusion Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultipleInclusionDegree(MultipleInclusionDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Advice Placement Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Advice Placement Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAdvicePlacementDegree(AdvicePlacementDegree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Complementum Visnetis Degree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Complementum Visnetis Degree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComplementumVisnetisDegree(ComplementumVisnetisDegree object) {
 		return null;
 	}
 

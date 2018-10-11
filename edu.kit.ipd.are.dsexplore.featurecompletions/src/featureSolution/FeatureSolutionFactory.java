@@ -31,85 +31,13 @@ public interface FeatureSolutionFactory extends EFactory {
 	AdapterInclusion createAdapterInclusion();
 
 	/**
-	 * Returns a new object of class '<em>Extension Inclusion</em>'.
+	 * Returns a new object of class '<em>Behaviour Inclusion</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Extension Inclusion</em>'.
+	 * @return a new object of class '<em>Behaviour Inclusion</em>'.
 	 * @generated
 	 */
-	ExtensionInclusion createExtensionInclusion();
-
-	/**
-	 * Returns a new object of class '<em>Placement Strategy</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Placement Strategy</em>'.
-	 * @generated
-	 */
-	PlacementStrategy createPlacementStrategy();
-
-	/**
-	 * Returns a new object of class '<em>External Call Placement Strategy</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>External Call Placement Strategy</em>'.
-	 * @generated
-	 */
-	ExternalCallPlacementStrategy createExternalCallPlacementStrategy();
-
-	/**
-	 * Returns a new object of class '<em>Internal Action Placement Strategy</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Internal Action Placement Strategy</em>'.
-	 * @generated
-	 */
-	InternalActionPlacementStrategy createInternalActionPlacementStrategy();
-
-	/**
-	 * Returns a new object of class '<em>Control Flow Placement Strategy</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Control Flow Placement Strategy</em>'.
-	 * @generated
-	 */
-	ControlFlowPlacementStrategy createControlFlowPlacementStrategy();
-
-	/**
-	 * Returns a new object of class '<em>Point Cut</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Point Cut</em>'.
-	 * @generated
-	 */
-	PointCut createPointCut();
-
-	/**
-	 * Returns a new object of class '<em>Advice</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Advice</em>'.
-	 * @generated
-	 */
-	Advice createAdvice();
-
-	/**
-	 * Returns a new object of class '<em>Import</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Import</em>'.
-	 * @generated
-	 */
-	Import createImport();
-
-	/**
-	 * Returns a new object of class '<em>Feature Selection</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Feature Selection</em>'.
-	 * @generated
-	 */
-	FeatureSelection createFeatureSelection();
+	BehaviourInclusion createBehaviourInclusion();
 
 	/**
 	 * Returns the package supported by this factory.

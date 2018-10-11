@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContractType="http:///QMLContractType.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" id="_VHDTwHQPEeWzlMv7Lhh9jg">
-  <qmlDeclarations xsi:type="QMLContractType:QMLContractType" id="_VlJlBHQPEeWzlMv7Lhh9jg" entityName="CostResponseSecUsab">
-    <dimensions href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
-    <dimensions href="pathmap://PCM_MODELS/Dimension_responsetime.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA"/>
-    <dimensions href="Security_dimension.qmlcontracttype#_pKkRcGQhEeWG1LD_i_D7cg"/>
-    <dimensions href="Usability_dimension.qmlcontracttype#_9I9SgGQhEeWG1LD_i_D7cg"/>
-  </qmlDeclarations>
-</QMLDeclarations:QMLDeclarations>

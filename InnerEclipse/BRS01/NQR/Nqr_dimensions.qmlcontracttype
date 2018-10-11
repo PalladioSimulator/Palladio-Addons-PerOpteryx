@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<QMLContractType:QMLContractType xmlns:QMLContractType="http:///QMLContractType.ecore" id="_dv8BMGQhEeWG1LD_i_D7cg" entityName="Nqr">
-  <dimensions href="Security_dimension.qmlcontracttype#_pKkRcGQhEeWG1LD_i_D7cg"/>
-  <dimensions href="Usability_dimension.qmlcontracttype#_9I9SgGQhEeWG1LD_i_D7cg"/>
-</QMLContractType:QMLContractType>

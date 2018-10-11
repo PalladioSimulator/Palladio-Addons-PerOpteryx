@@ -16,13 +16,13 @@ import FeatureCompletionModel.FeatureCompletionRepository;
 import FeatureCompletionModel.NamedElement;
 import FeatureCompletionModel.PerimeterProviding;
 import FeatureCompletionModel.PerimeterRequiring;
+import FeatureCompletionModel.PlacementPolicy;
 import FeatureCompletionModel.Replication;
 import FeatureCompletionModel.Visnetum;
 
 import FeatureCompletionModel.util.FeatureCompletionValidator;
 
 import de.uka.ipd.sdq.identifier.IdentifierPackage;
-
 import featureObjective.FeatureObjectivePackage;
 
 import featureObjective.impl.FeatureObjectivePackageImpl;
@@ -38,7 +38,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.palladiosimulator.pcm.PcmPackage;
+import placementDescription.PlacementDescriptionPackage;
+import placementDescription.impl.PlacementDescriptionPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -146,6 +149,13 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 	private EEnum constraintEEnum = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum placementPolicyEEnum = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -197,16 +207,19 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 		// Obtain or create and register interdependencies
 		FeatureObjectivePackageImpl theFeatureObjectivePackage = (FeatureObjectivePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI) instanceof FeatureObjectivePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI) : FeatureObjectivePackage.eINSTANCE);
 		FeatureSolutionPackageImpl theFeatureSolutionPackage = (FeatureSolutionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI) instanceof FeatureSolutionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI) : FeatureSolutionPackage.eINSTANCE);
+		PlacementDescriptionPackageImpl thePlacementDescriptionPackage = (PlacementDescriptionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PlacementDescriptionPackage.eNS_URI) instanceof PlacementDescriptionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PlacementDescriptionPackage.eNS_URI) : PlacementDescriptionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theFeatureCompletionPackage.createPackageContents();
 		theFeatureObjectivePackage.createPackageContents();
 		theFeatureSolutionPackage.createPackageContents();
+		thePlacementDescriptionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theFeatureCompletionPackage.initializePackageContents();
 		theFeatureObjectivePackage.initializePackageContents();
 		theFeatureSolutionPackage.initializePackageContents();
+		thePlacementDescriptionPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
@@ -528,6 +541,15 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getPlacementPolicy() {
+		return placementPolicyEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public FeatureCompletionFactory getFeatureCompletionFactory() {
 		return (FeatureCompletionFactory)getEFactoryInstance();
 	}
@@ -596,6 +618,7 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 		visnetumEEnum = createEEnum(VISNETUM);
 		replicationEEnum = createEEnum(REPLICATION);
 		constraintEEnum = createEEnum(CONSTRAINT);
+		placementPolicyEEnum = createEEnum(PLACEMENT_POLICY);
 	}
 
 	/**
@@ -702,6 +725,10 @@ public class FeatureCompletionPackageImpl extends EPackageImpl implements Featur
 		addEEnumLiteral(constraintEEnum, Constraint.TOGETHER);
 		addEEnumLiteral(constraintEEnum, Constraint.ISOLATED);
 		addEEnumLiteral(constraintEEnum, Constraint.SEPARATED);
+
+		initEEnum(placementPolicyEEnum, PlacementPolicy.class, "PlacementPolicy");
+		addEEnumLiteral(placementPolicyEEnum, PlacementPolicy.MANDATORY);
+		addEEnumLiteral(placementPolicyEEnum, PlacementPolicy.OPTIONAL);
 
 		// Create resource
 		createResource(eNS_URI);

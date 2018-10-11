@@ -12,7 +12,6 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.solver.models.PCMInstance;
 
-import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.FeatureCompletionPackage;
 import FeatureCompletionModel.FeatureCompletionRepository;
@@ -24,17 +23,15 @@ import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.DecisionSpace;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;
-import de.uka.ipd.sdq.pcm.designdecision.FeatureChoice;
 import de.uka.ipd.sdq.pcm.designdecision.designdecisionFactory;
 import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureCompletionDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.FeatureDegree;
-import de.uka.ipd.sdq.pcm.designdecision.specific.specificFactory;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCWeaver;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.CompletionDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.designdecision.FCCAllocDegreeDesignDecision;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
-import featureObjective.Feature;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IStrategyExtension;
+import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingStrategies;
 
 public class FCCProblemExtension implements IProblemExtension {
 
@@ -115,7 +112,10 @@ public class FCCProblemExtension implements IProblemExtension {
 		FeatureCompletionDegree degree = featureCompletionDegrees.get(0);
 		this.createClassChoice(degree, dds, initialCandidate);
 		this.createFCCAllocationDegreesFrom(degree, dds, initialCandidate);
-		this.determineOptionalAsDegreeDecisions(degree, dds, initialCandidate, fcRepo);
+
+		IStrategyExtension extension = WeavingStrategies.getStrategy(this.weaver.get().getInclusionMechanism()).getExtension();
+		extension.additionalCreateFCCDegreeBy(degree, dds, initialCandidate, this.weaver.get());
+
 		return degree;
 	}
 
@@ -142,59 +142,6 @@ public class FCCProblemExtension implements IProblemExtension {
 		}
 
 		this.weaver.set(new FCCWeaver(blackboard, solutionRepos, costModel));
-
-	}
-
-	/**
-	 * Determine {@link OptionalAsDegree}-DoFs.
-	 *
-	 * @param cd
-	 *            the concern degree
-	 * @param dds
-	 *            all DoFs do far
-	 * @param initialCandidate
-	 *            the initial candidate
-	 * @param fcRepo
-	 *            the concern repo
-	 * @author Dominik Fuchss
-	 */
-	private void determineOptionalAsDegreeDecisions(FeatureCompletionDegree cd, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, FeatureCompletionRepository fcRepo) {
-		FeatureCompletion c = (FeatureCompletion) cd.getPrimaryChanged();
-		List<CompletionComponent> fccs = c.getCompletionComponents();
-		List<Feature> features = new ArrayList<>();
-
-		for (CompletionComponent ecc : fccs) {
-			List<Feature> provided = StereotypeAPIHelper.getViaStereoTypeFrom(ecc, Feature.class);
-			if (provided.isEmpty()) {
-				FCCModule.logger.error(ecc + " does not provide a Feature.");
-				continue;
-			}
-			// INFO:
-			// For now only features which are directly mapped to an ECC will be
-			// mentioned here ..
-			// Maybe someone will decide to search features recursively .. then
-			// you can use this line ..
-			// this.getThisAndSubfeatures(features, feature);
-			features.addAll(provided);
-		}
-
-		List<Feature> optionals = new ArrayList<>();
-		for (Feature f : features) {
-			// INFO: Only SimpleOptional will be mentioned . FeatureGroups are
-			// not needed so far.
-			boolean isOptional = f.getSimpleOptional() != null;
-			if (isOptional) {
-				optionals.add(f);
-			}
-		}
-		for (Feature op : optionals) {
-			FeatureDegree oad = specificFactory.eINSTANCE.createFeatureDegree();
-			oad.setPrimaryChanged(op);
-			dds.add(oad);
-			FeatureChoice ch = designdecisionFactory.eINSTANCE.createFeatureChoice();
-			ch.setDegreeOfFreedomInstance(oad);
-			initialCandidate.add(ch);
-		}
 
 	}
 

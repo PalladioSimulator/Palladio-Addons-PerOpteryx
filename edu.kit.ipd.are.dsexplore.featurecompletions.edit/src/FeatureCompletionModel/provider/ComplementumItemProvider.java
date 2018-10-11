@@ -119,7 +119,7 @@ public class ComplementumItemProvider extends DescribedElementItemProvider {
 			getString("_UI_Complementum_type") :
 			getString("_UI_Complementum_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
