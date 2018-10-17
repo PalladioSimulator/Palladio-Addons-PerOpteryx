@@ -7,14 +7,20 @@ import java.util.List;
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.Connector;
+import org.palladiosimulator.pcm.core.entity.Entity;
+import org.palladiosimulator.pcm.repository.Interface;
+import org.palladiosimulator.pcm.repository.OperationInterface;
+import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.solver.models.PCMInstance;
 
+import FeatureCompletionModel.Complementum;
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
@@ -80,6 +86,74 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 			umw.weave(instruction);
 		}
 
+		this.weaveComplementa();
+
+	}
+
+	private void weaveComplementa() {
+		// Weave RequiresComplementum
+		// requiresComplementum: Complementum -> Signature/Interface/Component
+		// fulfillsComplementum: Complementum -> Interface
+
+		List<Pair<Entity, Complementum>> require = this.getRequiresComplementum();
+		List<Pair<OperationInterface, Complementum>> provides = this.getProvidesComplementum();
+
+		// TODO Connect require & provides
+
+	}
+
+	private List<Pair<OperationInterface, Complementum>> getProvidesComplementum() {
+		List<Pair<OperationInterface, Complementum>> res = new ArrayList<>();
+		for (Repository repo : this.pcmToAdapt.getRepositories()) {
+			for (Interface iface : repo.getInterfaces__Repository()) {
+				List<Complementum> complementa = StereotypeAPIHelper.getViaStereoTypeFrom(iface, Complementum.class, "fulfillsComplementum");
+				if (complementa.size() != 0) {
+					// Model defines 1..1 as amount of complementa
+					res.add(Pair.of((OperationInterface) iface, complementa.get(0)));
+				}
+			}
+		}
+		return res;
+	}
+
+	private List<Pair<Entity, Complementum>> getRequiresComplementum() {
+		List<Pair<Entity, Complementum>> res = new ArrayList<>();
+
+		// Interfaces
+		for (Repository repo : this.pcmToAdapt.getRepositories()) {
+			for (Interface iface : repo.getInterfaces__Repository()) {
+				if (!(iface instanceof OperationInterface)) {
+					continue;
+				}
+
+				List<Complementum> complementa = StereotypeAPIHelper.getViaStereoTypeFrom(iface, Complementum.class, "requiresComplementum");
+				if (complementa.size() != 0) {
+					// Model defines 1..1 as amount of complementa
+					res.add(Pair.of(iface, complementa.get(0)));
+				}
+
+				// Signatures
+				for (OperationSignature opSig : ((OperationInterface) iface).getSignatures__OperationInterface()) {
+					complementa = StereotypeAPIHelper.getViaStereoTypeFrom(opSig, Complementum.class, "fulfillsComplementum");
+					// Model defines 1..1 as amount of complementa
+					res.add(Pair.of(opSig, complementa.get(0)));
+				}
+
+			}
+		}
+
+		// Components
+		for (Repository repo : this.pcmToAdapt.getRepositories()) {
+			for (RepositoryComponent rc : repo.getComponents__Repository()) {
+				List<Complementum> complementa = StereotypeAPIHelper.getViaStereoTypeFrom(rc, Complementum.class, "requiresComplementum");
+				if (complementa.size() != 0) {
+					// Model defines 1..1 as amount of complementa
+					res.add(Pair.of(rc, complementa.get(0)));
+				}
+			}
+		}
+
+		return res;
 	}
 
 	@Override

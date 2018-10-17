@@ -65,7 +65,7 @@
     <stringAttribute key="allocationFile" value="platform:/resource/SimplePerOpteryx/palladio/allocation.allocation"/>
     <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.cost" value="Cost Analysis"/>
     <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.nqr" value="none"/>
-    <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="SimuCom Analysis"/>
+    <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.performance" value="LQN Solver Analysis"/>
     <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.reliability" value="none"/>
     <stringAttribute key="analysisMethodde.uka.ipd.sdq.dsexplore.security" value="none"/>
     <stringAttribute key="archiveCandidates" value=""/>
