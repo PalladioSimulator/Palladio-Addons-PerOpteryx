@@ -152,7 +152,7 @@ public class CompletionComponentItemProvider extends ConstrainableElementItemPro
 			getString("_UI_CompletionComponent_type") :
 			getString("_UI_CompletionComponent_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

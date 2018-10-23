@@ -311,6 +311,21 @@ public class specificAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseMultipleInclusionDegree(MultipleInclusionDegree object) {
+			return createMultipleInclusionDegreeAdapter();
+		}
+
+		@Override
+		public Adapter caseAdvicePlacementDegree(AdvicePlacementDegree object) {
+			return createAdvicePlacementDegreeAdapter();
+		}
+
+		@Override
+		public Adapter caseComplementumVisnetisDegree(ComplementumVisnetisDegree object) {
+			return createComplementumVisnetisDegreeAdapter();
+		}
+
+		@Override
 		public Adapter caseNamedElement(NamedElement object) {
 			return createNamedElementAdapter();
 		}
@@ -890,6 +905,48 @@ public class specificAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIndicatorDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.MultipleInclusionDegree <em>Multiple Inclusion Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.MultipleInclusionDegree
+	 * @generated
+	 */
+	public Adapter createMultipleInclusionDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.AdvicePlacementDegree <em>Advice Placement Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.AdvicePlacementDegree
+	 * @generated
+	 */
+	public Adapter createAdvicePlacementDegreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.ComplementumVisnetisDegree <em>Complementum Visnetis Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.ComplementumVisnetisDegree
+	 * @generated
+	 */
+	public Adapter createComplementumVisnetisDegreeAdapter() {
 		return null;
 	}
 

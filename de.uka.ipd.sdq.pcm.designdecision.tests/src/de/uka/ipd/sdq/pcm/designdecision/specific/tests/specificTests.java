@@ -55,6 +55,9 @@ public class specificTests extends TestSuite {
 		suite.addTestSuite(ATNumberOfReplicaDegreeTest.class);
 		suite.addTestSuite(FeatureCompletionDegreeTest.class);
 		suite.addTestSuite(FeatureDegreeTest.class);
+		suite.addTestSuite(MultipleInclusionDegreeTest.class);
+		suite.addTestSuite(AdvicePlacementDegreeTest.class);
+		suite.addTestSuite(ComplementumVisnetisDegreeTest.class);
 		return suite;
 	}
 

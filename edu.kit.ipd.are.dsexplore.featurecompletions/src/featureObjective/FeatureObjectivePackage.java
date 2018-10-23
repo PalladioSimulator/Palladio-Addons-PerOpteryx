@@ -96,13 +96,13 @@ public interface FeatureObjectivePackage extends EPackage {
 	int FEATURE_OBJECTIVE__DESCRIPTION = FeatureCompletionPackage.DESCRIBED_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Root Feature</b></em>' containment reference.
+	 * The feature id for the '<em><b>Feature Groups</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_OBJECTIVE__ROOT_FEATURE = FeatureCompletionPackage.DESCRIBED_ELEMENT_FEATURE_COUNT + 0;
+	int FEATURE_OBJECTIVE__FEATURE_GROUPS = FeatureCompletionPackage.DESCRIBED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -160,49 +160,13 @@ public interface FeatureObjectivePackage extends EPackage {
 	int FEATURE__NAME = FeatureCompletionPackage.NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__ATTRIBUTES = FeatureCompletionPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Childrelation</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__CHILDRELATION = FeatureCompletionPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Simple Mandatory</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__SIMPLE_MANDATORY = FeatureCompletionPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Simple Optional</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__SIMPLE_OPTIONAL = FeatureCompletionPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Featuregroup</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__FEATUREGROUP = FeatureCompletionPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int FEATURE__FEATUREGROUP = FeatureCompletionPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
@@ -211,146 +175,7 @@ public interface FeatureObjectivePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = FeatureCompletionPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The meta object id for the '{@link featureObjective.impl.AttributeImpl <em>Attribute</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see featureObjective.impl.AttributeImpl
-	 * @see featureObjective.impl.FeatureObjectivePackageImpl#getAttribute()
-	 * @generated
-	 */
-	int ATTRIBUTE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE__ID = FeatureCompletionPackage.NAMED_ELEMENT__ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE__NAME = FeatureCompletionPackage.NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Range</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE__RANGE = FeatureCompletionPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Attribute</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_FEATURE_COUNT = FeatureCompletionPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link featureObjective.impl.IntervalRangeImpl <em>Interval Range</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see featureObjective.impl.IntervalRangeImpl
-	 * @see featureObjective.impl.FeatureObjectivePackageImpl#getIntervalRange()
-	 * @generated
-	 */
-	int INTERVAL_RANGE = 3;
-
-	/**
-	 * The feature id for the '<em><b>Lower Bound Included</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERVAL_RANGE__LOWER_BOUND_INCLUDED = 0;
-
-	/**
-	 * The feature id for the '<em><b>Upper Bound Included</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERVAL_RANGE__UPPER_BOUND_INCLUDED = 1;
-
-	/**
-	 * The number of structural features of the '<em>Interval Range</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERVAL_RANGE_FEATURE_COUNT = 2;
-
-	/**
-	 * The meta object id for the '{@link featureObjective.impl.ChildRelationImpl <em>Child Relation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see featureObjective.impl.ChildRelationImpl
-	 * @see featureObjective.impl.FeatureObjectivePackageImpl#getChildRelation()
-	 * @generated
-	 */
-	int CHILD_RELATION = 4;
-
-	/**
-	 * The number of structural features of the '<em>Child Relation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHILD_RELATION_FEATURE_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link featureObjective.impl.SimpleImpl <em>Simple</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see featureObjective.impl.SimpleImpl
-	 * @see featureObjective.impl.FeatureObjectivePackageImpl#getSimple()
-	 * @generated
-	 */
-	int SIMPLE = 5;
-
-	/**
-	 * The feature id for the '<em><b>Optional Children</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE__OPTIONAL_CHILDREN = CHILD_RELATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Mandatory Children</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE__MANDATORY_CHILDREN = CHILD_RELATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Simple</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_FEATURE_COUNT = CHILD_RELATION_FEATURE_COUNT + 2;
+	int FEATURE_FEATURE_COUNT = FeatureCompletionPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link featureObjective.impl.FeatureGroupImpl <em>Feature Group</em>}' class.
@@ -360,34 +185,25 @@ public interface FeatureObjectivePackage extends EPackage {
 	 * @see featureObjective.impl.FeatureObjectivePackageImpl#getFeatureGroup()
 	 * @generated
 	 */
-	int FEATURE_GROUP = 6;
+	int FEATURE_GROUP = 2;
 
 	/**
-	 * The feature id for the '<em><b>Min</b></em>' attribute.
+	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_GROUP__MIN = CHILD_RELATION_FEATURE_COUNT + 0;
+	int FEATURE_GROUP__FEATURES = 0;
 
 	/**
-	 * The feature id for the '<em><b>Max</b></em>' attribute.
+	 * The feature id for the '<em><b>Operation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_GROUP__MAX = CHILD_RELATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_GROUP__CHILDREN = CHILD_RELATION_FEATURE_COUNT + 2;
+	int FEATURE_GROUP__OPERATION = 1;
 
 	/**
 	 * The number of structural features of the '<em>Feature Group</em>' class.
@@ -396,7 +212,7 @@ public interface FeatureObjectivePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_GROUP_FEATURE_COUNT = CHILD_RELATION_FEATURE_COUNT + 3;
+	int FEATURE_GROUP_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link featureObjective.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -406,7 +222,7 @@ public interface FeatureObjectivePackage extends EPackage {
 	 * @see featureObjective.impl.FeatureObjectivePackageImpl#getConstraint()
 	 * @generated
 	 */
-	int CONSTRAINT = 7;
+	int CONSTRAINT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -470,7 +286,7 @@ public interface FeatureObjectivePackage extends EPackage {
 	 * @see featureObjective.impl.FeatureObjectivePackageImpl#getRequiredConstraint()
 	 * @generated
 	 */
-	int REQUIRED_CONSTRAINT = 8;
+	int REQUIRED_CONSTRAINT = 4;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -534,7 +350,7 @@ public interface FeatureObjectivePackage extends EPackage {
 	 * @see featureObjective.impl.FeatureObjectivePackageImpl#getProhibitsConstraint()
 	 * @generated
 	 */
-	int PROHIBITS_CONSTRAINT = 9;
+	int PROHIBITS_CONSTRAINT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -591,272 +407,6 @@ public interface FeatureObjectivePackage extends EPackage {
 	int PROHIBITS_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link featureObjective.impl.IntegerIntervalRangeImpl <em>Integer Interval Range</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see featureObjective.impl.IntegerIntervalRangeImpl
-	 * @see featureObjective.impl.FeatureObjectivePackageImpl#getIntegerIntervalRange()
-	 * @generated
-	 */
-	int INTEGER_INTERVAL_RANGE = 10;
-
-	/**
-	 * The feature id for the '<em><b>Lower Bound Included</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_INTERVAL_RANGE__LOWER_BOUND_INCLUDED = INTERVAL_RANGE__LOWER_BOUND_INCLUDED;
-
-	/**
-	 * The feature id for the '<em><b>Upper Bound Included</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_INTERVAL_RANGE__UPPER_BOUND_INCLUDED = INTERVAL_RANGE__UPPER_BOUND_INCLUDED;
-
-	/**
-	 * The feature id for the '<em><b>To</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_INTERVAL_RANGE__TO = INTERVAL_RANGE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>From</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_INTERVAL_RANGE__FROM = INTERVAL_RANGE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Integer Interval Range</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_INTERVAL_RANGE_FEATURE_COUNT = INTERVAL_RANGE_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link featureObjective.impl.IntegerAttributeImpl <em>Integer Attribute</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see featureObjective.impl.IntegerAttributeImpl
-	 * @see featureObjective.impl.FeatureObjectivePackageImpl#getIntegerAttribute()
-	 * @generated
-	 */
-	int INTEGER_ATTRIBUTE = 11;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_ATTRIBUTE__ID = ATTRIBUTE__ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_ATTRIBUTE__NAME = ATTRIBUTE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Range</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_ATTRIBUTE__RANGE = ATTRIBUTE__RANGE;
-
-	/**
-	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_ATTRIBUTE__DEFAULT_VALUE = ATTRIBUTE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Integer Attribute</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link featureObjective.impl.DoubleAttributeImpl <em>Double Attribute</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see featureObjective.impl.DoubleAttributeImpl
-	 * @see featureObjective.impl.FeatureObjectivePackageImpl#getDoubleAttribute()
-	 * @generated
-	 */
-	int DOUBLE_ATTRIBUTE = 12;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_ATTRIBUTE__ID = ATTRIBUTE__ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_ATTRIBUTE__NAME = ATTRIBUTE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Range</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_ATTRIBUTE__RANGE = ATTRIBUTE__RANGE;
-
-	/**
-	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_ATTRIBUTE__DEFAULT_VALUE = ATTRIBUTE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Double Attribute</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link featureObjective.impl.StringAttributeImpl <em>String Attribute</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see featureObjective.impl.StringAttributeImpl
-	 * @see featureObjective.impl.FeatureObjectivePackageImpl#getStringAttribute()
-	 * @generated
-	 */
-	int STRING_ATTRIBUTE = 13;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_ATTRIBUTE__ID = ATTRIBUTE__ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_ATTRIBUTE__NAME = ATTRIBUTE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Range</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_ATTRIBUTE__RANGE = ATTRIBUTE__RANGE;
-
-	/**
-	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_ATTRIBUTE__DEFAULT_VALUE = ATTRIBUTE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>String Attribute</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link featureObjective.impl.ExternalObjectAttributeImpl <em>External Object Attribute</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see featureObjective.impl.ExternalObjectAttributeImpl
-	 * @see featureObjective.impl.FeatureObjectivePackageImpl#getExternalObjectAttribute()
-	 * @generated
-	 */
-	int EXTERNAL_OBJECT_ATTRIBUTE = 14;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERNAL_OBJECT_ATTRIBUTE__ID = ATTRIBUTE__ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERNAL_OBJECT_ATTRIBUTE__NAME = ATTRIBUTE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Range</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERNAL_OBJECT_ATTRIBUTE__RANGE = ATTRIBUTE__RANGE;
-
-	/**
-	 * The number of structural features of the '<em>External Object Attribute</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERNAL_OBJECT_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link featureObjective.AttributeTypes <em>Attribute Types</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -864,7 +414,17 @@ public interface FeatureObjectivePackage extends EPackage {
 	 * @see featureObjective.impl.FeatureObjectivePackageImpl#getAttributeTypes()
 	 * @generated
 	 */
-	int ATTRIBUTE_TYPES = 15;
+	int ATTRIBUTE_TYPES = 6;
+
+	/**
+	 * The meta object id for the '{@link featureObjective.LogicalOperation <em>Logical Operation</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see featureObjective.LogicalOperation
+	 * @see featureObjective.impl.FeatureObjectivePackageImpl#getLogicalOperation()
+	 * @generated
+	 */
+	int LOGICAL_OPERATION = 7;
 
 
 	/**
@@ -878,15 +438,15 @@ public interface FeatureObjectivePackage extends EPackage {
 	EClass getFeatureObjective();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link featureObjective.FeatureObjective#getRootFeature <em>Root Feature</em>}'.
+	 * Returns the meta object for the containment reference list '{@link featureObjective.FeatureObjective#getFeatureGroups <em>Feature Groups</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Root Feature</em>'.
-	 * @see featureObjective.FeatureObjective#getRootFeature()
+	 * @return the meta object for the containment reference list '<em>Feature Groups</em>'.
+	 * @see featureObjective.FeatureObjective#getFeatureGroups()
 	 * @see #getFeatureObjective()
 	 * @generated
 	 */
-	EReference getFeatureObjective_RootFeature();
+	EReference getFeatureObjective_FeatureGroups();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link featureObjective.FeatureObjective#getConstraints <em>Constraints</em>}'.
@@ -921,50 +481,6 @@ public interface FeatureObjectivePackage extends EPackage {
 	EClass getFeature();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link featureObjective.Feature#getAttributes <em>Attributes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Attributes</em>'.
-	 * @see featureObjective.Feature#getAttributes()
-	 * @see #getFeature()
-	 * @generated
-	 */
-	EReference getFeature_Attributes();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link featureObjective.Feature#getChildrelation <em>Childrelation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Childrelation</em>'.
-	 * @see featureObjective.Feature#getChildrelation()
-	 * @see #getFeature()
-	 * @generated
-	 */
-	EReference getFeature_Childrelation();
-
-	/**
-	 * Returns the meta object for the reference '{@link featureObjective.Feature#getSimpleMandatory <em>Simple Mandatory</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Simple Mandatory</em>'.
-	 * @see featureObjective.Feature#getSimpleMandatory()
-	 * @see #getFeature()
-	 * @generated
-	 */
-	EReference getFeature_SimpleMandatory();
-
-	/**
-	 * Returns the meta object for the reference '{@link featureObjective.Feature#getSimpleOptional <em>Simple Optional</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Simple Optional</em>'.
-	 * @see featureObjective.Feature#getSimpleOptional()
-	 * @see #getFeature()
-	 * @generated
-	 */
-	EReference getFeature_SimpleOptional();
-
-	/**
 	 * Returns the meta object for the reference '{@link featureObjective.Feature#getFeaturegroup <em>Featuregroup</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -974,101 +490,6 @@ public interface FeatureObjectivePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFeature_Featuregroup();
-
-	/**
-	 * Returns the meta object for class '{@link featureObjective.Attribute <em>Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Attribute</em>'.
-	 * @see featureObjective.Attribute
-	 * @generated
-	 */
-	EClass getAttribute();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link featureObjective.Attribute#getRange <em>Range</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Range</em>'.
-	 * @see featureObjective.Attribute#getRange()
-	 * @see #getAttribute()
-	 * @generated
-	 */
-	EReference getAttribute_Range();
-
-	/**
-	 * Returns the meta object for class '{@link featureObjective.IntervalRange <em>Interval Range</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Interval Range</em>'.
-	 * @see featureObjective.IntervalRange
-	 * @generated
-	 */
-	EClass getIntervalRange();
-
-	/**
-	 * Returns the meta object for the attribute '{@link featureObjective.IntervalRange#isLowerBoundIncluded <em>Lower Bound Included</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Lower Bound Included</em>'.
-	 * @see featureObjective.IntervalRange#isLowerBoundIncluded()
-	 * @see #getIntervalRange()
-	 * @generated
-	 */
-	EAttribute getIntervalRange_LowerBoundIncluded();
-
-	/**
-	 * Returns the meta object for the attribute '{@link featureObjective.IntervalRange#isUpperBoundIncluded <em>Upper Bound Included</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Upper Bound Included</em>'.
-	 * @see featureObjective.IntervalRange#isUpperBoundIncluded()
-	 * @see #getIntervalRange()
-	 * @generated
-	 */
-	EAttribute getIntervalRange_UpperBoundIncluded();
-
-	/**
-	 * Returns the meta object for class '{@link featureObjective.ChildRelation <em>Child Relation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Child Relation</em>'.
-	 * @see featureObjective.ChildRelation
-	 * @generated
-	 */
-	EClass getChildRelation();
-
-	/**
-	 * Returns the meta object for class '{@link featureObjective.Simple <em>Simple</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Simple</em>'.
-	 * @see featureObjective.Simple
-	 * @generated
-	 */
-	EClass getSimple();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link featureObjective.Simple#getOptionalChildren <em>Optional Children</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Optional Children</em>'.
-	 * @see featureObjective.Simple#getOptionalChildren()
-	 * @see #getSimple()
-	 * @generated
-	 */
-	EReference getSimple_OptionalChildren();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link featureObjective.Simple#getMandatoryChildren <em>Mandatory Children</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Mandatory Children</em>'.
-	 * @see featureObjective.Simple#getMandatoryChildren()
-	 * @see #getSimple()
-	 * @generated
-	 */
-	EReference getSimple_MandatoryChildren();
 
 	/**
 	 * Returns the meta object for class '{@link featureObjective.FeatureGroup <em>Feature Group</em>}'.
@@ -1081,37 +502,26 @@ public interface FeatureObjectivePackage extends EPackage {
 	EClass getFeatureGroup();
 
 	/**
-	 * Returns the meta object for the attribute '{@link featureObjective.FeatureGroup#getMin <em>Min</em>}'.
+	 * Returns the meta object for the containment reference list '{@link featureObjective.FeatureGroup#getFeatures <em>Features</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Min</em>'.
-	 * @see featureObjective.FeatureGroup#getMin()
+	 * @return the meta object for the containment reference list '<em>Features</em>'.
+	 * @see featureObjective.FeatureGroup#getFeatures()
 	 * @see #getFeatureGroup()
 	 * @generated
 	 */
-	EAttribute getFeatureGroup_Min();
+	EReference getFeatureGroup_Features();
 
 	/**
-	 * Returns the meta object for the attribute '{@link featureObjective.FeatureGroup#getMax <em>Max</em>}'.
+	 * Returns the meta object for the attribute '{@link featureObjective.FeatureGroup#getOperation <em>Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Max</em>'.
-	 * @see featureObjective.FeatureGroup#getMax()
+	 * @return the meta object for the attribute '<em>Operation</em>'.
+	 * @see featureObjective.FeatureGroup#getOperation()
 	 * @see #getFeatureGroup()
 	 * @generated
 	 */
-	EAttribute getFeatureGroup_Max();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link featureObjective.FeatureGroup#getChildren <em>Children</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Children</em>'.
-	 * @see featureObjective.FeatureGroup#getChildren()
-	 * @see #getFeatureGroup()
-	 * @generated
-	 */
-	EReference getFeatureGroup_Children();
+	EAttribute getFeatureGroup_Operation();
 
 	/**
 	 * Returns the meta object for class '{@link featureObjective.Constraint <em>Constraint</em>}'.
@@ -1177,111 +587,6 @@ public interface FeatureObjectivePackage extends EPackage {
 	EClass getProhibitsConstraint();
 
 	/**
-	 * Returns the meta object for class '{@link featureObjective.IntegerIntervalRange <em>Integer Interval Range</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Integer Interval Range</em>'.
-	 * @see featureObjective.IntegerIntervalRange
-	 * @generated
-	 */
-	EClass getIntegerIntervalRange();
-
-	/**
-	 * Returns the meta object for the attribute '{@link featureObjective.IntegerIntervalRange#getTo <em>To</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>To</em>'.
-	 * @see featureObjective.IntegerIntervalRange#getTo()
-	 * @see #getIntegerIntervalRange()
-	 * @generated
-	 */
-	EAttribute getIntegerIntervalRange_To();
-
-	/**
-	 * Returns the meta object for the attribute '{@link featureObjective.IntegerIntervalRange#getFrom <em>From</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>From</em>'.
-	 * @see featureObjective.IntegerIntervalRange#getFrom()
-	 * @see #getIntegerIntervalRange()
-	 * @generated
-	 */
-	EAttribute getIntegerIntervalRange_From();
-
-	/**
-	 * Returns the meta object for class '{@link featureObjective.IntegerAttribute <em>Integer Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Integer Attribute</em>'.
-	 * @see featureObjective.IntegerAttribute
-	 * @generated
-	 */
-	EClass getIntegerAttribute();
-
-	/**
-	 * Returns the meta object for the attribute '{@link featureObjective.IntegerAttribute#getDefaultValue <em>Default Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Default Value</em>'.
-	 * @see featureObjective.IntegerAttribute#getDefaultValue()
-	 * @see #getIntegerAttribute()
-	 * @generated
-	 */
-	EAttribute getIntegerAttribute_DefaultValue();
-
-	/**
-	 * Returns the meta object for class '{@link featureObjective.DoubleAttribute <em>Double Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Double Attribute</em>'.
-	 * @see featureObjective.DoubleAttribute
-	 * @generated
-	 */
-	EClass getDoubleAttribute();
-
-	/**
-	 * Returns the meta object for the attribute '{@link featureObjective.DoubleAttribute#getDefaultValue <em>Default Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Default Value</em>'.
-	 * @see featureObjective.DoubleAttribute#getDefaultValue()
-	 * @see #getDoubleAttribute()
-	 * @generated
-	 */
-	EAttribute getDoubleAttribute_DefaultValue();
-
-	/**
-	 * Returns the meta object for class '{@link featureObjective.StringAttribute <em>String Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>String Attribute</em>'.
-	 * @see featureObjective.StringAttribute
-	 * @generated
-	 */
-	EClass getStringAttribute();
-
-	/**
-	 * Returns the meta object for the attribute '{@link featureObjective.StringAttribute#getDefaultValue <em>Default Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Default Value</em>'.
-	 * @see featureObjective.StringAttribute#getDefaultValue()
-	 * @see #getStringAttribute()
-	 * @generated
-	 */
-	EAttribute getStringAttribute_DefaultValue();
-
-	/**
-	 * Returns the meta object for class '{@link featureObjective.ExternalObjectAttribute <em>External Object Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>External Object Attribute</em>'.
-	 * @see featureObjective.ExternalObjectAttribute
-	 * @generated
-	 */
-	EClass getExternalObjectAttribute();
-
-	/**
 	 * Returns the meta object for enum '{@link featureObjective.AttributeTypes <em>Attribute Types</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1290,6 +595,16 @@ public interface FeatureObjectivePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getAttributeTypes();
+
+	/**
+	 * Returns the meta object for enum '{@link featureObjective.LogicalOperation <em>Logical Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Logical Operation</em>'.
+	 * @see featureObjective.LogicalOperation
+	 * @generated
+	 */
+	EEnum getLogicalOperation();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1324,12 +639,12 @@ public interface FeatureObjectivePackage extends EPackage {
 		EClass FEATURE_OBJECTIVE = eINSTANCE.getFeatureObjective();
 
 		/**
-		 * The meta object literal for the '<em><b>Root Feature</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Feature Groups</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FEATURE_OBJECTIVE__ROOT_FEATURE = eINSTANCE.getFeatureObjective_RootFeature();
+		EReference FEATURE_OBJECTIVE__FEATURE_GROUPS = eINSTANCE.getFeatureObjective_FeatureGroups();
 
 		/**
 		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
@@ -1358,124 +673,12 @@ public interface FeatureObjectivePackage extends EPackage {
 		EClass FEATURE = eINSTANCE.getFeature();
 
 		/**
-		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FEATURE__ATTRIBUTES = eINSTANCE.getFeature_Attributes();
-
-		/**
-		 * The meta object literal for the '<em><b>Childrelation</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FEATURE__CHILDRELATION = eINSTANCE.getFeature_Childrelation();
-
-		/**
-		 * The meta object literal for the '<em><b>Simple Mandatory</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FEATURE__SIMPLE_MANDATORY = eINSTANCE.getFeature_SimpleMandatory();
-
-		/**
-		 * The meta object literal for the '<em><b>Simple Optional</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FEATURE__SIMPLE_OPTIONAL = eINSTANCE.getFeature_SimpleOptional();
-
-		/**
 		 * The meta object literal for the '<em><b>Featuregroup</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference FEATURE__FEATUREGROUP = eINSTANCE.getFeature_Featuregroup();
-
-		/**
-		 * The meta object literal for the '{@link featureObjective.impl.AttributeImpl <em>Attribute</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see featureObjective.impl.AttributeImpl
-		 * @see featureObjective.impl.FeatureObjectivePackageImpl#getAttribute()
-		 * @generated
-		 */
-		EClass ATTRIBUTE = eINSTANCE.getAttribute();
-
-		/**
-		 * The meta object literal for the '<em><b>Range</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ATTRIBUTE__RANGE = eINSTANCE.getAttribute_Range();
-
-		/**
-		 * The meta object literal for the '{@link featureObjective.impl.IntervalRangeImpl <em>Interval Range</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see featureObjective.impl.IntervalRangeImpl
-		 * @see featureObjective.impl.FeatureObjectivePackageImpl#getIntervalRange()
-		 * @generated
-		 */
-		EClass INTERVAL_RANGE = eINSTANCE.getIntervalRange();
-
-		/**
-		 * The meta object literal for the '<em><b>Lower Bound Included</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INTERVAL_RANGE__LOWER_BOUND_INCLUDED = eINSTANCE.getIntervalRange_LowerBoundIncluded();
-
-		/**
-		 * The meta object literal for the '<em><b>Upper Bound Included</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INTERVAL_RANGE__UPPER_BOUND_INCLUDED = eINSTANCE.getIntervalRange_UpperBoundIncluded();
-
-		/**
-		 * The meta object literal for the '{@link featureObjective.impl.ChildRelationImpl <em>Child Relation</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see featureObjective.impl.ChildRelationImpl
-		 * @see featureObjective.impl.FeatureObjectivePackageImpl#getChildRelation()
-		 * @generated
-		 */
-		EClass CHILD_RELATION = eINSTANCE.getChildRelation();
-
-		/**
-		 * The meta object literal for the '{@link featureObjective.impl.SimpleImpl <em>Simple</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see featureObjective.impl.SimpleImpl
-		 * @see featureObjective.impl.FeatureObjectivePackageImpl#getSimple()
-		 * @generated
-		 */
-		EClass SIMPLE = eINSTANCE.getSimple();
-
-		/**
-		 * The meta object literal for the '<em><b>Optional Children</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SIMPLE__OPTIONAL_CHILDREN = eINSTANCE.getSimple_OptionalChildren();
-
-		/**
-		 * The meta object literal for the '<em><b>Mandatory Children</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SIMPLE__MANDATORY_CHILDREN = eINSTANCE.getSimple_MandatoryChildren();
 
 		/**
 		 * The meta object literal for the '{@link featureObjective.impl.FeatureGroupImpl <em>Feature Group</em>}' class.
@@ -1488,28 +691,20 @@ public interface FeatureObjectivePackage extends EPackage {
 		EClass FEATURE_GROUP = eINSTANCE.getFeatureGroup();
 
 		/**
-		 * The meta object literal for the '<em><b>Min</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FEATURE_GROUP__MIN = eINSTANCE.getFeatureGroup_Min();
+		EReference FEATURE_GROUP__FEATURES = eINSTANCE.getFeatureGroup_Features();
 
 		/**
-		 * The meta object literal for the '<em><b>Max</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Operation</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FEATURE_GROUP__MAX = eINSTANCE.getFeatureGroup_Max();
-
-		/**
-		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FEATURE_GROUP__CHILDREN = eINSTANCE.getFeatureGroup_Children();
+		EAttribute FEATURE_GROUP__OPERATION = eINSTANCE.getFeatureGroup_Operation();
 
 		/**
 		 * The meta object literal for the '{@link featureObjective.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -1566,96 +761,6 @@ public interface FeatureObjectivePackage extends EPackage {
 		EClass PROHIBITS_CONSTRAINT = eINSTANCE.getProhibitsConstraint();
 
 		/**
-		 * The meta object literal for the '{@link featureObjective.impl.IntegerIntervalRangeImpl <em>Integer Interval Range</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see featureObjective.impl.IntegerIntervalRangeImpl
-		 * @see featureObjective.impl.FeatureObjectivePackageImpl#getIntegerIntervalRange()
-		 * @generated
-		 */
-		EClass INTEGER_INTERVAL_RANGE = eINSTANCE.getIntegerIntervalRange();
-
-		/**
-		 * The meta object literal for the '<em><b>To</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INTEGER_INTERVAL_RANGE__TO = eINSTANCE.getIntegerIntervalRange_To();
-
-		/**
-		 * The meta object literal for the '<em><b>From</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INTEGER_INTERVAL_RANGE__FROM = eINSTANCE.getIntegerIntervalRange_From();
-
-		/**
-		 * The meta object literal for the '{@link featureObjective.impl.IntegerAttributeImpl <em>Integer Attribute</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see featureObjective.impl.IntegerAttributeImpl
-		 * @see featureObjective.impl.FeatureObjectivePackageImpl#getIntegerAttribute()
-		 * @generated
-		 */
-		EClass INTEGER_ATTRIBUTE = eINSTANCE.getIntegerAttribute();
-
-		/**
-		 * The meta object literal for the '<em><b>Default Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INTEGER_ATTRIBUTE__DEFAULT_VALUE = eINSTANCE.getIntegerAttribute_DefaultValue();
-
-		/**
-		 * The meta object literal for the '{@link featureObjective.impl.DoubleAttributeImpl <em>Double Attribute</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see featureObjective.impl.DoubleAttributeImpl
-		 * @see featureObjective.impl.FeatureObjectivePackageImpl#getDoubleAttribute()
-		 * @generated
-		 */
-		EClass DOUBLE_ATTRIBUTE = eINSTANCE.getDoubleAttribute();
-
-		/**
-		 * The meta object literal for the '<em><b>Default Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DOUBLE_ATTRIBUTE__DEFAULT_VALUE = eINSTANCE.getDoubleAttribute_DefaultValue();
-
-		/**
-		 * The meta object literal for the '{@link featureObjective.impl.StringAttributeImpl <em>String Attribute</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see featureObjective.impl.StringAttributeImpl
-		 * @see featureObjective.impl.FeatureObjectivePackageImpl#getStringAttribute()
-		 * @generated
-		 */
-		EClass STRING_ATTRIBUTE = eINSTANCE.getStringAttribute();
-
-		/**
-		 * The meta object literal for the '<em><b>Default Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STRING_ATTRIBUTE__DEFAULT_VALUE = eINSTANCE.getStringAttribute_DefaultValue();
-
-		/**
-		 * The meta object literal for the '{@link featureObjective.impl.ExternalObjectAttributeImpl <em>External Object Attribute</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see featureObjective.impl.ExternalObjectAttributeImpl
-		 * @see featureObjective.impl.FeatureObjectivePackageImpl#getExternalObjectAttribute()
-		 * @generated
-		 */
-		EClass EXTERNAL_OBJECT_ATTRIBUTE = eINSTANCE.getExternalObjectAttribute();
-
-		/**
 		 * The meta object literal for the '{@link featureObjective.AttributeTypes <em>Attribute Types</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1664,6 +769,16 @@ public interface FeatureObjectivePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ATTRIBUTE_TYPES = eINSTANCE.getAttributeTypes();
+
+		/**
+		 * The meta object literal for the '{@link featureObjective.LogicalOperation <em>Logical Operation</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see featureObjective.LogicalOperation
+		 * @see featureObjective.impl.FeatureObjectivePackageImpl#getLogicalOperation()
+		 * @generated
+		 */
+		EEnum LOGICAL_OPERATION = eINSTANCE.getLogicalOperation();
 
 	}
 

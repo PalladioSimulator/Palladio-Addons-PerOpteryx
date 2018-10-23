@@ -91,7 +91,7 @@ public class FeatureObjectiveItemProvider extends DescribedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(FeatureObjectivePackage.Literals.FEATURE_OBJECTIVE__ROOT_FEATURE);
+			childrenFeatures.add(FeatureObjectivePackage.Literals.FEATURE_OBJECTIVE__FEATURE_GROUPS);
 			childrenFeatures.add(FeatureObjectivePackage.Literals.FEATURE_OBJECTIVE__CONSTRAINTS);
 		}
 		return childrenFeatures;
@@ -134,7 +134,7 @@ public class FeatureObjectiveItemProvider extends DescribedElementItemProvider {
 			getString("_UI_FeatureObjective_type") :
 			getString("_UI_FeatureObjective_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -148,7 +148,7 @@ public class FeatureObjectiveItemProvider extends DescribedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FeatureObjective.class)) {
-			case FeatureObjectivePackage.FEATURE_OBJECTIVE__ROOT_FEATURE:
+			case FeatureObjectivePackage.FEATURE_OBJECTIVE__FEATURE_GROUPS:
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__CONSTRAINTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -169,8 +169,8 @@ public class FeatureObjectiveItemProvider extends DescribedElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(FeatureObjectivePackage.Literals.FEATURE_OBJECTIVE__ROOT_FEATURE,
-				 FeatureObjectiveFactory.eINSTANCE.createFeature()));
+				(FeatureObjectivePackage.Literals.FEATURE_OBJECTIVE__FEATURE_GROUPS,
+				 FeatureObjectiveFactory.eINSTANCE.createFeatureGroup()));
 
 		newChildDescriptors.add
 			(createChildParameter

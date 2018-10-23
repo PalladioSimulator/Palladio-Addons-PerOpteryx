@@ -22,3 +22,4 @@ Require-Bundle: de.uka.ipd.sdq.dsexplore;bundle-version="1.0.0",
  org.modelversioning.emfprofile;bundle-version="1.1.0",
  edu.kit.ipd.are.dsexplore.componentSecurity;bundle-version="0.1.0"
 Bundle-Vendor: edu.kit.ipd.are
+Automatic-Module-Name: edu.kit.ipd.are.dsexplore.analysis.security

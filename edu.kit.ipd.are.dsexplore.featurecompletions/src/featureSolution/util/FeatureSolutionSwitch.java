@@ -90,13 +90,13 @@ public class FeatureSolutionSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeatureSolutionPackage.EXTENSION_INCLUSION: {
-				ExtensionInclusion extensionInclusion = (ExtensionInclusion)theEObject;
-				T result = caseExtensionInclusion(extensionInclusion);
-				if (result == null) result = caseInclusionMechanism(extensionInclusion);
-				if (result == null) result = caseDescribedElement(extensionInclusion);
-				if (result == null) result = caseNamedElement(extensionInclusion);
-				if (result == null) result = caseIdentifier(extensionInclusion);
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION: {
+				BehaviourInclusion behaviourInclusion = (BehaviourInclusion)theEObject;
+				T result = caseBehaviourInclusion(behaviourInclusion);
+				if (result == null) result = caseInclusionMechanism(behaviourInclusion);
+				if (result == null) result = caseDescribedElement(behaviourInclusion);
+				if (result == null) result = caseNamedElement(behaviourInclusion);
+				if (result == null) result = caseIdentifier(behaviourInclusion);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -135,17 +135,17 @@ public class FeatureSolutionSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Extension Inclusion</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Behaviour Inclusion</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Extension Inclusion</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Behaviour Inclusion</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExtensionInclusion(ExtensionInclusion object) {
+	public T caseBehaviourInclusion(BehaviourInclusion object) {
 		return null;
 	}
 

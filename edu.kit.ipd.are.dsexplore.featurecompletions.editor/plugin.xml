@@ -90,4 +90,32 @@
       </editor>
    </extension>
 
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated featureCompletions -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="placementDescription.presentation.PlacementDescriptionModelWizardID"
+            name="%_UI_PlacementDescriptionModelWizard_label"
+            class="placementDescription.presentation.PlacementDescriptionModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/PlacementDescriptionModelFile.gif">
+         <description>%_UI_PlacementDescriptionModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated featureCompletions -->
+      <editor
+            id="placementDescription.presentation.PlacementDescriptionEditorID"
+            name="%_UI_PlacementDescriptionEditor_label"
+            icon="icons/full/obj16/PlacementDescriptionModelFile.gif"
+            extensions="placementdescription"
+            class="placementDescription.presentation.PlacementDescriptionEditor"
+            contributorClass="placementDescription.presentation.PlacementDescriptionActionBarContributor">
+      </editor>
+   </extension>
+
 </plugin>

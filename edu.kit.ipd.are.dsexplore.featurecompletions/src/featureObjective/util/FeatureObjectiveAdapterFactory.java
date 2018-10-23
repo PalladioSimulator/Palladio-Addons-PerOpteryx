@@ -81,22 +81,6 @@ public class FeatureObjectiveAdapterFactory extends AdapterFactoryImpl {
 				return createFeatureAdapter();
 			}
 			@Override
-			public Adapter caseAttribute(Attribute object) {
-				return createAttributeAdapter();
-			}
-			@Override
-			public Adapter caseIntervalRange(IntervalRange object) {
-				return createIntervalRangeAdapter();
-			}
-			@Override
-			public Adapter caseChildRelation(ChildRelation object) {
-				return createChildRelationAdapter();
-			}
-			@Override
-			public Adapter caseSimple(Simple object) {
-				return createSimpleAdapter();
-			}
-			@Override
 			public Adapter caseFeatureGroup(FeatureGroup object) {
 				return createFeatureGroupAdapter();
 			}
@@ -111,26 +95,6 @@ public class FeatureObjectiveAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseProhibitsConstraint(ProhibitsConstraint object) {
 				return createProhibitsConstraintAdapter();
-			}
-			@Override
-			public Adapter caseIntegerIntervalRange(IntegerIntervalRange object) {
-				return createIntegerIntervalRangeAdapter();
-			}
-			@Override
-			public Adapter caseIntegerAttribute(IntegerAttribute object) {
-				return createIntegerAttributeAdapter();
-			}
-			@Override
-			public Adapter caseDoubleAttribute(DoubleAttribute object) {
-				return createDoubleAttributeAdapter();
-			}
-			@Override
-			public Adapter caseStringAttribute(StringAttribute object) {
-				return createStringAttributeAdapter();
-			}
-			@Override
-			public Adapter caseExternalObjectAttribute(ExternalObjectAttribute object) {
-				return createExternalObjectAttributeAdapter();
 			}
 			@Override
 			public Adapter caseIdentifier(Identifier object) {
@@ -193,62 +157,6 @@ public class FeatureObjectiveAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link featureObjective.Attribute <em>Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see featureObjective.Attribute
-	 * @generated
-	 */
-	public Adapter createAttributeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link featureObjective.IntervalRange <em>Interval Range</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see featureObjective.IntervalRange
-	 * @generated
-	 */
-	public Adapter createIntervalRangeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link featureObjective.ChildRelation <em>Child Relation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see featureObjective.ChildRelation
-	 * @generated
-	 */
-	public Adapter createChildRelationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link featureObjective.Simple <em>Simple</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see featureObjective.Simple
-	 * @generated
-	 */
-	public Adapter createSimpleAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link featureObjective.FeatureGroup <em>Feature Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -301,76 +209,6 @@ public class FeatureObjectiveAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createProhibitsConstraintAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link featureObjective.IntegerIntervalRange <em>Integer Interval Range</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see featureObjective.IntegerIntervalRange
-	 * @generated
-	 */
-	public Adapter createIntegerIntervalRangeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link featureObjective.IntegerAttribute <em>Integer Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see featureObjective.IntegerAttribute
-	 * @generated
-	 */
-	public Adapter createIntegerAttributeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link featureObjective.DoubleAttribute <em>Double Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see featureObjective.DoubleAttribute
-	 * @generated
-	 */
-	public Adapter createDoubleAttributeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link featureObjective.StringAttribute <em>String Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see featureObjective.StringAttribute
-	 * @generated
-	 */
-	public Adapter createStringAttributeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link featureObjective.ExternalObjectAttribute <em>External Object Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see featureObjective.ExternalObjectAttribute
-	 * @generated
-	 */
-	public Adapter createExternalObjectAttributeAdapter() {
 		return null;
 	}
 

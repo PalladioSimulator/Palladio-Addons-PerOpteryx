@@ -1,0 +1,68 @@
+import "platform:/resource/mRUBiS/internal_architecture_model.repository"
+import "platform:/resource/mRUBiS/Peropteryx/Logging.featurecompletion"
+
+BehaviourInclusion behaviourIncl _ZZ {
+	description "behaviour inclusion instance for case study"
+	pointCut {
+		PointCut allPersistBidCalls {
+			placementStrategy ExternalCallPlacementStrategy {
+				matchingSignature persistBid
+			}
+		},
+		PointCut allActionsInQueryServiceBean {
+			placementStrategy InternalActionPlacementStrategy {
+				forAllInternalActionsIn QueryServiceBean
+			}
+		},
+		PointCut allActionsInBidServiceBean {
+			placementStrategy InternalActionPlacementStrategy {
+				forAllInternalActionsIn BidServiceBean
+			}
+		},
+		PointCut allActionsInBasicQueryServiceBean {
+			placementStrategy InternalActionPlacementStrategy {
+				forAllInternalActionsIn BasicQueryServiceBean
+			}
+		},
+		PointCut allControlFlowsInBasicQueryServiceBean {
+			placementStrategy ControlFlowPlacementStrategy {
+				forAllControlFlowsIn BasicQueryServiceBean
+			}
+		}
+	}
+//	featureCompletion Logging({SimpleCollecting,LocationInfoCollecting}, {ConsoleAppending,FileAppending}, {PatternLayout,optional JSONLayout})
+//	featureCompletion Logging({LocationInfoCollecting,SimpleCollecting}, 
+//		{SQLDatabaseAppending,ConsoleAppending,FileAppending,optional NoSQLDatabaseAppending}, 
+//		{optional XMLLayout,PatternLayout,optional CSVLayout,optional JSONLayout}
+//	)
+	featureCompletion Logging({SimpleCollecting}, {SQLDatabaseAppending}, {PatternLayout})
+	advice {
+//		Advice {
+//			appears BEFORE 
+//			pointCut allPersistBidCalls
+//			placementPolicy MANDATORY
+//		}
+//		,
+		Advice {
+			appears AROUND 
+			pointCut allActionsInQueryServiceBean
+			placementPolicy OPTIONAL
+		},
+		Advice {
+			appears AROUND 
+			pointCut allActionsInBidServiceBean
+			placementPolicy OPTIONAL
+		},
+		Advice {
+			appears AROUND 
+			pointCut allActionsInBasicQueryServiceBean
+			placementPolicy OPTIONAL
+		}
+//		,
+//		Advice {
+//			appears AROUND 
+//			pointCut allControlFlowsInBasicQueryServiceBean
+//			placementPolicy MANDATORY
+//		}
+	}
+}

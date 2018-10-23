@@ -68,7 +68,6 @@ import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 
 import org.eclipse.swt.graphics.Point;
-
 import org.eclipse.swt.layout.FillLayout;
 
 import org.eclipse.swt.widgets.Composite;
@@ -162,11 +161,58 @@ import FeatureCompletionModel.provider.FeatureCompletionItemProviderAdapterFacto
 
 import de.uka.ipd.sdq.identifier.provider.IdentifierItemProviderAdapterFactory;
 
+import de.uka.ipd.sdq.probfunction.provider.ProbfunctionItemProviderAdapterFactory;
+
+import de.uka.ipd.sdq.stoex.provider.StoexItemProviderAdapterFactory;
+
+import de.uka.ipd.sdq.units.provider.UnitsItemProviderAdapterFactory;
+
 import featureSolution.provider.FeatureSolutionItemProviderAdapterFactory;
 
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
+import org.palladiosimulator.pcm.allocation.provider.AllocationItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.core.composition.provider.CompositionItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.core.entity.provider.EntityItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.core.provider.CoreItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.parameter.provider.ParameterItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.protocol.provider.ProtocolItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.provider.PcmItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.qosannotations.provider.QosannotationsItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.qosannotations.qos_performance.provider.QosPerformanceItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.qosannotations.qos_reliability.provider.QosReliabilityItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.reliability.provider.ReliabilityItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.repository.provider.RepositoryItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.resourceenvironment.provider.ResourceenvironmentItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.resourcetype.provider.ResourcetypeItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.seff.provider.SeffItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.seff.seff_performance.provider.SeffPerformanceItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.seff.seff_reliability.provider.SeffReliabilityItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.subsystem.provider.SubsystemItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.system.provider.SystemItemProviderAdapterFactory;
+
+import org.palladiosimulator.pcm.usagemodel.provider.UsagemodelItemProviderAdapterFactory;
+import placementDescription.provider.PlacementDescriptionItemProviderAdapterFactory;
 
 
 /**
@@ -714,8 +760,32 @@ public class FeatureObjectiveEditor
 		adapterFactory.addAdapterFactory(new FeatureCompletionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new FeatureObjectiveItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new FeatureSolutionItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new PlacementDescriptionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new IdentifierItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new PcmItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new CoreItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new EntityItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new CompositionItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new UsagemodelItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new RepositoryItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ResourcetypeItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ProtocolItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ParameterItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ReliabilityItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new SeffItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new SeffPerformanceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new SeffReliabilityItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new QosannotationsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new QosPerformanceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new QosReliabilityItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new SystemItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ResourceenvironmentItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new AllocationItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new SubsystemItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ProbfunctionItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new StoexItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new UnitsItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.

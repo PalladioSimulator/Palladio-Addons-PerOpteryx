@@ -1,0 +1,7 @@
+//For{Component(Role(InfrastructureRequiredProvided) and Name("CoreOnlineEngine"))}Do{NQA("Security"="+")}
+//For{Component(Role(InfrastructureRequiredProvided) and Id(not "_P48uoGo2Ed631pecjlFspw"))}Do{NQA("Security"="-")}
+//For{Component(Annotation("target") and Assembly(not AnyAssembly with Component(Name("TEST"))))}Do{NQA("Security"="--")}
+For{Component(Role(InfrastructureRequiredProvided) and Annotation("target"))}Do{NQA("Security"="+")}
+For{Component(Role(InfrastructureRequiredProvided) and Annotation(not "target"))}Do{NQA("Security"="-")}
+For{Component(Name("Test"))}Do{Reasoning("Reliability"=Rule("FaultTolerance"=Entry("+"="+"),Entry("0"="0"),Entry("-"="-")))}
+For{Component(Name("Test"))}Do{Reasoning("Maintainability"=Rule("Testability", "Modifiability" = Entry("+", "+" ="+")))}

@@ -466,5 +466,8 @@
         <details key="documentation" value="This Degree of Freedom is representing an indicator. That degree cannot set randomly but indicates some design decision which made by other degrees."/>
       </eAnnotations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MultipleInclusionDegree" eSuperTypes="#//specific/IndicatorDegree"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AdvicePlacementDegree" eSuperTypes="#//specific/IndicatorDegree"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ComplementumVisnetisDegree" eSuperTypes="#//specific/ClassAsReferenceDegree"/>
   </eSubpackages>
 </ecore:EPackage>

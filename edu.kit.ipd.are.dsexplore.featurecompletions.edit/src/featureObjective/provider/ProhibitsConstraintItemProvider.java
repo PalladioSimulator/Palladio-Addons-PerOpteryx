@@ -69,7 +69,7 @@ public class ProhibitsConstraintItemProvider extends ConstraintItemProvider {
 			getString("_UI_ProhibitsConstraint_type") :
 			getString("_UI_ProhibitsConstraint_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

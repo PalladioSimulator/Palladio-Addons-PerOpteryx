@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -177,14 +178,14 @@ public interface FeatureSolutionPackage extends EPackage {
 	int ADAPTER_INCLUSION_FEATURE_COUNT = INCLUSION_MECHANISM_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link featureSolution.impl.ExtensionInclusionImpl <em>Extension Inclusion</em>}' class.
+	 * The meta object id for the '{@link featureSolution.impl.BehaviourInclusionImpl <em>Behaviour Inclusion</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see featureSolution.impl.ExtensionInclusionImpl
-	 * @see featureSolution.impl.FeatureSolutionPackageImpl#getExtensionInclusion()
+	 * @see featureSolution.impl.BehaviourInclusionImpl
+	 * @see featureSolution.impl.FeatureSolutionPackageImpl#getBehaviourInclusion()
 	 * @generated
 	 */
-	int EXTENSION_INCLUSION = 2;
+	int BEHAVIOUR_INCLUSION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -193,7 +194,7 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_INCLUSION__ID = INCLUSION_MECHANISM__ID;
+	int BEHAVIOUR_INCLUSION__ID = INCLUSION_MECHANISM__ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -202,7 +203,7 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_INCLUSION__NAME = INCLUSION_MECHANISM__NAME;
+	int BEHAVIOUR_INCLUSION__NAME = INCLUSION_MECHANISM__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -211,7 +212,7 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_INCLUSION__DESCRIPTION = INCLUSION_MECHANISM__DESCRIPTION;
+	int BEHAVIOUR_INCLUSION__DESCRIPTION = INCLUSION_MECHANISM__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Multiple</b></em>' attribute.
@@ -220,16 +221,52 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_INCLUSION__MULTIPLE = INCLUSION_MECHANISM__MULTIPLE;
+	int BEHAVIOUR_INCLUSION__MULTIPLE = INCLUSION_MECHANISM__MULTIPLE;
 
 	/**
-	 * The number of structural features of the '<em>Extension Inclusion</em>' class.
+	 * The feature id for the '<em><b>Point Cut</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_INCLUSION_FEATURE_COUNT = INCLUSION_MECHANISM_FEATURE_COUNT + 0;
+	int BEHAVIOUR_INCLUSION__POINT_CUT = INCLUSION_MECHANISM_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Advice</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOUR_INCLUSION__ADVICE = INCLUSION_MECHANISM_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Imports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOUR_INCLUSION__IMPORTS = INCLUSION_MECHANISM_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Feature Completion</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOUR_INCLUSION__FEATURE_COMPLETION = INCLUSION_MECHANISM_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Behaviour Inclusion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOUR_INCLUSION_FEATURE_COUNT = INCLUSION_MECHANISM_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link featureSolution.Appearance <em>Appearance</em>}' enum.
@@ -240,7 +277,6 @@ public interface FeatureSolutionPackage extends EPackage {
 	 * @generated
 	 */
 	int APPEARANCE = 3;
-
 
 	/**
 	 * Returns the meta object for class '{@link featureSolution.InclusionMechanism <em>Inclusion Mechanism</em>}'.
@@ -285,14 +321,58 @@ public interface FeatureSolutionPackage extends EPackage {
 	EAttribute getAdapterInclusion_Appears();
 
 	/**
-	 * Returns the meta object for class '{@link featureSolution.ExtensionInclusion <em>Extension Inclusion</em>}'.
+	 * Returns the meta object for class '{@link featureSolution.BehaviourInclusion <em>Behaviour Inclusion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Extension Inclusion</em>'.
-	 * @see featureSolution.ExtensionInclusion
+	 * @return the meta object for class '<em>Behaviour Inclusion</em>'.
+	 * @see featureSolution.BehaviourInclusion
 	 * @generated
 	 */
-	EClass getExtensionInclusion();
+	EClass getBehaviourInclusion();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link featureSolution.BehaviourInclusion#getPointCut <em>Point Cut</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Point Cut</em>'.
+	 * @see featureSolution.BehaviourInclusion#getPointCut()
+	 * @see #getBehaviourInclusion()
+	 * @generated
+	 */
+	EReference getBehaviourInclusion_PointCut();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link featureSolution.BehaviourInclusion#getAdvice <em>Advice</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Advice</em>'.
+	 * @see featureSolution.BehaviourInclusion#getAdvice()
+	 * @see #getBehaviourInclusion()
+	 * @generated
+	 */
+	EReference getBehaviourInclusion_Advice();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link featureSolution.BehaviourInclusion#getImports <em>Imports</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Imports</em>'.
+	 * @see featureSolution.BehaviourInclusion#getImports()
+	 * @see #getBehaviourInclusion()
+	 * @generated
+	 */
+	EReference getBehaviourInclusion_Imports();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link featureSolution.BehaviourInclusion#getFeatureCompletion <em>Feature Completion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Feature Completion</em>'.
+	 * @see featureSolution.BehaviourInclusion#getFeatureCompletion()
+	 * @see #getBehaviourInclusion()
+	 * @generated
+	 */
+	EReference getBehaviourInclusion_FeatureCompletion();
 
 	/**
 	 * Returns the meta object for enum '{@link featureSolution.Appearance <em>Appearance</em>}'.
@@ -363,14 +443,46 @@ public interface FeatureSolutionPackage extends EPackage {
 		EAttribute ADAPTER_INCLUSION__APPEARS = eINSTANCE.getAdapterInclusion_Appears();
 
 		/**
-		 * The meta object literal for the '{@link featureSolution.impl.ExtensionInclusionImpl <em>Extension Inclusion</em>}' class.
+		 * The meta object literal for the '{@link featureSolution.impl.BehaviourInclusionImpl <em>Behaviour Inclusion</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see featureSolution.impl.ExtensionInclusionImpl
-		 * @see featureSolution.impl.FeatureSolutionPackageImpl#getExtensionInclusion()
+		 * @see featureSolution.impl.BehaviourInclusionImpl
+		 * @see featureSolution.impl.FeatureSolutionPackageImpl#getBehaviourInclusion()
 		 * @generated
 		 */
-		EClass EXTENSION_INCLUSION = eINSTANCE.getExtensionInclusion();
+		EClass BEHAVIOUR_INCLUSION = eINSTANCE.getBehaviourInclusion();
+
+		/**
+		 * The meta object literal for the '<em><b>Point Cut</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOUR_INCLUSION__POINT_CUT = eINSTANCE.getBehaviourInclusion_PointCut();
+
+		/**
+		 * The meta object literal for the '<em><b>Advice</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOUR_INCLUSION__ADVICE = eINSTANCE.getBehaviourInclusion_Advice();
+
+		/**
+		 * The meta object literal for the '<em><b>Imports</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOUR_INCLUSION__IMPORTS = eINSTANCE.getBehaviourInclusion_Imports();
+
+		/**
+		 * The meta object literal for the '<em><b>Feature Completion</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BEHAVIOUR_INCLUSION__FEATURE_COMPLETION = eINSTANCE.getBehaviourInclusion_FeatureCompletion();
 
 		/**
 		 * The meta object literal for the '{@link featureSolution.Appearance <em>Appearance</em>}' enum.

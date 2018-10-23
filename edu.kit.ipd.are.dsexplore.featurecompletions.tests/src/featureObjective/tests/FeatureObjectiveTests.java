@@ -31,8 +31,6 @@ public class FeatureObjectiveTests extends TestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new FeatureObjectiveTests("featureObjective Tests");
-		suite.addTestSuite(FeatureTest.class);
-		suite.addTestSuite(SimpleTest.class);
 		suite.addTestSuite(FeatureGroupTest.class);
 		return suite;
 	}

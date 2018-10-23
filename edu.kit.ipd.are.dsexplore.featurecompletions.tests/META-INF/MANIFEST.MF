@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.featurecompletions.tests;singleton:=true
+Automatic-Module-Name: edu.kit.ipd.are.dsexplore.featurecompletions.tests
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
@@ -9,11 +10,16 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: FeatureCompletionModel.tests,
  featureObjective.tests,
- featureSolution.tests
+ featureSolution.tests,
+ placementDescription.tests
 Require-Bundle: org.eclipse.core.runtime,
  edu.kit.ipd.are.dsexplore.featurecompletions;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  de.uka.ipd.sdq.identifier;visibility:=reexport,
+ org.palladiosimulator.pcm;visibility:=reexport,
+ de.uka.ipd.sdq.probfunction;visibility:=reexport,
+ de.uka.ipd.sdq.stoex;visibility:=reexport,
+ de.uka.ipd.sdq.units;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.junit;visibility:=reexport
 Bundle-ActivationPolicy: lazy

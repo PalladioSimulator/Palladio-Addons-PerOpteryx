@@ -58,7 +58,7 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case FeatureSolutionPackage.ADAPTER_INCLUSION: return createAdapterInclusion();
-			case FeatureSolutionPackage.EXTENSION_INCLUSION: return createExtensionInclusion();
+			case FeatureSolutionPackage.BEHAVIOUR_INCLUSION: return createBehaviourInclusion();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -109,9 +109,9 @@ public class FeatureSolutionFactoryImpl extends EFactoryImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtensionInclusion createExtensionInclusion() {
-		ExtensionInclusionImpl extensionInclusion = new ExtensionInclusionImpl();
-		return extensionInclusion;
+	public BehaviourInclusion createBehaviourInclusion() {
+		BehaviourInclusionImpl behaviourInclusion = new BehaviourInclusionImpl();
+		return behaviourInclusion;
 	}
 
 	/**

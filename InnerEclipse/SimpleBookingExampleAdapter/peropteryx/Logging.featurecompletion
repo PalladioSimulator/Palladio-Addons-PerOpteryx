@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureCompletion:FeatureCompletionRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FeatureCompletion="http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1">
+  <featureCompletions id="_BQux0OQYEeeDc5WJsIYxgA" name="Logging">
+    <featureObjectives href="Logging.featureobjective#_zEouQOGgEeemVJ0YF1ddSA"/>
+    <completionComponents id="_qGwiUOTXEeeT85tFTnTIqQ" name="Appender" requiredComponents="_LinOEOTYEeeT85tFTnTIqQ">
+      <perimeterProviding id="_6bVkEuTXEeeT85tFTnTIqQ"/>
+      <perimeterRequiring id="_6zUmQeTXEeeT85tFTnTIqQ"/>
+    </completionComponents>
+    <completionComponents id="_LinOEOTYEeeT85tFTnTIqQ" name="Layout">
+      <perimeterProviding id="_MifWsuTYEeeT85tFTnTIqQ"/>
+      <perimeterRequiring id="_M1H-0eTYEeeT85tFTnTIqQ"/>
+    </completionComponents>
+    <completionComponents id="_dpty0OTXEeeT85tFTnTIqQ" name="Logger" requiredComponents="_qGwiUOTXEeeT85tFTnTIqQ">
+      <perimeterProviding id="_e3NgsOTXEeeT85tFTnTIqQ">
+        <featureProviding href="Logging.featureobjective#_3dfOkKwnEeifOYBHCQExLw"/>
+      </perimeterProviding>
+      <perimeterRequiring id="_fhZGIeTXEeeT85tFTnTIqQ"/>
+    </completionComponents>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_tGBoc-TaEeeT85tFTnTIqQ" name="ConsoleLogging" visnetum="INTERFACE"/>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_JysxkeWGEeeT85tFTnTIqQ" name="FileLogging" visnetum="INTERFACE">
+      <complementaryFeature href="Logging.featureobjective#_3dfOkKwnEeifOYBHCQExLw"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_Lb-cgeWGEeeT85tFTnTIqQ" name="SQLDatabaseLogging" visnetum="INTERFACE"/>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_MX218eWGEeeT85tFTnTIqQ" name="NoSQLDatabaseLogging" description="" visnetum="INTERFACE"/>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_1XUJMeTaEeeT85tFTnTIqQ" name="PatternLayout" visnetum="INTERFACE"/>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_Mr2wAeWGEeeT85tFTnTIqQ" name="CSVLayout" visnetum="INTERFACE"/>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_NA0TYeWGEeeT85tFTnTIqQ" name="JSONLayout" visnetum="INTERFACE"/>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_NYvEIeWGEeeT85tFTnTIqQ" name="XMLLayout" visnetum="INTERFACE"/>
+    <complementa id="_RVapIOZXEeeT85tFTnTIqQ" name="SQLDatabase" visnetum="COMPONENT"/>
+    <complementa id="_c0hwwOZXEeeT85tFTnTIqQ" name="NoSQLDatabase" visnetum="COMPONENT"/>
+  </featureCompletions>
+</FeatureCompletion:FeatureCompletionRepository>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<featureObjective:FeatureObjective xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:featureObjective="http://are.ipd.kit.edu/FeatureObjectivesModel/1.0.0" id="_zEouQOGgEeemVJ0YF1ddSA" name="LoggingFeatures">
+  <featureGroups>
+    <features id="_3dfOkKwnEeifOYBHCQExLw" name="Logging"/>
+  </featureGroups>
+  <featureGroups>
+    <features id="_5pImwKwnEeifOYBHCQExLw" name="Analyze"/>
+  </featureGroups>
+  <featureGroups>
+    <features id="_9gCm4KwnEeifOYBHCQExLw" name="Layouter"/>
+  </featureGroups>
+</featureObjective:FeatureObjective>

@@ -23,6 +23,7 @@ import org.palladiosimulator.pcm.system.System;
 
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.EcoreReferenceResolver;
+
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 
 /**
@@ -72,6 +73,15 @@ public class PcmSystemManager {
 		return false;
 		// return this.getAllConnectors().anyMatch(eachConnector ->
 		// this.areEqual(eachConnector, searchedConnector));
+	}
+	
+	public boolean existConnectors(List<Connector> searchedConnectors) {
+		for (Connector c : searchedConnectors) {
+			if (!existConnector(c)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private boolean areEqual(Connector givenConnector, Connector searchedConnector) {
@@ -127,6 +137,22 @@ public class PcmSystemManager {
 		return Optional.empty();
 		// return
 		// this.getAllAssemblyContexts().filter(searchCriteria).findFirst();
+	}
+	
+	/**
+	 * Filters the assembly contexts which satisfies the given predicate.
+	 * 
+	 * @param searchCriteria the search criteria for filtering the assembly contexts.
+	 * @return all assembly contexts that match the given predicate.
+	 */
+	public List<AssemblyContext> getAssemblyContextsBy(Predicate<AssemblyContext> searchCriteria) {
+		List<AssemblyContext> result = new ArrayList<>();
+		for (AssemblyContext ac : this.getAllAssemblyContexts()) {
+			if (searchCriteria.test(ac)) {
+				result.add(ac);
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -350,4 +376,6 @@ public class PcmSystemManager {
 		this.addAssemblyContext(assemblyContext);
 		return assemblyContext;
 	}
+
+	
 }

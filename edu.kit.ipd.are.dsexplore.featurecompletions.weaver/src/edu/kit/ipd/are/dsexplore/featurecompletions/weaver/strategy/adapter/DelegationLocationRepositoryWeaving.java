@@ -24,14 +24,17 @@ public class DelegationLocationRepositoryWeaving extends RepositoryWeaving {
 	 */
 	@Override
 	protected void weaveAdapterIntoRepository(WeavingLocation weavingLocation) {
+		// TODO DTHF1: Check: creation only if needed
+
 		ProvidedDelegationConnector location = (ProvidedDelegationConnector) weavingLocation.getLocation();
 
 		OperationProvidedRole delegatedConnectionEnd = location.getOuterProvidedRole_ProvidedDelegationConnector();
 		OperationProvidedRole providedConnectionEnd = location.getInnerProvidedRole_ProvidedDelegationConnector();
 
 		RepositoryComponent adapter = this.parent.getAdapterComponent();
-		adapter.getProvidedRoles_InterfaceProvidingEntity().add(this.parent.getMergedRepoManager().createProvidedRoleBy(delegatedConnectionEnd, adapter.getEntityName()));
-		adapter.getRequiredRoles_InterfaceRequiringEntity().add(this.parent.getMergedRepoManager().createRequiredRoleBy(providedConnectionEnd));
+
+		adapter.getProvidedRoles_InterfaceProvidingEntity().add(this.parent.getSolutionManager().createProvidedRoleBy(delegatedConnectionEnd, adapter.getEntityName()));
+		adapter.getRequiredRoles_InterfaceRequiringEntity().add(this.parent.getSolutionManager().createRequiredRoleBy(providedConnectionEnd));
 
 	}
 

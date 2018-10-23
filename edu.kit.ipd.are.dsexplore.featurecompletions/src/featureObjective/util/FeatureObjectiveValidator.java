@@ -40,28 +40,12 @@ public class FeatureObjectiveValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "featureObjective";
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Each Attribute Name Defined Just Once' of 'Feature'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int FEATURE__EACH_ATTRIBUTE_NAME_DEFINED_JUST_ONCE = 1;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'At Least One Child' of 'Simple'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int SIMPLE__AT_LEAST_ONE_CHILD = 2;
-
-	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'XO Ror OR Implies Children Are Mandatory' of 'Feature Group'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int FEATURE_GROUP__XO_ROR_OR_IMPLIES_CHILDREN_ARE_MANDATORY = 3;
+	public static final int FEATURE_GROUP__XO_ROR_OR_IMPLIES_CHILDREN_ARE_MANDATORY = 1;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'ALL Implies Cardinalities To Be Minus One' of 'Feature Group'.
@@ -69,7 +53,7 @@ public class FeatureObjectiveValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int FEATURE_GROUP__ALL_IMPLIES_CARDINALITIES_TO_BE_MINUS_ONE = 4;
+	public static final int FEATURE_GROUP__ALL_IMPLIES_CARDINALITIES_TO_BE_MINUS_ONE = 2;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'OR Implies Cardinalities Min To Be One And Max To Be Minus One' of 'Feature Group'.
@@ -77,7 +61,7 @@ public class FeatureObjectiveValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int FEATURE_GROUP__OR_IMPLIES_CARDINALITIES_MIN_TO_BE_ONE_AND_MAX_TO_BE_MINUS_ONE = 5;
+	public static final int FEATURE_GROUP__OR_IMPLIES_CARDINALITIES_MIN_TO_BE_ONE_AND_MAX_TO_BE_MINUS_ONE = 3;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'XOR Implies Cardinalities To Be One' of 'Feature Group'.
@@ -85,7 +69,7 @@ public class FeatureObjectiveValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int FEATURE_GROUP__XOR_IMPLIES_CARDINALITIES_TO_BE_ONE = 6;
+	public static final int FEATURE_GROUP__XOR_IMPLIES_CARDINALITIES_TO_BE_ONE = 4;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -93,7 +77,7 @@ public class FeatureObjectiveValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 6;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 4;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -137,14 +121,6 @@ public class FeatureObjectiveValidator extends EObjectValidator {
 				return validateFeatureObjective((FeatureObjective)value, diagnostics, context);
 			case FeatureObjectivePackage.FEATURE:
 				return validateFeature((Feature)value, diagnostics, context);
-			case FeatureObjectivePackage.ATTRIBUTE:
-				return validateAttribute((Attribute)value, diagnostics, context);
-			case FeatureObjectivePackage.INTERVAL_RANGE:
-				return validateIntervalRange((IntervalRange)value, diagnostics, context);
-			case FeatureObjectivePackage.CHILD_RELATION:
-				return validateChildRelation((ChildRelation)value, diagnostics, context);
-			case FeatureObjectivePackage.SIMPLE:
-				return validateSimple((Simple)value, diagnostics, context);
 			case FeatureObjectivePackage.FEATURE_GROUP:
 				return validateFeatureGroup((FeatureGroup)value, diagnostics, context);
 			case FeatureObjectivePackage.CONSTRAINT:
@@ -153,18 +129,10 @@ public class FeatureObjectiveValidator extends EObjectValidator {
 				return validateRequiredConstraint((RequiredConstraint)value, diagnostics, context);
 			case FeatureObjectivePackage.PROHIBITS_CONSTRAINT:
 				return validateProhibitsConstraint((ProhibitsConstraint)value, diagnostics, context);
-			case FeatureObjectivePackage.INTEGER_INTERVAL_RANGE:
-				return validateIntegerIntervalRange((IntegerIntervalRange)value, diagnostics, context);
-			case FeatureObjectivePackage.INTEGER_ATTRIBUTE:
-				return validateIntegerAttribute((IntegerAttribute)value, diagnostics, context);
-			case FeatureObjectivePackage.DOUBLE_ATTRIBUTE:
-				return validateDoubleAttribute((DoubleAttribute)value, diagnostics, context);
-			case FeatureObjectivePackage.STRING_ATTRIBUTE:
-				return validateStringAttribute((StringAttribute)value, diagnostics, context);
-			case FeatureObjectivePackage.EXTERNAL_OBJECT_ATTRIBUTE:
-				return validateExternalObjectAttribute((ExternalObjectAttribute)value, diagnostics, context);
 			case FeatureObjectivePackage.ATTRIBUTE_TYPES:
 				return validateAttributeTypes((AttributeTypes)value, diagnostics, context);
+			case FeatureObjectivePackage.LOGICAL_OPERATION:
+				return validateLogicalOperation((LogicalOperation)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -185,83 +153,7 @@ public class FeatureObjectiveValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateFeature(Feature feature, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(feature, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(feature, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(feature, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(feature, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(feature, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(feature, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(feature, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(feature, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(feature, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFeature_EachAttributeNameDefinedJustOnce(feature, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * Validates the EachAttributeNameDefinedJustOnce constraint of '<em>Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateFeature_EachAttributeNameDefinedJustOnce(Feature feature, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return feature.EachAttributeNameDefinedJustOnce(diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateAttribute(Attribute attribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(attribute, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateIntervalRange(IntervalRange intervalRange, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(intervalRange, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateChildRelation(ChildRelation childRelation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(childRelation, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSimple(Simple simple, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(simple, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(simple, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(simple, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(simple, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(simple, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(simple, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(simple, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(simple, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(simple, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSimple_atLeastOneChild(simple, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * Validates the atLeastOneChild constraint of '<em>Simple</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSimple_atLeastOneChild(Simple simple, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return simple.atLeastOneChild(diagnostics, context);
+		return validate_EveryDefaultConstraint(feature, diagnostics, context);
 	}
 
 	/**
@@ -358,52 +250,16 @@ public class FeatureObjectiveValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateIntegerIntervalRange(IntegerIntervalRange integerIntervalRange, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(integerIntervalRange, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateIntegerAttribute(IntegerAttribute integerAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(integerAttribute, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateDoubleAttribute(DoubleAttribute doubleAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(doubleAttribute, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateStringAttribute(StringAttribute stringAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(stringAttribute, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateExternalObjectAttribute(ExternalObjectAttribute externalObjectAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(externalObjectAttribute, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateAttributeTypes(AttributeTypes attributeTypes, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLogicalOperation(LogicalOperation logicalOperation, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

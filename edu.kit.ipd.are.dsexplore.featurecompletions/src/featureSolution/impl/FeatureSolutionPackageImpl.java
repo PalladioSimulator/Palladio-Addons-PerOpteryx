@@ -6,15 +6,13 @@ import FeatureCompletionModel.FeatureCompletionPackage;
 
 import FeatureCompletionModel.impl.FeatureCompletionPackageImpl;
 
-import de.uka.ipd.sdq.identifier.IdentifierPackage;
-
 import featureObjective.FeatureObjectivePackage;
 
 import featureObjective.impl.FeatureObjectivePackageImpl;
 
 import featureSolution.AdapterInclusion;
 import featureSolution.Appearance;
-import featureSolution.ExtensionInclusion;
+import featureSolution.BehaviourInclusion;
 import featureSolution.FeatureSolutionFactory;
 import featureSolution.FeatureSolutionPackage;
 import featureSolution.InclusionMechanism;
@@ -23,9 +21,16 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.palladiosimulator.pcm.PcmPackage;
+
+import placementDescription.PlacementDescriptionPackage;
+
+import placementDescription.impl.PlacementDescriptionPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,7 +58,7 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass extensionInclusionEClass = null;
+	private EClass behaviourInclusionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -109,22 +114,24 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-		IdentifierPackage.eINSTANCE.eClass();
+		PcmPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		FeatureCompletionPackageImpl theFeatureCompletionPackage = (FeatureCompletionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI) instanceof FeatureCompletionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI) : FeatureCompletionPackage.eINSTANCE);
 		FeatureObjectivePackageImpl theFeatureObjectivePackage = (FeatureObjectivePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI) instanceof FeatureObjectivePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI) : FeatureObjectivePackage.eINSTANCE);
+		PlacementDescriptionPackageImpl thePlacementDescriptionPackage = (PlacementDescriptionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PlacementDescriptionPackage.eNS_URI) instanceof PlacementDescriptionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PlacementDescriptionPackage.eNS_URI) : PlacementDescriptionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theFeatureSolutionPackage.createPackageContents();
 		theFeatureCompletionPackage.createPackageContents();
 		theFeatureObjectivePackage.createPackageContents();
+		thePlacementDescriptionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theFeatureSolutionPackage.initializePackageContents();
 		theFeatureCompletionPackage.initializePackageContents();
 		theFeatureObjectivePackage.initializePackageContents();
+		thePlacementDescriptionPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theFeatureSolutionPackage.freeze();
@@ -176,8 +183,44 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExtensionInclusion() {
-		return extensionInclusionEClass;
+	public EClass getBehaviourInclusion() {
+		return behaviourInclusionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBehaviourInclusion_PointCut() {
+		return (EReference)behaviourInclusionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBehaviourInclusion_Advice() {
+		return (EReference)behaviourInclusionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBehaviourInclusion_Imports() {
+		return (EReference)behaviourInclusionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBehaviourInclusion_FeatureCompletion() {
+		return (EReference)behaviourInclusionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -223,7 +266,11 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		adapterInclusionEClass = createEClass(ADAPTER_INCLUSION);
 		createEAttribute(adapterInclusionEClass, ADAPTER_INCLUSION__APPEARS);
 
-		extensionInclusionEClass = createEClass(EXTENSION_INCLUSION);
+		behaviourInclusionEClass = createEClass(BEHAVIOUR_INCLUSION);
+		createEReference(behaviourInclusionEClass, BEHAVIOUR_INCLUSION__POINT_CUT);
+		createEReference(behaviourInclusionEClass, BEHAVIOUR_INCLUSION__ADVICE);
+		createEReference(behaviourInclusionEClass, BEHAVIOUR_INCLUSION__IMPORTS);
+		createEReference(behaviourInclusionEClass, BEHAVIOUR_INCLUSION__FEATURE_COMPLETION);
 
 		// Create enums
 		appearanceEEnum = createEEnum(APPEARANCE);
@@ -255,6 +302,7 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		// Obtain other dependent packages
 		FeatureCompletionPackage theFeatureCompletionPackage = (FeatureCompletionPackage)EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		PlacementDescriptionPackage thePlacementDescriptionPackage = (PlacementDescriptionPackage)EPackage.Registry.INSTANCE.getEPackage(PlacementDescriptionPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -263,16 +311,20 @@ public class FeatureSolutionPackageImpl extends EPackageImpl implements FeatureS
 		// Add supertypes to classes
 		inclusionMechanismEClass.getESuperTypes().add(theFeatureCompletionPackage.getDescribedElement());
 		adapterInclusionEClass.getESuperTypes().add(this.getInclusionMechanism());
-		extensionInclusionEClass.getESuperTypes().add(this.getInclusionMechanism());
+		behaviourInclusionEClass.getESuperTypes().add(this.getInclusionMechanism());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(inclusionMechanismEClass, InclusionMechanism.class, "InclusionMechanism", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getInclusionMechanism_Multiple(), theEcorePackage.getEBoolean(), "multiple", null, 0, 1, InclusionMechanism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getInclusionMechanism_Multiple(), theEcorePackage.getEBoolean(), "multiple", "false", 0, 1, InclusionMechanism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(adapterInclusionEClass, AdapterInclusion.class, "AdapterInclusion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAdapterInclusion_Appears(), this.getAppearance(), "appears", "BEFORE", 1, 1, AdapterInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(extensionInclusionEClass, ExtensionInclusion.class, "ExtensionInclusion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(behaviourInclusionEClass, BehaviourInclusion.class, "BehaviourInclusion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBehaviourInclusion_PointCut(), thePlacementDescriptionPackage.getPointCut(), null, "pointCut", null, 0, -1, BehaviourInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviourInclusion_Advice(), thePlacementDescriptionPackage.getAdvice(), null, "advice", null, 0, -1, BehaviourInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviourInclusion_Imports(), thePlacementDescriptionPackage.getImport(), null, "imports", null, 0, -1, BehaviourInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBehaviourInclusion_FeatureCompletion(), thePlacementDescriptionPackage.getFeatureSelection(), null, "featureCompletion", null, 1, 1, BehaviourInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(appearanceEEnum, Appearance.class, "Appearance");

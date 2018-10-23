@@ -88,37 +88,9 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FeatureObjectivePackage.ATTRIBUTE: {
-				Attribute attribute = (Attribute)theEObject;
-				T result = caseAttribute(attribute);
-				if (result == null) result = caseNamedElement(attribute);
-				if (result == null) result = caseIdentifier(attribute);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureObjectivePackage.INTERVAL_RANGE: {
-				IntervalRange intervalRange = (IntervalRange)theEObject;
-				T result = caseIntervalRange(intervalRange);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureObjectivePackage.CHILD_RELATION: {
-				ChildRelation childRelation = (ChildRelation)theEObject;
-				T result = caseChildRelation(childRelation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureObjectivePackage.SIMPLE: {
-				Simple simple = (Simple)theEObject;
-				T result = caseSimple(simple);
-				if (result == null) result = caseChildRelation(simple);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case FeatureObjectivePackage.FEATURE_GROUP: {
 				FeatureGroup featureGroup = (FeatureGroup)theEObject;
 				T result = caseFeatureGroup(featureGroup);
-				if (result == null) result = caseChildRelation(featureGroup);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -145,49 +117,6 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 				if (result == null) result = caseConstraint(prohibitsConstraint);
 				if (result == null) result = caseNamedElement(prohibitsConstraint);
 				if (result == null) result = caseIdentifier(prohibitsConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureObjectivePackage.INTEGER_INTERVAL_RANGE: {
-				IntegerIntervalRange integerIntervalRange = (IntegerIntervalRange)theEObject;
-				T result = caseIntegerIntervalRange(integerIntervalRange);
-				if (result == null) result = caseIntervalRange(integerIntervalRange);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureObjectivePackage.INTEGER_ATTRIBUTE: {
-				IntegerAttribute integerAttribute = (IntegerAttribute)theEObject;
-				T result = caseIntegerAttribute(integerAttribute);
-				if (result == null) result = caseAttribute(integerAttribute);
-				if (result == null) result = caseNamedElement(integerAttribute);
-				if (result == null) result = caseIdentifier(integerAttribute);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureObjectivePackage.DOUBLE_ATTRIBUTE: {
-				DoubleAttribute doubleAttribute = (DoubleAttribute)theEObject;
-				T result = caseDoubleAttribute(doubleAttribute);
-				if (result == null) result = caseAttribute(doubleAttribute);
-				if (result == null) result = caseNamedElement(doubleAttribute);
-				if (result == null) result = caseIdentifier(doubleAttribute);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureObjectivePackage.STRING_ATTRIBUTE: {
-				StringAttribute stringAttribute = (StringAttribute)theEObject;
-				T result = caseStringAttribute(stringAttribute);
-				if (result == null) result = caseAttribute(stringAttribute);
-				if (result == null) result = caseNamedElement(stringAttribute);
-				if (result == null) result = caseIdentifier(stringAttribute);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FeatureObjectivePackage.EXTERNAL_OBJECT_ATTRIBUTE: {
-				ExternalObjectAttribute externalObjectAttribute = (ExternalObjectAttribute)theEObject;
-				T result = caseExternalObjectAttribute(externalObjectAttribute);
-				if (result == null) result = caseAttribute(externalObjectAttribute);
-				if (result == null) result = caseNamedElement(externalObjectAttribute);
-				if (result == null) result = caseIdentifier(externalObjectAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -222,66 +151,6 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFeature(Feature object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttribute(Attribute object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Interval Range</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Interval Range</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIntervalRange(IntervalRange object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Child Relation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Child Relation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseChildRelation(ChildRelation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Simple</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Simple</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSimple(Simple object) {
 		return null;
 	}
 
@@ -342,81 +211,6 @@ public class FeatureObjectiveSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseProhibitsConstraint(ProhibitsConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Integer Interval Range</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Integer Interval Range</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIntegerIntervalRange(IntegerIntervalRange object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Integer Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Integer Attribute</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIntegerAttribute(IntegerAttribute object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Double Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Double Attribute</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDoubleAttribute(DoubleAttribute object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>String Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>String Attribute</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStringAttribute(StringAttribute object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>External Object Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>External Object Attribute</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseExternalObjectAttribute(ExternalObjectAttribute object) {
 		return null;
 	}
 

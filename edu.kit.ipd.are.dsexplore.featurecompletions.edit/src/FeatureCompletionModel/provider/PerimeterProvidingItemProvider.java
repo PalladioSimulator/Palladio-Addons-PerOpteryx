@@ -94,7 +94,7 @@ public class PerimeterProvidingItemProvider extends NamedElementItemProvider {
 			getString("_UI_PerimeterProviding_type") :
 			getString("_UI_PerimeterProviding_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.featurecompletions.editor;singleton:=true
+Automatic-Module-Name: edu.kit.ipd.are.dsexplore.featurecompletions.editor
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: FeatureCompletionModel.presentation.FeatureCompletionsEditorPlugin$Implementation
@@ -10,7 +11,8 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: FeatureCompletionModel.presentation,
  featureObjective.presentation,
- featureSolution.presentation
+ featureSolution.presentation,
+ placementDescription.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  edu.kit.ipd.are.dsexplore.featurecompletions.edit;visibility:=reexport,
@@ -18,5 +20,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
- de.uka.ipd.sdq.identifier.edit;visibility:=reexport
+ de.uka.ipd.sdq.identifier.edit;visibility:=reexport,
+ org.palladiosimulator.pcm.edit;visibility:=reexport,
+ de.uka.ipd.sdq.probfunction.edit;visibility:=reexport,
+ de.uka.ipd.sdq.stoex.edit;visibility:=reexport,
+ de.uka.ipd.sdq.units.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy

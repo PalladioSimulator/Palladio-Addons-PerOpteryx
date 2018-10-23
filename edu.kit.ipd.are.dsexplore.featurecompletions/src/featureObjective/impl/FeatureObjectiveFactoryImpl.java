@@ -59,15 +59,9 @@ public class FeatureObjectiveFactoryImpl extends EFactoryImpl implements Feature
 		switch (eClass.getClassifierID()) {
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE: return createFeatureObjective();
 			case FeatureObjectivePackage.FEATURE: return createFeature();
-			case FeatureObjectivePackage.SIMPLE: return createSimple();
 			case FeatureObjectivePackage.FEATURE_GROUP: return createFeatureGroup();
 			case FeatureObjectivePackage.REQUIRED_CONSTRAINT: return createRequiredConstraint();
 			case FeatureObjectivePackage.PROHIBITS_CONSTRAINT: return createProhibitsConstraint();
-			case FeatureObjectivePackage.INTEGER_INTERVAL_RANGE: return createIntegerIntervalRange();
-			case FeatureObjectivePackage.INTEGER_ATTRIBUTE: return createIntegerAttribute();
-			case FeatureObjectivePackage.DOUBLE_ATTRIBUTE: return createDoubleAttribute();
-			case FeatureObjectivePackage.STRING_ATTRIBUTE: return createStringAttribute();
-			case FeatureObjectivePackage.EXTERNAL_OBJECT_ATTRIBUTE: return createExternalObjectAttribute();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -83,6 +77,8 @@ public class FeatureObjectiveFactoryImpl extends EFactoryImpl implements Feature
 		switch (eDataType.getClassifierID()) {
 			case FeatureObjectivePackage.ATTRIBUTE_TYPES:
 				return createAttributeTypesFromString(eDataType, initialValue);
+			case FeatureObjectivePackage.LOGICAL_OPERATION:
+				return createLogicalOperationFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -98,6 +94,8 @@ public class FeatureObjectiveFactoryImpl extends EFactoryImpl implements Feature
 		switch (eDataType.getClassifierID()) {
 			case FeatureObjectivePackage.ATTRIBUTE_TYPES:
 				return convertAttributeTypesToString(eDataType, instanceValue);
+			case FeatureObjectivePackage.LOGICAL_OPERATION:
+				return convertLogicalOperationToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -121,16 +119,6 @@ public class FeatureObjectiveFactoryImpl extends EFactoryImpl implements Feature
 	public Feature createFeature() {
 		FeatureImpl feature = new FeatureImpl();
 		return feature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Simple createSimple() {
-		SimpleImpl simple = new SimpleImpl();
-		return simple;
 	}
 
 	/**
@@ -168,56 +156,6 @@ public class FeatureObjectiveFactoryImpl extends EFactoryImpl implements Feature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IntegerIntervalRange createIntegerIntervalRange() {
-		IntegerIntervalRangeImpl integerIntervalRange = new IntegerIntervalRangeImpl();
-		return integerIntervalRange;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IntegerAttribute createIntegerAttribute() {
-		IntegerAttributeImpl integerAttribute = new IntegerAttributeImpl();
-		return integerAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DoubleAttribute createDoubleAttribute() {
-		DoubleAttributeImpl doubleAttribute = new DoubleAttributeImpl();
-		return doubleAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StringAttribute createStringAttribute() {
-		StringAttributeImpl stringAttribute = new StringAttributeImpl();
-		return stringAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExternalObjectAttribute createExternalObjectAttribute() {
-		ExternalObjectAttributeImpl externalObjectAttribute = new ExternalObjectAttributeImpl();
-		return externalObjectAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public AttributeTypes createAttributeTypesFromString(EDataType eDataType, String initialValue) {
 		AttributeTypes result = AttributeTypes.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -230,6 +168,26 @@ public class FeatureObjectiveFactoryImpl extends EFactoryImpl implements Feature
 	 * @generated
 	 */
 	public String convertAttributeTypesToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LogicalOperation createLogicalOperationFromString(EDataType eDataType, String initialValue) {
+		LogicalOperation result = LogicalOperation.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertLogicalOperationToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

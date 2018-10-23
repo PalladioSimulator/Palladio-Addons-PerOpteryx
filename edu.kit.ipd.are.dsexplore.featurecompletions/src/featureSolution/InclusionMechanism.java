@@ -23,6 +23,7 @@ import FeatureCompletionModel.DescribedElement;
 public interface InclusionMechanism extends DescribedElement {
 	/**
 	 * Returns the value of the '<em><b>Multiple</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Multiple</em>' attribute isn't clear,
@@ -32,7 +33,7 @@ public interface InclusionMechanism extends DescribedElement {
 	 * @return the value of the '<em>Multiple</em>' attribute.
 	 * @see #setMultiple(boolean)
 	 * @see featureSolution.FeatureSolutionPackage#getInclusionMechanism_Multiple()
-	 * @model
+	 * @model default="false"
 	 * @generated
 	 */
 	boolean isMultiple();

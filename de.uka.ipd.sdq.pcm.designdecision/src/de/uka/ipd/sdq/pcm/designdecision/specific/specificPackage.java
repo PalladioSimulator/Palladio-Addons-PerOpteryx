@@ -3404,6 +3404,207 @@ public interface specificPackage extends EPackage {
 	int INDICATOR_DEGREE_FEATURE_COUNT = designdecisionPackage.DEGREE_OF_FREEDOM_INSTANCE_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.MultipleInclusionDegreeImpl <em>Multiple Inclusion Degree</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.MultipleInclusionDegreeImpl
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getMultipleInclusionDegree()
+	 * @generated
+	 */
+	int MULTIPLE_INCLUSION_DEGREE = 41;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_INCLUSION_DEGREE__ENTITY_NAME = INDICATOR_DEGREE__ENTITY_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_INCLUSION_DEGREE__PRIMARY_CHANGED = INDICATOR_DEGREE__PRIMARY_CHANGED;
+
+	/**
+	 * The feature id for the '<em><b>Dof</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_INCLUSION_DEGREE__DOF = INDICATOR_DEGREE__DOF;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_INCLUSION_DEGREE__CHANGEABLE_ELEMENTS = INDICATOR_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Decorator Model</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_INCLUSION_DEGREE__DECORATOR_MODEL = INDICATOR_DEGREE__DECORATOR_MODEL;
+
+	/**
+	 * The number of structural features of the '<em>Multiple Inclusion Degree</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_INCLUSION_DEGREE_FEATURE_COUNT = INDICATOR_DEGREE_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.AdvicePlacementDegreeImpl <em>Advice Placement Degree</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.AdvicePlacementDegreeImpl
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getAdvicePlacementDegree()
+	 * @generated
+	 */
+	int ADVICE_PLACEMENT_DEGREE = 42;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADVICE_PLACEMENT_DEGREE__ENTITY_NAME = INDICATOR_DEGREE__ENTITY_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADVICE_PLACEMENT_DEGREE__PRIMARY_CHANGED = INDICATOR_DEGREE__PRIMARY_CHANGED;
+
+	/**
+	 * The feature id for the '<em><b>Dof</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADVICE_PLACEMENT_DEGREE__DOF = INDICATOR_DEGREE__DOF;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADVICE_PLACEMENT_DEGREE__CHANGEABLE_ELEMENTS = INDICATOR_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Decorator Model</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADVICE_PLACEMENT_DEGREE__DECORATOR_MODEL = INDICATOR_DEGREE__DECORATOR_MODEL;
+
+	/**
+	 * The number of structural features of the '<em>Advice Placement Degree</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADVICE_PLACEMENT_DEGREE_FEATURE_COUNT = INDICATOR_DEGREE_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.ComplementumVisnetisDegreeImpl <em>Complementum Visnetis Degree</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.ComplementumVisnetisDegreeImpl
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getComplementumVisnetisDegree()
+	 * @generated
+	 */
+	int COMPLEMENTUM_VISNETIS_DEGREE = 43;
+
+	/**
+	 * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEMENTUM_VISNETIS_DEGREE__ENTITY_NAME = CLASS_AS_REFERENCE_DEGREE__ENTITY_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Primary Changed</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEMENTUM_VISNETIS_DEGREE__PRIMARY_CHANGED = CLASS_AS_REFERENCE_DEGREE__PRIMARY_CHANGED;
+
+	/**
+	 * The feature id for the '<em><b>Dof</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEMENTUM_VISNETIS_DEGREE__DOF = CLASS_AS_REFERENCE_DEGREE__DOF;
+
+	/**
+	 * The feature id for the '<em><b>Changeable Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEMENTUM_VISNETIS_DEGREE__CHANGEABLE_ELEMENTS = CLASS_AS_REFERENCE_DEGREE__CHANGEABLE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Decorator Model</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEMENTUM_VISNETIS_DEGREE__DECORATOR_MODEL = CLASS_AS_REFERENCE_DEGREE__DECORATOR_MODEL;
+
+	/**
+	 * The feature id for the '<em><b>Class Design Options</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEMENTUM_VISNETIS_DEGREE__CLASS_DESIGN_OPTIONS = CLASS_AS_REFERENCE_DEGREE__CLASS_DESIGN_OPTIONS;
+
+	/**
+	 * The number of structural features of the '<em>Complementum Visnetis Degree</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEMENTUM_VISNETIS_DEGREE_FEATURE_COUNT = CLASS_AS_REFERENCE_DEGREE_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.ExchangeComponentRule <em>Exchange Component Rule</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Exchange Component Rule</em>'.
@@ -3980,6 +4181,36 @@ public interface specificPackage extends EPackage {
 	EClass getIndicatorDegree();
 
 	/**
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.MultipleInclusionDegree <em>Multiple Inclusion Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Multiple Inclusion Degree</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.MultipleInclusionDegree
+	 * @generated
+	 */
+	EClass getMultipleInclusionDegree();
+
+	/**
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.AdvicePlacementDegree <em>Advice Placement Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Advice Placement Degree</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.AdvicePlacementDegree
+	 * @generated
+	 */
+	EClass getAdvicePlacementDegree();
+
+	/**
+	 * Returns the meta object for class '{@link de.uka.ipd.sdq.pcm.designdecision.specific.ComplementumVisnetisDegree <em>Complementum Visnetis Degree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Complementum Visnetis Degree</em>'.
+	 * @see de.uka.ipd.sdq.pcm.designdecision.specific.ComplementumVisnetisDegree
+	 * @generated
+	 */
+	EClass getComplementumVisnetisDegree();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -4538,6 +4769,36 @@ public interface specificPackage extends EPackage {
 		 * @generated
 		 */
 		EClass INDICATOR_DEGREE = eINSTANCE.getIndicatorDegree();
+
+		/**
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.MultipleInclusionDegreeImpl <em>Multiple Inclusion Degree</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.MultipleInclusionDegreeImpl
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getMultipleInclusionDegree()
+		 * @generated
+		 */
+		EClass MULTIPLE_INCLUSION_DEGREE = eINSTANCE.getMultipleInclusionDegree();
+
+		/**
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.AdvicePlacementDegreeImpl <em>Advice Placement Degree</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.AdvicePlacementDegreeImpl
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getAdvicePlacementDegree()
+		 * @generated
+		 */
+		EClass ADVICE_PLACEMENT_DEGREE = eINSTANCE.getAdvicePlacementDegree();
+
+		/**
+		 * The meta object literal for the '{@link de.uka.ipd.sdq.pcm.designdecision.specific.impl.ComplementumVisnetisDegreeImpl <em>Complementum Visnetis Degree</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.ComplementumVisnetisDegreeImpl
+		 * @see de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificPackageImpl#getComplementumVisnetisDegree()
+		 * @generated
+		 */
+		EClass COMPLEMENTUM_VISNETIS_DEGREE = eINSTANCE.getComplementumVisnetisDegree();
 
 	}
 

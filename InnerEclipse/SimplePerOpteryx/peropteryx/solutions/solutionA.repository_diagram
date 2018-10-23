@@ -44,6 +44,11 @@
     <children xmi:type="notation:Shape" xmi:id="_xHdOMH8EEeiQyp7aPIMdmQ" type="2102" fontName="Segoe UI">
       <children xmi:type="notation:DecorationNode" xmi:id="_xHdOMn8EEeiQyp7aPIMdmQ" type="5102"/>
       <children xmi:type="notation:DecorationNode" xmi:id="_xHdOM38EEeiQyp7aPIMdmQ" type="7102">
+        <children xmi:type="notation:Node" xmi:id="_4XX-cIaMEeihBrmxvh3RMg" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_4XX-cYaMEeihBrmxvh3RMg" diagramLink="_4wbXoIaMEeihBrmxvh3RMg" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="solutionA.repository#_5qTo8JmaEee4PoOYbWOA6A"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_4XX-coaMEeihBrmxvh3RMg"/>
+        </children>
         <styles xmi:type="notation:SortingStyle" xmi:id="_xHdONH8EEeiQyp7aPIMdmQ"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_xHdONX8EEeiQyp7aPIMdmQ"/>
       </children>
@@ -80,10 +85,6 @@
           <element xmi:type="seff_performance:ParametricResourceDemand" href="solutionA.repository#/0/@components__Repository.0/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_2mRnUX8EEeiQyp7aPIMdmQ"/>
         </children>
-        <children xmi:type="notation:Node" xmi:id="_EMas4H8FEeiQyp7aPIMdmQ" type="3051">
-          <element xmi:type="seff_performance:ParametricResourceDemand" href="solutionA.repository#/0/@components__Repository.0/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.1"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="_EMas4X8FEeiQyp7aPIMdmQ"/>
-        </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_yvVyBH8EEeiQyp7aPIMdmQ" showTitle="true"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_yvVyBX8EEeiQyp7aPIMdmQ"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_yvVyBn8EEeiQyp7aPIMdmQ"/>
@@ -115,5 +116,9 @@
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_3hq4kn8EEeiQyp7aPIMdmQ" points="[-18, -6, 411, 137]$[-418, -136, 11, 7]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3hstwH8EEeiQyp7aPIMdmQ" id="(0.0972972972972973,0.6666666666666666)"/>
     </edges>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_4wbXoIaMEeihBrmxvh3RMg" type="PCM SEFF Model" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_4wbXoYaMEeihBrmxvh3RMg"/>
+    <element xmi:type="seff:ResourceDemandingSEFF" href="solutionA.repository#_5qTo8JmaEee4PoOYbWOA6A"/>
   </notation:Diagram>
 </xmi:XMI>

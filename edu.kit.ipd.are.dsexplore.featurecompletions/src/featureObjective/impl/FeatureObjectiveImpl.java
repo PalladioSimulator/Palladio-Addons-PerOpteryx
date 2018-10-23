@@ -5,13 +5,12 @@ package featureObjective.impl;
 import FeatureCompletionModel.impl.DescribedElementImpl;
 
 import featureObjective.Constraint;
-import featureObjective.Feature;
+import featureObjective.FeatureGroup;
 import featureObjective.FeatureObjective;
 import featureObjective.FeatureObjectivePackage;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -19,8 +18,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
@@ -34,7 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link featureObjective.impl.FeatureObjectiveImpl#getRootFeature <em>Root Feature</em>}</li>
+ *   <li>{@link featureObjective.impl.FeatureObjectiveImpl#getFeatureGroups <em>Feature Groups</em>}</li>
  *   <li>{@link featureObjective.impl.FeatureObjectiveImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link featureObjective.impl.FeatureObjectiveImpl#getAnnotatableElement <em>Annotatable Element</em>}</li>
  * </ul>
@@ -43,14 +40,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class FeatureObjectiveImpl extends DescribedElementImpl implements FeatureObjective {
 	/**
-	 * The cached value of the '{@link #getRootFeature() <em>Root Feature</em>}' containment reference.
+	 * The cached value of the '{@link #getFeatureGroups() <em>Feature Groups</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRootFeature()
+	 * @see #getFeatureGroups()
 	 * @generated
 	 * @ordered
 	 */
-	protected Feature rootFeature;
+	protected EList<FeatureGroup> featureGroups;
 
 	/**
 	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
@@ -96,42 +93,11 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getRootFeature() {
-		return rootFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetRootFeature(Feature newRootFeature, NotificationChain msgs) {
-		Feature oldRootFeature = rootFeature;
-		rootFeature = newRootFeature;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FeatureObjectivePackage.FEATURE_OBJECTIVE__ROOT_FEATURE, oldRootFeature, newRootFeature);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<FeatureGroup> getFeatureGroups() {
+		if (featureGroups == null) {
+			featureGroups = new EObjectContainmentEList<FeatureGroup>(FeatureGroup.class, this, FeatureObjectivePackage.FEATURE_OBJECTIVE__FEATURE_GROUPS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRootFeature(Feature newRootFeature) {
-		if (newRootFeature != rootFeature) {
-			NotificationChain msgs = null;
-			if (rootFeature != null)
-				msgs = ((InternalEObject)rootFeature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FeatureObjectivePackage.FEATURE_OBJECTIVE__ROOT_FEATURE, null, msgs);
-			if (newRootFeature != null)
-				msgs = ((InternalEObject)newRootFeature).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FeatureObjectivePackage.FEATURE_OBJECTIVE__ROOT_FEATURE, null, msgs);
-			msgs = basicSetRootFeature(newRootFeature, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FeatureObjectivePackage.FEATURE_OBJECTIVE__ROOT_FEATURE, newRootFeature, newRootFeature));
+		return featureGroups;
 	}
 
 	/**
@@ -166,8 +132,8 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case FeatureObjectivePackage.FEATURE_OBJECTIVE__ROOT_FEATURE:
-				return basicSetRootFeature(null, msgs);
+			case FeatureObjectivePackage.FEATURE_OBJECTIVE__FEATURE_GROUPS:
+				return ((InternalEList<?>)getFeatureGroups()).basicRemove(otherEnd, msgs);
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__CONSTRAINTS:
 				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 		}
@@ -182,8 +148,8 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FeatureObjectivePackage.FEATURE_OBJECTIVE__ROOT_FEATURE:
-				return getRootFeature();
+			case FeatureObjectivePackage.FEATURE_OBJECTIVE__FEATURE_GROUPS:
+				return getFeatureGroups();
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__CONSTRAINTS:
 				return getConstraints();
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__ANNOTATABLE_ELEMENT:
@@ -201,8 +167,9 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FeatureObjectivePackage.FEATURE_OBJECTIVE__ROOT_FEATURE:
-				setRootFeature((Feature)newValue);
+			case FeatureObjectivePackage.FEATURE_OBJECTIVE__FEATURE_GROUPS:
+				getFeatureGroups().clear();
+				getFeatureGroups().addAll((Collection<? extends FeatureGroup>)newValue);
 				return;
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__CONSTRAINTS:
 				getConstraints().clear();
@@ -224,8 +191,8 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FeatureObjectivePackage.FEATURE_OBJECTIVE__ROOT_FEATURE:
-				setRootFeature((Feature)null);
+			case FeatureObjectivePackage.FEATURE_OBJECTIVE__FEATURE_GROUPS:
+				getFeatureGroups().clear();
 				return;
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__CONSTRAINTS:
 				getConstraints().clear();
@@ -245,8 +212,8 @@ public class FeatureObjectiveImpl extends DescribedElementImpl implements Featur
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FeatureObjectivePackage.FEATURE_OBJECTIVE__ROOT_FEATURE:
-				return rootFeature != null;
+			case FeatureObjectivePackage.FEATURE_OBJECTIVE__FEATURE_GROUPS:
+				return featureGroups != null && !featureGroups.isEmpty();
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__CONSTRAINTS:
 				return constraints != null && !constraints.isEmpty();
 			case FeatureObjectivePackage.FEATURE_OBJECTIVE__ANNOTATABLE_ELEMENT:

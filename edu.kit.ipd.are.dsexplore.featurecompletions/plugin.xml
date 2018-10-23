@@ -34,4 +34,13 @@
             class="featureSolution.FeatureSolutionPackage"
             genModel="model/featureCompletions.genmodel"/>
    </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated featureCompletions -->
+      <package
+            uri="http://are.ipd.kit.edu/PlacementDescriptionModel/1.0.0"
+            class="placementDescription.PlacementDescriptionPackage"
+            genModel="model/featureCompletions.genmodel"/>
+   </extension>
+
 </plugin>

@@ -1,0 +1,6 @@
+[submodule "libs/recorderframework"]
+	path = libs/recorderframework
+	url = ../Palladio-QuAL-RecorderFramework
+[submodule "libs/solver"]
+	path = libs/solver
+	url = ../Palladio-Analyzer-Solver

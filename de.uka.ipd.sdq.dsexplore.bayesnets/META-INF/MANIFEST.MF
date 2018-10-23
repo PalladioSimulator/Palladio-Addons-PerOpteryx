@@ -7,3 +7,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: de.uka.ipd.sdq.dsexplore.bayesnets.samplers,
  de.uka.ipd.sdq.dsexplore.bayesnets.searchers,
  de.uka.ipd.sdq.dsexplore.bayesnets.utility
+Automatic-Module-Name: de.uka.ipd.sdq.dsexplore.bayesnets

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cost:CostRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cost="http://sdq.ipd.uka.de/CostModel/1.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2">
+  <cost xsi:type="cost:VariableProcessingResourceCost">
+    <processingresourcespecification href="default.resourceenvironment#_psq4IiINEeSC6_3TPN1J7A"/>
+    <processingRateInitialFunction specification="0.7665*((procRate.VALUE/2000000000)^6.2539)+145"/>
+    <processingRateOperatingFunction specification="0"/>
+  </cost>
+  <cost xsi:type="cost:VariableProcessingResourceCost">
+    <processingresourcespecification href="default.resourceenvironment#_psq4JiINEeSC6_3TPN1J7A"/>
+    <processingRateInitialFunction specification="0.7665*((procRate.VALUE/2000000000)^6.2539)+145"/>
+    <processingRateOperatingFunction specification="0"/>
+  </cost>
+  <cost xsi:type="cost:VariableProcessingResourceCost">
+    <processingresourcespecification href="default.resourceenvironment#_psq4KiINEeSC6_3TPN1J7A"/>
+    <processingRateInitialFunction specification="0.7665*((procRate.VALUE/2000000000)^6.2539)+145"/>
+    <processingRateOperatingFunction specification="0"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="200.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="default.repository#_ZZH7IC6IEd-Jla2o7wkBzQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="150.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="default.repository#_YyVn8C6IEd-Jla2o7wkBzQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="200.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="default.repository#_Z2udIC6IEd-Jla2o7wkBzQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="400.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="default.repository#__VPcQOtlEd-m3_hR0FtH3Q"/>
+  </cost>
+</cost:CostRepository>

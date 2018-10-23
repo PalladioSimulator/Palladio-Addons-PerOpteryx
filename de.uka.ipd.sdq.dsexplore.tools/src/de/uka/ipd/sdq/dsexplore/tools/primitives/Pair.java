@@ -1,5 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.tools.primitives;
 
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 /**
  * Encapsulation-class for two elements.
  *
@@ -10,7 +12,7 @@ package de.uka.ipd.sdq.dsexplore.tools.primitives;
  * @param <U>
  *            - Second element of the pair.
  */
-public final class Pair<T, U> {
+public final class Pair<T, U> extends EObjectImpl {
 
 	public final T first;
 	public final U second;

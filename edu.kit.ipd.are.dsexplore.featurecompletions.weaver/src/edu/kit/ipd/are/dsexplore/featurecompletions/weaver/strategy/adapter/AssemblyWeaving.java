@@ -89,7 +89,7 @@ public abstract class AssemblyWeaving {
 	}
 
 	private void createConnectorsFromFCCToRequiredFCCs(CompletionComponent fcc) throws FCCWeaverException {
-		FCCStructureHandler fccHandler = new FCCStructureHandler(fcc, this.parent.getMergedRepoManager());
+		FCCStructureHandler fccHandler = new FCCStructureHandler(fcc, this.parent.getSolutionManager());
 		for (RepositoryComponent eachComponent : fccHandler.getStructureOfECCAndRequiredAccordingTo(this.resolveOnlyComponents())) {
 			this.createConnectorsBy(eachComponent).forEach(this::addConnector);
 		}
@@ -104,7 +104,7 @@ public abstract class AssemblyWeaving {
 
 		List<Connector> createdConnectors = new ArrayList<>();
 		for (RequiredRole eachRequiredRole : component.getRequiredRoles_InterfaceRequiringEntity()) {
-			ProvidedRole providedRole = (ProvidedRole) this.getComplimentaryRoleOf(eachRequiredRole, this.parent.getMergedRepoManager().getAllProvidedRoles());
+			ProvidedRole providedRole = (ProvidedRole) this.getComplimentaryRoleOf(eachRequiredRole, this.parent.getSolutionManager().getAllProvidedRoles());
 			AssemblyContext providedAssemblyContext = this.getOrCreateAssemblyContextOf((RepositoryComponent) providedRole.eContainer());
 
 			ConnectionInfo connectionInfo = new ConnectionInfo(eachRequiredRole, providedRole, requiredAssemblyContext, providedAssemblyContext);
@@ -120,7 +120,7 @@ public abstract class AssemblyWeaving {
 	}
 
 	private RoleHandler getRoleHandlerBy(Role role) throws FCCWeaverException {
-		return RoleHandlerFactory.getBy(role, this.parent.getMergedRepoManager()).orElseThrow(() -> new FCCWeaverException(ErrorMessage.unsupportedRole()));
+		return RoleHandlerFactory.getBy(role, this.parent.getSolutionManager()).orElseThrow(() -> new FCCWeaverException(ErrorMessage.unsupportedRole()));
 	}
 
 	private Connector createConnectorBy(ConnectionInfo connectionInfo) throws FCCWeaverException {

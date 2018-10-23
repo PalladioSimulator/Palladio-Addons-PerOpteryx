@@ -61,3 +61,4 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.units;visibility:=reexport,
  de.uka.ipd.sdq.probfunction;visibility:=reexport
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: de.uka.ipd.sdq.pcm.designdecision

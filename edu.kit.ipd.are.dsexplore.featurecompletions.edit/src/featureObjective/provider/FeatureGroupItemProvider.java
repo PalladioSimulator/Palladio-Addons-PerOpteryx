@@ -3,9 +3,12 @@
 package featureObjective.provider;
 
 
+import FeatureCompletionModel.provider.FeatureCompletionsEditPlugin;
+
 import featureObjective.FeatureGroup;
 import featureObjective.FeatureObjectiveFactory;
 import featureObjective.FeatureObjectivePackage;
+import featureObjective.LogicalOperation;
 
 import java.util.Collection;
 import java.util.List;
@@ -13,11 +16,19 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -26,7 +37,14 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FeatureGroupItemProvider extends ChildRelationItemProvider {
+public class FeatureGroupItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -48,52 +66,29 @@ public class FeatureGroupItemProvider extends ChildRelationItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addMinPropertyDescriptor(object);
-			addMaxPropertyDescriptor(object);
+			addOperationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Min feature.
+	 * This adds a property descriptor for the Operation feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMinPropertyDescriptor(Object object) {
+	protected void addOperationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FeatureGroup_min_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureGroup_min_feature", "_UI_FeatureGroup_type"),
-				 FeatureObjectivePackage.Literals.FEATURE_GROUP__MIN,
+				 getString("_UI_FeatureGroup_operation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureGroup_operation_feature", "_UI_FeatureGroup_type"),
+				 FeatureObjectivePackage.Literals.FEATURE_GROUP__OPERATION,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Max feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addMaxPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FeatureGroup_max_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureGroup_max_feature", "_UI_FeatureGroup_type"),
-				 FeatureObjectivePackage.Literals.FEATURE_GROUP__MAX,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -110,7 +105,7 @@ public class FeatureGroupItemProvider extends ChildRelationItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(FeatureObjectivePackage.Literals.FEATURE_GROUP__CHILDREN);
+			childrenFeatures.add(FeatureObjectivePackage.Literals.FEATURE_GROUP__FEATURES);
 		}
 		return childrenFeatures;
 	}
@@ -147,10 +142,13 @@ public class FeatureGroupItemProvider extends ChildRelationItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		FeatureGroup featureGroup = (FeatureGroup)object;
-		return getString("_UI_FeatureGroup_type") + " " + featureGroup.getMin();
+		LogicalOperation labelValue = ((FeatureGroup)object).getOperation();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_FeatureGroup_type") :
+			getString("_UI_FeatureGroup_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -164,11 +162,10 @@ public class FeatureGroupItemProvider extends ChildRelationItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FeatureGroup.class)) {
-			case FeatureObjectivePackage.FEATURE_GROUP__MIN:
-			case FeatureObjectivePackage.FEATURE_GROUP__MAX:
+			case FeatureObjectivePackage.FEATURE_GROUP__OPERATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case FeatureObjectivePackage.FEATURE_GROUP__CHILDREN:
+			case FeatureObjectivePackage.FEATURE_GROUP__FEATURES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -188,8 +185,19 @@ public class FeatureGroupItemProvider extends ChildRelationItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(FeatureObjectivePackage.Literals.FEATURE_GROUP__CHILDREN,
+				(FeatureObjectivePackage.Literals.FEATURE_GROUP__FEATURES,
 				 FeatureObjectiveFactory.eINSTANCE.createFeature()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return FeatureCompletionsEditPlugin.INSTANCE;
 	}
 
 }

@@ -20,5 +20,7 @@ Require-Bundle: de.uka.ipd.sdq.dsexplore;bundle-version="1.0.0",
  org.opt4j;bundle-version="1.0.0",
  de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="1.0.0",
  de.uka.ipd.sdq.dsexplore.qml,
+ org.palladiosimulator.qes,
  de.uka.ipd.sdq.dsexplore.facade
 Bundle-Vendor: sdq.ipd.uka.de
+Automatic-Module-Name: de.uka.ipd.sdq.dsexplore.analysis.cost

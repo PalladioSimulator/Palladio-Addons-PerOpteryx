@@ -22,13 +22,12 @@ public class FCCAnalysisExtension implements IAnalysisExtension {
 
 	@Override
 	public List<CostRepository> getAdditionalCostRepositories() {
-
 		FCCWeaver weaver = this.weaver.get();
 		if (weaver == null) {
 			return new ArrayList<>();
 		}
 		Set<CostRepository> result = new HashSet<>();
-		for (Repository solution : weaver.getMergedRepo()) {
+		for (Repository solution : weaver.getSolutionRepositories()) {
 			List<CostRepository> additionalCosts = StereotypeAPIHelper.getViaStereoTypeFrom(solution, CostRepository.class, "cost");
 			result.addAll(additionalCosts);
 		}

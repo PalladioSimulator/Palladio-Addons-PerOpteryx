@@ -118,29 +118,6 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link featureObjective.Simple} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SimpleItemProvider simpleItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link featureObjective.Simple}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSimpleAdapter() {
-		if (simpleItemProvider == null) {
-			simpleItemProvider = new SimpleItemProvider(this);
-		}
-
-		return simpleItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link featureObjective.FeatureGroup} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -207,121 +184,6 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 		}
 
 		return prohibitsConstraintItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link featureObjective.IntegerIntervalRange} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected IntegerIntervalRangeItemProvider integerIntervalRangeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link featureObjective.IntegerIntervalRange}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createIntegerIntervalRangeAdapter() {
-		if (integerIntervalRangeItemProvider == null) {
-			integerIntervalRangeItemProvider = new IntegerIntervalRangeItemProvider(this);
-		}
-
-		return integerIntervalRangeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link featureObjective.IntegerAttribute} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected IntegerAttributeItemProvider integerAttributeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link featureObjective.IntegerAttribute}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createIntegerAttributeAdapter() {
-		if (integerAttributeItemProvider == null) {
-			integerAttributeItemProvider = new IntegerAttributeItemProvider(this);
-		}
-
-		return integerAttributeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link featureObjective.DoubleAttribute} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DoubleAttributeItemProvider doubleAttributeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link featureObjective.DoubleAttribute}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDoubleAttributeAdapter() {
-		if (doubleAttributeItemProvider == null) {
-			doubleAttributeItemProvider = new DoubleAttributeItemProvider(this);
-		}
-
-		return doubleAttributeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link featureObjective.StringAttribute} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StringAttributeItemProvider stringAttributeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link featureObjective.StringAttribute}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createStringAttributeAdapter() {
-		if (stringAttributeItemProvider == null) {
-			stringAttributeItemProvider = new StringAttributeItemProvider(this);
-		}
-
-		return stringAttributeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link featureObjective.ExternalObjectAttribute} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ExternalObjectAttributeItemProvider externalObjectAttributeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link featureObjective.ExternalObjectAttribute}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createExternalObjectAttributeAdapter() {
-		if (externalObjectAttributeItemProvider == null) {
-			externalObjectAttributeItemProvider = new ExternalObjectAttributeItemProvider(this);
-		}
-
-		return externalObjectAttributeItemProvider;
 	}
 
 	/**
@@ -425,15 +287,9 @@ public class FeatureObjectiveItemProviderAdapterFactory extends FeatureObjective
 	public void dispose() {
 		if (featureObjectiveItemProvider != null) featureObjectiveItemProvider.dispose();
 		if (featureItemProvider != null) featureItemProvider.dispose();
-		if (simpleItemProvider != null) simpleItemProvider.dispose();
 		if (featureGroupItemProvider != null) featureGroupItemProvider.dispose();
 		if (requiredConstraintItemProvider != null) requiredConstraintItemProvider.dispose();
 		if (prohibitsConstraintItemProvider != null) prohibitsConstraintItemProvider.dispose();
-		if (integerIntervalRangeItemProvider != null) integerIntervalRangeItemProvider.dispose();
-		if (integerAttributeItemProvider != null) integerAttributeItemProvider.dispose();
-		if (doubleAttributeItemProvider != null) doubleAttributeItemProvider.dispose();
-		if (stringAttributeItemProvider != null) stringAttributeItemProvider.dispose();
-		if (externalObjectAttributeItemProvider != null) externalObjectAttributeItemProvider.dispose();
 	}
 
 }

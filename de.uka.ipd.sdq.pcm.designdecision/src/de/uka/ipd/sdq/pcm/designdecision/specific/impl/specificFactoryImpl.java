@@ -126,6 +126,12 @@ public class specificFactoryImpl extends EFactoryImpl implements specificFactory
 			return createFeatureCompletionDegree();
 		case specificPackage.FEATURE_DEGREE:
 			return createFeatureDegree();
+		case specificPackage.MULTIPLE_INCLUSION_DEGREE:
+			return createMultipleInclusionDegree();
+		case specificPackage.ADVICE_PLACEMENT_DEGREE:
+			return createAdvicePlacementDegree();
+		case specificPackage.COMPLEMENTUM_VISNETIS_DEGREE:
+			return createComplementumVisnetisDegree();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -391,6 +397,39 @@ public class specificFactoryImpl extends EFactoryImpl implements specificFactory
 	public FeatureDegree createFeatureDegree() {
 		FeatureDegreeImpl featureDegree = new FeatureDegreeImpl();
 		return featureDegree;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MultipleInclusionDegree createMultipleInclusionDegree() {
+		MultipleInclusionDegreeImpl multipleInclusionDegree = new MultipleInclusionDegreeImpl();
+		return multipleInclusionDegree;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AdvicePlacementDegree createAdvicePlacementDegree() {
+		AdvicePlacementDegreeImpl advicePlacementDegree = new AdvicePlacementDegreeImpl();
+		return advicePlacementDegree;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ComplementumVisnetisDegree createComplementumVisnetisDegree() {
+		ComplementumVisnetisDegreeImpl complementumVisnetisDegree = new ComplementumVisnetisDegreeImpl();
+		return complementumVisnetisDegree;
 	}
 
 	/**

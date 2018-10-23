@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cost:CostRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cost="http://sdq.ipd.uka.de/CostModel/1.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2">
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="100.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="Log4j1.repository#_zCcD8OQTEeeDc5WJsIYxgA"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="100.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="Log4j1.repository#_NLGUwLJuEei_guymyM03IA"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="100.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="Log4j1.repository#_2hBDoOQTEeeDc5WJsIYxgA"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="100.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="Log4j1.repository#_yfDS4OTrEeeT85tFTnTIqQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="100.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="Log4j1.repository#_DNzk0PiYEeeT85tFTnTIqQ"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCost" componentInitialCost="100.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="Log4j1.repository#_99omMOQTEeeDc5WJsIYxgA"/>
+  </cost>
+  <cost xsi:type="cost:ComponentCostPerInstance" componentInitialCost="500.0">
+    <repositoryComponent xsi:type="repository:BasicComponent" href="Log4j1.repository#_M-IvQIs8EeiLsrMCg8rAxg"/>
+  </cost>
+</cost:CostRepository>
