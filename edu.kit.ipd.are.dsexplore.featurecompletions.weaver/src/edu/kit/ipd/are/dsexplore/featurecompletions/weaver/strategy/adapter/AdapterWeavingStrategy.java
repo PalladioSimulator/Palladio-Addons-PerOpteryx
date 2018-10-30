@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.palladiosimulator.pcm.allocation.AllocationContext;
+import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.entity.Entity;
@@ -96,21 +97,20 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 		// fulfillsComplementum: Complementum -> Interface
 
 		List<Pair<Entity, Complementum>> require = this.getRequiresComplementum();
-		List<Pair<OperationInterface, Complementum>> provides = this.getProvidesComplementum();
+		List<Pair<AssemblyConnector, Complementum>> provides = this.getProvidesComplementum();
 
-		// TODO Connect require & provides
+		ComplementumWeaver cv = new ComplementumWeaver(this.pcmToAdapt);
+		cv.weave(require, provides);
 
 	}
 
-	private List<Pair<OperationInterface, Complementum>> getProvidesComplementum() {
-		List<Pair<OperationInterface, Complementum>> res = new ArrayList<>();
-		for (Repository repo : this.pcmToAdapt.getRepositories()) {
-			for (Interface iface : repo.getInterfaces__Repository()) {
-				List<Complementum> complementa = StereotypeAPIHelper.getViaStereoTypeFrom(iface, Complementum.class, "fulfillsComplementum");
-				if (complementa.size() != 0) {
-					// Model defines 1..1 as amount of complementa
-					res.add(Pair.of((OperationInterface) iface, complementa.get(0)));
-				}
+	private List<Pair<AssemblyConnector, Complementum>> getProvidesComplementum() {
+		List<Pair<AssemblyConnector, Complementum>> res = new ArrayList<>();
+		for (Connector connector : this.pcmToAdapt.getSystem().getConnectors__ComposedStructure()) {
+			List<Complementum> complementa = StereotypeAPIHelper.getViaStereoTypeFrom(connector, Complementum.class, "fulfillsComplementum");
+			if (complementa.size() != 0) {
+				// Model defines 1..1 as amount of complementa
+				res.add(Pair.of((AssemblyConnector) connector, complementa.get(0)));
 			}
 		}
 		return res;
