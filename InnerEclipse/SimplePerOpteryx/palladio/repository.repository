@@ -3,6 +3,7 @@
   <components__Repository xsi:type="repository:BasicComponent" id="_vMFqgGFbEeetxOZObiabqg" entityName="ComponentTgtOptional">
     <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_1Cmx8GFbEeetxOZObiabqg" entityName="OperationProvidedRole1" providedInterface__OperationProvidedRole="_LtcnoGFbEeetxOZObiabqg"/>
     <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_2dnXYGFbEeetxOZObiabqg" entityName="OperationRequiredRole1" requiredInterface__OperationRequiredRole="_Q6y2QGFbEeetxOZObiabqg"/>
+    <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_tqtoMNyTEeiZBZaG2slbHw" entityName="Required_Interface3_ComponentTgtOptional" requiredInterface__OperationRequiredRole="_gWxF4NyTEeiZBZaG2slbHw"/>
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_1Cy_MGFbEeetxOZObiabqg" describedService__SEFF="_Ugd8cGFbEeetxOZObiabqg">
       <steps_Behaviour xsi:type="seff:StartAction" id="_1Cy_MWFbEeetxOZObiabqg" successor_AbstractAction="_bWl4AH8GEeiQyp7aPIMdmQ"/>
       <steps_Behaviour xsi:type="seff:StopAction" id="_1CzmQGFbEeetxOZObiabqg" predecessor_AbstractAction="_bWl4AH8GEeiQyp7aPIMdmQ"/>
@@ -35,6 +36,13 @@
       </steps_Behaviour>
     </serviceEffectSpecifications__BasicComponent>
   </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_lf470NyTEeiZBZaG2slbHw" entityName="ForComplementum">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_oT8-4NyTEeiZBZaG2slbHw" entityName="Provided_Interface3_ForComplementum" providedInterface__OperationProvidedRole="_gWxF4NyTEeiZBZaG2slbHw"/>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_oUi0wNyTEeiZBZaG2slbHw" describedService__SEFF="_iUNC8NyTEeiZBZaG2slbHw">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_oUi0wdyTEeiZBZaG2slbHw" entityName="start" successor_AbstractAction="_oUi0wtyTEeiZBZaG2slbHw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_oUi0wtyTEeiZBZaG2slbHw" entityName="stop" predecessor_AbstractAction="_oUi0wdyTEeiZBZaG2slbHw"/>
+    </serviceEffectSpecifications__BasicComponent>
+  </components__Repository>
   <interfaces__Repository xsi:type="repository:OperationInterface" id="_LtcnoGFbEeetxOZObiabqg" entityName="Interface1">
     <signatures__OperationInterface id="_Ugd8cGFbEeetxOZObiabqg" entityName="pay">
       <parameters__OperationSignature parameterName="from">
@@ -53,5 +61,8 @@
       </parameters__OperationSignature>
       <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
     </signatures__OperationInterface>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_gWxF4NyTEeiZBZaG2slbHw" entityName="Interface3">
+    <signatures__OperationInterface id="_iUNC8NyTEeiZBZaG2slbHw" entityName="test"/>
   </interfaces__Repository>
 </repository:Repository>

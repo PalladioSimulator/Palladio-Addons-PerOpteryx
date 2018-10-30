@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:system="http://palladiosimulator.org/PalladioComponentModel/System/5.2" xsi:schemaLocation="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//core/composition http://palladiosimulator.org/PalladioComponentModel/Repository/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//repository http://palladiosimulator.org/PalladioComponentModel/System/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//system" xmi:id="_aopFcNyTEeiZBZaG2slbHw" type="CompositeModel" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_re2NkdyTEeiZBZaG2slbHw" type="2002" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_re2Nk9yTEeiZBZaG2slbHw" type="5012"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_re2NlNyTEeiZBZaG2slbHw" type="7002">
+      <children xmi:type="notation:Shape" xmi:id="_re_XgNyTEeiZBZaG2slbHw" type="3006" fontName="Segoe UI">
+        <children xmi:type="notation:DecorationNode" xmi:id="_re_XgtyTEeiZBZaG2slbHw" type="5009"/>
+        <children xmi:type="notation:Shape" xmi:id="_re_XhtyTEeiZBZaG2slbHw" type="3007" fontName="Segoe UI">
+          <children xmi:type="notation:DecorationNode" xmi:id="_re_XiNyTEeiZBZaG2slbHw" type="5007">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_re_XidyTEeiZBZaG2slbHw" y="5"/>
+          </children>
+          <element xmi:type="repository:OperationProvidedRole" href="repository.repository#_1Cmx8GFbEeetxOZObiabqg"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_re_Xh9yTEeiZBZaG2slbHw"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_re_XityTEeiZBZaG2slbHw" type="3008" fontName="Segoe UI">
+          <children xmi:type="notation:DecorationNode" xmi:id="_re_XjNyTEeiZBZaG2slbHw" type="5008">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_re_XjdyTEeiZBZaG2slbHw" y="5"/>
+          </children>
+          <element xmi:type="repository:OperationRequiredRole" href="repository.repository#_2dnXYGFbEeetxOZObiabqg"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_re_Xi9yTEeiZBZaG2slbHw"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_t72bgNyTEeiZBZaG2slbHw" type="3008" fontName="Segoe UI">
+          <children xmi:type="notation:DecorationNode" xmi:id="_t72bgtyTEeiZBZaG2slbHw" type="5008">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_t72bg9yTEeiZBZaG2slbHw" y="5"/>
+          </children>
+          <element xmi:type="repository:OperationRequiredRole" href="repository.repository#_tqtoMNyTEeiZBZaG2slbHw"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_t72bgdyTEeiZBZaG2slbHw"/>
+        </children>
+        <element xmi:type="composition:AssemblyContext" href="assembly.system#_2VS28GFdEeetxOZObiabqg"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_re_XgdyTEeiZBZaG2slbHw" x="83" y="66"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_re_Xg9yTEeiZBZaG2slbHw" type="3006" fontName="Segoe UI">
+        <children xmi:type="notation:DecorationNode" xmi:id="_re_XhdyTEeiZBZaG2slbHw" type="5009"/>
+        <children xmi:type="notation:Shape" xmi:id="_re_XjtyTEeiZBZaG2slbHw" type="3007" fontName="Segoe UI">
+          <children xmi:type="notation:DecorationNode" xmi:id="_re_XkNyTEeiZBZaG2slbHw" type="5007">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_re_XkdyTEeiZBZaG2slbHw" y="5"/>
+          </children>
+          <element xmi:type="repository:OperationProvidedRole" href="repository.repository#_-5O40GFbEeetxOZObiabqg"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_re_Xj9yTEeiZBZaG2slbHw"/>
+        </children>
+        <element xmi:type="composition:AssemblyContext" href="assembly.system#_5vDBAGFdEeetxOZObiabqg"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_re_XhNyTEeiZBZaG2slbHw" x="512" y="161"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_zPlmANyTEeiZBZaG2slbHw" type="3006" fontName="Segoe UI">
+        <children xmi:type="notation:DecorationNode" xmi:id="_zPlmAtyTEeiZBZaG2slbHw" type="5009"/>
+        <children xmi:type="notation:Shape" xmi:id="_zPlmA9yTEeiZBZaG2slbHw" type="3007" fontName="Segoe UI">
+          <children xmi:type="notation:DecorationNode" xmi:id="_zPlmBdyTEeiZBZaG2slbHw" type="5007">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_zPlmBtyTEeiZBZaG2slbHw" y="5"/>
+          </children>
+          <element xmi:type="repository:OperationProvidedRole" href="repository.repository#_oT8-4NyTEeiZBZaG2slbHw"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zPlmBNyTEeiZBZaG2slbHw"/>
+        </children>
+        <element xmi:type="composition:AssemblyContext" href="assembly.system#_y1g5INyTEeiZBZaG2slbHw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zPlmAdyTEeiZBZaG2slbHw" x="426" y="306"/>
+      </children>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_re_XktyTEeiZBZaG2slbHw" type="3011" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_rfJIgNyTEeiZBZaG2slbHw" type="5013">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_rfJIgdyTEeiZBZaG2slbHw" y="5"/>
+      </children>
+      <element xmi:type="repository:OperationProvidedRole" href="assembly.system#_97KcIGFdEeetxOZObiabqg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_re_Xk9yTEeiZBZaG2slbHw"/>
+    </children>
+    <element xmi:type="system:System" href="assembly.system#_gNGQwGFdEeetxOZObiabqg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_re2NktyTEeiZBZaG2slbHw" width="1201" height="631"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_aopFcdyTEeiZBZaG2slbHw"/>
+  <element xmi:type="system:System" href="assembly.system#_gNGQwGFdEeetxOZObiabqg"/>
+  <edges xmi:type="notation:Connector" xmi:id="_rfJIgtyTEeiZBZaG2slbHw" type="4004" source="_re_XityTEeiZBZaG2slbHw" target="_re_XjtyTEeiZBZaG2slbHw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_rfJIg9yTEeiZBZaG2slbHw" fontName="Segoe UI"/>
+    <element xmi:type="composition:AssemblyConnector" href="assembly.system#_9JfHkGFdEeetxOZObiabq"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rfJIhNyTEeiZBZaG2slbHw" points="[7, 0, 165, -10]$[-159, 9, -1, -1]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_rfJIhdyTEeiZBZaG2slbHw" type="4006" source="_re_XktyTEeiZBZaG2slbHw" target="_re_XhtyTEeiZBZaG2slbHw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_rfJIhtyTEeiZBZaG2slbHw" fontName="Segoe UI"/>
+    <element xmi:type="composition:ProvidedDelegationConnector" href="assembly.system#_BSPssGFeEeetxOZObiabqg"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rfJIh9yTEeiZBZaG2slbHw" points="[30, 0, -125, -31]$[140, 29, -15, -2]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_2Ka_cdyTEeiZBZaG2slbHw" type="4004" source="_t72bgNyTEeiZBZaG2slbHw" target="_zPlmA9yTEeiZBZaG2slbHw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_2Ka_ctyTEeiZBZaG2slbHw" fontName="Segoe UI"/>
+    <element xmi:type="composition:AssemblyConnector" href="assembly.system#_2Ka_cNyTEeiZBZaG2slbHw"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2Ka_c9yTEeiZBZaG2slbHw" points="[7, 0, -168, -278]$[173, 281, -2, 3]"/>
+  </edges>
+</notation:Diagram>

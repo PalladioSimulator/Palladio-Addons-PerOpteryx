@@ -9,13 +9,16 @@ import java.util.function.Predicate;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.Connector;
+import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.Role;
 
+import FeatureCompletionModel.Complementum;
 import FeatureCompletionModel.CompletionComponent;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
@@ -104,6 +107,9 @@ public abstract class AssemblyWeaving {
 
 		List<Connector> createdConnectors = new ArrayList<>();
 		for (RequiredRole eachRequiredRole : component.getRequiredRoles_InterfaceRequiringEntity()) {
+			if (this.checkForComplementum(eachRequiredRole)) {
+				continue;
+			}
 			ProvidedRole providedRole = (ProvidedRole) this.getComplimentaryRoleOf(eachRequiredRole, this.parent.getSolutionManager().getAllProvidedRoles());
 			AssemblyContext providedAssemblyContext = this.getOrCreateAssemblyContextOf((RepositoryComponent) providedRole.eContainer());
 
@@ -112,6 +118,15 @@ public abstract class AssemblyWeaving {
 		}
 		return createdConnectors;
 
+	}
+
+	private boolean checkForComplementum(RequiredRole eachRequiredRole) {
+		if (!(eachRequiredRole instanceof OperationRequiredRole)) {
+			return false;
+		}
+		OperationRequiredRole orr = (OperationRequiredRole) eachRequiredRole;
+		List<Complementum> cmps = StereotypeAPIHelper.getViaStereoTypeFrom(orr.getRequiredInterface__OperationRequiredRole(), Complementum.class, "requiresComplementum");
+		return cmps.size() != 0;
 	}
 
 	protected <T extends Role> Role getComplimentaryRoleOf(Role role, List<T> complimentaryRoleSpace) throws FCCWeaverException {

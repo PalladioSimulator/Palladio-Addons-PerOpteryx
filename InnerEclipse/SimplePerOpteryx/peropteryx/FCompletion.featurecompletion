@@ -9,5 +9,6 @@
     <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_uj5UwieuEeiIeo5GuXQT1g" name="CV_A" visnetum="INTERFACE">
       <complementaryFeature href="Features.featureobjective#_VNLUcK-zEeiIAoeykg0Flg"/>
     </complementa>
+    <complementa id="_OtMnIdyTEeiZBZaG2slbHw" name="MySpecialComplementum" visnetum="INTERFACE"/>
   </featureCompletions>
 </FeatureCompletion:FeatureCompletionRepository>

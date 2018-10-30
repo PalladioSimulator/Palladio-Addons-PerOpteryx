@@ -74,7 +74,7 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 		 */
 		AllocationWeaving alw = new AllocationWeaving(this);
 		UsageModelWeaving umw = new UsageModelWeaving(this);
-		for (WeavingInstruction instruction : this.instructions) {
+		for (WeavingInstruction instruction : new ArrayList<>(this.instructions)) {
 			RepositoryWeaving rw = AdapterWeavingFactory.getAdapterRepositoryWeaverBy(instruction.getWeavingLocation()).apply(this);
 			AssemblyWeaving asw = AdapterWeavingFactory.getAdapterAssemblyWeaverBy(instruction.getWeavingLocation()).apply(this);
 			ServiceEffectSpecificationWeaving sew = AdapterWeavingFactory.getAdapterSeffWeaverBy(instruction.getWeavingLocation()).apply(this);
@@ -99,7 +99,7 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 		List<Pair<Entity, Complementum>> require = this.getRequiresComplementum();
 		List<Pair<AssemblyConnector, Complementum>> provides = this.getProvidesComplementum();
 
-		ComplementumWeaver cv = new ComplementumWeaver(this.pcmToAdapt);
+		ComplementumWeaver cv = new ComplementumWeaver(this.pcmToAdapt, this.mrm.getRepository());
 		cv.weave(require, provides);
 
 	}
@@ -136,7 +136,9 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 				for (OperationSignature opSig : ((OperationInterface) iface).getSignatures__OperationInterface()) {
 					complementa = StereotypeAPIHelper.getViaStereoTypeFrom(opSig, Complementum.class, "fulfillsComplementum");
 					// Model defines 1..1 as amount of complementa
-					res.add(Pair.of(opSig, complementa.get(0)));
+					if (complementa.size() != 0) {
+						res.add(Pair.of(opSig, complementa.get(0)));
+					}
 				}
 
 			}
