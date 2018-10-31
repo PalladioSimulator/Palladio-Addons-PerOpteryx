@@ -88,7 +88,7 @@ public class ComplementumWeaver {
 		// AssemblyContext
 		AssemblyContext ac = this.createAssemblyContext(adapter, provider, targetContext, newProvided);
 		// AllocationContext
-		AllocationContext alloc = this.createAllocationContext(adapter, ac);
+		this.createAllocationContext(adapter, ac);
 	}
 
 	private AssemblyContext findTargetAC(OperationInterface newProvided) {
@@ -121,21 +121,16 @@ public class ComplementumWeaver {
 		AssemblyContext ac = CompositionFactory.eINSTANCE.createAssemblyContext();
 		ac.setEncapsulatedComponent__AssemblyContext(adapter);
 
-		OperationProvidedRole pr = RepositoryFactory.eINSTANCE.createOperationProvidedRole();
-		pr.setProvidedInterface__OperationProvidedRole(targetInterface);
-
 		AssemblyConnector connectProvided = CompositionFactory.eINSTANCE.createAssemblyConnector();
 		connectProvided.setRequiringAssemblyContext_AssemblyConnector(ac);
 		connectProvided.setRequiredRole_AssemblyConnector((OperationRequiredRole) adapter.getRequiredRoles_InterfaceRequiringEntity().get(0));
-		connectProvided.setProvidingAssemblyContext_AssemblyConnector(target);
-		connectProvided.setProvidedRole_AssemblyConnector(pr);
-
-		OperationRequiredRole or = RepositoryFactory.eINSTANCE.createOperationRequiredRole();
-		or.setRequiredInterface__OperationRequiredRole(provider.getProvidedRole_AssemblyConnector().getProvidedInterface__OperationProvidedRole());
+		connectProvided.setProvidingAssemblyContext_AssemblyConnector(provider.getProvidingAssemblyContext_AssemblyConnector());
+		connectProvided.setProvidedRole_AssemblyConnector(provider.getProvidedRole_AssemblyConnector());
 
 		AssemblyConnector connectRequired = CompositionFactory.eINSTANCE.createAssemblyConnector();
-		connectRequired.setRequiringAssemblyContext_AssemblyConnector(provider.getProvidingAssemblyContext_AssemblyConnector());
-		connectRequired.setRequiredRole_AssemblyConnector(or);
+		connectRequired.setRequiringAssemblyContext_AssemblyConnector(target);
+		connectRequired.setRequiredRole_AssemblyConnector(//
+				this.findRequiredRole(targetInterface, target.getEncapsulatedComponent__AssemblyContext().getRequiredRoles_InterfaceRequiringEntity()));
 		connectRequired.setProvidingAssemblyContext_AssemblyConnector(ac);
 		connectRequired.setProvidedRole_AssemblyConnector((OperationProvidedRole) adapter.getProvidedRoles_InterfaceProvidingEntity().get(0));
 
@@ -146,10 +141,28 @@ public class ComplementumWeaver {
 		return ac;
 	}
 
+	private OperationRequiredRole findRequiredRole(OperationInterface targetInterface, List<RequiredRole> requiredRoles) {
+		for (RequiredRole rr : requiredRoles) {
+			if (rr instanceof OperationRequiredRole) {
+				if (((OperationRequiredRole) rr).getRequiredInterface__OperationRequiredRole().getId().equals(targetInterface.getId())) {
+					return (OperationRequiredRole) rr;
+				}
+			}
+		}
+		return null;
+	}
+
 	private BasicComponent createAdapter(OperationInterface provided, AssemblyConnector required, Repository repo) {
 
+		String id = "AdapterFor" + provided.getId() + required.getId();
+
+		RepositoryComponent rc = repo.getComponents__Repository().stream().filter(a -> a.getId().equals(id)).findAny().orElse(null);
+		if (rc != null) {
+			return (BasicComponent) rc;
+		}
+
 		BasicComponent adapter = RepositoryFactory.eINSTANCE.createBasicComponent();
-		adapter.setId("AdapterFor" + provided.getId() + required.getId());
+		adapter.setId(id);
 		adapter.setEntityName("AdapterFor" + provided.getEntityName() + required.getEntityName());
 
 		// Set Provided Role
@@ -184,6 +197,7 @@ public class ComplementumWeaver {
 		for (OperationSignature extern : externalCalls.getRequiredInterface__OperationRequiredRole().getSignatures__OperationInterface()) {
 			ExternalCallAction ea = SeffFactory.eINSTANCE.createExternalCallAction();
 			ea.setCalledService_ExternalService(extern);
+			ea.setRole_ExternalService(externalCalls);
 			ea.setPredecessor_AbstractAction(last);
 			last.setSuccessor_AbstractAction(ea);
 			last = ea;

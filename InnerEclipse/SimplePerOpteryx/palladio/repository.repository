@@ -39,8 +39,14 @@
   <components__Repository xsi:type="repository:BasicComponent" id="_lf470NyTEeiZBZaG2slbHw" entityName="ForComplementum">
     <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_oT8-4NyTEeiZBZaG2slbHw" entityName="Provided_Interface3_ForComplementum" providedInterface__OperationProvidedRole="_gWxF4NyTEeiZBZaG2slbHw"/>
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_oUi0wNyTEeiZBZaG2slbHw" describedService__SEFF="_iUNC8NyTEeiZBZaG2slbHw">
-      <steps_Behaviour xsi:type="seff:StartAction" id="_oUi0wdyTEeiZBZaG2slbHw" entityName="start" successor_AbstractAction="_oUi0wtyTEeiZBZaG2slbHw"/>
-      <steps_Behaviour xsi:type="seff:StopAction" id="_oUi0wtyTEeiZBZaG2slbHw" entityName="stop" predecessor_AbstractAction="_oUi0wdyTEeiZBZaG2slbHw"/>
+      <steps_Behaviour xsi:type="seff:StartAction" id="_oUi0wdyTEeiZBZaG2slbHw" entityName="start" successor_AbstractAction="_FZYxENyhEeikBuiuJsIRuw"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_oUi0wtyTEeiZBZaG2slbHw" entityName="stop" predecessor_AbstractAction="_FZYxENyhEeikBuiuJsIRuw"/>
+      <steps_Behaviour xsi:type="seff:InternalAction" id="_FZYxENyhEeikBuiuJsIRuw" entityName="CPUUse" predecessor_AbstractAction="_oUi0wdyTEeiZBZaG2slbHw" successor_AbstractAction="_oUi0wtyTEeiZBZaG2slbHw">
+        <resourceDemand_Action>
+          <specification_ParametericResourceDemand specification="10000"/>
+          <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+        </resourceDemand_Action>
+      </steps_Behaviour>
     </serviceEffectSpecifications__BasicComponent>
   </components__Repository>
   <interfaces__Repository xsi:type="repository:OperationInterface" id="_LtcnoGFbEeetxOZObiabqg" entityName="Interface1">

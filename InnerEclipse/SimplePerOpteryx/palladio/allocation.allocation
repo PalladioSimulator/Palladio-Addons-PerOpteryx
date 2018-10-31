@@ -10,4 +10,8 @@
     <resourceContainer_AllocationContext href="environment.resourceenvironment#_PqLbkGFeEeetxOZObiabqg"/>
     <assemblyContext_AllocationContext href="assembly.system#_5vDBAGFdEeetxOZObiabqg"/>
   </allocationContexts_Allocation>
+  <allocationContexts_Allocation id="_ijlrUNyqEeiGZfRQRr4hwQ" entityName="ForComplementumAllocContext">
+    <resourceContainer_AllocationContext href="environment.resourceenvironment#_PqLbkGFeEeetxOZObiabqg"/>
+    <assemblyContext_AllocationContext href="assembly.system#_y1g5INyTEeiZBZaG2slbHw"/>
+  </allocationContexts_Allocation>
 </allocation:Allocation>
