@@ -11,6 +11,7 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
  */
 public final class Modules {
 	private Modules() {
+		throw new IllegalAccessError();
 	}
 
 	/**
@@ -19,6 +20,7 @@ public final class Modules {
 	public static synchronized void loadModules() {
 		ModuleRegistry registry = ModuleRegistry.getModuleRegistry();
 		if (!registry.getModules().isEmpty()) {
+			// Already loaded modules
 			return;
 		}
 		registry.loadModule(new FCCModule());

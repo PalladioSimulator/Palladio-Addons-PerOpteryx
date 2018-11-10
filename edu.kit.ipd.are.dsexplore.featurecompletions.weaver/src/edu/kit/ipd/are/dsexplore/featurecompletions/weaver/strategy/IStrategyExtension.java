@@ -3,7 +3,6 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy;
 import java.util.List;
 
 import org.opt4j.genotype.ListGenotype;
-import org.palladiosimulator.pcm.repository.Repository;
 
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.DegreeOfFreedomInstance;

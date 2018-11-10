@@ -351,6 +351,7 @@ public class DSEProblem {
 			}
 		}
 
+		// Determine initial genotype for all registered modules
 		CostRepository costModel = this.getCostModel().orElse(null);
 		for (IModule module : this.registry.getModules()) {
 			module.getProblemExtension().determineInitialGenotype(this.blackboard, problem, genotype, this.initialInstance, costModel);
@@ -409,6 +410,7 @@ public class DSEProblem {
 		// determineSOAPOrRMIDecisions();
 		this.determineCapacityDecisions(dds, initialCandidate);
 
+		// Initialize Problem for all registered modules.
 		CostRepository costModel = this.getCostModel().orElse(null);
 		for (IModule module : this.registry.getModules()) {
 			module.getProblemExtension().initializeProblem(this.blackboard, dds, initialCandidate, this.initialInstance, costModel);

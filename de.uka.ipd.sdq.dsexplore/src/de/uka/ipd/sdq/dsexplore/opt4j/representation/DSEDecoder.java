@@ -126,6 +126,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			notTransformedChoices = genotype;
 		}
 
+		// Initialize decode part of modules
 		for (IModule module : ModuleRegistry.getModuleRegistry().getModules()) {
 			IDecodeExtension decoder = module.getDecodeExtension();
 			decoder.nextDecodeStart();
@@ -140,6 +141,7 @@ public class DSEDecoder implements Decoder<DesignDecisionGenotype, PCMPhenotype>
 			this.applyChange(doubleGene.getDegreeOfFreedomInstance(), doubleGene, trans, this.pcm);
 		}
 
+		// Invoke decode part of modules
 		for (IModule module : ModuleRegistry.getModuleRegistry().getModules()) {
 			Pointer<PCMInstance> pcm = new Pointer<>(this.pcm);
 			IDecodeExtension decoder = module.getDecodeExtension();

@@ -29,16 +29,43 @@ import FeatureCompletionModel.Complementum;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 
-public class ComplementumWeaver {
+/**
+ * This class weaves {@link Complementum Complementa} into the current
+ * {@link PCMInstance} as needed.
+ *
+ * @author Dominik Fuchss
+ *
+ */
+public final class ComplementumWeaver {
 
 	private final PCMInstance pcm;
 	private Repository repository;
 
-	public ComplementumWeaver(PCMInstance pcmToAdapt, Repository repository) {
+	/**
+	 * Create complementum weaver by {@link PCMInstance} and {@link Repository}
+	 * (Solution Repo).
+	 *
+	 * @param pcmToAdapt
+	 *            the pcm instance
+	 * @param solution
+	 *            the solution repo
+	 */
+	public ComplementumWeaver(PCMInstance pcmToAdapt, Repository solution) {
 		this.pcm = pcmToAdapt;
-		this.repository = repository;
+		this.repository = solution;
 	}
 
+	/**
+	 * Weave the required complementa into the target architecture.
+	 *
+	 * @param require
+	 *            the required complementa (Interface, Signature, .. and
+	 *            complementum)
+	 * @param provides
+	 *            the provided complementa (location and complementum)
+	 * @throws FCCWeaverException
+	 *             if complementum not found
+	 */
 	public void weave(List<Pair<Entity, Complementum>> require, List<Pair<AssemblyConnector, Complementum>> provides) throws FCCWeaverException {
 		Repository repo = this.repository;// this.getOrCreateRepo();
 
@@ -53,29 +80,16 @@ public class ComplementumWeaver {
 				this.weaveInterface((OperationInterface) complementum.first, provider, repo);
 			} else if (complementum.first instanceof OperationSignature) {
 				// TODO Implement me
+				throw new UnsupportedOperationException("Not implemented yet");
 			} else if (complementum.first instanceof RepositoryComponent) {
 				// TODO Implement me
+				throw new UnsupportedOperationException("Not implemented yet");
 			} else {
 				throw new FCCWeaverException("Type " + complementum.getFirst() + " is not supported for complementum weaving");
 			}
 		}
 
 	}
-
-	// private Repository getOrCreateRepo() {
-	// for (Repository repo : new ArrayList<>(this.pcm.getRepositories())) {
-	// if (repo.getId().equals("ComplementumAdapterRepo")) {
-	// // Remove old repo
-	// this.pcm.getRepositories().remove(repo);
-	// }
-	// }
-	// Repository complementumAdapterRepo =
-	// RepositoryFactory.eINSTANCE.createRepository();
-	// complementumAdapterRepo.setId("ComplementumAdapterRepo");
-	// complementumAdapterRepo.setEntityName("ComplementumAdapterRepo");
-	// this.pcm.getRepositories().add(complementumAdapterRepo);
-	// return complementumAdapterRepo;
-	// }
 
 	private void weaveInterface(OperationInterface newProvided, AssemblyConnector provider, Repository repo) {
 		AssemblyContext targetContext = this.findTargetAC(newProvided);
@@ -108,7 +122,6 @@ public class ComplementumWeaver {
 	}
 
 	private AllocationContext createAllocationContext(BasicComponent adapter, AssemblyContext ac) {
-		// TODO Check allocation
 		AllocationContext allocCtx = AllocationFactory.eINSTANCE.createAllocationContext();
 		allocCtx.setAssemblyContext_AllocationContext(ac);
 		allocCtx.setAllocation_AllocationContext(this.pcm.getAllocation());

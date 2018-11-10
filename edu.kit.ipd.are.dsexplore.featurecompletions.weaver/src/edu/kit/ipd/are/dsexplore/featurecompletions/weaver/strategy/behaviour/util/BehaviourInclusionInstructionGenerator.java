@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour.util;
 
@@ -21,21 +21,22 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour.Ex
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.behaviour.InternalActionWeavingLocation;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.FCCFeatureHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmSystemManager;
-
 import placementDescription.impl.ControlFlowPlacementStrategyImpl;
 import placementDescription.impl.ExternalCallPlacementStrategyImpl;
 import placementDescription.impl.InternalActionPlacementStrategyImpl;
 
 /**
- * Utility class for determining the join points and generating the corresponding weaving instructions for the behaviour inclusion mechanism.
+ * Utility class for determining the join points and generating the
+ * corresponding weaving instructions for the behaviour inclusion mechanism.
  *
- * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
- * 
+ * @author Maximilian Eckert (maximilian.eckert@student.kit.edu,
+ *         maxieckert@web.de)
+ *
  */
 public class BehaviourInclusionInstructionGenerator {
 
 	private PcmSystemManager psm;
-	private FCCFeatureHandler fccFeatureHandler;
+	// private FCCFeatureHandler fccFeatureHandler;
 
 	/**
 	 * @param psm
@@ -43,13 +44,15 @@ public class BehaviourInclusionInstructionGenerator {
 	 */
 	public BehaviourInclusionInstructionGenerator(PcmSystemManager psm, FCCFeatureHandler fccFeatureHandler) {
 		this.psm = psm;
-		this.fccFeatureHandler = fccFeatureHandler;
+		// this.fccFeatureHandler = fccFeatureHandler;
 	}
-	
+
 	/**
-	 * Generates all control flow weaving locations of the given PlacementStrategy.
-	 * 
-	 * @param the given PlacementStrategy
+	 * Generates all control flow weaving locations of the given
+	 * PlacementStrategy.
+	 *
+	 * @param the
+	 *            given PlacementStrategy
 	 * @return all internal action weaving locations
 	 */
 	public List<ControlFlowWeavingLocation> generateControlFlowWeavingLocations(ControlFlowPlacementStrategyImpl placementStrategy) {
@@ -64,11 +67,13 @@ public class BehaviourInclusionInstructionGenerator {
 		}
 		return locations;
 	}
-	
+
 	/**
-	 * Generates all internal action weaving locations of the given PlacementStrategy.
-	 * 
-	 * @param placementStrategy the given PlacementStrategy
+	 * Generates all internal action weaving locations of the given
+	 * PlacementStrategy.
+	 *
+	 * @param placementStrategy
+	 *            the given PlacementStrategy
 	 * @return all internal action weaving locations
 	 */
 	public List<InternalActionWeavingLocation> generateInternalActionWeavingLocations(InternalActionPlacementStrategyImpl placementStrategy) {
@@ -85,9 +90,11 @@ public class BehaviourInclusionInstructionGenerator {
 	}
 
 	/**
-	 * Generates all external call weaving locations of the given PlacementStrategy.
-	 * 
-	 * @param placementStrategy the given PlacementStrategy
+	 * Generates all external call weaving locations of the given
+	 * PlacementStrategy.
+	 *
+	 * @param placementStrategy
+	 *            the given PlacementStrategy
 	 * @return all external call weaving locations.
 	 */
 	public List<ExternalCallWeavingLocation> generateExternalCallWeavingLocations(ExternalCallPlacementStrategyImpl placementStrategy) {

@@ -10,16 +10,12 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
-import org.palladiosimulator.pcm.repository.BasicComponent;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 
-import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.impl.ComplementumImpl;
-
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
-
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
 
 public class FCCStructureHandler {
@@ -46,8 +42,9 @@ public class FCCStructureHandler {
 
 	/**
 	 * Determines all FCCs that are required by a specific FCC recursively.
-	 * 
-	 * @param fcc the FCC.
+	 *
+	 * @param fcc
+	 *            the FCC.
 	 * @return all FCCs that are required by the FCC.
 	 */
 	public List<CompletionComponent> getFCCsRequiredBy(CompletionComponent fcc) {
@@ -100,8 +97,9 @@ public class FCCStructureHandler {
 
 	/**
 	 * Checks if any of the specified FCCs requires an additional complementum.
-	 * 
-	 * @param realizingComponents the specified FCCs.
+	 *
+	 * @param realizingComponents
+	 *            the specified FCCs.
 	 * @return whether any of the specified FCCs requires a complementum.
 	 */
 	public boolean requiresComplementa(List<RepositoryComponent> realizingComponents) {
@@ -111,14 +109,15 @@ public class FCCStructureHandler {
 
 	/**
 	 * Determines all complementa that are required by the specified components.
-	 * 
-	 * @param realizingComponents the specified components.
+	 *
+	 * @param realizingComponents
+	 *            the specified components.
 	 * @return all complementa that are required.
 	 */
 	public List<RepositoryComponent> getRequiredComplementa(List<RepositoryComponent> realizingComponents) {
 		List<RepositoryComponent> result = new ArrayList<>();
 		for (RepositoryComponent repositoryComponent : realizingComponents) {
-			List<ComplementumImpl> requiredComplementa = new ArrayList<ComplementumImpl>();
+			List<ComplementumImpl> requiredComplementa = new ArrayList<>();
 			// complementa required by component
 			List<ComplementumImpl> requiredComplementaByComponent = StereotypeAPIHelper.getViaStereoTypeFrom(repositoryComponent, ComplementumImpl.class);
 			// complementa required by signatures
@@ -129,7 +128,7 @@ public class FCCStructureHandler {
 			List<ComplementumImpl> requiredComplementaBySignature = repositoryComponent.getProvidedRoles_InterfaceProvidingEntity().stream()
 					.flatMap(role -> ((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface().stream())
 					.flatMap(signature -> StereotypeAPIHelper.getViaStereoTypeFrom(signature, ComplementumImpl.class).stream()).collect(Collectors.toList());
-			//add all
+			// add all
 			requiredComplementa.addAll(requiredComplementaByComponent);
 			requiredComplementa.addAll(requiredComplementaByInterface);
 			requiredComplementa.addAll(requiredComplementaBySignature);
@@ -147,7 +146,13 @@ public class FCCStructureHandler {
 		// search for component instantiating fcc
 		for (AssemblyContext ac : contexts) {
 			List<CompletionComponent> fccs = StereotypeAPIHelper.getViaStereoTypeFrom(ac.getEncapsulatedComponent__AssemblyContext(), CompletionComponent.class);
-			if (fccs.size() == 1 && fccs.get(0).getId().equals(fcc.getId())) { // 1 component should only realize 1 fcc
+			if (fccs.size() == 1 && fccs.get(0).getId().equals(fcc.getId())) { // 1
+																				// component
+																				// should
+																				// only
+																				// realize
+																				// 1
+																				// fcc
 				return ac;
 			}
 		}

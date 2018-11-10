@@ -65,13 +65,6 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 
 	@Override
 	public void weave() throws FCCWeaverException {
-		/*
-		 * this.weavingChain.add(new RepositoryWeaver());
-		 * this.weavingChain.add(new AssemblyWeaver());
-		 * this.weavingChain.add(new AllocationWeaver());
-		 * this.weavingChain.add(new ServiceEffectSpecificationWeaver());
-		 * this.weavingChain.add(new UsageModelWeaver());
-		 */
 		AllocationWeaving alw = new AllocationWeaving(this);
 		UsageModelWeaving umw = new UsageModelWeaving(this);
 		for (WeavingInstruction instruction : new ArrayList<>(this.instructions)) {
@@ -282,7 +275,7 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 					choice.setChosenValue(((ClassChoice) fccClassChoice).getChosenValue());
 					allocChoices.add(choice);
 				} catch (Exception e) {
-					FCCModule.logger.warn(e.getMessage());
+					FCCModule.LOGGER.warn(e.getMessage());
 				}
 			}
 		}

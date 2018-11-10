@@ -84,7 +84,7 @@ public class FCCProblemExtension implements IProblemExtension {
 		try {
 			return this.createFCCDegreeBy(blackboard, costRepo, fcRepo, dds, initialCandidate);
 		} catch (Exception ex) {
-			FCCModule.logger.error("Error while creating FeatureCompletionDegree ..: " + ex.getMessage());
+			FCCModule.LOGGER.error("Error while creating FeatureCompletionDegree ..: " + ex.getMessage());
 			ex.printStackTrace();
 			return null;
 		}
@@ -106,7 +106,7 @@ public class FCCProblemExtension implements IProblemExtension {
 		this.initializeWeaver(blackboard, costRepo);
 		List<FeatureCompletionDegree> featureCompletionDegrees = new CompletionDesignDecision(fcRepo, this.weaver.get().getSolutionRepositories()).generateFCCDegrees();
 		if (featureCompletionDegrees.size() != 1) {
-			FCCModule.logger.warn("FCCRepo count: " + featureCompletionDegrees.size() + " -> skipping!");
+			FCCModule.LOGGER.warn("FCCRepo count: " + featureCompletionDegrees.size() + " -> skipping!");
 			return null;
 		}
 		FeatureCompletionDegree degree = featureCompletionDegrees.get(0);
