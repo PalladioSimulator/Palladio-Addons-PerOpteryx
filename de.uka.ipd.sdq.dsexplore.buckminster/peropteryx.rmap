@@ -11,6 +11,7 @@
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.pcm\.taskmodel.*" />
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^de\.uka\.ipd\.sdq\.tcfmoop.*" />
   <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^org\.palladiosimulator\.qualitymodel.*" />
+  <rm:locator searchPathRef="peropteryxgit" failOnError="true" pattern="^org\.palladiosimulator\.qes.*" />
 
   <rm:locator pattern="^org\.palladiosimulator\.simucom.*" searchPathRef="SimuCom" failOnError="true"/>
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.codegen\.simucontroller.*" searchPathRef="SimuCom" failOnError="true"/>
@@ -22,32 +23,32 @@
   <rm:locator pattern="^org\.palladiosimulator\.solver.*" searchPathRef="PCMSolver" failOnError="true" />
 
   <rm:locator pattern="^org\.palladiosimulator\.reliability.*" searchPathRef="Reliability" failOnError="true"/>
-  
+
   <rm:locator pattern="^org\.palladiosimulator\.analyzer.*" searchPathRef="AnalyzerFramework" failOnError="true"/>
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.workflow.*" searchPathRef="workflowengine" failOnError="true"/>
   <rm:locator pattern="^de\.uka\.ipd\.sdq\.qvtrengine.*" searchPathRef="workflowengine" failOnError="true"/>
   <rm:locator pattern="^org\.palladiosimulator\.mdsdprofiles\.*" searchPathRef="MDSDProfiles" failOnError="true"/>
   <rm:locator pattern="^org\.modelversioning\.*" searchPathRef="EMFProfiles" failOnError="true"/>
-  
+
   <rm:locator pattern="^org\.palladiosimulator\.editors\.commons.*" searchPathRef="Editors" failOnError="true"/>
   <rm:locator pattern="^org\.palladiosimulator\.pcm.*" searchPathRef="Editors" failOnError="false"/>
-  
+
   <rm:locator pattern="^org\.palladiosimulator\.recorderframework.*" searchPathRef="RecorderFramework" failOnError="true"/>
   <rm:locator pattern="^org\.palladiosimulator\.architecturaltemplates.*" searchPathRef="ArchitecturalTemplates" failOnError="true"/>
-  
+
   <rm:redirect pattern="^de\.uka\.ipd\.sdq\.sensorframework.*" href="https://raw.githubusercontent.com/PalladioSimulator/Palladio-QuAL-SensorFramework/master/de.uka.ipd.sdq.sensorframework.buckminster/sensorframework.rmap"/>
   <rm:redirect pattern="^de\.uka\.ipd\.sdq\.codegen\.simudatavisualisation\.datatypes$" href="https://raw.githubusercontent.com/PalladioSimulator/Palladio-QuAL-SensorFramework/master/de.uka.ipd.sdq.sensorframework.buckminster/sensorframework.rmap"/>
 
   <rm:redirect pattern="^de\.uka\.ipd\.sdq\.feature.*"
 		href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/FeatureModel/Core/trunk/de.uka.ipd.sdq.featuremodel.buckminster/featuremodel.rmap" />
-		
+
   <rm:redirect pattern="^de\.uka\.ipd\.sdq\.pcm\.stochasticexpressions.*"
 		href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Core/trunk/PCM/org.palladiosimulator.pcm.buckminster/pcm.rmap" />
   <rm:redirect pattern="^de\.uka\.ipd\.sdq\.stoex\.analyser.*"
 		href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Core/trunk/PCM/org.palladiosimulator.pcm.buckminster/pcm.rmap" />
   <rm:redirect pattern=".*"
 		href="https://anonymous:anonymous@svnserver.informatik.kit.edu/i43/svn/code/Palladio/Core/trunk/PCM/org.palladiosimulator.pcm.buckminster/pcm.rmap" />
-  
+
   <rm:searchPath name="Editors">
     <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/editors/commons/nightly/"/>
@@ -65,7 +66,7 @@
       <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/reliability/releases/latest/"/>
     </rm:provider>
 </rm:searchPath>
-  
+
   <!-- Workflowengine -->
   <rm:searchPath name="workflowengine">
     <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature,buckminster" readerType="p2" source="false" mutable="false">
@@ -84,7 +85,7 @@
       <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/editors/commons/releases/latest/"/>
     </rm:provider>
 </rm:searchPath>
-  
+
 
   <rm:searchPath name="MDSDProfiles">
     <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
@@ -99,7 +100,7 @@
       <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/emf-profiles/releases/latest"/>
     </rm:provider>
   </rm:searchPath>
-  
+
   <rm:searchPath name="ArchitecturalTemplates">
     <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/architecturaltemplates/nightly/"/>
@@ -110,7 +111,7 @@
   </rm:searchPath>
 
   <!-- QuAL -->
-  
+
   <rm:searchPath name="RecorderFramework">
     <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:uri format="http://sdqweb.ipd.kit.edu/eclipse/recorderframework/nightly/"/>
@@ -127,7 +128,7 @@
     <rm:provider resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/framework/releases/latest/"/>
     </rm:provider>
-  
+
   </rm:searchPath>
 
   <rm:searchPath name="peropteryxgit">
@@ -136,7 +137,7 @@
 	    <bc:propertyRef key="workspace.root" />
       	<bc:propertyRef key="buckminster.component" />
       </rm:uri>
-      <rm:property key="git.remote.uri" value="https://github.com/PalladioSimulator/Palladio-Addons-PerOpteryx"/>      
+      <rm:property key="git.remote.uri" value="https://github.com/PalladioSimulator/Palladio-Addons-PerOpteryx"/>
       <rm:property key="git.auto.fetch" value="true"/>
     </rm:provider>
     <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
@@ -144,7 +145,7 @@
     </rm:provider>
     <rm:provider resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/addons/peropteryx/releases/latest/"/>
-    </rm:provider>      
+    </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="AbstractSimEngine">
       <rm:provider resolutionFilter="(resolveFrom=nightly)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
@@ -177,5 +178,5 @@
       <rm:provider resolutionFilter="(resolveFrom=release)" componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
           <rm:uri format="https://sdqweb.ipd.kit.edu/eclipse/palladio/analyzer/simucom/releases/latest/"/>
       </rm:provider>
-  </rm:searchPath>  
+  </rm:searchPath>
 </rm:rmap>
