@@ -15,8 +15,8 @@ hs_err_pid*
 # Xtext
 *._trace
 *.xtendbin
-src-gen/
-xtend-gen/
+#src-gen/
+#xtend-gen/
 
 # Palladio
 org.palladiosimulator.temporary/
