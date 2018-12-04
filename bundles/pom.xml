@@ -12,10 +12,6 @@
 	<packaging>pom</packaging>
 	
 	<modules>
-		<module>AStart</module>
-		<module>Example</module>
-		<module>InnerEclipse</module>
-		<module>PCM2TaskmodelExample</module>
 		<module>de.uka.ipd.sdq.dsexplore</module>
 		<module>de.uka.ipd.sdq.dsexplore.analysis.cost</module>
 		<module>de.uka.ipd.sdq.dsexplore.analysis.lqn</module>
@@ -24,7 +20,6 @@
 		<module>de.uka.ipd.sdq.dsexplore.analysis.security</module>
 		<module>de.uka.ipd.sdq.dsexplore.analysis.simucom</module>
 		<module>de.uka.ipd.sdq.dsexplore.bayesnets</module>
-		<module>de.uka.ipd.sdq.dsexplore.constrainthandling.qmldeclarations</module>
 		<module>de.uka.ipd.sdq.dsexplore.csvanalyzer</module>
 		<module>de.uka.ipd.sdq.dsexplore.export.println</module>
 		<module>de.uka.ipd.sdq.dsexplore.facade</module>
@@ -34,7 +29,6 @@
 		<module>de.uka.ipd.sdq.dsexplore.qml.handling</module>
 		<module>de.uka.ipd.sdq.dsexplore.tools</module>
 		<module>de.uka.ipd.sdq.pcm.cost</module>
-		<module>de.uka.ipd.sdq.pcm.cost.doc</module>
 		<module>de.uka.ipd.sdq.pcm.cost.edit</module>
 		<module>de.uka.ipd.sdq.pcm.cost.editor</module>
 		<module>de.uka.ipd.sdq.pcm.designdecision</module>
@@ -45,7 +39,6 @@
 		<module>de.uka.ipd.sdq.pcm.nqr.editor</module>
 		<module>de.uka.ipd.sdq.pcm.pcm2taskmodel</module>
 		<module>de.uka.ipd.sdq.pcm.taskmodel</module>
-		<module>de.uka.ipd.sdq.pcm.taskmodel.doc</module>
 		<module>de.uka.ipd.sdq.pcm.taskmodel.edit</module>
 		<module>de.uka.ipd.sdq.pcm.taskmodel.editor</module>
 		<module>de.uka.ipd.sdq.tcfmoop</module>
@@ -60,7 +53,6 @@
 		<module>edu.kit.ipd.are.dsexplore.featurecompletions.edit</module>
 		<module>edu.kit.ipd.are.dsexplore.featurecompletions.editor</module>
 		<module>edu.kit.ipd.are.dsexplore.featurecompletions.weaver</module>
-		<module>libs</module>
 		<module>org.palladiosimulator.qes</module>
 		<module>org.palladiosimulator.qes.ide</module>
 		<module>org.palladiosimulator.qes.ui</module>
