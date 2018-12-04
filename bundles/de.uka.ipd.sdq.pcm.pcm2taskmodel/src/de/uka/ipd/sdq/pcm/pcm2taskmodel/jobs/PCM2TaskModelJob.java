@@ -34,7 +34,7 @@ public class PCM2TaskModelJob extends SequentialBlackboardInteractingJob<MDSDBla
 		}
 
 		// 4. Transform Event Model Elements
-		this.add(new EventsTransformationJob(config));
+		this.add(new EventsTransformationJob(config.getStoragePluginID(), config.getEventMiddlewareFile(), false));
 
 		// -- Stage analysis
 		// 8. Store resulting model(s)
