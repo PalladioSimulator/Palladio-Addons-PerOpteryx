@@ -16,7 +16,7 @@ hs_err_pid*
 *._trace
 *.xtendbin
 #src-gen/
-#xtend-gen/
+xtend-gen/
 
 # Palladio
 org.palladiosimulator.temporary/
@@ -51,7 +51,6 @@ bin/
 local.properties
 tmp/
 target/
-xtend-gen/*
 
 # macOS
 ._*

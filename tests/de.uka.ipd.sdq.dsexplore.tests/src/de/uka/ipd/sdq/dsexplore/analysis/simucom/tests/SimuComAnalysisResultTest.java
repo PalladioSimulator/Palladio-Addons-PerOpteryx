@@ -10,7 +10,9 @@ import de.uka.ipd.sdq.sensorframework.dao.file.entities.ExperimentRunImpl;
 import de.uka.ipd.sdq.sensorframework.entities.Experiment;
 import de.uka.ipd.sdq.sensorframework.entities.ExperimentRun;
 import junit.framework.TestCase;
+import org.junit.Ignore;
 
+@Ignore
 public class SimuComAnalysisResultTest extends TestCase {
 
     private SimuComAnalysisResult scr;
