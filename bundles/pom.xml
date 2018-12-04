@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.palladiosimulator.peropteryx</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>bundles</artifactId>
+	<packaging>pom</packaging>
+	
+	<modules>
+		<module>AStart</module>
+		<module>Example</module>
+		<module>InnerEclipse</module>
+		<module>PCM2TaskmodelExample</module>
+		<module>de.uka.ipd.sdq.dsexplore</module>
+		<module>de.uka.ipd.sdq.dsexplore.analysis.cost</module>
+		<module>de.uka.ipd.sdq.dsexplore.analysis.lqn</module>
+		<module>de.uka.ipd.sdq.dsexplore.analysis.nqr</module>
+		<module>de.uka.ipd.sdq.dsexplore.analysis.reliability</module>
+		<module>de.uka.ipd.sdq.dsexplore.analysis.security</module>
+		<module>de.uka.ipd.sdq.dsexplore.analysis.simucom</module>
+		<module>de.uka.ipd.sdq.dsexplore.bayesnets</module>
+		<module>de.uka.ipd.sdq.dsexplore.constrainthandling.qmldeclarations</module>
+		<module>de.uka.ipd.sdq.dsexplore.csvanalyzer</module>
+		<module>de.uka.ipd.sdq.dsexplore.export.println</module>
+		<module>de.uka.ipd.sdq.dsexplore.facade</module>
+		<module>de.uka.ipd.sdq.dsexplore.qml</module>
+		<module>de.uka.ipd.sdq.dsexplore.qml.edit</module>
+		<module>de.uka.ipd.sdq.dsexplore.qml.editor</module>
+		<module>de.uka.ipd.sdq.dsexplore.qml.handling</module>
+		<module>de.uka.ipd.sdq.dsexplore.tools</module>
+		<module>de.uka.ipd.sdq.pcm.cost</module>
+		<module>de.uka.ipd.sdq.pcm.cost.doc</module>
+		<module>de.uka.ipd.sdq.pcm.cost.edit</module>
+		<module>de.uka.ipd.sdq.pcm.cost.editor</module>
+		<module>de.uka.ipd.sdq.pcm.designdecision</module>
+		<module>de.uka.ipd.sdq.pcm.designdecision.edit</module>
+		<module>de.uka.ipd.sdq.pcm.designdecision.editor</module>
+		<module>de.uka.ipd.sdq.pcm.nqr</module>
+		<module>de.uka.ipd.sdq.pcm.nqr.edit</module>
+		<module>de.uka.ipd.sdq.pcm.nqr.editor</module>
+		<module>de.uka.ipd.sdq.pcm.pcm2taskmodel</module>
+		<module>de.uka.ipd.sdq.pcm.taskmodel</module>
+		<module>de.uka.ipd.sdq.pcm.taskmodel.doc</module>
+		<module>de.uka.ipd.sdq.pcm.taskmodel.edit</module>
+		<module>de.uka.ipd.sdq.pcm.taskmodel.editor</module>
+		<module>de.uka.ipd.sdq.tcfmoop</module>
+		<module>edu.kit.ipd.are.dsexplore.analysis.security</module>
+		<module>edu.kit.ipd.are.dsexplore.componentSecurity</module>
+		<module>edu.kit.ipd.are.dsexplore.componentSecurity.edit</module>
+		<module>edu.kit.ipd.are.dsexplore.componentSecurity.editor</module>
+		<module>edu.kit.ipd.are.dsexplore.fcdsl</module>
+		<module>edu.kit.ipd.are.dsexplore.fcdsl.ide</module>
+		<module>edu.kit.ipd.are.dsexplore.fcdsl.ui</module>
+		<module>edu.kit.ipd.are.dsexplore.featurecompletions</module>
+		<module>edu.kit.ipd.are.dsexplore.featurecompletions.edit</module>
+		<module>edu.kit.ipd.are.dsexplore.featurecompletions.editor</module>
+		<module>edu.kit.ipd.are.dsexplore.featurecompletions.weaver</module>
+		<module>libs</module>
+		<module>org.palladiosimulator.qes</module>
+		<module>org.palladiosimulator.qes.ide</module>
+		<module>org.palladiosimulator.qes.ui</module>
+		<module>org.palladiosimulator.qualitymodel</module>
+		<module>org.palladiosimulator.qualitymodel.edit</module>
+		<module>org.palladiosimulator.qualitymodel.editor</module>
+	</modules>
+	
+</project>
