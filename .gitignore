@@ -50,6 +50,8 @@ PerOpteryx_results/
 bin/
 local.properties
 tmp/
+target/
+xtend-gen/*
 
 # macOS
 ._*
