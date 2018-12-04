@@ -12,13 +12,7 @@
 	<packaging>pom</packaging>
 	
 	<modules>
-		<module>de.uka.ipd.sdq.dsexplore.qml.tests</module>
 		<module>de.uka.ipd.sdq.dsexplore.tests</module>
-		<module>de.uka.ipd.sdq.pcm.designdecision.tests</module>
-		<module>de.uka.ipd.sdq.pcm.nqr.tests</module>
-		<module>edu.kit.ipd.are.dsexplore.componentSecurity.tests</module>
-		<module>edu.kit.ipd.are.dsexplore.featurecompletions.tests</module>
-		<module>org.palladiosimulator.qualitymodel.tests</module>
 	</modules>
 	
 </project>

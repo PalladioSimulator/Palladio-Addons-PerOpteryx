@@ -46,9 +46,6 @@
 		<module>edu.kit.ipd.are.dsexplore.componentSecurity</module>
 		<module>edu.kit.ipd.are.dsexplore.componentSecurity.edit</module>
 		<module>edu.kit.ipd.are.dsexplore.componentSecurity.editor</module>
-		<module>edu.kit.ipd.are.dsexplore.fcdsl</module>
-		<module>edu.kit.ipd.are.dsexplore.fcdsl.ide</module>
-		<module>edu.kit.ipd.are.dsexplore.fcdsl.ui</module>
 		<module>edu.kit.ipd.are.dsexplore.featurecompletions</module>
 		<module>edu.kit.ipd.are.dsexplore.featurecompletions.edit</module>
 		<module>edu.kit.ipd.are.dsexplore.featurecompletions.editor</module>
