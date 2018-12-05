@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureCompletion:FeatureCompletionRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FeatureCompletion="http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1">
+  <featureCompletions id="_Vb3gYCeuEeiIeo5GuXQT1g" name="FCompletionRoot">
+    <completionComponents id="_X-aVoCeuEeiIeo5GuXQT1g" name="FCC_A">
+      <perimeterProviding id="_aDZFICeuEeiIeo5GuXQT1g" name="PerimeterA">
+        <featureProviding href="Features.featureobjective#_VNLUcK-zEeiIAoeykg0Flg"/>
+      </perimeterProviding>
+    </completionComponents>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_uj5UwieuEeiIeo5GuXQT1g" name="CV_A" visnetum="INTERFACE">
+      <complementaryFeature href="Features.featureobjective#_VNLUcK-zEeiIAoeykg0Flg"/>
+    </complementa>
+    <complementa id="_OtMnIdyTEeiZBZaG2slbHw" name="MySpecialComplementum" visnetum="INTERFACE"/>
+  </featureCompletions>
+</FeatureCompletion:FeatureCompletionRepository>
