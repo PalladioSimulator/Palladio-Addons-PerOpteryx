@@ -160,7 +160,7 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 				for (IAnalysis evaluator : this.evaluators) {
 					evaluator.analyse(pheno, this.monitor);
 					for (int i = 0; i < this.constraints.size(); i++) {
-						// gehört constraint zu diesem evaluator?
+						// gehÃ¶rt constraint zu diesem evaluator?
 						if (this.constraints.get(i).getEvaluator() == evaluator) {
 							// wenn ja
 							this.retrieveConstraint(pheno, obj, this.constraints.get(i));
@@ -168,7 +168,7 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 							// ist es ein InfeasibilityConstraint?
 							// Constraint umbauen so dass nicht double sondern
 							// Value
-							// wenn ungültig dann abbrechen
+							// wenn ungÃ¼ltig dann abbrechen
 						}
 					}
 				}
