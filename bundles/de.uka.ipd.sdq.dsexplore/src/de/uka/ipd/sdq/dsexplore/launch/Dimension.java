@@ -11,7 +11,7 @@ package de.uka.ipd.sdq.dsexplore.launch;
  *
  */
 @Deprecated
-public class Dimension { //HÄ? Objective oder Criterion??
+public class Dimension { //HÃ„? Objective oder Criterion??
 	
 	private String id;
 

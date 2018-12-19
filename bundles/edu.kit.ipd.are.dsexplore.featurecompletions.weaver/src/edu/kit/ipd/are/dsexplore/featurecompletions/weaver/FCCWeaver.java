@@ -39,7 +39,7 @@ import featureSolution.InclusionMechanism;
  * This class represents the entry point for weaving feature completions into PCM models.
  * All further actions are delegated to the corresponding weaving strategy (depending on the inclusion mechanism).
  * 
- * @author Dominik Fuchﬂ, Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
+ * @author Dominik Fuch√ü, Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
  * 
  */
 public final class FCCWeaver {
