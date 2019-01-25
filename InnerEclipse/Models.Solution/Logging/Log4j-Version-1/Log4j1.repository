@@ -2,6 +2,7 @@
 <repository:Repository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" id="_unXGUHueEeiQ2-JKBP-N_g" entityName="Log4j1">
   <components__Repository xsi:type="repository:BasicComponent" id="_zCcD8OQTEeeDc5WJsIYxgA" entityName="Log4j1Logger">
     <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_OyV5gOQUEeeDc5WJsIYxgA" entityName="OperationProvidedRole_Log" providedInterface__OperationProvidedRole="_EuoOUOQTEeeDc5WJsIYxgA"/>
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_mTiSkBnZEemiorxBpJTCRg" entityName="Provided_IFormLog_Log4j1Logger" providedInterface__OperationProvidedRole="_htiX0BnZEemiorxBpJTCRg"/>
     <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_fp33UOQUEeeDc5WJsIYxgA" entityName="OperationRequiredRole_Append" requiredInterface__OperationRequiredRole="_MDN2QOQTEeeDc5WJsIYxgA"/>
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_OypbgOQUEeeDc5WJsIYxgA" describedService__SEFF="_VB1XEOQTEeeDc5WJsIYxgA">
       <steps_Behaviour xsi:type="seff:StartAction" id="_OypbgeQUEeeDc5WJsIYxgA" successor_AbstractAction="_c8FvYPkxEeeT85tFTnTIqQ"/>
@@ -13,6 +14,10 @@
         </resourceDemand_Action>
       </steps_Behaviour>
       <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_eIyzEPkxEeeT85tFTnTIqQ" entityName="call append" predecessor_AbstractAction="_c8FvYPkxEeeT85tFTnTIqQ" successor_AbstractAction="_OypbguQUEeeDc5WJsIYxgA" calledService_ExternalService="_WHmsUOQTEeeDc5WJsIYxgA" role_ExternalService="_fp33UOQUEeeDc5WJsIYxgA"/>
+    </serviceEffectSpecifications__BasicComponent>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_mTkHwBnZEemiorxBpJTCRg" describedService__SEFF="_jSRhABnZEemiorxBpJTCRg">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_mTkHwRnZEemiorxBpJTCRg" entityName="start" successor_AbstractAction="_mTku0BnZEemiorxBpJTCRg"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_mTku0BnZEemiorxBpJTCRg" entityName="stop" predecessor_AbstractAction="_mTkHwRnZEemiorxBpJTCRg"/>
     </serviceEffectSpecifications__BasicComponent>
   </components__Repository>
   <components__Repository xsi:type="repository:BasicComponent" id="_LqYLQLAxEei9-ucuJtAM2g" entityName="Log4j1LocationInfoLogger">
@@ -30,7 +35,7 @@
       <steps_Behaviour xsi:type="seff:StopAction" id="_zvVnYJtIEeiYReZFY0WRHg" predecessor_AbstractAction="_yS9I9ptIEeiYReZFY0WRHg"/>
     </serviceEffectSpecifications__BasicComponent>
   </components__Repository>
-  <components__Repository xsi:type="repository:BasicComponent" id="_2hBDoOQTEeeDc5WJsIYxgA" entityName="Log4j1ConsoleAppender">
+  <components__Repository xsi:type="repository:BasicComponent" id="_2hBDoOQTEeeDc5WJsIYxgA" entityName="ConsoleAppending">
     <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_RI3E8OQUEeeDc5WJsIYxgA" entityName="OperationProvidedRole_Append" providedInterface__OperationProvidedRole="_MDN2QOQTEeeDc5WJsIYxgA"/>
     <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_gWUGkOQUEeeDc5WJsIYxgA" entityName="OperationRequiredRole_Format" requiredInterface__OperationRequiredRole="_POGd4OQTEeeDc5WJsIYxgA"/>
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_RJORUOQUEeeDc5WJsIYxgA" describedService__SEFF="_WHmsUOQTEeeDc5WJsIYxgA">
@@ -51,7 +56,7 @@
       </steps_Behaviour>
     </serviceEffectSpecifications__BasicComponent>
   </components__Repository>
-  <components__Repository xsi:type="repository:BasicComponent" id="_99omMOQTEeeDc5WJsIYxgA" entityName="Log4j1PatternFormatter">
+  <components__Repository xsi:type="repository:BasicComponent" id="_99omMOQTEeeDc5WJsIYxgA" entityName="PatternFormatting">
     <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_R8JjEOQUEeeDc5WJsIYxgA" entityName="OperationProvidedRole_Format" providedInterface__OperationProvidedRole="_POGd4OQTEeeDc5WJsIYxgA"/>
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_R8TUEOQUEeeDc5WJsIYxgA" describedService__SEFF="_W6dsoOQTEeeDc5WJsIYxgA">
       <steps_Behaviour xsi:type="seff:StartAction" id="_R8TUEeQUEeeDc5WJsIYxgA" successor_AbstractAction="_PJVUsPkyEeeT85tFTnTIqQ"/>
@@ -64,7 +69,7 @@
       </steps_Behaviour>
     </serviceEffectSpecifications__BasicComponent>
   </components__Repository>
-  <components__Repository xsi:type="repository:BasicComponent" id="_yfDS4OTrEeeT85tFTnTIqQ" entityName="Log4j1FileAppender">
+  <components__Repository xsi:type="repository:BasicComponent" id="_yfDS4OTrEeeT85tFTnTIqQ" entityName="FileAppending">
     <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_IHk6gOTsEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Append" providedInterface__OperationProvidedRole="_MDN2QOQTEeeDc5WJsIYxgA"/>
     <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_GcjjIOTsEeeT85tFTnTIqQ" entityName="OperationRequiredRole_Format" requiredInterface__OperationRequiredRole="_POGd4OQTEeeDc5WJsIYxgA"/>
     <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_IHuEcOTsEeeT85tFTnTIqQ" describedService__SEFF="_WHmsUOQTEeeDc5WJsIYxgA">
@@ -85,7 +90,7 @@
       </steps_Behaviour>
     </serviceEffectSpecifications__BasicComponent>
   </components__Repository>
-  <components__Repository xsi:type="repository:BasicComponent" id="_DNzk0PiYEeeT85tFTnTIqQ" entityName="Log4j1SQLDatabaseAppender">
+  <components__Repository xsi:type="repository:BasicComponent" id="_DNzk0PiYEeeT85tFTnTIqQ" entityName="DatabaseAppending">
     <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_T2-WgPiYEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Append" providedInterface__OperationProvidedRole="_MDN2QOQTEeeDc5WJsIYxgA"/>
     <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_SRZf0PiYEeeT85tFTnTIqQ" entityName="OperationRequiredRole_Format" requiredInterface__OperationRequiredRole="_POGd4OQTEeeDc5WJsIYxgA"/>
     <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_c1kCIPiYEeeT85tFTnTIqQ" entityName="OperationRequiredRole_Database" requiredInterface__OperationRequiredRole="_QT0ikO8FEeeT85tFTnTIqQ"/>
@@ -108,30 +113,41 @@
       </steps_Behaviour>
     </serviceEffectSpecifications__BasicComponent>
   </components__Repository>
-  <components__Repository xsi:type="repository:BasicComponent" id="_M-IvQIs8EeiLsrMCg8rAxg" entityName="SQLDatabase">
-    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_QrzT0Ys8EeiLsrMCg8rAxg" entityName="OperationProvidedRole_write" providedInterface__OperationProvidedRole="_QT0ikO8FEeeT85tFTnTIqQ"/>
-    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_foTIV4s8EeiLsrMCg8rAxg" describedService__SEFF="_TzUIQO8FEeeT85tFTnTIqQ">
-      <steps_Behaviour xsi:type="seff:StartAction" id="_k-BP0os8EeiLsrMCg8rAxg" successor_AbstractAction="_o0PTfIs8EeiLsrMCg8rAxg"/>
-      <steps_Behaviour xsi:type="seff:InternalAction" id="_o0PTfIs8EeiLsrMCg8rAxg" entityName="SQLwrite" predecessor_AbstractAction="_k-BP0os8EeiLsrMCg8rAxg" successor_AbstractAction="_piaoEIs8EeiLsrMCg8rAxg">
-        <resourceDemand_Action>
-          <specification_ParametericResourceDemand specification="1000000"/>
-          <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
-        </resourceDemand_Action>
-      </steps_Behaviour>
-      <steps_Behaviour xsi:type="seff:StopAction" id="_piaoEIs8EeiLsrMCg8rAxg" predecessor_AbstractAction="_o0PTfIs8EeiLsrMCg8rAxg"/>
+  <components__Repository xsi:type="repository:BasicComponent" id="__GPXMBnZEemiorxBpJTCRg" entityName="CSVFormatting">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_EnIM4BnaEemiorxBpJTCRg" entityName="Provided_IFormat_CSVFormatting" providedInterface__OperationProvidedRole="_POGd4OQTEeeDc5WJsIYxgA"/>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_EnIM4RnaEemiorxBpJTCRg" describedService__SEFF="_W6dsoOQTEeeDc5WJsIYxgA">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_EnIz8BnaEemiorxBpJTCRg" entityName="start" successor_AbstractAction="_EnIz8RnaEemiorxBpJTCRg"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_EnIz8RnaEemiorxBpJTCRg" entityName="stop" predecessor_AbstractAction="_EnIz8BnaEemiorxBpJTCRg"/>
     </serviceEffectSpecifications__BasicComponent>
   </components__Repository>
-  <interfaces__Repository xsi:type="repository:OperationInterface" id="_EuoOUOQTEeeDc5WJsIYxgA" entityName="ILog4j1Log">
+  <components__Repository xsi:type="repository:BasicComponent" id="_ANQCkBnaEemiorxBpJTCRg" entityName="XMLFormatting">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_E8SkkBnaEemiorxBpJTCRg" entityName="Provided_IFormat_XMLFormatting" providedInterface__OperationProvidedRole="_POGd4OQTEeeDc5WJsIYxgA"/>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_E8SkkRnaEemiorxBpJTCRg" describedService__SEFF="_W6dsoOQTEeeDc5WJsIYxgA">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_E8TLoBnaEemiorxBpJTCRg" entityName="start" successor_AbstractAction="_E8TLoRnaEemiorxBpJTCRg"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_E8TLoRnaEemiorxBpJTCRg" entityName="stop" predecessor_AbstractAction="_E8TLoBnaEemiorxBpJTCRg"/>
+    </serviceEffectSpecifications__BasicComponent>
+  </components__Repository>
+  <components__Repository xsi:type="repository:BasicComponent" id="_BgX3UBnaEemiorxBpJTCRg" entityName="JSONFormatting">
+    <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_EQ3pABnaEemiorxBpJTCRg" entityName="Provided_IFormat_JSONFormatting" providedInterface__OperationProvidedRole="_POGd4OQTEeeDc5WJsIYxgA"/>
+    <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_EQ4QEBnaEemiorxBpJTCRg" describedService__SEFF="_W6dsoOQTEeeDc5WJsIYxgA">
+      <steps_Behaviour xsi:type="seff:StartAction" id="_EQ4QERnaEemiorxBpJTCRg" entityName="start" successor_AbstractAction="_EQ4QEhnaEemiorxBpJTCRg"/>
+      <steps_Behaviour xsi:type="seff:StopAction" id="_EQ4QEhnaEemiorxBpJTCRg" entityName="stop" predecessor_AbstractAction="_EQ4QERnaEemiorxBpJTCRg"/>
+    </serviceEffectSpecifications__BasicComponent>
+  </components__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_EuoOUOQTEeeDc5WJsIYxgA" entityName="ILogging">
     <signatures__OperationInterface id="_VB1XEOQTEeeDc5WJsIYxgA" entityName="log"/>
     <signatures__OperationInterface id="_fb3uMJtIEeiYReZFY0WRHg" entityName="locationInfoLog"/>
   </interfaces__Repository>
-  <interfaces__Repository xsi:type="repository:OperationInterface" id="_MDN2QOQTEeeDc5WJsIYxgA" entityName="ILog4j1Append">
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_MDN2QOQTEeeDc5WJsIYxgA" entityName="IAppend">
     <signatures__OperationInterface id="_WHmsUOQTEeeDc5WJsIYxgA" entityName="append"/>
   </interfaces__Repository>
-  <interfaces__Repository xsi:type="repository:OperationInterface" id="_POGd4OQTEeeDc5WJsIYxgA" entityName="ILog4j1Format">
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_POGd4OQTEeeDc5WJsIYxgA" entityName="IFormat">
     <signatures__OperationInterface id="_W6dsoOQTEeeDc5WJsIYxgA" entityName="format"/>
   </interfaces__Repository>
-  <interfaces__Repository xsi:type="repository:OperationInterface" id="_QT0ikO8FEeeT85tFTnTIqQ" entityName="ISQLDatabase">
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_QT0ikO8FEeeT85tFTnTIqQ" entityName="ISQL">
     <signatures__OperationInterface id="_TzUIQO8FEeeT85tFTnTIqQ" entityName="SQLwrite"/>
+  </interfaces__Repository>
+  <interfaces__Repository xsi:type="repository:OperationInterface" id="_htiX0BnZEemiorxBpJTCRg" entityName="IFormLog">
+    <signatures__OperationInterface id="_jSRhABnZEemiorxBpJTCRg" entityName="formLog"/>
   </interfaces__Repository>
 </repository:Repository>
