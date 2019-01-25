@@ -4,13 +4,13 @@
     <featureObjectives href="Logging.featureobjective#_zEouQOGgEeemVJ0YF1ddSA"/>
     <completionComponents id="_qGwiUOTXEeeT85tFTnTIqQ" name="Appender" requiredComponents="_LinOEOTYEeeT85tFTnTIqQ">
       <perimeterProviding id="_6bVkEuTXEeeT85tFTnTIqQ"/>
-      <perimeterRequiring id="_6zUmQeTXEeeT85tFTnTIqQ"/>
+      <perimeterRequiring id="_6zUmQeTXEeeT85tFTnTIqQ" complementum="_RVapIOZXEeeT85tFTnTIqQ _c0hwwOZXEeeT85tFTnTIqQ _OamZsSCLEem0PoJQXq_r6Q"/>
     </completionComponents>
-    <completionComponents id="_LinOEOTYEeeT85tFTnTIqQ" name="Layout">
+    <completionComponents id="_LinOEOTYEeeT85tFTnTIqQ" name="Formatter">
       <perimeterProviding id="_MifWsuTYEeeT85tFTnTIqQ"/>
       <perimeterRequiring id="_M1H-0eTYEeeT85tFTnTIqQ"/>
     </completionComponents>
-    <completionComponents id="_dpty0OTXEeeT85tFTnTIqQ" name="DataCollector" requiredComponents="_qGwiUOTXEeeT85tFTnTIqQ">
+    <completionComponents id="_dpty0OTXEeeT85tFTnTIqQ" name="Collector" requiredComponents="_qGwiUOTXEeeT85tFTnTIqQ">
       <perimeterProviding id="_e3NgsOTXEeeT85tFTnTIqQ">
         <featureProviding href="Logging.featureobjective#_yZ06kLAQEeiJ85rCmZWp5w"/>
         <featureProviding href="Logging.featureobjective#_5zOKALAQEeiJ85rCmZWp5w"/>
@@ -57,5 +57,16 @@
     </complementa>
     <complementa id="_RVapIOZXEeeT85tFTnTIqQ" name="SQLDatabase" visnetum="COMPONENT"/>
     <complementa id="_c0hwwOZXEeeT85tFTnTIqQ" name="NoSQLDatabase" visnetum="COMPONENT"/>
+    <complementa id="_OamZsSCLEem0PoJQXq_r6Q" name="MessageQueue"/>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_fvBSYiCMEem0PoJQXq_r6Q" name="MessageQueueAppending"/>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_IpczEiCOEem0PoJQXq_r6Q" name="ThresholdFiltering">
+      <complementaryFeature href="Logging.featureobjective#_MFQBACCNEem0PoJQXq_r6Q"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_Lfd98iCOEem0PoJQXq_r6Q" name="TimeFiltering">
+      <complementaryFeature href="Logging.featureobjective#_M3Z2sCCNEem0PoJQXq_r6Q"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_NXczQiCOEem0PoJQXq_r6Q" name="AsyncLogging">
+      <complementaryFeature href="Logging.featureobjective#_PBv9QLAREeiJ85rCmZWp5w"/>
+    </complementa>
   </featureCompletions>
 </FeatureCompletion:FeatureCompletionRepository>

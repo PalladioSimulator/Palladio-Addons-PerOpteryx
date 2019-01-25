@@ -4,6 +4,26 @@
     <children xmi:type="notation:Shape" xmi:id="_LnKWkBnZEemiorxBpJTCRg" type="2107" fontName="Segoe UI">
       <children xmi:type="notation:DecorationNode" xmi:id="_LnKWkhnZEemiorxBpJTCRg" type="5108"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_LnKWkxnZEemiorxBpJTCRg" type="7106">
+        <children xmi:type="notation:Node" xmi:id="_yZI6ECCKEem0PoJQXq_r6Q" type="3106">
+          <element xmi:type="repository:OperationSignature" href="Log4j1.repository#_VB1XEOQTEeeDc5WJsIYxgA"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_yZI6ESCKEem0PoJQXq_r6Q"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_yZI6EiCKEem0PoJQXq_r6Q" type="3106">
+          <element xmi:type="repository:OperationSignature" href="Log4j1.repository#_fb3uMJtIEeiYReZFY0WRHg"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_yZI6EyCKEem0PoJQXq_r6Q"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_tAQ7cCCLEem0PoJQXq_r6Q" type="3106">
+          <element xmi:type="repository:OperationSignature" href="Log4j1.repository#_tAKNwCCLEem0PoJQXq_r6Q"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_tAQ7cSCLEem0PoJQXq_r6Q"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_uQplQCCLEem0PoJQXq_r6Q" type="3106">
+          <element xmi:type="repository:OperationSignature" href="Log4j1.repository#_uQo-MCCLEem0PoJQXq_r6Q"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_uQplQSCLEem0PoJQXq_r6Q"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_vSnYkCCLEem0PoJQXq_r6Q" type="3106">
+          <element xmi:type="repository:OperationSignature" href="Log4j1.repository#_vSmxgCCLEem0PoJQXq_r6Q"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_vSnYkSCLEem0PoJQXq_r6Q"/>
+        </children>
         <styles xmi:type="notation:SortingStyle" xmi:id="_LnKWlBnZEemiorxBpJTCRg"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_LnKWlRnZEemiorxBpJTCRg"/>
       </children>
