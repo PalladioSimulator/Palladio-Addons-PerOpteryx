@@ -28,5 +28,23 @@
     <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_L_Gx8hnYEemiorxBpJTCRg" name="LogFileAnalysis">
       <complementaryFeature href="IDS.featureobjective#_12ubABnWEemiorxBpJTCRg"/>
     </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_tZeDsiJOEemJIZoadPYzbg" name="AuthCheck">
+      <complementaryFeature href="IDS.featureobjective#_jY_7cBnWEemiorxBpJTCRg"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_0q9UUiJOEemJIZoadPYzbg" name="InputValidation">
+      <complementaryFeature href="IDS.featureobjective#_tEw2IBnWEemiorxBpJTCRg"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_4joPAiJOEemJIZoadPYzbg" name="DisableComponents">
+      <complementaryFeature href="IDS.featureobjective#_0Iia4BnWEemiorxBpJTCRg"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_7luuEiJOEemJIZoadPYzbg" name="RegistryAnalysis">
+      <complementaryFeature href="IDS.featureobjective#_3-JagBnWEemiorxBpJTCRg"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_AGgxoiJPEemJIZoadPYzbg" name="FileIntegrity">
+      <complementaryFeature href="IDS.featureobjective#_6lfQMBnWEemiorxBpJTCRg"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_CWsrkiJPEemJIZoadPYzbg" name="RootkitAnalysis">
+      <complementaryFeature href="IDS.featureobjective#_8v-KwBnWEemiorxBpJTCRg"/>
+    </complementa>
   </featureCompletions>
 </FeatureCompletion:FeatureCompletionRepository>
