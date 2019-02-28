@@ -33,7 +33,7 @@ public class AssemblyLocationSeffWeaving extends ServiceEffectSpecificationWeavi
 	 */
 	@Override
 	protected BasicComponent getCallingComponent() {
-		AssemblyConnector location = (AssemblyConnector) this.weavingLocation.getLocation();
+		AssemblyConnector location = (AssemblyConnector) this.weavingLocation;
 		return (BasicComponent) location.getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext();
 	}
 
@@ -42,7 +42,7 @@ public class AssemblyLocationSeffWeaving extends ServiceEffectSpecificationWeavi
 	 */
 	@Override
 	protected BasicComponent getCalledComponent() {
-		AssemblyConnector location = (AssemblyConnector) this.weavingLocation.getLocation();
+		AssemblyConnector location = (AssemblyConnector) this.weavingLocation;
 		return (BasicComponent) location.getProvidingAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext();
 	}
 

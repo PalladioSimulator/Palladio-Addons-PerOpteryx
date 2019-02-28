@@ -1,5 +1,6 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter;
 
+import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
@@ -23,10 +24,10 @@ public class DelegationLocationRepositoryWeaving extends RepositoryWeaving {
 	 * @see AdapterRepositoryWeaving#weaveAdapterIntoRepository(WeavingLocation)
 	 */
 	@Override
-	protected void weaveAdapterIntoRepository(WeavingLocation weavingLocation) {
+	protected void weaveAdapterIntoRepository(Connector weavingLocation) {
 		// TODO DTHF1: Check: creation only if needed
 
-		ProvidedDelegationConnector location = (ProvidedDelegationConnector) weavingLocation.getLocation();
+		ProvidedDelegationConnector location = (ProvidedDelegationConnector) weavingLocation;
 
 		OperationProvidedRole delegatedConnectionEnd = location.getOuterProvidedRole_ProvidedDelegationConnector();
 		OperationProvidedRole providedConnectionEnd = location.getInnerProvidedRole_ProvidedDelegationConnector();

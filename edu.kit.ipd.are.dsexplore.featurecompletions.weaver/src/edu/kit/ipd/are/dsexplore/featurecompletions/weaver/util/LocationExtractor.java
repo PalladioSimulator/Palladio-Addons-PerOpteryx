@@ -11,27 +11,26 @@ import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.ComplementumVisnetis;
-import FeatureCompletionModel.Visnetum;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 
 public final class LocationExtractor {
 	public static List<WeavingLocation> extractLocation(Pair<String, ComplementumVisnetis> connector, PCMInstance pcm) {
-		Visnetum visnetum = connector.second.getVisnetum();
-		Connector connectorInstance = LocationExtractor.getConnector(pcm, connector.first);
-		switch (visnetum) {
-		case INTERFACE:
-			return LocationExtractor.extractWeavingLocationFromInterface(connectorInstance, pcm);
-		case INTERFACE_PROVIDES:
-			return LocationExtractor.extractWeavingLocationsFromProvidedInterface(connectorInstance, pcm);
-		case INTERFACE_REQUIRES:
-			return LocationExtractor.extractWeavingLocationsFromRequiredInterface(connectorInstance, pcm);
-		default:
-			break;
-		}
+		// HERE: Target Side: No Visnetum needed ..
 
-		throw new Error("Unidentified Visnetum " + visnetum);
+		// Visnetum visnetum = connector.second.getVisnetum();
+		Connector connectorInstance = LocationExtractor.getConnector(pcm, connector.first);
+		return LocationExtractor.extractWeavingLocationFromInterface(connectorInstance, pcm);
+		/*
+		 * switch (visnetum) { case INTERFACE: return
+		 * LocationExtractor.extractWeavingLocationFromInterface(
+		 * connectorInstance, pcm); case SIGNATURE: return
+		 * LocationExtractor.extractWeavingLocationFromSignature(
+		 * connectorInstance, pcm, connector.second); default: break; }
+		 *
+		 * throw new Error("Unidentified Visnetum " + visnetum);
+		 */
 	}
 
 	private static List<WeavingLocation> extractWeavingLocationFromInterface(Connector conn, PCMInstance pcm) {
@@ -66,6 +65,55 @@ public final class LocationExtractor {
 		}
 		throw new FCCWeaverException("Unknown Connector!");
 	}
+
+	// private static List<WeavingLocation>
+	// extractWeavingLocationFromSignature(Connector conn, PCMInstance pcm,
+	// ComplementumVisnetis visnetis) {
+	// if (conn instanceof AssemblyConnector) {
+	// return
+	// LocationExtractor.handleAssemblyConnectorSignature((AssemblyConnector)
+	// conn, pcm, visnetis);
+	// }
+	// if (conn instanceof ProvidedDelegationConnector) {
+	// return
+	// LocationExtractor.handleProvidedDelegationConnectorSignature((ProvidedDelegationConnector)
+	// conn, pcm, visnetis);
+	// }
+	// throw new FCCWeaverException("Unknown Connector!");
+	// }
+
+	// private static List<WeavingLocation>
+	// handleAssemblyConnectorSignature(AssemblyConnector conn, PCMInstance pcm,
+	// ComplementumVisnetis visnetis) {
+	// List<WeavingLocation> res = new ArrayList<>();
+	//
+	// List<OperationSignature> osis = new ArrayList<>();
+	// osis.addAll(conn.getRequiredRole_AssemblyConnector().getRequiredInterface__OperationRequiredRole().getSignatures__OperationInterface());
+	// osis.addAll(conn.getProvidedRole_AssemblyConnector().getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface());
+	// for (OperationSignature os : new ArrayList<>(osis)) {
+	// List<ComplementumVisnetis> vs =
+	// StereotypeAPIHelper.getViaStereoTypeFrom(os, ComplementumVisnetis.class);
+	// if (vs.isEmpty()) {
+	// osis.remove(os);
+	// continue;
+	// }
+	// if (!vs.contains(visnetis)) {
+	// osis.remove(os);
+	// continue;
+	// }
+	//
+	// }
+	// if (!osis.isEmpty()) {
+	// res.add(new WeavingLocation(osis, conn));
+	// }
+	// return res;
+	// }
+	//
+	// private static List<WeavingLocation>
+	// handleProvidedDelegationConnectorSignature(ProvidedDelegationConnector
+	// conn, PCMInstance pcm, ComplementumVisnetis visnetis) {
+	// throw new FCCWeaverException("NIY!");
+	// }
 
 	private static List<WeavingLocation> handleProvidedDelegationConnectorRequiresSide(ProvidedDelegationConnector conn, PCMInstance pcm) {
 		List<WeavingLocation> result = new ArrayList<>();

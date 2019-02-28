@@ -10,8 +10,10 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.parameter.VariableUsage;
 import org.palladiosimulator.pcm.repository.BasicComponent;
+import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.Signature;
@@ -19,11 +21,11 @@ import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import org.palladiosimulator.pcm.seff.SetVariableAction;
 
+import FeatureCompletionModel.ComplementumVisnetis;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 import featureSolution.AdapterInclusion;
 import featureSolution.InclusionMechanism;
 
@@ -67,7 +69,10 @@ public abstract class ServiceEffectSpecificationWeaving {
 	private InclusionMechanism inclusionMechanism;
 	private List<ProvidedRole> consumedFeautresOfECC;
 
-	protected WeavingLocation weavingLocation;
+	protected Connector weavingLocation;
+	private List<? extends OperationSignature> affected;
+
+	private ComplementumVisnetis visnetis;
 
 	private void setTransformationStrategy(InclusionMechanism inclusionMechanism) {
 		this.inclusionMechanism = inclusionMechanism;
@@ -77,12 +82,14 @@ public abstract class ServiceEffectSpecificationWeaving {
 		this.consumedFeautresOfECC = consumedFeautresOfECC;
 	}
 
-	private void setWeavingLocation(WeavingLocation weavingLocation) {
+	private void setWeavingLocation(Connector weavingLocation, List<? extends OperationSignature> affected) {
 		this.weavingLocation = weavingLocation;
+		this.affected = affected;
 	}
 
 	public void weave(WeavingInstruction weavingInstruction) throws FCCWeaverException {
-		this.setWeavingLocation(weavingInstruction.getWeavingLocation());
+		this.visnetis = weavingInstruction.getCV();
+		this.setWeavingLocation(weavingInstruction.getWeavingLocation(), weavingInstruction.getAffected());
 		this.setConsumedFeautresOfECC(weavingInstruction.getFCCWithConsumedFeatures().getSecond());
 		this.setTransformationStrategy(weavingInstruction.getInclusionMechanism());
 		this.createServiceEffectSpecificationForAdapterBy(this.getCalledComponent());
@@ -139,15 +146,26 @@ public abstract class ServiceEffectSpecificationWeaving {
 	}
 
 	private Stream<ServiceEffectSpecification> getSEFFsInvokedByTheAdapterFrom(BasicComponent calledComponent) {
-		return calledComponent.getServiceEffectSpecifications__BasicComponent().stream().filter(eachSeff -> this.isInvokedByAdapter(eachSeff.getDescribedService__SEFF()));
+		List<ServiceEffectSpecification> result = new ArrayList<>();
+		for (ServiceEffectSpecification seff : calledComponent.getServiceEffectSpecifications__BasicComponent()) {
+			if (this.isInvokedByAdapter(seff.getDescribedService__SEFF())) {
+				result.add(seff);
+			}
+		}
+		return result.stream();
 	}
 
 	private boolean isInvokedByAdapter(Signature signature) {
-		return this.getAllRequiredServicesOfAdapter().anyMatch(eachSignature -> FCCUtil.areEqual(eachSignature, signature));
+		for (Signature sig : this.getAllRequiredServicesOfAdapter().collect(Collectors.toList())) {
+			if (FCCUtil.areEqual(sig, signature)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private Stream<Signature> getAllRequiredServicesOfAdapter() {
-		return this.getAllRequiredRolesOfAdapter().flatMap(eachRequRole -> FCCUtil.getSignaturesOfReferencedInterfaceBy(eachRequRole));
+		return this.getAllRequiredRolesOfAdapter().flatMap(eachRequRole -> FCCUtil.getSignaturesOfReferencedInterfaceBy(eachRequRole, this.visnetis, false));
 	}
 
 	private Stream<RequiredRole> getAllRequiredRolesOfAdapter() {
@@ -171,7 +189,8 @@ public abstract class ServiceEffectSpecificationWeaving {
 	}
 
 	private boolean isAffected(Signature describedService) {
-		return this.weavingLocation.getAffectedSignatures().contains(describedService);
+		return this.affected.contains(describedService);
+
 	}
 
 	private List<ExternalCallInfo> createOrdinaryPutThroughActionPipeBy(ServiceEffectSpecification seffToTransform) throws FCCWeaverException {
@@ -183,27 +202,28 @@ public abstract class ServiceEffectSpecificationWeaving {
 		switch (((AdapterInclusion) this.inclusionMechanism).getAppears()) {
 		case AFTER:
 			externalCallInfos.add(this.getExternalCallInfoFrom(seffToTransform));
-			externalCallInfos.addAll(this.getExternalCallInfosFrom(this.consumedFeautresOfECC));
+			externalCallInfos.addAll(this.getExternalCallInfosFrom(this.consumedFeautresOfECC, true));
 			break;
 		case BEFORE:
-			externalCallInfos.addAll(this.getExternalCallInfosFrom(this.consumedFeautresOfECC));
+			externalCallInfos.addAll(this.getExternalCallInfosFrom(this.consumedFeautresOfECC, true));
 			externalCallInfos.add(this.getExternalCallInfoFrom(seffToTransform));
 			break;
 		case AROUND:
-			externalCallInfos.addAll(this.getExternalCallInfosFrom(this.consumedFeautresOfECC));
+			externalCallInfos.addAll(this.getExternalCallInfosFrom(this.consumedFeautresOfECC, true));
 			externalCallInfos.add(this.getExternalCallInfoFrom(seffToTransform));
-			externalCallInfos.addAll(this.getExternalCallInfosFrom(this.consumedFeautresOfECC));
+			externalCallInfos.addAll(this.getExternalCallInfosFrom(this.consumedFeautresOfECC, true));
 			break;
 		default:
-			externalCallInfos.addAll(this.getExternalCallInfosFrom(this.consumedFeautresOfECC));
+			externalCallInfos.addAll(this.getExternalCallInfosFrom(this.consumedFeautresOfECC, true));
 			externalCallInfos.add(this.getExternalCallInfoFrom(seffToTransform));
 			break;
 		}
 		return externalCallInfos;
 	}
 
-	private List<ExternalCallInfo> getExternalCallInfosFrom(List<ProvidedRole> consumedFeautresOfECC) {
-		return this.getAllRequiredRolesOfAdapterConnectedWith(consumedFeautresOfECC).flatMap(eachRequiredRole -> this.transformToExternalCallInfo(eachRequiredRole)).collect(Collectors.toList());
+	private List<ExternalCallInfo> getExternalCallInfosFrom(List<ProvidedRole> consumedFeautresOfECC, boolean isInSolution) {
+		return this.getAllRequiredRolesOfAdapterConnectedWith(consumedFeautresOfECC).flatMap(eachRequiredRole -> this.transformToExternalCallInfo(eachRequiredRole, isInSolution))
+				.collect(Collectors.toList());
 	}
 
 	private Stream<RequiredRole> getAllRequiredRolesOfAdapterConnectedWith(List<ProvidedRole> consumedFeaturesOfECC) {
@@ -222,8 +242,8 @@ public abstract class ServiceEffectSpecificationWeaving {
 	// At this stage there is no possibility to get the value characterizations
 	// of input or output parameters of a given ECC.
 	// TODO implement variable usage
-	private Stream<ExternalCallInfo> transformToExternalCallInfo(RequiredRole requiredRole) {
-		return FCCUtil.getSignaturesOfReferencedInterfaceBy(requiredRole).map(eachSignature -> new ExternalCallInfo(eachSignature, requiredRole));
+	private Stream<ExternalCallInfo> transformToExternalCallInfo(RequiredRole requiredRole, boolean isInSolution) {
+		return FCCUtil.getSignaturesOfReferencedInterfaceBy(requiredRole, this.visnetis, isInSolution).map(eachSignature -> new ExternalCallInfo(eachSignature, requiredRole));
 	}
 
 	protected List<SetVariableAction> getSetVariableActions(ServiceEffectSpecification seffToTransform) {

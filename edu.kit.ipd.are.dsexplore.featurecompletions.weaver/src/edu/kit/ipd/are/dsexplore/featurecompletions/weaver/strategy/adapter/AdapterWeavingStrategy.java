@@ -243,7 +243,7 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 			instructions.add(instruction);
 		}
 
-		instructions.removeIf(i -> notShallConnectors.contains(i.getWeavingLocation().getLocation().getId()));
+		instructions.removeIf(i -> notShallConnectors.contains(i.getWeavingLocation().getId()));
 		return instructions;
 
 	}

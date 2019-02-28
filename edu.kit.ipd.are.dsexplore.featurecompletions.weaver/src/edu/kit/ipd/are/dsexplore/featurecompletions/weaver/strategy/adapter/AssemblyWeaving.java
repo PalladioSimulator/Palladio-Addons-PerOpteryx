@@ -23,7 +23,6 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util.ConnectionInfo;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util.ConnectorGenerator;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util.ConnectorGeneratorExplorationFactory;
@@ -163,6 +162,6 @@ public abstract class AssemblyWeaving {
 	 * @throws ConcernWeavingException
 	 *             - Will be thrown if an error occurs during weaving.
 	 */
-	public abstract void weaveAdapterIntoSystem(WeavingLocation weavingLocation) throws FCCWeaverException;
+	public abstract void weaveAdapterIntoSystem(Connector weavingLocation) throws FCCWeaverException;
 
 }

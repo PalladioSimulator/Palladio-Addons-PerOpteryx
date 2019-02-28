@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.repository.Interface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
@@ -36,8 +37,8 @@ public class DelegationLocationWeaving extends AssemblyWeaving {
 	 * @see AdapterAssemblyWeaving#weaveAdapterIntoSystem(WeavingLocation)
 	 */
 	@Override
-	public void weaveAdapterIntoSystem(WeavingLocation weavingLocation) throws FCCWeaverException {
-		this.replace((ProvidedDelegationConnector) weavingLocation.getLocation());
+	public void weaveAdapterIntoSystem(Connector weavingLocation) throws FCCWeaverException {
+		this.replace((ProvidedDelegationConnector) weavingLocation);
 	}
 
 	private void replace(ProvidedDelegationConnector assemblyConnectorToReplace) throws FCCWeaverException {

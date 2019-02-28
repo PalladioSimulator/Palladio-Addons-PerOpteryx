@@ -31,8 +31,8 @@ public class AssemblyLocationWeaving extends AssemblyWeaving {
 	 * @see AdapterAssemblyWeaving#weaveAdapterIntoSystem(WeavingLocation)
 	 */
 	@Override
-	public void weaveAdapterIntoSystem(WeavingLocation weavingLocation) throws FCCWeaverException {
-		this.replace((AssemblyConnector) weavingLocation.getLocation());
+	public void weaveAdapterIntoSystem(Connector weavingLocation) throws FCCWeaverException {
+		this.replace((AssemblyConnector) weavingLocation);
 	}
 
 	private void replace(AssemblyConnector assemblyConnectorToReplace) throws FCCWeaverException {

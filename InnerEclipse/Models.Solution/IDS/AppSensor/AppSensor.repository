@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FeatureCompletionProfile="http://are.ipd.kit.edu/FeatureCompletionProfile" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FeatureCompletionProfile="http://are.ipd.kit.edu/FeatureCompletionProfile" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:featureSolution="http://are.ipd.kit.edu/FeatureSolutionModel/1.0.0" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2">
   <repository:Repository id="_VYStANVwEeWS-LePWVyd9g" entityName="AppSensor">
     <components__Repository xsi:type="repository:BasicComponent" id="_JaOFkNV9EeWS-LePWVyd9g" entityName="AccessController">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_MYGzANV9EeWS-LePWVyd9g" entityName="Provided_iAccessController_AccessController" providedInterface__OperationProvidedRole="_WcgpcNV4EeWS-LePWVyd9g"/>
@@ -406,6 +406,30 @@
         <steps_Behaviour xsi:type="seff:StartAction" id="_Jjvw1NWEEeWS-LePWVyd9g" entityName="start" successor_AbstractAction="_Jjvw1dWEEeWS-LePWVyd9g"/>
         <steps_Behaviour xsi:type="seff:StopAction" id="_Jjvw1dWEEeWS-LePWVyd9g" entityName="stop" predecessor_AbstractAction="_Jjvw1NWEEeWS-LePWVyd9g"/>
       </serviceEffectSpecifications__BasicComponent>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_wzr4UDBmEemnh41o9r29wQ" describedService__SEFF="_2qOPoCJJEemJIZoadPYzbg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_xv6QADBmEemnh41o9r29wQ" entityName="start" successor_AbstractAction="_xv6QATBmEemnh41o9r29wQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_xv6QATBmEemnh41o9r29wQ" entityName="stop" predecessor_AbstractAction="_xv6QADBmEemnh41o9r29wQ"/>
+      </serviceEffectSpecifications__BasicComponent>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_1De5kDBmEemnh41o9r29wQ" describedService__SEFF="_4yotoCJJEemJIZoadPYzbg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_2eYxUDBmEemnh41o9r29wQ" entityName="start" successor_AbstractAction="_2eZYYDBmEemnh41o9r29wQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_2eZYYDBmEemnh41o9r29wQ" entityName="stop" predecessor_AbstractAction="_2eYxUDBmEemnh41o9r29wQ"/>
+      </serviceEffectSpecifications__BasicComponent>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_20F7kDBmEemnh41o9r29wQ" describedService__SEFF="_6RFooCJJEemJIZoadPYzbg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_3pc2QDBmEemnh41o9r29wQ" entityName="start" successor_AbstractAction="_3pc2QTBmEemnh41o9r29wQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_3pc2QTBmEemnh41o9r29wQ" entityName="stop" predecessor_AbstractAction="_3pc2QDBmEemnh41o9r29wQ"/>
+      </serviceEffectSpecifications__BasicComponent>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_4AVFMDBmEemnh41o9r29wQ" describedService__SEFF="_7_aLoCJJEemJIZoadPYzbg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_42reYDBmEemnh41o9r29wQ" entityName="start" successor_AbstractAction="_42sFcDBmEemnh41o9r29wQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_42sFcDBmEemnh41o9r29wQ" entityName="stop" predecessor_AbstractAction="_42reYDBmEemnh41o9r29wQ"/>
+      </serviceEffectSpecifications__BasicComponent>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_HYJjwDBnEemnh41o9r29wQ" describedService__SEFF="_9nUkoCJJEemJIZoadPYzbg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_IEwyIDBnEemnh41o9r29wQ" entityName="start" successor_AbstractAction="_IEwyITBnEemnh41o9r29wQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_IEwyITBnEemnh41o9r29wQ" entityName="stop" predecessor_AbstractAction="_IEwyIDBnEemnh41o9r29wQ"/>
+      </serviceEffectSpecifications__BasicComponent>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_IPRZADBnEemnh41o9r29wQ" describedService__SEFF="_-72uoCJJEemJIZoadPYzbg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_InnnkDBnEemnh41o9r29wQ" entityName="start" successor_AbstractAction="_InoOoDBnEemnh41o9r29wQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_InoOoDBnEemnh41o9r29wQ" entityName="stop" predecessor_AbstractAction="_InnnkDBnEemnh41o9r29wQ"/>
+      </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
     <interfaces__Repository xsi:type="repository:OperationInterface" id="_fTDQgNVxEeWS-LePWVyd9g" entityName="iAttackStore">
       <signatures__OperationInterface id="_vJ_7ENVxEeWS-LePWVyd9g" entityName="addAttack"/>
@@ -589,6 +613,14 @@
     <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_2qOPoCJJEemJIZoadPYzbg">
       <extension href="../../../../plugin/FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaXYVEeirzP2CXhR6Fg"/>
       <fulfills href="../IDS.featurecompletion#_L_Gx8hnYEemiorxBpJTCRg"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:transformation" appliedTo="_VYStANVwEeWS-LePWVyd9g">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqWXYVEeirzP2CXhR6Fg"/>
+      <usesMechanism xsi:type="featureSolution:AdapterInclusion" href="../Transform.featuresolution#_5e7r0DBTEemWBajZh2ShUA"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:cost" appliedTo="_VYStANVwEeWS-LePWVyd9g">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqVHYVEeirzP2CXhR6Fg"/>
+      <costModel href="AppSensor.cost#/"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/plugin/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>

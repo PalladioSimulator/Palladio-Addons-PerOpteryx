@@ -43,7 +43,7 @@ public class DelegationLocationSeffWeaving extends ServiceEffectSpecificationWea
 	 */
 	@Override
 	protected BasicComponent getCallingComponent() throws FCCWeaverException {
-		ProvidedDelegationConnector location = (ProvidedDelegationConnector) this.weavingLocation.getLocation();
+		ProvidedDelegationConnector location = (ProvidedDelegationConnector) this.weavingLocation;
 		Optional<Connector> assemblyConnector = this.getAssemblyConnectorOf(location.getOuterProvidedRole_ProvidedDelegationConnector());
 		if (assemblyConnector.isPresent()) {
 			return (BasicComponent) ((AssemblyConnector) assemblyConnector.get()).getRequiringAssemblyContext_AssemblyConnector().getEncapsulatedComponent__AssemblyContext();
@@ -58,7 +58,7 @@ public class DelegationLocationSeffWeaving extends ServiceEffectSpecificationWea
 	protected BasicComponent getCalledComponent() {
 		// TODO check if cast to basic-component holds if component is
 		// composite-component.
-		ProvidedDelegationConnector location = (ProvidedDelegationConnector) this.weavingLocation.getLocation();
+		ProvidedDelegationConnector location = (ProvidedDelegationConnector) this.weavingLocation;
 		return (BasicComponent) location.getAssemblyContext_ProvidedDelegationConnector().getEncapsulatedComponent__AssemblyContext();
 	}
 
@@ -112,7 +112,7 @@ public class DelegationLocationSeffWeaving extends ServiceEffectSpecificationWea
 	}
 
 	private EObject getContainerOfOuterProvidedRole() {
-		ProvidedDelegationConnector location = (ProvidedDelegationConnector) this.weavingLocation.getLocation();
+		ProvidedDelegationConnector location = (ProvidedDelegationConnector) this.weavingLocation;
 		return location.getOuterProvidedRole_ProvidedDelegationConnector().eContainer();
 	}
 

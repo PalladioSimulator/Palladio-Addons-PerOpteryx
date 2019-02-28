@@ -12,8 +12,6 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="featureCompletions.ecore#//Visnetum">
       <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Visnetum/SIGNATURE"/>
       <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Visnetum/INTERFACE"/>
-      <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Visnetum/INTERFACE_REQUIRES"/>
-      <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Visnetum/INTERFACE_PROVIDES"/>
       <genEnumLiterals ecoreEnumLiteral="featureCompletions.ecore#//Visnetum/COMPONENT"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="featureCompletions.ecore#//Replication">

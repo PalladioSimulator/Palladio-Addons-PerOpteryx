@@ -165,6 +165,7 @@ public class PlacementDescriptionActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("placementdescription-settings"));
 		toolBarManager.add(new Separator("placementdescription-additions"));
 	}

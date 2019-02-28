@@ -89,6 +89,7 @@ public class FCCStructureHandler {
 			CompletionComponent peek = queue.poll();
 			result.add(peek);
 			queue.addAll(peek.getRequiredComponents());
+			queue.removeIf(e -> result.contains(e));
 		}
 
 		return result;

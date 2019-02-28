@@ -7,8 +7,6 @@ import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.impl.AssemblyConnectorImpl;
 import org.palladiosimulator.pcm.core.composition.impl.ProvidedDelegationConnectorImpl;
 
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
-
 /**
  * The factory returns depending on the connection of the components the adapter
  * is inserted in between the proper subweaving-class in the context of the
@@ -46,8 +44,8 @@ public class AdapterWeavingFactory {
 	 *            proper subweaving-class.
 	 * @return the proper subweaving-class.
 	 */
-	public static Function<IAdapterWeaving, AssemblyWeaving> getAdapterAssemblyWeaverBy(WeavingLocation weavingLocation) {
-		return AdapterWeavingFactory.assemblyWeaverMap.get(weavingLocation.getLocation().getClass());
+	public static Function<IAdapterWeaving, AssemblyWeaving> getAdapterAssemblyWeaverBy(Connector weavingLocation) {
+		return AdapterWeavingFactory.assemblyWeaverMap.get(weavingLocation.getClass());
 	}
 
 	/**
@@ -59,8 +57,8 @@ public class AdapterWeavingFactory {
 	 *            proper subweaving-class.
 	 * @return the proper subweaving-class.
 	 */
-	public static Function<IAdapterWeaving, RepositoryWeaving> getAdapterRepositoryWeaverBy(WeavingLocation weavingLocation) {
-		return AdapterWeavingFactory.repositoryWeaverMap.get(weavingLocation.getLocation().getClass());
+	public static Function<IAdapterWeaving, RepositoryWeaving> getAdapterRepositoryWeaverBy(Connector weavingLocation) {
+		return AdapterWeavingFactory.repositoryWeaverMap.get(weavingLocation.getClass());
 	}
 
 	/**
@@ -71,8 +69,8 @@ public class AdapterWeavingFactory {
 	 *            proper subweaving-class.
 	 * @return the proper subweaving-class.
 	 */
-	public static Function<IAdapterWeaving, ServiceEffectSpecificationWeaving> getAdapterSeffWeaverBy(WeavingLocation weavingLocation) {
-		return AdapterWeavingFactory.seffWeaverMap.get(weavingLocation.getLocation().getClass());
+	public static Function<IAdapterWeaving, ServiceEffectSpecificationWeaving> getAdapterSeffWeaverBy(Connector weavingLocation) {
+		return AdapterWeavingFactory.seffWeaverMap.get(weavingLocation.getClass());
 	}
 
 }

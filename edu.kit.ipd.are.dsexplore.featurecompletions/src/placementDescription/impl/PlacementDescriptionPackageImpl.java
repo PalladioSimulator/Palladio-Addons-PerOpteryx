@@ -6,6 +6,10 @@ import FeatureCompletionModel.FeatureCompletionPackage;
 
 import FeatureCompletionModel.impl.FeatureCompletionPackageImpl;
 
+import de.uka.ipd.sdq.identifier.IdentifierPackage;
+import de.uka.ipd.sdq.probfunction.ProbfunctionPackage;
+import de.uka.ipd.sdq.stoex.StoexPackage;
+import de.uka.ipd.sdq.units.UnitsPackage;
 import featureObjective.FeatureObjectivePackage;
 
 import featureObjective.impl.FeatureObjectivePackageImpl;
@@ -19,6 +23,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.palladiosimulator.pcm.PcmPackage;
@@ -145,7 +150,7 @@ public class PlacementDescriptionPackageImpl extends EPackageImpl implements Pla
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link PlacementDescriptionPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -159,17 +164,26 @@ public class PlacementDescriptionPackageImpl extends EPackageImpl implements Pla
 		if (isInited) return (PlacementDescriptionPackage)EPackage.Registry.INSTANCE.getEPackage(PlacementDescriptionPackage.eNS_URI);
 
 		// Obtain or create and register package
-		PlacementDescriptionPackageImpl thePlacementDescriptionPackage = (PlacementDescriptionPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof PlacementDescriptionPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new PlacementDescriptionPackageImpl());
+		Object registeredPlacementDescriptionPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		PlacementDescriptionPackageImpl thePlacementDescriptionPackage = registeredPlacementDescriptionPackage instanceof PlacementDescriptionPackageImpl ? (PlacementDescriptionPackageImpl)registeredPlacementDescriptionPackage : new PlacementDescriptionPackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+		IdentifierPackage.eINSTANCE.eClass();
 		PcmPackage.eINSTANCE.eClass();
+		ProbfunctionPackage.eINSTANCE.eClass();
+		StoexPackage.eINSTANCE.eClass();
+		UnitsPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		FeatureCompletionPackageImpl theFeatureCompletionPackage = (FeatureCompletionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI) instanceof FeatureCompletionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI) : FeatureCompletionPackage.eINSTANCE);
-		FeatureObjectivePackageImpl theFeatureObjectivePackage = (FeatureObjectivePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI) instanceof FeatureObjectivePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI) : FeatureObjectivePackage.eINSTANCE);
-		FeatureSolutionPackageImpl theFeatureSolutionPackage = (FeatureSolutionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI) instanceof FeatureSolutionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI) : FeatureSolutionPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FeatureCompletionPackage.eNS_URI);
+		FeatureCompletionPackageImpl theFeatureCompletionPackage = (FeatureCompletionPackageImpl)(registeredPackage instanceof FeatureCompletionPackageImpl ? registeredPackage : FeatureCompletionPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FeatureObjectivePackage.eNS_URI);
+		FeatureObjectivePackageImpl theFeatureObjectivePackage = (FeatureObjectivePackageImpl)(registeredPackage instanceof FeatureObjectivePackageImpl ? registeredPackage : FeatureObjectivePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FeatureSolutionPackage.eNS_URI);
+		FeatureSolutionPackageImpl theFeatureSolutionPackage = (FeatureSolutionPackageImpl)(registeredPackage instanceof FeatureSolutionPackageImpl ? registeredPackage : FeatureSolutionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thePlacementDescriptionPackage.createPackageContents();
@@ -186,7 +200,6 @@ public class PlacementDescriptionPackageImpl extends EPackageImpl implements Pla
 		// Mark meta-data to indicate it can't be changed
 		thePlacementDescriptionPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(PlacementDescriptionPackage.eNS_URI, thePlacementDescriptionPackage);
 		return thePlacementDescriptionPackage;
