@@ -3,7 +3,6 @@ package de.uka.ipd.sdq.pcm.pcm2taskmodel.jobs;
 import org.eclipse.debug.core.ILaunch;
 import org.palladiosimulator.analyzer.accuracy.jobs.TransformPCMForAccuracyInfluenceAnalysisJob;
 import org.palladiosimulator.analyzer.workflow.jobs.EventsTransformationJob;
-import org.palladiosimulator.analyzer.workflow.jobs.LoadMiddlewareConfigurationIntoBlackboardJob;
 import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
 import org.palladiosimulator.analyzer.workflow.jobs.StoreAllPCMModelsJob;
 import org.palladiosimulator.analyzer.workflow.jobs.ValidatePCMModelsJob;
@@ -22,7 +21,8 @@ public class PCM2TaskModelJob extends SequentialBlackboardInteractingJob<MDSDBla
 		// This now also creates a plug-in in the workspace and stores temporary
 		// data there:
 		this.addJob(new LoadPCMModelsIntoBlackboardJob(config));
-		//this.addJob(new LoadMiddlewareConfigurationIntoBlackboardJob(config));
+		// this.addJob(new
+		// LoadMiddlewareConfigurationIntoBlackboardJob(config));
 
 		// 2. Validate PCM Models
 		this.addJob(new ValidatePCMModelsJob(config));
@@ -34,7 +34,7 @@ public class PCM2TaskModelJob extends SequentialBlackboardInteractingJob<MDSDBla
 		}
 
 		// 4. Transform Event Model Elements
-		this.add(new EventsTransformationJob(config));
+		this.add(new EventsTransformationJob(config.getStoragePluginID(), config.getEventMiddlewareFile(), false));
 
 		// -- Stage analysis
 		// 8. Store resulting model(s)
@@ -42,7 +42,7 @@ public class PCM2TaskModelJob extends SequentialBlackboardInteractingJob<MDSDBla
 
 		// 3. Run Analysis on Loaded Models
 		this.add(new RunDSolverJob(config));
-		
+
 		// 4. Run Transformation on Loaded Models
 		this.add(new RunPCM2TaskModelJob(config));
 	}

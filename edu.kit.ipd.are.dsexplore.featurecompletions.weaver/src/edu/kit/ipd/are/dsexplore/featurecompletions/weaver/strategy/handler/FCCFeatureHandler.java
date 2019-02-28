@@ -49,11 +49,11 @@ public class FCCFeatureHandler {
 	 *             - Will be thrown if the ECC is incorrectly annotated.
 	 */
 	public List<ProvidedRole> getProvidedFeaturesOf(CompletionComponent fcc) throws FCCWeaverException {
-		Feature providedFCCFeature = this.getFeatureProvidedBy(fcc);
+		List<Feature> providedFCCFeatures = this.getFeaturesProvidedBy(fcc);
 		List<ProvidedRole> result = new ArrayList<>();
 
 		for (Pair<Entity, ComplementumVisnetis> partAndCV : this.extractProvidedCVs()) {
-			if (!FCCUtil.areEqual(partAndCV.second.getComplementaryFeature(), providedFCCFeature)) {
+			if (!this.hasFeature(partAndCV.second.getComplementaryFeature(), providedFCCFeatures)) {
 				continue;
 			}
 
@@ -93,6 +93,15 @@ public class FCCFeatureHandler {
 		// }
 		// }
 		return result;
+	}
+
+	private boolean hasFeature(Feature feature, List<Feature> providedFCCFeatures) {
+		for (Feature f : providedFCCFeatures) {
+			if (FCCUtil.areEqual(feature, f)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -171,15 +180,15 @@ public class FCCFeatureHandler {
 		return FeatureHelper.getCVsFromRepo(this.solutionManager.getRepository());
 	}
 
-	private Feature getFeatureProvidedBy(CompletionComponent fcc) throws FCCWeaverException {
+	private List<Feature> getFeaturesProvidedBy(CompletionComponent fcc) throws FCCWeaverException {
 		PerimeterProviding pp = fcc.getPerimeterProviding();
 		if (pp == null) {
 			throw new FCCWeaverException("No suitable amount of features provided: NIL");
 		}
 		List<Feature> features = pp.getFeatureProviding();
-		if (features.size() != 1) {
+		if (features.size() == 0) {
 			throw new FCCWeaverException("No suitable amount of features provided: " + features.size());
 		}
-		return features.get(0);
+		return features;
 	}
 }
