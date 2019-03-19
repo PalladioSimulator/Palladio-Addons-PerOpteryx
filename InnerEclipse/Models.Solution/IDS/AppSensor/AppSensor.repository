@@ -415,8 +415,14 @@
         <steps_Behaviour xsi:type="seff:StopAction" id="_2eZYYDBmEemnh41o9r29wQ" entityName="stop" predecessor_AbstractAction="_2eYxUDBmEemnh41o9r29wQ"/>
       </serviceEffectSpecifications__BasicComponent>
       <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_20F7kDBmEemnh41o9r29wQ" describedService__SEFF="_6RFooCJJEemJIZoadPYzbg">
-        <steps_Behaviour xsi:type="seff:StartAction" id="_3pc2QDBmEemnh41o9r29wQ" entityName="start" successor_AbstractAction="_3pc2QTBmEemnh41o9r29wQ"/>
-        <steps_Behaviour xsi:type="seff:StopAction" id="_3pc2QTBmEemnh41o9r29wQ" entityName="stop" predecessor_AbstractAction="_3pc2QDBmEemnh41o9r29wQ"/>
+        <steps_Behaviour xsi:type="seff:StartAction" id="_3pc2QDBmEemnh41o9r29wQ" entityName="start" successor_AbstractAction="_jGcckEqOEemQqvSyezWtTA"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_3pc2QTBmEemnh41o9r29wQ" entityName="stop" predecessor_AbstractAction="_jGcckEqOEemQqvSyezWtTA"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_jGcckEqOEemQqvSyezWtTA" entityName="DeleteMeLater" predecessor_AbstractAction="_3pc2QDBmEemnh41o9r29wQ" successor_AbstractAction="_3pc2QTBmEemnh41o9r29wQ">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="10000"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
       </serviceEffectSpecifications__BasicComponent>
       <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_4AVFMDBmEemnh41o9r29wQ" describedService__SEFF="_7_aLoCJJEemJIZoadPYzbg">
         <steps_Behaviour xsi:type="seff:StartAction" id="_42reYDBmEemnh41o9r29wQ" entityName="start" successor_AbstractAction="_42sFcDBmEemnh41o9r29wQ"/>

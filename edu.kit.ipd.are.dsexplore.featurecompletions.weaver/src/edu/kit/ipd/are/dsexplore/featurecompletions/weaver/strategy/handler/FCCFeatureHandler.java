@@ -62,7 +62,9 @@ public class FCCFeatureHandler {
 					for (ProvidedRole provided : comps.getProvidedRoles_InterfaceProvidingEntity()) {
 						if (provided instanceof OperationProvidedRole) {
 							if (FCCUtil.areEqual(((OperationProvidedRole) provided).getProvidedInterface__OperationProvidedRole(), partAndCV.first)) {
-								result.add(provided);
+								if (!result.contains(provided)) {
+									result.add(provided);
+								}
 							}
 						}
 					}
@@ -73,14 +75,20 @@ public class FCCFeatureHandler {
 					for (ProvidedRole provided : comps.getProvidedRoles_InterfaceProvidingEntity()) {
 						if (provided instanceof OperationProvidedRole) {
 							if (FCCUtil.areEqual(((OperationProvidedRole) provided).getProvidedInterface__OperationProvidedRole(), parentPartAndCVFirst)) {
-								result.add(provided);
+								if (!result.contains(provided)) {
+									result.add(provided);
+								}
 							}
 						}
 					}
 				}
 			} else if (partAndCV.first instanceof RepositoryComponent) {
 				RepositoryComponent rc = (RepositoryComponent) partAndCV.first;
-				result.addAll(rc.getProvidedRoles_InterfaceProvidingEntity());
+				for (ProvidedRole provided : rc.getProvidedRoles_InterfaceProvidingEntity()) {
+					if (!result.contains(provided)) {
+						result.add(provided);
+					}
+				}
 			}
 		}
 

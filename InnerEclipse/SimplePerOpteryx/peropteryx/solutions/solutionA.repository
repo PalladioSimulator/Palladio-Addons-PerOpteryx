@@ -3,6 +3,7 @@
   <repository:Repository id="_FS8AUJmYEeeDvYNI8KVQWQ" entityName="SolutionARepo" repositoryDescription="">
     <components__Repository xsi:type="repository:BasicComponent" id="_JHQmgJmYEeeDvYNI8KVQWQ" entityName="ComponentA_SolA">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_bgFX8JmYEeeDvYNI8KVQWQ" entityName="Provided_CompA_ComponentA_SolA" providedInterface__OperationProvidedRole="_VwU_0JmYEeeDvYNI8KVQWQ"/>
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_FAn7sEqSEemV5-x5o5KlRg" entityName="Provided_CompA2_ComponentA_SolA" providedInterface__OperationProvidedRole="_DOMUwEqSEemV5-x5o5KlRg"/>
       <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_h4MJgJmYEeeDvYNI8KVQWQ" entityName="Required_CompB_ComponentA_SolA" requiredInterface__OperationRequiredRole="_XdP0oJmYEeeDvYNI8KVQWQ"/>
       <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_2jYUQJmaEee4PoOYbWOA6A" describedService__SEFF="_yAD6EJmaEee4PoOYbWOA6A">
         <steps_Behaviour xsi:type="seff:StartAction" id="_3QrfIJmaEee4PoOYbWOA6A" entityName="start" successor_AbstractAction="_yvRgkH8EEeiQyp7aPIMdmQ"/>
@@ -14,6 +15,14 @@
           </resourceDemand_Action>
         </steps_Behaviour>
         <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_iMt1sNylEeiTJZm3LCkAhg" predecessor_AbstractAction="_yvRgkH8EEeiQyp7aPIMdmQ" successor_AbstractAction="_3QrfIZmaEee4PoOYbWOA6A" calledService_ExternalService="_0fph8JmaEee4PoOYbWOA6A" role_ExternalService="_h4MJgJmYEeeDvYNI8KVQWQ"/>
+      </serviceEffectSpecifications__BasicComponent>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_IYTpMEqSEemV5-x5o5KlRg" describedService__SEFF="_F6EsMEqSEemV5-x5o5KlRg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_JZPhwEqSEemV5-x5o5KlRg" entityName="start" successor_AbstractAction="_JZPhwUqSEemV5-x5o5KlRg"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_JZPhwUqSEemV5-x5o5KlRg" entityName="stop" predecessor_AbstractAction="_JZPhwEqSEemV5-x5o5KlRg"/>
+      </serviceEffectSpecifications__BasicComponent>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_JzueUEqSEemV5-x5o5KlRg" describedService__SEFF="_HZiT0EqSEemV5-x5o5KlRg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_KTeVYEqSEemV5-x5o5KlRg" entityName="start" successor_AbstractAction="_KTeVYUqSEemV5-x5o5KlRg"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_KTeVYUqSEemV5-x5o5KlRg" entityName="stop" predecessor_AbstractAction="_KTeVYEqSEemV5-x5o5KlRg"/>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
     <components__Repository xsi:type="repository:BasicComponent" id="_UUrhMJmYEeeDvYNI8KVQWQ" entityName="ComponentB_SolA">
@@ -29,6 +38,7 @@
       <signatures__OperationInterface id="_yAD6EJmaEee4PoOYbWOA6A" entityName="a">
         <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
       </signatures__OperationInterface>
+      <signatures__OperationInterface id="_F6EsMEqSEemV5-x5o5KlRg" entityName="b"/>
     </interfaces__Repository>
     <interfaces__Repository xsi:type="repository:OperationInterface" id="_XdP0oJmYEeeDvYNI8KVQWQ" entityName="CompB">
       <signatures__OperationInterface id="_0fph8JmaEee4PoOYbWOA6A" entityName="b">
@@ -37,6 +47,9 @@
     </interfaces__Repository>
     <interfaces__Repository xsi:type="repository:OperationInterface" id="_BTSxUNyUEeiZBZaG2slbHw" entityName="ComplementumInFC">
       <signatures__OperationInterface id="_C92OoNyUEeiZBZaG2slbHw" entityName="testAtFC"/>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_DOMUwEqSEemV5-x5o5KlRg" entityName="CompA2">
+      <signatures__OperationInterface id="_HZiT0EqSEemV5-x5o5KlRg" entityName="a2"/>
     </interfaces__Repository>
   </repository:Repository>
   <emfprofileapplication:ProfileApplication>

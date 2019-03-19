@@ -1,854 +1,908 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" xsi:schemaLocation="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//repository http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff" xmi:id="_M3myIBnWEemiorxBpJTCRg" type="PCM Repository Model" measurementUnit="Pixel">
-  <children xmi:type="notation:Shape" xmi:id="_4OTG8CJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OTuACJIEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OTuASJIEemJIZoadPYzbg" type="7106">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OTuAiJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OTuAyJIEemJIZoadPYzbg"/>
-    </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_fTDQgNVxEeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OTG8SJIEemJIZoadPYzbg" x="327" y="860"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OTuBCJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OTuBiJIEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OUVECJIEemJIZoadPYzbg" type="7106">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OUVESJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OUVEiJIEemJIZoadPYzbg"/>
-    </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_W2QN4NVyEeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OTuBSJIEemJIZoadPYzbg" x="1702" y="860"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OUVEyJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OUVFSJIEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OUVFiJIEemJIZoadPYzbg" type="7106">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OUVFyJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OUVGCJIEemJIZoadPYzbg"/>
-    </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_jBRZQNVyEeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OUVFCJIEemJIZoadPYzbg" x="2523" y="860"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OUVGSJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OUVGyJIEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OUVHCJIEemJIZoadPYzbg" type="7106">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OUVHSJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OUVHiJIEemJIZoadPYzbg"/>
-    </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_fNU0QNV3EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OUVGiJIEemJIZoadPYzbg" x="76" y="860"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OUVHyJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OUVISJIEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OUVIiJIEemJIZoadPYzbg" type="7106">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OUVIyJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OUVJCJIEemJIZoadPYzbg"/>
-    </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_uVBMINV3EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OUVICJIEemJIZoadPYzbg" x="1458" y="860"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OU8ICJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OU8IiJIEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OU8IyJIEemJIZoadPYzbg" type="7106">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OU8JCJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OU8JSJIEemJIZoadPYzbg"/>
-    </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_vNnBANV3EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OU8ISJIEemJIZoadPYzbg" x="2246" y="860"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OU8JiJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OU8KCJIEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OU8KSJIEemJIZoadPYzbg" type="7106">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OU8KiJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OU8KyJIEemJIZoadPYzbg"/>
-    </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_EGnQMNV4EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OU8JyJIEemJIZoadPYzbg" x="3579" y="860"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OU8LCJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OU8LiJIEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OU8LyJIEemJIZoadPYzbg" type="7106">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OU8MCJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OU8MSJIEemJIZoadPYzbg"/>
-    </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_WcgpcNV4EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OU8LSJIEemJIZoadPYzbg" x="1973" y="860"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OU8MiJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OVjMCJIEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OVjMSJIEemJIZoadPYzbg" type="7106">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OVjMiJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OVjMyJIEemJIZoadPYzbg"/>
-    </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_qFSm4NV4EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OU8MyJIEemJIZoadPYzbg" x="953" y="860"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OVjNCJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OVjNiJIEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OVjNyJIEemJIZoadPYzbg" type="7106">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OVjOCJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OVjOSJIEemJIZoadPYzbg"/>
-    </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_epiqYNV6EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OVjNSJIEemJIZoadPYzbg" x="2782" y="860"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OVjOiJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OVjPCJIEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OVjPSJIEemJIZoadPYzbg" type="7106">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OVjPiJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OVjPyJIEemJIZoadPYzbg"/>
-    </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_5W2g4NWCEeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OVjOyJIEemJIZoadPYzbg" x="3254" y="860"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OVjQCJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OVjQiJIEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OVjQyJIEemJIZoadPYzbg" type="7106">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OVjRCJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OVjRSJIEemJIZoadPYzbg"/>
-    </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_MlingNV8EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OVjQSJIEemJIZoadPYzbg" x="2808" y="702"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OVjRiJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OWKQCJIEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OWKQSJIEemJIZoadPYzbg" type="7106">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OWKQiJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OWKQyJIEemJIZoadPYzbg"/>
-    </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_F4a18NWBEeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OVjRyJIEemJIZoadPYzbg" x="3829" y="860"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OWKRCJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OWKRiJIEemJIZoadPYzbg" type="5102"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OWKRyJIEemJIZoadPYzbg" type="7102">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OWKSCJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OWKSSJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OWKSiJIEemJIZoadPYzbg" type="7103">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OWxUCJIEemJIZoadPYzbg" showTitle="true"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OWxUSJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OWxUiJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OWxUyJIEemJIZoadPYzbg" type="7104">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OWxVCJIEemJIZoadPYzbg" showTitle="true"/>
-    </children>
-    <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_JaOFkNV9EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OWKRSJIEemJIZoadPYzbg" x="1456"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OWxVSJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OWxVyJIEemJIZoadPYzbg" type="5102"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OWxWCJIEemJIZoadPYzbg" type="7102">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OWxWSJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OWxWiJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OWxWyJIEemJIZoadPYzbg" type="7103">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OWxXCJIEemJIZoadPYzbg" showTitle="true"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OWxXSJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OWxXiJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OWxXyJIEemJIZoadPYzbg" type="7104">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OWxYCJIEemJIZoadPYzbg" showTitle="true"/>
-    </children>
-    <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_Qi6mkNV9EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OWxViJIEemJIZoadPYzbg" x="311"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OWxYSJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OWxYyJIEemJIZoadPYzbg" type="5102"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OWxZCJIEemJIZoadPYzbg" type="7102">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OWxZSJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OWxZiJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OWxZyJIEemJIZoadPYzbg" type="7103">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OWxaCJIEemJIZoadPYzbg" showTitle="true"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OWxaSJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OWxaiJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OWxayJIEemJIZoadPYzbg" type="7104">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OWxbCJIEemJIZoadPYzbg" showTitle="true"/>
-    </children>
-    <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_MGrPUNV-EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OWxYiJIEemJIZoadPYzbg" x="1145"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OWxbSJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OXYYCJIEemJIZoadPYzbg" type="5102"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OXYYSJIEemJIZoadPYzbg" type="7102">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OXYYiJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OXYYyJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OXYZCJIEemJIZoadPYzbg" type="7103">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OXYZSJIEemJIZoadPYzbg" showTitle="true"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OXYZiJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OXYZyJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OXYaCJIEemJIZoadPYzbg" type="7104">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OXYaSJIEemJIZoadPYzbg" showTitle="true"/>
-    </children>
-    <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_RtYZINV-EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OWxbiJIEemJIZoadPYzbg" x="2078"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OXYaiJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OXYbCJIEemJIZoadPYzbg" type="5102"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OXYbSJIEemJIZoadPYzbg" type="7102">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OXYbiJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OXYbyJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OXYcCJIEemJIZoadPYzbg" type="7103">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OXYcSJIEemJIZoadPYzbg" showTitle="true"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OXYciJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OXYcyJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OXYdCJIEemJIZoadPYzbg" type="7104">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OXYdSJIEemJIZoadPYzbg" showTitle="true"/>
-    </children>
-    <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_aRiLgNV-EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OXYayJIEemJIZoadPYzbg"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OXYdiJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OXYeCJIEemJIZoadPYzbg" type="5102"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OXYeSJIEemJIZoadPYzbg" type="7102">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OXYeiJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OXYeyJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OXYfCJIEemJIZoadPYzbg" type="7103">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OXYfSJIEemJIZoadPYzbg" showTitle="true"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OXYfiJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OXYfyJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OXYgCJIEemJIZoadPYzbg" type="7104">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OXYgSJIEemJIZoadPYzbg" showTitle="true"/>
-    </children>
-    <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_dmswgNV-EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OXYdyJIEemJIZoadPYzbg" x="1767"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OXYgiJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OX_cCJIEemJIZoadPYzbg" type="5102"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OX_cSJIEemJIZoadPYzbg" type="7102">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OX_ciJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OX_cyJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OX_dCJIEemJIZoadPYzbg" type="7103">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OX_dSJIEemJIZoadPYzbg" showTitle="true"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OX_diJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OX_dyJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OX_eCJIEemJIZoadPYzbg" type="7104">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OX_eSJIEemJIZoadPYzbg" showTitle="true"/>
-    </children>
-    <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_j81MINV-EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OXYgyJIEemJIZoadPYzbg" x="2700"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OX_eiJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OX_fCJIEemJIZoadPYzbg" type="5102"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OX_fSJIEemJIZoadPYzbg" type="7102">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OX_fiJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OX_fyJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OX_gCJIEemJIZoadPYzbg" type="7103">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OX_gSJIEemJIZoadPYzbg" showTitle="true"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OX_giJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OX_gyJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OX_hCJIEemJIZoadPYzbg" type="7104">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OX_hSJIEemJIZoadPYzbg" showTitle="true"/>
-    </children>
-    <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_uDvKsNV-EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OX_eyJIEemJIZoadPYzbg" x="2389"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OX_hiJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OX_iCJIEemJIZoadPYzbg" type="5102"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OX_iSJIEemJIZoadPYzbg" type="7102">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OX_iiJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OX_iyJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OX_jCJIEemJIZoadPYzbg" type="7103">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OX_jSJIEemJIZoadPYzbg" showTitle="true"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OX_jiJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OX_jyJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OX_kCJIEemJIZoadPYzbg" type="7104">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OX_kSJIEemJIZoadPYzbg" showTitle="true"/>
-    </children>
-    <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_2oK0cNV_EeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OX_hyJIEemJIZoadPYzbg" x="622"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OYmgCJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OYmgiJIEemJIZoadPYzbg" type="5102"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OYmgyJIEemJIZoadPYzbg" type="7102">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OYmhCJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OYmhSJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OYmhiJIEemJIZoadPYzbg" type="7103">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OYmhyJIEemJIZoadPYzbg" showTitle="true"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OYmiCJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OYmiSJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OYmiiJIEemJIZoadPYzbg" type="7104">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OYmiyJIEemJIZoadPYzbg" showTitle="true"/>
-    </children>
-    <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_NfQg8NWAEeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OYmgSJIEemJIZoadPYzbg" x="3342"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OYmjCJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OYmjiJIEemJIZoadPYzbg" type="5102"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OYmjyJIEemJIZoadPYzbg" type="7102">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OYmkCJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OYmkSJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OYmkiJIEemJIZoadPYzbg" type="7103">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OYmkyJIEemJIZoadPYzbg" showTitle="true"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OYmlCJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OYmlSJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OYmliJIEemJIZoadPYzbg" type="7104">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OYmlyJIEemJIZoadPYzbg" showTitle="true"/>
-    </children>
-    <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_vCoUgNWBEeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OYmjSJIEemJIZoadPYzbg" x="3653"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OYmmCJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OYmmiJIEemJIZoadPYzbg" type="5102"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OYmmyJIEemJIZoadPYzbg" type="7102">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OYmnCJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OYmnSJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OYmniJIEemJIZoadPYzbg" type="7103">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OYmnyJIEemJIZoadPYzbg" showTitle="true"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OYmoCJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OYmoSJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OYmoiJIEemJIZoadPYzbg" type="7104">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OYmoyJIEemJIZoadPYzbg" showTitle="true"/>
-    </children>
-    <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_2oKigNWBEeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OYmmSJIEemJIZoadPYzbg" x="3964"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_4OZNkCJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OZNkiJIEemJIZoadPYzbg" type="5102"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OZNkyJIEemJIZoadPYzbg" type="7102">
-      <children xmi:type="notation:Node" xmi:id="_qeBWwDBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeBWwTBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_JjstgNWEEeWS-LePWVyd9g"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_qeBWwjBmEemnh41o9r29wQ"/>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" xmlns:seff_performance="http://palladiosimulator.org/PalladioComponentModel/SEFF/SEFF_Performance/5.2" xsi:schemaLocation="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//repository http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff http://palladiosimulator.org/PalladioComponentModel/SEFF/SEFF_Performance/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff/seff_performance">
+  <notation:Diagram xmi:id="_M3myIBnWEemiorxBpJTCRg" type="PCM Repository Model" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_4OTG8CJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OTuACJIEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OTuASJIEemJIZoadPYzbg" type="7106">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OTuAiJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OTuAyJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_qeBWwzBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeBWxDBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_JjtUkdWEEeWS-LePWVyd9g"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_qeBWxTBmEemnh41o9r29wQ"/>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_fTDQgNVxEeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OTG8SJIEemJIZoadPYzbg" x="327" y="860"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4OTuBCJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OTuBiJIEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OUVECJIEemJIZoadPYzbg" type="7106">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OUVESJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OUVEiJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_qeBWxjBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeBWxzBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_JjtUlNWEEeWS-LePWVyd9g"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_qeBWyDBmEemnh41o9r29wQ"/>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_W2QN4NVyEeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OTuBSJIEemJIZoadPYzbg" x="1702" y="860"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4OUVEyJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OUVFSJIEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OUVFiJIEemJIZoadPYzbg" type="7106">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OUVFyJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OUVGCJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_qeB90DBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB90TBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_Jjt7otWEEeWS-LePWVyd9g"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB90jBmEemnh41o9r29wQ"/>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_jBRZQNVyEeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OUVFCJIEemJIZoadPYzbg" x="2523" y="860"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4OUVGSJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OUVGyJIEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OUVHCJIEemJIZoadPYzbg" type="7106">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OUVHSJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OUVHiJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_qeB90zBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB91DBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_Jjt7pdWEEeWS-LePWVyd9g"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB91TBmEemnh41o9r29wQ"/>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_fNU0QNV3EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OUVGiJIEemJIZoadPYzbg" x="76" y="860"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4OUVHyJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OUVISJIEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OUVIiJIEemJIZoadPYzbg" type="7106">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OUVIyJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OUVJCJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_qeB91jBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB91zBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_JjuisNWEEeWS-LePWVyd9g"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB92DBmEemnh41o9r29wQ"/>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_uVBMINV3EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OUVICJIEemJIZoadPYzbg" x="1458" y="860"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4OU8ICJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OU8IiJIEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OU8IyJIEemJIZoadPYzbg" type="7106">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OU8JCJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OU8JSJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_qeB92TBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB92jBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_Jjuis9WEEeWS-LePWVyd9g"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB92zBmEemnh41o9r29wQ"/>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_vNnBANV3EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OU8ISJIEemJIZoadPYzbg" x="2246" y="860"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4OU8JiJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OU8KCJIEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OU8KSJIEemJIZoadPYzbg" type="7106">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OU8KiJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OU8KyJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_qeB93DBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB93TBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_JjuittWEEeWS-LePWVyd9g"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB93jBmEemnh41o9r29wQ"/>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_EGnQMNV4EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OU8JyJIEemJIZoadPYzbg" x="3579" y="860"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4OU8LCJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OU8LiJIEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OU8LyJIEemJIZoadPYzbg" type="7106">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OU8MCJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OU8MSJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_qeB93zBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB94DBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_JjvJwtWEEeWS-LePWVyd9g"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB94TBmEemnh41o9r29wQ"/>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_WcgpcNV4EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OU8LSJIEemJIZoadPYzbg" x="1973" y="860"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4OU8MiJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OVjMCJIEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OVjMSJIEemJIZoadPYzbg" type="7106">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OVjMiJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OVjMyJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_qeB94jBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB94zBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_JjvJxdWEEeWS-LePWVyd9g"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB95DBmEemnh41o9r29wQ"/>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_qFSm4NV4EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OU8MyJIEemJIZoadPYzbg" x="953" y="860"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4OVjNCJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OVjNiJIEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OVjNyJIEemJIZoadPYzbg" type="7106">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OVjOCJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OVjOSJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_qeB95TBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB95jBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_Jjvw0NWEEeWS-LePWVyd9g"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB95zBmEemnh41o9r29wQ"/>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_epiqYNV6EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OVjNSJIEemJIZoadPYzbg" x="2782" y="860"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4OVjOiJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OVjPCJIEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OVjPSJIEemJIZoadPYzbg" type="7106">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OVjPiJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OVjPyJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_qeB96DBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB96TBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_Jjvw09WEEeWS-LePWVyd9g"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB96jBmEemnh41o9r29wQ"/>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_5W2g4NWCEeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OVjOyJIEemJIZoadPYzbg" x="3254" y="860"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4OVjQCJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OVjQiJIEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OVjQyJIEemJIZoadPYzbg" type="7106">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OVjRCJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OVjRSJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_xwWU4DBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_xwWU4TBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_wzr4UDBmEemnh41o9r29wQ"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_xwWU4jBmEemnh41o9r29wQ"/>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_MlingNV8EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OVjQSJIEemJIZoadPYzbg" x="2808" y="702"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4OVjRiJIEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OWKQCJIEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OWKQSJIEemJIZoadPYzbg" type="7106">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OWKQiJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OWKQyJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_2eZ_cDBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_2eZ_cTBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_1De5kDBmEemnh41o9r29wQ"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_2eZ_cjBmEemnh41o9r29wQ"/>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_F4a18NWBEeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OVjRyJIEemJIZoadPYzbg" x="3829" y="860"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4OWKRCJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OWKRiJIEemJIZoadPYzbg" type="5102"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OWKRyJIEemJIZoadPYzbg" type="7102">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OWKSCJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OWKSSJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_3pddUDBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_3pddUTBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_20F7kDBmEemnh41o9r29wQ"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_3pddUjBmEemnh41o9r29wQ"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OWKSiJIEemJIZoadPYzbg" type="7103">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OWxUCJIEemJIZoadPYzbg" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OWxUSJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OWxUiJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_42ssgDBmEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_42ssgTBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_4AVFMDBmEemnh41o9r29wQ"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_42ssgjBmEemnh41o9r29wQ"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OWxUyJIEemJIZoadPYzbg" type="7104">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OWxVCJIEemJIZoadPYzbg" showTitle="true"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_IEyAQDBnEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_IEyAQTBnEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_HYJjwDBnEemnh41o9r29wQ"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_IEyAQjBnEemnh41o9r29wQ"/>
+      <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_JaOFkNV9EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OWKRSJIEemJIZoadPYzbg" x="1456"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4OWxVSJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OWxVyJIEemJIZoadPYzbg" type="5102"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OWxWCJIEemJIZoadPYzbg" type="7102">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OWxWSJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OWxWiJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_Ino1sDBnEemnh41o9r29wQ" type="3102">
-        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_Ino1sTBnEemnh41o9r29wQ" hint="PCM SEFF Model"/>
-        <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_IPRZADBnEemnh41o9r29wQ"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_Ino1sjBnEemnh41o9r29wQ"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OWxWyJIEemJIZoadPYzbg" type="7103">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OWxXCJIEemJIZoadPYzbg" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OWxXSJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OWxXiJIEemJIZoadPYzbg"/>
       </children>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OZNlCJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OZNlSJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_4OZNliJIEemJIZoadPYzbg" type="7103">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OZNlyJIEemJIZoadPYzbg" showTitle="true"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_4OZNmCJIEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_4OZNmSJIEemJIZoadPYzbg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_4OZNmiJIEemJIZoadPYzbg" type="7104">
-      <styles xmi:type="notation:TitleStyle" xmi:id="_4OZNmyJIEemJIZoadPYzbg" showTitle="true"/>
-    </children>
-    <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_H9kdMNWEEeWS-LePWVyd9g"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OZNkSJIEemJIZoadPYzbg" x="3011"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_i6zesCJJEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_i6zesiJJEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_i6zesyJJEemJIZoadPYzbg" type="7106">
-      <children xmi:type="notation:Node" xmi:id="_4ypUsCJJEemJIZoadPYzbg" type="3106">
-        <element xmi:type="repository:OperationSignature" href="AppSensor.repository#_4yotoCJJEemJIZoadPYzbg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_4ypUsSJJEemJIZoadPYzbg"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OWxXyJIEemJIZoadPYzbg" type="7104">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OWxYCJIEemJIZoadPYzbg" showTitle="true"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_6RGPsCJJEemJIZoadPYzbg" type="3106">
-        <element xmi:type="repository:OperationSignature" href="AppSensor.repository#_6RFooCJJEemJIZoadPYzbg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_6RGPsSJJEemJIZoadPYzbg"/>
+      <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_Qi6mkNV9EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OWxViJIEemJIZoadPYzbg" x="311"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4OWxYSJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OWxYyJIEemJIZoadPYzbg" type="5102"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OWxZCJIEemJIZoadPYzbg" type="7102">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OWxZSJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OWxZiJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_7_aysCJJEemJIZoadPYzbg" type="3106">
-        <element xmi:type="repository:OperationSignature" href="AppSensor.repository#_7_aLoCJJEemJIZoadPYzbg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_7_aysSJJEemJIZoadPYzbg"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OWxZyJIEemJIZoadPYzbg" type="7103">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OWxaCJIEemJIZoadPYzbg" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OWxaSJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OWxaiJIEemJIZoadPYzbg"/>
       </children>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_i6zetCJJEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_i6zetSJJEemJIZoadPYzbg"/>
-    </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_i6y3oCJJEemJIZoadPYzbg"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_i6zesSJJEemJIZoadPYzbg" x="2898" y="1062"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_knwvwCJJEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_knwvwiJJEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_knwvwyJJEemJIZoadPYzbg" type="7106">
-      <children xmi:type="notation:Node" xmi:id="_2qO2sCJJEemJIZoadPYzbg" type="3106">
-        <element xmi:type="repository:OperationSignature" href="AppSensor.repository#_2qOPoCJJEemJIZoadPYzbg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_2qO2sSJJEemJIZoadPYzbg"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OWxayJIEemJIZoadPYzbg" type="7104">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OWxbCJIEemJIZoadPYzbg" showTitle="true"/>
       </children>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_knwvxCJJEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_knwvxSJJEemJIZoadPYzbg"/>
+      <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_MGrPUNV-EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OWxYiJIEemJIZoadPYzbg" x="1145"/>
     </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_knwIsCJJEemJIZoadPYzbg"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_knwvwSJJEemJIZoadPYzbg" x="3384" y="738"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_mhhtwCJJEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
-    <children xmi:type="notation:DecorationNode" xmi:id="_mhhtwiJJEemJIZoadPYzbg" type="5108"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_mhhtwyJJEemJIZoadPYzbg" type="7106">
-      <children xmi:type="notation:Node" xmi:id="_9nVLsCJJEemJIZoadPYzbg" type="3106">
-        <element xmi:type="repository:OperationSignature" href="AppSensor.repository#_9nUkoCJJEemJIZoadPYzbg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_9nVLsSJJEemJIZoadPYzbg"/>
+    <children xmi:type="notation:Shape" xmi:id="_4OWxbSJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OXYYCJIEemJIZoadPYzbg" type="5102"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OXYYSJIEemJIZoadPYzbg" type="7102">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OXYYiJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OXYYyJIEemJIZoadPYzbg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_-73VsCJJEemJIZoadPYzbg" type="3106">
-        <element xmi:type="repository:OperationSignature" href="AppSensor.repository#_-72uoCJJEemJIZoadPYzbg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_-73VsSJJEemJIZoadPYzbg"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OXYZCJIEemJIZoadPYzbg" type="7103">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OXYZSJIEemJIZoadPYzbg" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OXYZiJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OXYZyJIEemJIZoadPYzbg"/>
       </children>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_mhhtxCJJEemJIZoadPYzbg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_mhhtxSJJEemJIZoadPYzbg"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OXYaCJIEemJIZoadPYzbg" type="7104">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OXYaSJIEemJIZoadPYzbg" showTitle="true"/>
+      </children>
+      <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_RtYZINV-EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OWxbiJIEemJIZoadPYzbg" x="2078"/>
     </children>
-    <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_mhhGsCJJEemJIZoadPYzbg"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mhhtwSJJEemJIZoadPYzbg" x="3115" y="1211"/>
-  </children>
-  <styles xmi:type="notation:DiagramStyle" xmi:id="_M3nZMBnWEemiorxBpJTCRg"/>
-  <element xmi:type="repository:Repository" href="AppSensor.repository#_VYStANVwEeWS-LePWVyd9g"/>
-  <edges xmi:type="notation:Connector" xmi:id="_4VOOUCJIEemJIZoadPYzbg" type="4105" source="_4OWKRCJIEemJIZoadPYzbg" target="_4OU8LCJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4VO1YCJIEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VO1YSJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4VO1YiJIEemJIZoadPYzbg" y="40"/>
+    <children xmi:type="notation:Shape" xmi:id="_4OXYaiJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OXYbCJIEemJIZoadPYzbg" type="5102"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OXYbSJIEemJIZoadPYzbg" type="7102">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OXYbiJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OXYbyJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OXYcCJIEemJIZoadPYzbg" type="7103">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OXYcSJIEemJIZoadPYzbg" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OXYciJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OXYcyJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OXYdCJIEemJIZoadPYzbg" type="7104">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OXYdSJIEemJIZoadPYzbg" showTitle="true"/>
+      </children>
+      <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_aRiLgNV-EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OXYayJIEemJIZoadPYzbg"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4VOOUSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_MYGzANV9EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VOOUiJIEemJIZoadPYzbg" points="[0, 0, -421, -710]$[99, 649, -322, -61]$[421, 710, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwcCJIEemJIZoadPYzbg" id="(0.6653386454183267,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwcSJIEemJIZoadPYzbg" id="(0.3333333333333333,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4Vi-cCJIEemJIZoadPYzbg" type="4106" source="_4OWKRCJIEemJIZoadPYzbg" target="_4OU8MiJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4VjlgCJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VjlgSJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4VjlgiJIEemJIZoadPYzbg" y="40"/>
+    <children xmi:type="notation:Shape" xmi:id="_4OXYdiJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OXYeCJIEemJIZoadPYzbg" type="5102"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OXYeSJIEemJIZoadPYzbg" type="7102">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OXYeiJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OXYeyJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OXYfCJIEemJIZoadPYzbg" type="7103">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OXYfSJIEemJIZoadPYzbg" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OXYfiJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OXYfyJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OXYgCJIEemJIZoadPYzbg" type="7104">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OXYgSJIEemJIZoadPYzbg" showTitle="true"/>
+      </children>
+      <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_dmswgNV-EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OXYdyJIEemJIZoadPYzbg" x="1767"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4Vi-cSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_Og2BINV9EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4Vi-ciJIEemJIZoadPYzbg" points="[0, 0, 227, -710]$[-99, 649, 128, -61]$[-227, 710, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwciJIEemJIZoadPYzbg" id="(0.33067729083665337,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwcyJIEemJIZoadPYzbg" id="(0.8067415730337079,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4VmBwCJIEemJIZoadPYzbg" type="4105" source="_4OWxVSJIEemJIZoadPYzbg" target="_4OUVGSJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4Vmo0CJIEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4Vmo0SJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4Vmo0iJIEemJIZoadPYzbg" y="40"/>
+    <children xmi:type="notation:Shape" xmi:id="_4OXYgiJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OX_cCJIEemJIZoadPYzbg" type="5102"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OX_cSJIEemJIZoadPYzbg" type="7102">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OX_ciJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OX_cyJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OX_dCJIEemJIZoadPYzbg" type="7103">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OX_dSJIEemJIZoadPYzbg" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OX_diJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OX_dyJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OX_eCJIEemJIZoadPYzbg" type="7104">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OX_eSJIEemJIZoadPYzbg" showTitle="true"/>
+      </children>
+      <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_j81MINV-EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OXYgyJIEemJIZoadPYzbg" x="2700"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4VmBwSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_ZwCdcNV9EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VmBwiJIEemJIZoadPYzbg" points="[0, 0, 154, -710]$[-78, 649, 76, -61]$[-154, 710, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXhSJIEemJIZoadPYzbg" id="(0.24701195219123506,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXhiJIEemJIZoadPYzbg" id="(0.7486910994764397,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4VnP4CJIEemJIZoadPYzbg" type="4106" source="_4OWxVSJIEemJIZoadPYzbg" target="_4OU8MiJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4VnP4yJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VnP5CJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4VnP5SJIEemJIZoadPYzbg" y="40"/>
+    <children xmi:type="notation:Shape" xmi:id="_4OX_eiJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OX_fCJIEemJIZoadPYzbg" type="5102"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OX_fSJIEemJIZoadPYzbg" type="7102">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OX_fiJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OX_fyJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OX_gCJIEemJIZoadPYzbg" type="7103">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OX_gSJIEemJIZoadPYzbg" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OX_giJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OX_gyJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OX_hCJIEemJIZoadPYzbg" type="7104">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OX_hSJIEemJIZoadPYzbg" showTitle="true"/>
+      </children>
+      <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_uDvKsNV-EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OX_eyJIEemJIZoadPYzbg" x="2389"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4VnP4SJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_Dw4MkNV_EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VnP4iJIEemJIZoadPYzbg" points="[0, 0, -559, -710]$[78, 649, -481, -61]$[559, 710, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXiSJIEemJIZoadPYzbg" id="(0.749003984063745,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXiiJIEemJIZoadPYzbg" id="(0.23595505617977527,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4VoeACJIEemJIZoadPYzbg" type="4106" source="_4OWxVSJIEemJIZoadPYzbg" target="_4OTG8CJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4VoeAyJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VoeBCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4VoeBSJIEemJIZoadPYzbg" y="40"/>
+    <children xmi:type="notation:Shape" xmi:id="_4OX_hiJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OX_iCJIEemJIZoadPYzbg" type="5102"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OX_iSJIEemJIZoadPYzbg" type="7102">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OX_iiJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OX_iyJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OX_jCJIEemJIZoadPYzbg" type="7103">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OX_jSJIEemJIZoadPYzbg" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OX_jiJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OX_jyJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OX_kCJIEemJIZoadPYzbg" type="7104">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OX_kSJIEemJIZoadPYzbg" showTitle="true"/>
+      </children>
+      <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_2oK0cNV_EeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OX_hyJIEemJIZoadPYzbg" x="622"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4VoeASJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_Ry-OUNV_EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VoeAiJIEemJIZoadPYzbg" points="[0, 0, 0, -710]$[0, 710, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXhyJIEemJIZoadPYzbg" id="(0.49800796812749004,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXiCJIEemJIZoadPYzbg" id="(0.5,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4VpsICJIEemJIZoadPYzbg" type="4105" source="_4OWxYSJIEemJIZoadPYzbg" target="_4OUVHyJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4VpsIyJIEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VpsJCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4VpsJSJIEemJIZoadPYzbg" y="40"/>
+    <children xmi:type="notation:Shape" xmi:id="_4OYmgCJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OYmgiJIEemJIZoadPYzbg" type="5102"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OYmgyJIEemJIZoadPYzbg" type="7102">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OYmhCJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OYmhSJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OYmhiJIEemJIZoadPYzbg" type="7103">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OYmhyJIEemJIZoadPYzbg" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OYmiCJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OYmiSJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OYmiiJIEemJIZoadPYzbg" type="7104">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OYmiyJIEemJIZoadPYzbg" showTitle="true"/>
+      </children>
+      <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_NfQg8NWAEeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OYmgSJIEemJIZoadPYzbg" x="3342"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4VpsISJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_PBZ7ENV-EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VpsIiJIEemJIZoadPYzbg" points="[0, 0, -207, -710]$[84, 649, -123, -61]$[207, 710, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-lCJIEemJIZoadPYzbg" id="(0.6653386454183267,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-lSJIEemJIZoadPYzbg" id="(0.33152173913043476,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4Vq6QCJIEemJIZoadPYzbg" type="4106" source="_4OWxYSJIEemJIZoadPYzbg" target="_4OU8MiJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4Vq6QyJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4Vq6RCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4Vq6RSJIEemJIZoadPYzbg" y="40"/>
+    <children xmi:type="notation:Shape" xmi:id="_4OYmjCJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OYmjiJIEemJIZoadPYzbg" type="5102"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OYmjyJIEemJIZoadPYzbg" type="7102">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OYmkCJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OYmkSJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OYmkiJIEemJIZoadPYzbg" type="7103">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OYmkyJIEemJIZoadPYzbg" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OYmlCJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OYmlSJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OYmliJIEemJIZoadPYzbg" type="7104">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OYmlyJIEemJIZoadPYzbg" showTitle="true"/>
+      </children>
+      <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_vCoUgNWBEeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OYmjSJIEemJIZoadPYzbg" x="3653"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4Vq6QSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_CtmxsNV_EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4Vq6QiJIEemJIZoadPYzbg" points="[0, 0, 0, -710]$[0, 710, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-liJIEemJIZoadPYzbg" id="(0.49800796812749004,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-lyJIEemJIZoadPYzbg" id="(0.7123595505617978,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4VrhUCJIEemJIZoadPYzbg" type="4106" source="_4OWxYSJIEemJIZoadPYzbg" target="_4OTuBCJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4VsIYCJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VsIYSJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4VsIYiJIEemJIZoadPYzbg" y="40"/>
+    <children xmi:type="notation:Shape" xmi:id="_4OYmmCJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OYmmiJIEemJIZoadPYzbg" type="5102"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OYmmyJIEemJIZoadPYzbg" type="7102">
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OYmnCJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OYmnSJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OYmniJIEemJIZoadPYzbg" type="7103">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OYmnyJIEemJIZoadPYzbg" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OYmoCJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OYmoSJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OYmoiJIEemJIZoadPYzbg" type="7104">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OYmoyJIEemJIZoadPYzbg" showTitle="true"/>
+      </children>
+      <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_2oKigNWBEeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OYmmSJIEemJIZoadPYzbg" x="3964"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4VrhUSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_QKIoQNV_EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VrhUiJIEemJIZoadPYzbg" points="[0, 0, -400, -710]$[57, 649, -343, -61]$[400, 710, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-mCJIEemJIZoadPYzbg" id="(0.8326693227091634,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-mSJIEemJIZoadPYzbg" id="(0.24644549763033174,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4VtWgCJIEemJIZoadPYzbg" type="4105" source="_4OWxbSJIEemJIZoadPYzbg" target="_4OU8ICJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4VtWgyJIEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VtWhCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4VtWhSJIEemJIZoadPYzbg" y="40"/>
+    <children xmi:type="notation:Shape" xmi:id="_4OZNkCJIEemJIZoadPYzbg" type="2102" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OZNkiJIEemJIZoadPYzbg" type="5102"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OZNkyJIEemJIZoadPYzbg" type="7102">
+        <children xmi:type="notation:Node" xmi:id="_qeBWwDBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeBWwTBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_JjstgNWEEeWS-LePWVyd9g"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_qeBWwjBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_qeBWwzBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeBWxDBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_JjtUkdWEEeWS-LePWVyd9g"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_qeBWxTBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_qeBWxjBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeBWxzBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_JjtUlNWEEeWS-LePWVyd9g"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_qeBWyDBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_qeB90DBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB90TBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_Jjt7otWEEeWS-LePWVyd9g"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB90jBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_qeB90zBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB91DBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_Jjt7pdWEEeWS-LePWVyd9g"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB91TBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_qeB91jBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB91zBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_JjuisNWEEeWS-LePWVyd9g"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB92DBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_qeB92TBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB92jBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_Jjuis9WEEeWS-LePWVyd9g"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB92zBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_qeB93DBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB93TBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_JjuittWEEeWS-LePWVyd9g"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB93jBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_qeB93zBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB94DBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_JjvJwtWEEeWS-LePWVyd9g"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB94TBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_qeB94jBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB94zBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_JjvJxdWEEeWS-LePWVyd9g"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB95DBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_qeB95TBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB95jBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_Jjvw0NWEEeWS-LePWVyd9g"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB95zBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_qeB96DBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_qeB96TBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_Jjvw09WEEeWS-LePWVyd9g"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_qeB96jBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_xwWU4DBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_xwWU4TBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_wzr4UDBmEemnh41o9r29wQ"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_xwWU4jBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_2eZ_cDBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_2eZ_cTBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_1De5kDBmEemnh41o9r29wQ"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_2eZ_cjBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_3pddUDBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_3pddUTBmEemnh41o9r29wQ" diagramLink="_R06DUEqOEemQqvSyezWtTA" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_20F7kDBmEemnh41o9r29wQ"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_3pddUjBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_42ssgDBmEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_42ssgTBmEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_4AVFMDBmEemnh41o9r29wQ"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_42ssgjBmEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_IEyAQDBnEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_IEyAQTBnEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_HYJjwDBnEemnh41o9r29wQ"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_IEyAQjBnEemnh41o9r29wQ"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_Ino1sDBnEemnh41o9r29wQ" type="3102">
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_Ino1sTBnEemnh41o9r29wQ" hint="PCM SEFF Model"/>
+          <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_IPRZADBnEemnh41o9r29wQ"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_Ino1sjBnEemnh41o9r29wQ"/>
+        </children>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OZNlCJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OZNlSJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4OZNliJIEemJIZoadPYzbg" type="7103">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OZNlyJIEemJIZoadPYzbg" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_4OZNmCJIEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_4OZNmSJIEemJIZoadPYzbg"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4OZNmiJIEemJIZoadPYzbg" type="7104">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_4OZNmyJIEemJIZoadPYzbg" showTitle="true"/>
+      </children>
+      <element xmi:type="repository:BasicComponent" href="AppSensor.repository#_H9kdMNWEEeWS-LePWVyd9g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4OZNkSJIEemJIZoadPYzbg" x="3011"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4VtWgSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_TXgYoNV-EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VtWgiJIEemJIZoadPYzbg" points="[0, 0, 0, -710]$[0, 710, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMuyJIEemJIZoadPYzbg" id="(0.9561752988047809,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMvCJIEemJIZoadPYzbg" id="(0.3317972350230415,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4VukoCJIEemJIZoadPYzbg" type="4106" source="_4OWxbSJIEemJIZoadPYzbg" target="_4OU8MiJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4VukoyJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VukpCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4VukpSJIEemJIZoadPYzbg" y="40"/>
+    <children xmi:type="notation:Shape" xmi:id="_i6zesCJJEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_i6zesiJJEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_i6zesyJJEemJIZoadPYzbg" type="7106">
+        <children xmi:type="notation:Node" xmi:id="_4ypUsCJJEemJIZoadPYzbg" type="3106">
+          <element xmi:type="repository:OperationSignature" href="AppSensor.repository#_4yotoCJJEemJIZoadPYzbg"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_4ypUsSJJEemJIZoadPYzbg"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_6RGPsCJJEemJIZoadPYzbg" type="3106">
+          <element xmi:type="repository:OperationSignature" href="AppSensor.repository#_6RFooCJJEemJIZoadPYzbg"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_6RGPsSJJEemJIZoadPYzbg"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_7_aysCJJEemJIZoadPYzbg" type="3106">
+          <element xmi:type="repository:OperationSignature" href="AppSensor.repository#_7_aLoCJJEemJIZoadPYzbg"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_7_aysSJJEemJIZoadPYzbg"/>
+        </children>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_i6zetCJJEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_i6zetSJJEemJIZoadPYzbg"/>
+      </children>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_i6y3oCJJEemJIZoadPYzbg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_i6zesSJJEemJIZoadPYzbg" x="2898" y="1062"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4VukoSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_Bjo48NV_EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VukoiJIEemJIZoadPYzbg" points="[0, 0, 843, -710]$[-136, 649, 707, -61]$[-843, 710, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVzwCJIEemJIZoadPYzbg" id="(0.47808764940239046,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVzwSJIEemJIZoadPYzbg" id="(0.903370786516854,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4VvywCJIEemJIZoadPYzbg" type="4106" source="_4OWxbSJIEemJIZoadPYzbg" target="_4OUVEyJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4VwZ0CJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VwZ0SJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4VwZ0iJIEemJIZoadPYzbg" y="40"/>
+    <children xmi:type="notation:Shape" xmi:id="_knwvwCJJEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_knwvwiJJEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_knwvwyJJEemJIZoadPYzbg" type="7106">
+        <children xmi:type="notation:Node" xmi:id="_2qO2sCJJEemJIZoadPYzbg" type="3106">
+          <element xmi:type="repository:OperationSignature" href="AppSensor.repository#_2qOPoCJJEemJIZoadPYzbg"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_2qO2sSJJEemJIZoadPYzbg"/>
+        </children>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_knwvxCJJEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_knwvxSJJEemJIZoadPYzbg"/>
+      </children>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_knwIsCJJEemJIZoadPYzbg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_knwvwSJJEemJIZoadPYzbg" x="3384" y="738"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4VvywSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_OpcRkNV_EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VvywiJIEemJIZoadPYzbg" points="[0, 0, -249, -710]$[21, 649, -228, -61]$[249, 710, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVzwiJIEemJIZoadPYzbg" id="(0.9760956175298805,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVzwyJIEemJIZoadPYzbg" id="(0.24623115577889448,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4VyPACJIEemJIZoadPYzbg" type="4105" source="_4OXYaiJIEemJIZoadPYzbg" target="_4OTG8CJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4VyPAyJIEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VyPBCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4VyPBSJIEemJIZoadPYzbg" y="40"/>
+    <children xmi:type="notation:Shape" xmi:id="_mhhtwCJJEemJIZoadPYzbg" type="2107" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mhhtwiJJEemJIZoadPYzbg" type="5108"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_mhhtwyJJEemJIZoadPYzbg" type="7106">
+        <children xmi:type="notation:Node" xmi:id="_9nVLsCJJEemJIZoadPYzbg" type="3106">
+          <element xmi:type="repository:OperationSignature" href="AppSensor.repository#_9nUkoCJJEemJIZoadPYzbg"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_9nVLsSJJEemJIZoadPYzbg"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_-73VsCJJEemJIZoadPYzbg" type="3106">
+          <element xmi:type="repository:OperationSignature" href="AppSensor.repository#_-72uoCJJEemJIZoadPYzbg"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_-73VsSJJEemJIZoadPYzbg"/>
+        </children>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_mhhtxCJJEemJIZoadPYzbg"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_mhhtxSJJEemJIZoadPYzbg"/>
+      </children>
+      <element xmi:type="repository:OperationInterface" href="AppSensor.repository#_mhhGsCJJEemJIZoadPYzbg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mhhtwSJJEemJIZoadPYzbg" x="3115" y="1211"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4VyPASJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_bn2eMNV-EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VyPAiJIEemJIZoadPYzbg" points="[0, 0, -170, -610]$[55, 549, -115, -61]$[170, 610, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMsyJIEemJIZoadPYzbg" id="(0.8406374501992032,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMtCJIEemJIZoadPYzbg" id="(0.24770642201834864,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4VzdICJIEemJIZoadPYzbg" type="4106" source="_4OXYaiJIEemJIZoadPYzbg" target="_4OUVGSJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4VzdIyJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VzdJCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4VzdJSJIEemJIZoadPYzbg" y="40"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_M3nZMBnWEemiorxBpJTCRg"/>
+    <element xmi:type="repository:Repository" href="AppSensor.repository#_VYStANVwEeWS-LePWVyd9g"/>
+    <edges xmi:type="notation:Connector" xmi:id="_4VOOUCJIEemJIZoadPYzbg" type="4105" source="_4OWKRCJIEemJIZoadPYzbg" target="_4OU8LCJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4VO1YCJIEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VO1YSJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4VO1YiJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4VOOUSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_MYGzANV9EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VOOUiJIEemJIZoadPYzbg" points="[0, 0, -421, -710]$[99, 649, -322, -61]$[421, 710, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwcCJIEemJIZoadPYzbg" id="(0.6653386454183267,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwcSJIEemJIZoadPYzbg" id="(0.3333333333333333,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4Vi-cCJIEemJIZoadPYzbg" type="4106" source="_4OWKRCJIEemJIZoadPYzbg" target="_4OU8MiJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4VjlgCJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VjlgSJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4VjlgiJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4Vi-cSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_Og2BINV9EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4Vi-ciJIEemJIZoadPYzbg" points="[0, 0, 227, -710]$[-99, 649, 128, -61]$[-227, 710, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwciJIEemJIZoadPYzbg" id="(0.33067729083665337,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwcyJIEemJIZoadPYzbg" id="(0.8067415730337079,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4VmBwCJIEemJIZoadPYzbg" type="4105" source="_4OWxVSJIEemJIZoadPYzbg" target="_4OUVGSJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4Vmo0CJIEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4Vmo0SJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4Vmo0iJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4VmBwSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_ZwCdcNV9EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VmBwiJIEemJIZoadPYzbg" points="[0, 0, 154, -710]$[-78, 649, 76, -61]$[-154, 710, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXhSJIEemJIZoadPYzbg" id="(0.24701195219123506,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXhiJIEemJIZoadPYzbg" id="(0.7486910994764397,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4VnP4CJIEemJIZoadPYzbg" type="4106" source="_4OWxVSJIEemJIZoadPYzbg" target="_4OU8MiJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4VnP4yJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VnP5CJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4VnP5SJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4VnP4SJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_Dw4MkNV_EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VnP4iJIEemJIZoadPYzbg" points="[0, 0, -559, -710]$[78, 649, -481, -61]$[559, 710, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXiSJIEemJIZoadPYzbg" id="(0.749003984063745,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXiiJIEemJIZoadPYzbg" id="(0.23595505617977527,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4VoeACJIEemJIZoadPYzbg" type="4106" source="_4OWxVSJIEemJIZoadPYzbg" target="_4OTG8CJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4VoeAyJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VoeBCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4VoeBSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4VoeASJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_Ry-OUNV_EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VoeAiJIEemJIZoadPYzbg" points="[0, 0, 0, -710]$[0, 710, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXhyJIEemJIZoadPYzbg" id="(0.49800796812749004,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXiCJIEemJIZoadPYzbg" id="(0.5,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4VpsICJIEemJIZoadPYzbg" type="4105" source="_4OWxYSJIEemJIZoadPYzbg" target="_4OUVHyJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4VpsIyJIEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VpsJCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4VpsJSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4VpsISJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_PBZ7ENV-EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VpsIiJIEemJIZoadPYzbg" points="[0, 0, -207, -710]$[84, 649, -123, -61]$[207, 710, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-lCJIEemJIZoadPYzbg" id="(0.6653386454183267,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-lSJIEemJIZoadPYzbg" id="(0.33152173913043476,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4Vq6QCJIEemJIZoadPYzbg" type="4106" source="_4OWxYSJIEemJIZoadPYzbg" target="_4OU8MiJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4Vq6QyJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4Vq6RCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4Vq6RSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4Vq6QSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_CtmxsNV_EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4Vq6QiJIEemJIZoadPYzbg" points="[0, 0, 0, -710]$[0, 710, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-liJIEemJIZoadPYzbg" id="(0.49800796812749004,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-lyJIEemJIZoadPYzbg" id="(0.7123595505617978,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4VrhUCJIEemJIZoadPYzbg" type="4106" source="_4OWxYSJIEemJIZoadPYzbg" target="_4OTuBCJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4VsIYCJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VsIYSJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4VsIYiJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4VrhUSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_QKIoQNV_EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VrhUiJIEemJIZoadPYzbg" points="[0, 0, -400, -710]$[57, 649, -343, -61]$[400, 710, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-mCJIEemJIZoadPYzbg" id="(0.8326693227091634,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-mSJIEemJIZoadPYzbg" id="(0.24644549763033174,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4VtWgCJIEemJIZoadPYzbg" type="4105" source="_4OWxbSJIEemJIZoadPYzbg" target="_4OU8ICJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4VtWgyJIEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VtWhCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4VtWhSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4VtWgSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_TXgYoNV-EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VtWgiJIEemJIZoadPYzbg" points="[0, 0, 0, -710]$[0, 710, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMuyJIEemJIZoadPYzbg" id="(0.9561752988047809,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMvCJIEemJIZoadPYzbg" id="(0.3317972350230415,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4VukoCJIEemJIZoadPYzbg" type="4106" source="_4OWxbSJIEemJIZoadPYzbg" target="_4OU8MiJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4VukoyJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VukpCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4VukpSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4VukoSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_Bjo48NV_EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VukoiJIEemJIZoadPYzbg" points="[0, 0, 843, -710]$[-136, 649, 707, -61]$[-843, 710, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVzwCJIEemJIZoadPYzbg" id="(0.47808764940239046,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVzwSJIEemJIZoadPYzbg" id="(0.903370786516854,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4VvywCJIEemJIZoadPYzbg" type="4106" source="_4OWxbSJIEemJIZoadPYzbg" target="_4OUVEyJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4VwZ0CJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VwZ0SJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4VwZ0iJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4VvywSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_OpcRkNV_EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VvywiJIEemJIZoadPYzbg" points="[0, 0, -249, -710]$[21, 649, -228, -61]$[249, 710, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVzwiJIEemJIZoadPYzbg" id="(0.9760956175298805,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVzwyJIEemJIZoadPYzbg" id="(0.24623115577889448,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4VyPACJIEemJIZoadPYzbg" type="4105" source="_4OXYaiJIEemJIZoadPYzbg" target="_4OTG8CJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4VyPAyJIEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VyPBCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4VyPBSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4VyPASJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_bn2eMNV-EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VyPAiJIEemJIZoadPYzbg" points="[0, 0, -170, -610]$[55, 549, -115, -61]$[170, 610, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMsyJIEemJIZoadPYzbg" id="(0.8406374501992032,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMtCJIEemJIZoadPYzbg" id="(0.24770642201834864,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4VzdICJIEemJIZoadPYzbg" type="4106" source="_4OXYaiJIEemJIZoadPYzbg" target="_4OUVGSJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4VzdIyJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4VzdJCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4VzdJSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4VzdISJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_h-t_MNW2EeWdTPykunuB7Q"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VzdIiJIEemJIZoadPYzbg" points="[0, 0, 0, -610]$[0, 610, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMsSJIEemJIZoadPYzbg" id="(0.6812749003984063,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMsiJIEemJIZoadPYzbg" id="(0.4973821989528796,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4V0rQCJIEemJIZoadPYzbg" type="4105" source="_4OXYdiJIEemJIZoadPYzbg" target="_4OTuBCJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4V1SUCJIEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4V1SUSJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4V1SUiJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4V0rQSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_eO8cQNV-EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4V0rQiJIEemJIZoadPYzbg" points="[0, 0, 0, -610]$[0, 610, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwdCJIEemJIZoadPYzbg" id="(0.1593625498007968,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwdSJIEemJIZoadPYzbg" id="(0.4976303317535545,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4V15YCJIEemJIZoadPYzbg" type="4106" source="_4OXYdiJIEemJIZoadPYzbg" target="_4OUVHyJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4V15YyJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4V15ZCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4V15ZSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4V15YSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_l6hGYNW2EeWdTPykunuB7Q"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4V15YiJIEemJIZoadPYzbg" points="[0, 0, 207, -610]$[-36, 549, 171, -61]$[-207, 610, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwdiJIEemJIZoadPYzbg" id="(0.0796812749003984,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwdyJIEemJIZoadPYzbg" id="(0.6630434782608695,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4V3ukCJIEemJIZoadPYzbg" type="4105" source="_4OXYgiJIEemJIZoadPYzbg" target="_4OUVEyJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4V3ukyJIEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4V3ulCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4V3ulSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4V3ukSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_k6a1wNV-EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4V3ukiJIEemJIZoadPYzbg" points="[0, 0, 195, -635]$[-168, 574, 27, -61]$[-195, 635, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMtyJIEemJIZoadPYzbg" id="(0.6653386454183267,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMuCJIEemJIZoadPYzbg" id="(0.7487437185929648,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4V5jwCJIEemJIZoadPYzbg" type="4106" source="_4OXYgiJIEemJIZoadPYzbg" target="_4OU8ICJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4V5jwyJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4V5jxCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4V5jxSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4V5jwSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_plC3YNW2EeWdTPykunuB7Q"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4V5jwiJIEemJIZoadPYzbg" points="[0, 0, 393, -635]$[-99, 574, 294, -61]$[-393, 635, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMuSJIEemJIZoadPYzbg" id="(0.33067729083665337,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMuiJIEemJIZoadPYzbg" id="(0.663594470046083,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4V_qYCJIEemJIZoadPYzbg" type="4105" source="_4OX_eiJIEemJIZoadPYzbg" target="_4OVjNCJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4V_qYyJIEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4V_qZCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4V_qZSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4V_qYSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_v2zDwNV-EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4V_qYiJIEemJIZoadPYzbg" points="[0, 0, -217, -685]$[12, 624, -205, -61]$[217, 685, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlqSJIEemJIZoadPYzbg" id="(0.952191235059761,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlqiJIEemJIZoadPYzbg" id="(0.33157894736842103,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4WARcCJIEemJIZoadPYzbg" type="4106" source="_4OX_eiJIEemJIZoadPYzbg" target="_4OU8LCJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4WA4gCJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WA4gSJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4WA4giJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4WARcSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_xOl9INV-EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WARciJIEemJIZoadPYzbg" points="[0, 0, 448, -685]$[-160, 624, 288, -61]$[-448, 685, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlpyJIEemJIZoadPYzbg" id="(0.6932270916334662,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlqCJIEemJIZoadPYzbg" id="(0.6666666666666666,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4WBfkCJIEemJIZoadPYzbg" type="4106" source="_4OX_eiJIEemJIZoadPYzbg" target="_4OTG8CJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4WBfkyJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WBflCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4WBflSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4WBfkSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_1hNB0NV-EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WBfkiJIEemJIZoadPYzbg" points="[0, 0, 1957, -685]$[-74, 624, 1883, -61]$[-1957, 685, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlqyJIEemJIZoadPYzbg" id="(0.23107569721115537,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMsCJIEemJIZoadPYzbg" id="(0.7477064220183486,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4WCtsCJIEemJIZoadPYzbg" type="4106" source="_4OX_eiJIEemJIZoadPYzbg" target="_4OTuBCJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4WCtsyJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WCttCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4WCttSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4WCtsSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_480NENV-EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WCtsiJIEemJIZoadPYzbg" points="[0, 0, 645, -685]$[-117, 624, 528, -61]$[-645, 685, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUloyJIEemJIZoadPYzbg" id="(0.46215139442231074,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlpCJIEemJIZoadPYzbg" id="(0.7488151658767772,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4WDUwCJIEemJIZoadPYzbg" type="4106" source="_4OX_eiJIEemJIZoadPYzbg" target="_4OUVEyJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4WDUwyJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WDUxCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4WDUxSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4WDUwSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_55wWcNV-EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WDUwiJIEemJIZoadPYzbg" points="[0, 0, 0, -685]$[0, 685, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlpSJIEemJIZoadPYzbg" id="(0.9282868525896414,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlpiJIEemJIZoadPYzbg" id="(0.49748743718592964,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4WEi4CJIEemJIZoadPYzbg" type="4106" source="_4OX_eiJIEemJIZoadPYzbg" target="_4OVjQCJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4WEi4yJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WEi5CJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4WEi5SJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4WEi4SJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_SyPEsPHsEeaSPp9UXER7Hw"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WEi4iJIEemJIZoadPYzbg" points="[0, 0, -452, -685]$[21, 624, -431, -61]$[452, 685, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUloSJIEemJIZoadPYzbg" id="(0.9760956175298805,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUloiJIEemJIZoadPYzbg" id="(0.3333333333333333,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4WFJ8CJIEemJIZoadPYzbg" type="4105" source="_4OX_hiJIEemJIZoadPYzbg" target="_4OU8MiJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4WFxACJIEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WFxASJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4WFxAiJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4WFJ8SJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_3gSIMNV_EeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WFJ8iJIEemJIZoadPYzbg" points="[0, 0, -311, -60]$[311, 60, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-miJIEemJIZoadPYzbg" id="(0.49892008639308855,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUloCJIEemJIZoadPYzbg" id="(0.47415730337078654,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4WGYECJIEemJIZoadPYzbg" type="4105" source="_4OYmgCJIEemJIZoadPYzbg" target="_4OVjQCJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4WGYEyJIEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WGYFCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4WGYFSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4WGYESJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_Os1uYNWAEeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WGYEiJIEemJIZoadPYzbg" points="[0, 0, 285, -735]$[-99, 674, 186, -61]$[-285, 735, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSweiJIEemJIZoadPYzbg" id="(0.33067729083665337,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXgCJIEemJIZoadPYzbg" id="(0.6666666666666666,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4WHmMCJIEemJIZoadPYzbg" type="4106" source="_4OYmgCJIEemJIZoadPYzbg" target="_4OU8JiJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4WHmMyJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WHmNCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4WHmNSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4WHmMSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_EOenMNWCEeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WHmMiJIEemJIZoadPYzbg" points="[0, 0, -117, -735]$[99, 674, -18, -61]$[117, 735, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSweCJIEemJIZoadPYzbg" id="(0.6653386454183267,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSweSJIEemJIZoadPYzbg" id="(0.24736842105263157,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4WI0UCJIEemJIZoadPYzbg" type="4105" source="_4OYmjCJIEemJIZoadPYzbg" target="_4OU8JiJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4WI0UyJIEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WI0VCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4WI0VSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4WI0USJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_wBuaANWBEeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WI0UiJIEemJIZoadPYzbg" points="[0, 0, 0, -685]$[0, 685, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-kCJIEemJIZoadPYzbg" id="(0.08366533864541832,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-kSJIEemJIZoadPYzbg" id="(0.5,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4WKCcCJIEemJIZoadPYzbg" type="4106" source="_4OYmjCJIEemJIZoadPYzbg" target="_4OVjRiJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4WKCcyJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WKCdCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4WKCdSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4WKCcSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_xSL8UNWBEeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WKCciJIEemJIZoadPYzbg" points="[0, 0, -121, -685]$[121, 685, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-kiJIEemJIZoadPYzbg" id="(0.5418326693227091,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-kyJIEemJIZoadPYzbg" id="(0.3306122448979592,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4WLQkCJIEemJIZoadPYzbg" type="4105" source="_4OYmmCJIEemJIZoadPYzbg" target="_4OVjRiJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4WLQkyJIEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WLQlCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4WLQlSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4WLQkSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_3gobkNWBEeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WLQkiJIEemJIZoadPYzbg" points="[0, 0, 0, -585]$[0, 585, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMtSJIEemJIZoadPYzbg" id="(0.10727969348659004,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMtiJIEemJIZoadPYzbg" id="(0.6653061224489796,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4WMesCJIEemJIZoadPYzbg" type="4105" source="_4OZNkCJIEemJIZoadPYzbg" target="_4OVjOiJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4WMesyJIEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WMetCJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4WMetSJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4WMesSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_JjsGcNWEEeWS-LePWVyd9g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WMesiJIEemJIZoadPYzbg" points="[0, 0, -195, -460]$[106, 399, -89, -61]$[195, 460, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXgyJIEemJIZoadPYzbg" id="(0.6642066420664207,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXhCJIEemJIZoadPYzbg" id="(0.4981132075471698,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4WNs0CJIEemJIZoadPYzbg" type="4106" source="_4OZNkCJIEemJIZoadPYzbg" target="_4OVjNCJIEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4WNs0yJIEemJIZoadPYzbg" type="6106">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WNs1CJIEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4WNs1SJIEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4WNs0SJIEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_Qd1ZIPHsEeaSPp9UXER7Hw"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WNs0iJIEemJIZoadPYzbg" points="[0, 0, 193, -460]$[-106, 399, 87, -61]$[-193, 460, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXgSJIEemJIZoadPYzbg" id="(0.33210332103321033,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXgiJIEemJIZoadPYzbg" id="(0.6631578947368421,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_rUefYCJJEemJIZoadPYzbg" type="4105" source="_4OZNkCJIEemJIZoadPYzbg" target="_knwvwCJJEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_rUfGcCJJEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_rUfGcSJJEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_rUfGciJJEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_rUefYSJJEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_rUcqMCJJEemJIZoadPYzbg"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rUefYiJJEemJIZoadPYzbg" points="[2, 91, 11, -646]$[56, 737, 65, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rUg7oCJJEemJIZoadPYzbg" id="(0.3837638376383764,0.7725)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_r2oxQCJJEemJIZoadPYzbg" type="4105" source="_4OZNkCJIEemJIZoadPYzbg" target="_i6zesCJJEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_r2oxQyJJEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_r2oxRCJJEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_r2pYUCJJEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_r2oxQSJJEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_r2oKMCJJEemJIZoadPYzbg"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_r2oxQiJJEemJIZoadPYzbg" points="[6, 200, -21, -710]$[43, 903, 16, -7]"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_r2qmcCJJEemJIZoadPYzbg" id="(0.7866666666666666,0.2926829268292683)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_sbfKwCJJEemJIZoadPYzbg" type="4105" source="_4OZNkCJIEemJIZoadPYzbg" target="_mhhtwCJJEemJIZoadPYzbg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_sbfx0CJJEemJIZoadPYzbg" type="6105">
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_sbfx0SJJEemJIZoadPYzbg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_sbfx0iJJEemJIZoadPYzbg" y="40"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_sbfKwSJJEemJIZoadPYzbg" fontName="Segoe UI"/>
+      <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_sbejsCJJEemJIZoadPYzbg"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sbfKwiJJEemJIZoadPYzbg" points="[3, 200, -3, -831]$[44, 1025, 38, -6]"/>
+    </edges>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_R06DUEqOEemQqvSyezWtTA" type="PCM SEFF Model" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_iglWcEqOEemQqvSyezWtTA" type="2001">
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_iglWcUqOEemQqvSyezWtTA"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_iglWckqOEemQqvSyezWtTA" fontName="Segoe UI"/>
+      <styles xmi:type="notation:LineStyle" xmi:id="_iglWc0qOEemQqvSyezWtTA"/>
+      <element xmi:type="seff:StartAction" href="AppSensor.repository#_3pc2QDBmEemnh41o9r29wQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iglWdEqOEemQqvSyezWtTA" x="5"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4VzdISJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_h-t_MNW2EeWdTPykunuB7Q"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4VzdIiJIEemJIZoadPYzbg" points="[0, 0, 0, -610]$[0, 610, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMsSJIEemJIZoadPYzbg" id="(0.6812749003984063,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMsiJIEemJIZoadPYzbg" id="(0.4973821989528796,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4V0rQCJIEemJIZoadPYzbg" type="4105" source="_4OXYdiJIEemJIZoadPYzbg" target="_4OTuBCJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4V1SUCJIEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4V1SUSJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4V1SUiJIEemJIZoadPYzbg" y="40"/>
+    <children xmi:type="notation:Shape" xmi:id="_igl9gEqOEemQqvSyezWtTA" type="2002" fontName="Segoe UI">
+      <element xmi:type="seff:StopAction" href="AppSensor.repository#_3pc2QTBmEemnh41o9r29wQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_igl9gUqOEemQqvSyezWtTA" y="80"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4V0rQSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_eO8cQNV-EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4V0rQiJIEemJIZoadPYzbg" points="[0, 0, 0, -610]$[0, 610, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwdCJIEemJIZoadPYzbg" id="(0.1593625498007968,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwdSJIEemJIZoadPYzbg" id="(0.4976303317535545,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4V15YCJIEemJIZoadPYzbg" type="4106" source="_4OXYdiJIEemJIZoadPYzbg" target="_4OUVHyJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4V15YyJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4V15ZCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4V15ZSJIEemJIZoadPYzbg" y="40"/>
+    <children xmi:type="notation:Shape" xmi:id="_jGguAEqOEemQqvSyezWtTA" type="2006" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_jGguAkqOEemQqvSyezWtTA" type="5012"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_jGguA0qOEemQqvSyezWtTA" type="7012">
+        <children xmi:type="notation:Node" xmi:id="_lvJkMEqOEemQqvSyezWtTA" type="3051">
+          <element xmi:type="seff_performance:ParametricResourceDemand" href="AppSensor.repository#/0/@components__Repository.12/@serviceEffectSpecifications__BasicComponent.14/@steps_Behaviour.2/@resourceDemand_Action.0"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_lvJkMUqOEemQqvSyezWtTA"/>
+        </children>
+        <styles xmi:type="notation:TitleStyle" xmi:id="_jGguBEqOEemQqvSyezWtTA" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_jGguBUqOEemQqvSyezWtTA"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_jGguBkqOEemQqvSyezWtTA"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_jGguB0qOEemQqvSyezWtTA" type="7046">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_jGguCEqOEemQqvSyezWtTA" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_jGguCUqOEemQqvSyezWtTA"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_jGguCkqOEemQqvSyezWtTA"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_jGguC0qOEemQqvSyezWtTA" type="7051">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_jGguDEqOEemQqvSyezWtTA" showTitle="true"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_jGguDUqOEemQqvSyezWtTA"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_jGguDkqOEemQqvSyezWtTA"/>
+      </children>
+      <element xmi:type="seff:InternalAction" href="AppSensor.repository#_jGcckEqOEemQqvSyezWtTA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jGguAUqOEemQqvSyezWtTA" x="311" y="64"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4V15YSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_l6hGYNW2EeWdTPykunuB7Q"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4V15YiJIEemJIZoadPYzbg" points="[0, 0, 207, -610]$[-36, 549, 171, -61]$[-207, 610, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwdiJIEemJIZoadPYzbg" id="(0.0796812749003984,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSwdyJIEemJIZoadPYzbg" id="(0.6630434782608695,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4V3ukCJIEemJIZoadPYzbg" type="4105" source="_4OXYgiJIEemJIZoadPYzbg" target="_4OUVEyJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4V3ukyJIEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4V3ulCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4V3ulSJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4V3ukSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_k6a1wNV-EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4V3ukiJIEemJIZoadPYzbg" points="[0, 0, 195, -635]$[-168, 574, 27, -61]$[-195, 635, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMtyJIEemJIZoadPYzbg" id="(0.6653386454183267,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMuCJIEemJIZoadPYzbg" id="(0.7487437185929648,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4V5jwCJIEemJIZoadPYzbg" type="4106" source="_4OXYgiJIEemJIZoadPYzbg" target="_4OU8ICJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4V5jwyJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4V5jxCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4V5jxSJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4V5jwSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_plC3YNW2EeWdTPykunuB7Q"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4V5jwiJIEemJIZoadPYzbg" points="[0, 0, 393, -635]$[-99, 574, 294, -61]$[-393, 635, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMuSJIEemJIZoadPYzbg" id="(0.33067729083665337,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMuiJIEemJIZoadPYzbg" id="(0.663594470046083,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4V_qYCJIEemJIZoadPYzbg" type="4105" source="_4OX_eiJIEemJIZoadPYzbg" target="_4OVjNCJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4V_qYyJIEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4V_qZCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4V_qZSJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4V_qYSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_v2zDwNV-EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4V_qYiJIEemJIZoadPYzbg" points="[0, 0, -217, -685]$[12, 624, -205, -61]$[217, 685, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlqSJIEemJIZoadPYzbg" id="(0.952191235059761,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlqiJIEemJIZoadPYzbg" id="(0.33157894736842103,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4WARcCJIEemJIZoadPYzbg" type="4106" source="_4OX_eiJIEemJIZoadPYzbg" target="_4OU8LCJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4WA4gCJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WA4gSJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4WA4giJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4WARcSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_xOl9INV-EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WARciJIEemJIZoadPYzbg" points="[0, 0, 448, -685]$[-160, 624, 288, -61]$[-448, 685, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlpyJIEemJIZoadPYzbg" id="(0.6932270916334662,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlqCJIEemJIZoadPYzbg" id="(0.6666666666666666,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4WBfkCJIEemJIZoadPYzbg" type="4106" source="_4OX_eiJIEemJIZoadPYzbg" target="_4OTG8CJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4WBfkyJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WBflCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4WBflSJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4WBfkSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_1hNB0NV-EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WBfkiJIEemJIZoadPYzbg" points="[0, 0, 1957, -685]$[-74, 624, 1883, -61]$[-1957, 685, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlqyJIEemJIZoadPYzbg" id="(0.23107569721115537,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMsCJIEemJIZoadPYzbg" id="(0.7477064220183486,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4WCtsCJIEemJIZoadPYzbg" type="4106" source="_4OX_eiJIEemJIZoadPYzbg" target="_4OTuBCJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4WCtsyJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WCttCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4WCttSJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4WCtsSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_480NENV-EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WCtsiJIEemJIZoadPYzbg" points="[0, 0, 645, -685]$[-117, 624, 528, -61]$[-645, 685, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUloyJIEemJIZoadPYzbg" id="(0.46215139442231074,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlpCJIEemJIZoadPYzbg" id="(0.7488151658767772,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4WDUwCJIEemJIZoadPYzbg" type="4106" source="_4OX_eiJIEemJIZoadPYzbg" target="_4OUVEyJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4WDUwyJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WDUxCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4WDUxSJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4WDUwSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_55wWcNV-EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WDUwiJIEemJIZoadPYzbg" points="[0, 0, 0, -685]$[0, 685, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlpSJIEemJIZoadPYzbg" id="(0.9282868525896414,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUlpiJIEemJIZoadPYzbg" id="(0.49748743718592964,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4WEi4CJIEemJIZoadPYzbg" type="4106" source="_4OX_eiJIEemJIZoadPYzbg" target="_4OVjQCJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4WEi4yJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WEi5CJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4WEi5SJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4WEi4SJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_SyPEsPHsEeaSPp9UXER7Hw"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WEi4iJIEemJIZoadPYzbg" points="[0, 0, -452, -685]$[21, 624, -431, -61]$[452, 685, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUloSJIEemJIZoadPYzbg" id="(0.9760956175298805,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUloiJIEemJIZoadPYzbg" id="(0.3333333333333333,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4WFJ8CJIEemJIZoadPYzbg" type="4105" source="_4OX_hiJIEemJIZoadPYzbg" target="_4OU8MiJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4WFxACJIEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WFxASJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4WFxAiJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4WFJ8SJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_3gSIMNV_EeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WFJ8iJIEemJIZoadPYzbg" points="[0, 0, -311, -60]$[311, 60, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-miJIEemJIZoadPYzbg" id="(0.49892008639308855,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YUloCJIEemJIZoadPYzbg" id="(0.47415730337078654,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4WGYECJIEemJIZoadPYzbg" type="4105" source="_4OYmgCJIEemJIZoadPYzbg" target="_4OVjQCJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4WGYEyJIEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WGYFCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4WGYFSJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4WGYESJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_Os1uYNWAEeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WGYEiJIEemJIZoadPYzbg" points="[0, 0, 285, -735]$[-99, 674, 186, -61]$[-285, 735, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSweiJIEemJIZoadPYzbg" id="(0.33067729083665337,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXgCJIEemJIZoadPYzbg" id="(0.6666666666666666,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4WHmMCJIEemJIZoadPYzbg" type="4106" source="_4OYmgCJIEemJIZoadPYzbg" target="_4OU8JiJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4WHmMyJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WHmNCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4WHmNSJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4WHmMSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_EOenMNWCEeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WHmMiJIEemJIZoadPYzbg" points="[0, 0, -117, -735]$[99, 674, -18, -61]$[117, 735, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSweCJIEemJIZoadPYzbg" id="(0.6653386454183267,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YSweSJIEemJIZoadPYzbg" id="(0.24736842105263157,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4WI0UCJIEemJIZoadPYzbg" type="4105" source="_4OYmjCJIEemJIZoadPYzbg" target="_4OU8JiJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4WI0UyJIEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WI0VCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4WI0VSJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4WI0USJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_wBuaANWBEeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WI0UiJIEemJIZoadPYzbg" points="[0, 0, 0, -685]$[0, 685, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-kCJIEemJIZoadPYzbg" id="(0.08366533864541832,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-kSJIEemJIZoadPYzbg" id="(0.5,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4WKCcCJIEemJIZoadPYzbg" type="4106" source="_4OYmjCJIEemJIZoadPYzbg" target="_4OVjRiJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4WKCcyJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WKCdCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4WKCdSJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4WKCcSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_xSL8UNWBEeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WKCciJIEemJIZoadPYzbg" points="[0, 0, -121, -685]$[121, 685, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-kiJIEemJIZoadPYzbg" id="(0.5418326693227091,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YT-kyJIEemJIZoadPYzbg" id="(0.3306122448979592,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4WLQkCJIEemJIZoadPYzbg" type="4105" source="_4OYmmCJIEemJIZoadPYzbg" target="_4OVjRiJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4WLQkyJIEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WLQlCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4WLQlSJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4WLQkSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_3gobkNWBEeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WLQkiJIEemJIZoadPYzbg" points="[0, 0, 0, -585]$[0, 585, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMtSJIEemJIZoadPYzbg" id="(0.10727969348659004,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YVMtiJIEemJIZoadPYzbg" id="(0.6653061224489796,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4WMesCJIEemJIZoadPYzbg" type="4105" source="_4OZNkCJIEemJIZoadPYzbg" target="_4OVjOiJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4WMesyJIEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WMetCJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4WMetSJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4WMesSJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_JjsGcNWEEeWS-LePWVyd9g"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WMesiJIEemJIZoadPYzbg" points="[0, 0, -195, -460]$[106, 399, -89, -61]$[195, 460, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXgyJIEemJIZoadPYzbg" id="(0.6642066420664207,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXhCJIEemJIZoadPYzbg" id="(0.4981132075471698,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_4WNs0CJIEemJIZoadPYzbg" type="4106" source="_4OZNkCJIEemJIZoadPYzbg" target="_4OVjNCJIEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_4WNs0yJIEemJIZoadPYzbg" type="6106">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_4WNs1CJIEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_4WNs1SJIEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_4WNs0SJIEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationRequiredRole" href="AppSensor.repository#_Qd1ZIPHsEeaSPp9UXER7Hw"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4WNs0iJIEemJIZoadPYzbg" points="[0, 0, 193, -460]$[-106, 399, 87, -61]$[-193, 460, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXgSJIEemJIZoadPYzbg" id="(0.33210332103321033,1.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4YTXgiJIEemJIZoadPYzbg" id="(0.6631578947368421,0.0)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_rUefYCJJEemJIZoadPYzbg" type="4105" source="_4OZNkCJIEemJIZoadPYzbg" target="_knwvwCJJEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_rUfGcCJJEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_rUfGcSJJEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_rUfGciJJEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_rUefYSJJEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_rUcqMCJJEemJIZoadPYzbg"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rUefYiJJEemJIZoadPYzbg" points="[2, 91, 11, -646]$[56, 737, 65, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rUg7oCJJEemJIZoadPYzbg" id="(0.3837638376383764,0.7725)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_r2oxQCJJEemJIZoadPYzbg" type="4105" source="_4OZNkCJIEemJIZoadPYzbg" target="_i6zesCJJEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_r2oxQyJJEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_r2oxRCJJEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_r2pYUCJJEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_r2oxQSJJEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_r2oKMCJJEemJIZoadPYzbg"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_r2oxQiJJEemJIZoadPYzbg" points="[6, 200, -21, -710]$[43, 903, 16, -7]"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_r2qmcCJJEemJIZoadPYzbg" id="(0.7866666666666666,0.2926829268292683)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_sbfKwCJJEemJIZoadPYzbg" type="4105" source="_4OZNkCJIEemJIZoadPYzbg" target="_mhhtwCJJEemJIZoadPYzbg">
-    <children xmi:type="notation:DecorationNode" xmi:id="_sbfx0CJJEemJIZoadPYzbg" type="6105">
-      <styles xmi:type="notation:DescriptionStyle" xmi:id="_sbfx0SJJEemJIZoadPYzbg"/>
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_sbfx0iJJEemJIZoadPYzbg" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_sbfKwSJJEemJIZoadPYzbg" fontName="Segoe UI"/>
-    <element xmi:type="repository:OperationProvidedRole" href="AppSensor.repository#_sbejsCJJEemJIZoadPYzbg"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sbfKwiJJEemJIZoadPYzbg" points="[3, 200, -3, -831]$[44, 1025, 38, -6]"/>
-  </edges>
-</notation:Diagram>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_R06DUUqOEemQqvSyezWtTA"/>
+    <element xmi:type="seff:ResourceDemandingSEFF" href="AppSensor.repository#_20F7kDBmEemnh41o9r29wQ"/>
+    <edges xmi:type="notation:Connector" xmi:id="_ignLoEqOEemQqvSyezWtTA" type="4001" source="_iglWcEqOEemQqvSyezWtTA" target="_jGguAEqOEemQqvSyezWtTA">
+      <styles xmi:type="notation:FontStyle" xmi:id="_ignLoUqOEemQqvSyezWtTA" fontName="Segoe UI"/>
+      <element xsi:nil="true"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ignLokqOEemQqvSyezWtTA" points="[0, 10, 0, -75]$[0, 70, 0, -15]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_igoZwEqOEemQqvSyezWtTA" id="(0.5,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_igoZwUqOEemQqvSyezWtTA" id="(0.15555555555555556,0.296969696969697)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_mk8jwEqOEemQqvSyezWtTA" type="4001" source="_jGguAEqOEemQqvSyezWtTA" target="_igl9gEqOEemQqvSyezWtTA">
+      <styles xmi:type="notation:FontStyle" xmi:id="_mk8jwUqOEemQqvSyezWtTA" fontName="Segoe UI"/>
+      <element xsi:nil="true"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mk8jwkqOEemQqvSyezWtTA" points="[-50, -12, 296, 62]$[-333, -81, 13, -7]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_mk-Y8EqOEemQqvSyezWtTA" id="(0.2222222222222222,0.6363636363636364)"/>
+    </edges>
+  </notation:Diagram>
+</xmi:XMI>
