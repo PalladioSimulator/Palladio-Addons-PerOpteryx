@@ -115,7 +115,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_bmcq8CJKEemJIZoadPYzbg" type="5102"/>
       <children xmi:type="notation:DecorationNode" xmi:id="_bmcq8SJKEemJIZoadPYzbg" type="7102">
         <children xmi:type="notation:Node" xmi:id="_C0eeUCYhEemB4fMymSrEXA" type="3102">
-          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_C0eeUSYhEemB4fMymSrEXA" hint="PCM SEFF Model"/>
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_C0eeUSYhEemB4fMymSrEXA" diagramLink="_5E1VMEysEem6Pe4TCD_SSA" hint="PCM SEFF Model"/>
           <element xmi:type="seff:ResourceDemandingSEFF" href="ossec.repository#_VlcfwCJMEemJIZoadPYzbg"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_C0eeUiYhEemB4fMymSrEXA"/>
         </children>
@@ -192,7 +192,7 @@
           <layoutConstraint xmi:type="notation:Location" xmi:id="_mvvP9SYaEemB4fMymSrEXA"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_mvvP9iYaEemB4fMymSrEXA" type="3102">
-          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_mvvP9yYaEemB4fMymSrEXA" hint="PCM SEFF Model"/>
+          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_mvvP9yYaEemB4fMymSrEXA" diagramLink="_3waf8EysEem6Pe4TCD_SSA" hint="PCM SEFF Model"/>
           <element xmi:type="seff:ResourceDemandingSEFF" href="ossec.repository#_2RNAwCJLEemJIZoadPYzbg"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_mvvP-CYaEemB4fMymSrEXA"/>
         </children>
@@ -514,7 +514,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_o2uxoiYaEemB4fMymSrEXA" type="5012"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_o2vYsCYaEemB4fMymSrEXA" type="7012">
         <children xmi:type="notation:Node" xmi:id="_tgSPUCYdEemB4fMymSrEXA" type="3051">
-          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#//@components__Repository.5/@serviceEffectSpecifications__BasicComponent.1/@steps_Behaviour.2/@resourceDemand_Action.0"/>
+          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#/0/@components__Repository.5/@serviceEffectSpecifications__BasicComponent.1/@steps_Behaviour.2/@resourceDemand_Action.0"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_tgSPUSYdEemB4fMymSrEXA"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_o2vYsSYaEemB4fMymSrEXA" showTitle="true"/>
@@ -566,7 +566,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_yc56UiYdEemB4fMymSrEXA" type="5012"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_yc56UyYdEemB4fMymSrEXA" type="7012">
         <children xmi:type="notation:Node" xmi:id="_zsTssCYdEemB4fMymSrEXA" type="3051">
-          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#//@components__Repository.5/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
+          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#/0/@components__Repository.5/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_zsTssSYdEemB4fMymSrEXA"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_yc56VCYdEemB4fMymSrEXA" showTitle="true"/>
@@ -590,7 +590,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_IzxOoiYeEemB4fMymSrEXA" type="5012"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_IzxOoyYeEemB4fMymSrEXA" type="7012">
         <children xmi:type="notation:Node" xmi:id="_LfTAwCYeEemB4fMymSrEXA" type="3051">
-          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#//@components__Repository.5/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.3/@resourceDemand_Action.0"/>
+          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#/0/@components__Repository.5/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.3/@resourceDemand_Action.0"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_LfTAwSYeEemB4fMymSrEXA"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_IzxOpCYeEemB4fMymSrEXA" showTitle="true"/>
@@ -668,7 +668,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_GNkzAiYfEemB4fMymSrEXA" type="5012"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_GNkzAyYfEemB4fMymSrEXA" type="7012">
         <children xmi:type="notation:Node" xmi:id="_6L24ICYfEemB4fMymSrEXA" type="3051">
-          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#//@components__Repository.0/@serviceEffectSpecifications__BasicComponent.1/@steps_Behaviour.2/@resourceDemand_Action.0"/>
+          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#/0/@components__Repository.0/@serviceEffectSpecifications__BasicComponent.1/@steps_Behaviour.2/@resourceDemand_Action.0"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_6L24ISYfEemB4fMymSrEXA"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_GNkzBCYfEemB4fMymSrEXA" showTitle="true"/>
@@ -719,7 +719,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_OffJYiYgEemB4fMymSrEXA" type="5012"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_OffJYyYgEemB4fMymSrEXA" type="7012">
         <children xmi:type="notation:Node" xmi:id="_34kKYCYgEemB4fMymSrEXA" type="3051">
-          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#//@components__Repository.4/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
+          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#/0/@components__Repository.4/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_34kKYSYgEemB4fMymSrEXA"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_OffJZCYgEemB4fMymSrEXA" showTitle="true"/>
@@ -769,7 +769,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_-71Y0iYgEemB4fMymSrEXA" type="5012"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_-71Y0yYgEemB4fMymSrEXA" type="7012">
         <children xmi:type="notation:Node" xmi:id="_BpuicCYhEemB4fMymSrEXA" type="3051">
-          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#//@components__Repository.6/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
+          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#/0/@components__Repository.6/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_BpuicSYhEemB4fMymSrEXA"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_-71Y1CYgEemB4fMymSrEXA" showTitle="true"/>
@@ -834,7 +834,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_0QjsciYhEemB4fMymSrEXA" type="5012"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_0QjscyYhEemB4fMymSrEXA" type="7012">
         <children xmi:type="notation:Node" xmi:id="_2WzAMCYhEemB4fMymSrEXA" type="3051">
-          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#//@components__Repository.3/@serviceEffectSpecifications__BasicComponent.1/@steps_Behaviour.3/@resourceDemand_Action.0"/>
+          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#/0/@components__Repository.3/@serviceEffectSpecifications__BasicComponent.1/@steps_Behaviour.3/@resourceDemand_Action.0"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_2WzAMSYhEemB4fMymSrEXA"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_0QjsdCYhEemB4fMymSrEXA" showTitle="true"/>
@@ -890,7 +890,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_r0BvkiYiEemB4fMymSrEXA" type="5012"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_r0BvkyYiEemB4fMymSrEXA" type="7012">
         <children xmi:type="notation:Node" xmi:id="_gofOwCYjEemB4fMymSrEXA" type="3051">
-          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#//@components__Repository.4/@serviceEffectSpecifications__BasicComponent.1/@steps_Behaviour.2/@resourceDemand_Action.0"/>
+          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#/0/@components__Repository.4/@serviceEffectSpecifications__BasicComponent.1/@steps_Behaviour.2/@resourceDemand_Action.0"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_gofOwSYjEemB4fMymSrEXA"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_r0BvlCYiEemB4fMymSrEXA" showTitle="true"/>
@@ -955,7 +955,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="__H4bUiYhEemB4fMymSrEXA" type="5012"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="__H4bUyYhEemB4fMymSrEXA" type="7012">
         <children xmi:type="notation:Node" xmi:id="_BUdnoCYiEemB4fMymSrEXA" type="3051">
-          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#//@components__Repository.0/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.3/@resourceDemand_Action.0"/>
+          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#/0/@components__Repository.0/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.3/@resourceDemand_Action.0"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_BUdnoSYiEemB4fMymSrEXA"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="__H4bVCYhEemB4fMymSrEXA" showTitle="true"/>
@@ -1012,7 +1012,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_K6PPEiYiEemB4fMymSrEXA" type="5012"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_K6PPEyYiEemB4fMymSrEXA" type="7012">
         <children xmi:type="notation:Node" xmi:id="_OKKHsCYiEemB4fMymSrEXA" type="3051">
-          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#//@components__Repository.0/@serviceEffectSpecifications__BasicComponent.2/@steps_Behaviour.2/@resourceDemand_Action.0"/>
+          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#/0/@components__Repository.0/@serviceEffectSpecifications__BasicComponent.2/@steps_Behaviour.2/@resourceDemand_Action.0"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_OKKHsSYiEemB4fMymSrEXA"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_K6PPFCYiEemB4fMymSrEXA" showTitle="true"/>
@@ -1082,7 +1082,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_e4MyUiYiEemB4fMymSrEXA" type="5012"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_e4MyUyYiEemB4fMymSrEXA" type="7012">
         <children xmi:type="notation:Node" xmi:id="_lSqUUCYiEemB4fMymSrEXA" type="3051">
-          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#//@components__Repository.1/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
+          <element xmi:type="seff_performance:ParametricResourceDemand" href="ossec.repository#/0/@components__Repository.1/@serviceEffectSpecifications__BasicComponent.0/@steps_Behaviour.2/@resourceDemand_Action.0"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_lSqUUSYiEemB4fMymSrEXA"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_e4MyVCYiEemB4fMymSrEXA" showTitle="true"/>
@@ -1135,5 +1135,13 @@
       <element xsi:nil="true"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mYGSYiYiEemB4fMymSrEXA" points="[-25, 33, 156, -209]$[-169, 233, 12, -9]"/>
     </edges>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_3waf8EysEem6Pe4TCD_SSA" type="PCM SEFF Model" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_3waf8UysEem6Pe4TCD_SSA"/>
+    <element xmi:type="seff:ResourceDemandingSEFF" href="ossec.repository#_2RNAwCJLEemJIZoadPYzbg"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_5E1VMEysEem6Pe4TCD_SSA" type="PCM SEFF Model" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_5E1VMUysEem6Pe4TCD_SSA"/>
+    <element xmi:type="seff:ResourceDemandingSEFF" href="ossec.repository#_VlcfwCJMEemJIZoadPYzbg"/>
   </notation:Diagram>
 </xmi:XMI>

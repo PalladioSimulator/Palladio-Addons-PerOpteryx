@@ -437,6 +437,15 @@
         <steps_Behaviour xsi:type="seff:StopAction" id="_InoOoDBnEemnh41o9r29wQ" entityName="stop" predecessor_AbstractAction="_InnnkDBnEemnh41o9r29wQ"/>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_wir_4EyqEemsoqtGr-L_Qg" entityName="Feature">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_zpoisEyqEemsoqtGr-L_Qg" entityName="Provided_IFeature_Feature" providedInterface__OperationProvidedRole="_xTvpYEyqEemsoqtGr-L_Qg"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_0MBeEEyqEemsoqtGr-L_Qg" entityName="Required_iDetect_Feature" requiredInterface__OperationRequiredRole="_i6y3oCJJEemJIZoadPYzbg"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_zpq-8EyqEemsoqtGr-L_Qg" describedService__SEFF="_ySHWIEyqEemsoqtGr-L_Qg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_zpq-8UyqEemsoqtGr-L_Qg" entityName="start" successor_AbstractAction="_2H8_QEyqEemsoqtGr-L_Qg"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_zprmAEyqEemsoqtGr-L_Qg" entityName="stop" predecessor_AbstractAction="_2H8_QEyqEemsoqtGr-L_Qg"/>
+        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_2H8_QEyqEemsoqtGr-L_Qg" predecessor_AbstractAction="_zpq-8UyqEemsoqtGr-L_Qg" successor_AbstractAction="_zprmAEyqEemsoqtGr-L_Qg" calledService_ExternalService="_6RFooCJJEemJIZoadPYzbg" role_ExternalService="_0MBeEEyqEemsoqtGr-L_Qg"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
     <interfaces__Repository xsi:type="repository:OperationInterface" id="_fTDQgNVxEeWS-LePWVyd9g" entityName="iAttackStore">
       <signatures__OperationInterface id="_vJ_7ENVxEeWS-LePWVyd9g" entityName="addAttack"/>
       <signatures__OperationInterface id="_AleTcNVyEeWS-LePWVyd9g" entityName="findAttacks"/>
@@ -594,15 +603,14 @@
     <interfaces__Repository xsi:type="repository:OperationInterface" id="_knwIsCJJEemJIZoadPYzbg" entityName="iStaticAnalysis">
       <signatures__OperationInterface id="_2qOPoCJJEemJIZoadPYzbg" entityName="logFileAnalysis"/>
     </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_xTvpYEyqEemsoqtGr-L_Qg" entityName="IFeature">
+      <signatures__OperationInterface id="_ySHWIEyqEemsoqtGr-L_Qg" entityName="run"/>
+    </interfaces__Repository>
   </repository:Repository>
   <emfprofileapplication:ProfileApplication>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_4yotoCJJEemJIZoadPYzbg">
       <extension href="../../../../plugin/FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaXYVEeirzP2CXhR6Fg"/>
       <fulfills href="../IDS.featurecompletion#_tZeDsiJOEemJIZoadPYzbg"/>
-    </stereotypeApplications>
-    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_6RFooCJJEemJIZoadPYzbg">
-      <extension href="../../../../plugin/FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaXYVEeirzP2CXhR6Fg"/>
-      <fulfills href="../IDS.featurecompletion#_0q9UUiJOEemJIZoadPYzbg"/>
     </stereotypeApplications>
     <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_7_aLoCJJEemJIZoadPYzbg">
       <extension href="../../../../plugin/FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaXYVEeirzP2CXhR6Fg"/>
@@ -627,6 +635,10 @@
     <stereotypeApplications xsi:type="FeatureCompletionProfile:cost" appliedTo="_VYStANVwEeWS-LePWVyd9g">
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqVHYVEeirzP2CXhR6Fg"/>
       <costModel href="AppSensor.cost#/"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_xTvpYEyqEemsoqtGr-L_Qg">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqanYVEeirzP2CXhR6Fg"/>
+      <fulfills href="../IDS.featurecompletion#_0q9UUiJOEemJIZoadPYzbg"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/plugin/FeatureCompletionProfile/completion.emfprofile_diagram"/>
   </emfprofileapplication:ProfileApplication>

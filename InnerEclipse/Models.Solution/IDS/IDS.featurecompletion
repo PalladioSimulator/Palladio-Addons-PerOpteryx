@@ -31,7 +31,7 @@
     <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_tZeDsiJOEemJIZoadPYzbg" name="AuthCheck">
       <complementaryFeature href="IDS.featureobjective#_jY_7cBnWEemiorxBpJTCRg"/>
     </complementa>
-    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_0q9UUiJOEemJIZoadPYzbg" name="InputValidation">
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_0q9UUiJOEemJIZoadPYzbg" name="InputValidation" visnetum="INTERFACE">
       <complementaryFeature href="IDS.featureobjective#_tEw2IBnWEemiorxBpJTCRg"/>
     </complementa>
     <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_4joPAiJOEemJIZoadPYzbg" name="DisableComponents">
