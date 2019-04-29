@@ -75,17 +75,15 @@ public class PcmAllocationManager {
 	private List<AllocationContext> getAllocationContextsAllocating(RepositoryComponent component) {
 		List<AllocationContext> result = new ArrayList<>();
 		for (AllocationContext ac : this.getAllAllocationContexts()) {
-			if (this.allocationContextAllocating(component).test(ac)) {
+			if (this.allocationContextAllocating(ac, component)) {
 				result.add(ac);
 			}
 		}
 		return result;
-		// return
-		// this.getAllAllocationContexts().filter(this.allocationContextAllocating(component)).collect(Collectors.toList());
 	}
 
-	private Predicate<AllocationContext> allocationContextAllocating(RepositoryComponent component) {
-		return alloc -> FCCUtil.areEqual(this.getAllocatedComponentOf(alloc), component);
+	private boolean allocationContextAllocating(AllocationContext alloc, RepositoryComponent component) {
+		return FCCUtil.areEqual(this.getAllocatedComponentOf(alloc), component);
 	}
 
 	private RepositoryComponent getAllocatedComponentOf(AllocationContext alloc) {
@@ -102,15 +100,15 @@ public class PcmAllocationManager {
 	 */
 	public boolean existAllocationContextWith(AssemblyContext assemblyContext) {
 		for (AllocationContext ac : this.getAllAllocationContexts()) {
-			if (this.isAllocated(assemblyContext).test(ac)) {
+			if (this.isAllocated(ac, assemblyContext)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	private Predicate<AllocationContext> isAllocated(AssemblyContext assemblyContext) {
-		return alloc -> FCCUtil.areEqual(alloc.getAssemblyContext_AllocationContext(), assemblyContext);
+	private boolean isAllocated(AllocationContext alloc, AssemblyContext assemblyContext) {
+		return FCCUtil.areEqual(alloc.getAssemblyContext_AllocationContext(), assemblyContext);
 	}
 
 	/**
@@ -121,16 +119,6 @@ public class PcmAllocationManager {
 	 */
 	public void addAllocationContext(AllocationContext allocationContext) {
 		this.allocation.getAllocationContexts_Allocation().add(allocationContext);
-	}
-
-	/**
-	 * Adds a set of allocation contexts to the PCM allocation.
-	 *
-	 * @param allocationContexts
-	 *            - The set of allocations contexts to add.
-	 */
-	public void addAllAllocationContexts(List<AllocationContext> allocationContexts) {
-		this.allocation.getAllocationContexts_Allocation().addAll(allocationContexts);
 	}
 
 	/**

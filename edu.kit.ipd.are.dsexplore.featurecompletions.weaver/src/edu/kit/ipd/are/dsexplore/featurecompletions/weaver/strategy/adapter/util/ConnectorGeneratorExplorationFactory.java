@@ -1,9 +1,9 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
@@ -32,7 +32,13 @@ public class ConnectorGeneratorExplorationFactory {
 	}
 
 	private List<IConnectorGeneratorExploration> getMatches(ConnectionInfo connectionInfo) {
-		return this.explorableGenerators.stream().filter(eachGenerator -> eachGenerator.canBeApplied().test(connectionInfo)).collect(Collectors.toList());
+		List<IConnectorGeneratorExploration> result = new ArrayList<>();
+		for (IConnectorGeneratorExploration explore : this.explorableGenerators) {
+			if (explore.canBeApplied(connectionInfo)) {
+				result.add(explore);
+			}
+		}
+		return result;
 	}
 
 	private boolean isValidResult(List<IConnectorGeneratorExploration> generators) {

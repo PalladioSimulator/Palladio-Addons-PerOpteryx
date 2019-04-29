@@ -28,16 +28,8 @@ public class FCCStructureHandler {
 		this.mergedRepoManager = mergedRepoManager;
 	}
 
-	public <T> List<T> getStructureOfFCCAccordingTo(Function<RepositoryComponent, List<T>> resolvingFunction) {
-		List<T> structure = new ArrayList<>();
-		for (RepositoryComponent c : this.getAllAssociatedFCCs(false)) {
-			for (T t : resolvingFunction.apply(c)) {
-				structure.add(t);
-			}
-		}
-		return structure;
-		// return this.getAnnotatedComponents(false).flatMap(eachComponent ->
-		// resolvingFunction.apply(eachComponent).stream()).collect(Collectors.toList());
+	public List<RepositoryComponent> getAffectedComponents() {
+		return this.getAllAssociatedFCCs(false);
 	}
 
 	/**
@@ -59,16 +51,15 @@ public class FCCStructureHandler {
 		return result;
 	}
 
-	public <T> List<T> getStructureOfECCAndRequiredAccordingTo(Function<RepositoryComponent, List<T>> resolvingFunction) {
+	public <T> List<T> getStructureOfFCCAndRequiredAccordingTo(Function<RepositoryComponent, List<T>> resolvingFunction) {
 		List<T> structure = new ArrayList<>();
 		for (RepositoryComponent c : this.getAllAssociatedFCCs(true)) {
-			for (T t : resolvingFunction.apply(c)) {
+			List<T> ls = resolvingFunction.apply(c);
+			for (T t : ls) {
 				structure.add(t);
 			}
 		}
 		return structure;
-		// return this.getAnnotatedComponents(true).flatMap(eachComponent ->
-		// resolvingFunction.apply(eachComponent).stream()).collect(Collectors.toList());
 	}
 
 	private List<RepositoryComponent> getAllAssociatedFCCs(boolean considerRequired) {

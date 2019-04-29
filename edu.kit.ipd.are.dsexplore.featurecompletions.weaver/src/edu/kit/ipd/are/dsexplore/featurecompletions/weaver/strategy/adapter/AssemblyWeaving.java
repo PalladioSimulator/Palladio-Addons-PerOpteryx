@@ -92,7 +92,7 @@ public abstract class AssemblyWeaving {
 
 	private void createConnectorsFromFCCToRequiredFCCs(CompletionComponent fcc) throws FCCWeaverException {
 		FCCStructureHandler fccHandler = new FCCStructureHandler(fcc, this.parent.getSolutionManager());
-		for (RepositoryComponent eachComponent : fccHandler.getStructureOfECCAndRequiredAccordingTo(this.resolveOnlyComponents())) {
+		for (RepositoryComponent eachComponent : fccHandler.getStructureOfFCCAndRequiredAccordingTo(this.resolveOnlyComponents())) {
 			this.createConnectorsBy(eachComponent).forEach(this::addConnector);
 		}
 	}

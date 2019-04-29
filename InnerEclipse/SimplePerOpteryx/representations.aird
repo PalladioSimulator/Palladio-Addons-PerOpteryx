@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:ConcernModel_1.0.1="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:TransformationModel_1.0.0="http://are.ipd.kit.edu/TransformationModel/1.0.0" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2" xmlns:concernStrategy="http://edu.kit.ipd.are/ConcernStrategyModel/1.0" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:resourceenvironment="http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" xmlns:seff_performance="http://palladiosimulator.org/PalladioComponentModel/SEFF/SEFF_Performance/5.2" xmlns:strategyConfig="http://edu.kit.ipd.are/ConcernStrategyConfigModel/1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:system="http://palladiosimulator.org/PalladioComponentModel/System/5.2" xmlns:usagemodel="http://palladiosimulator.org/PalladioComponentModel/UsageModel/5.2" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//allocation http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//core/composition http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://palladiosimulator.org/PalladioComponentModel/Repository/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//repository http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//resourceenvironment http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff http://palladiosimulator.org/PalladioComponentModel/SEFF/SEFF_Performance/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff/seff_performance http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style http://palladiosimulator.org/PalladioComponentModel/System/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//system http://palladiosimulator.org/PalladioComponentModel/UsageModel/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//usagemodel">
-  <viewpoint:DAnalysis xmi:id="_zrSPIGFaEeetxOZObiabqg" selectedViews="_ztnxcGFaEeetxOZObiabqg _1C-lYGFbEeetxOZObiabqg _jpA-AGFdEeetxOZObiabqg _Ovn30GFeEeetxOZObiabqg _bx6pcGFeEeetxOZObiabqg _l7COgGFeEeetxOZObiabqg _ig74oGjREeegN5on4EwZjA _io46wGjREeegN5on4EwZjA _ovUDkHiBEeeRzZ_keTeuDw _YWMiUJn6EeewW63v2sGHuw" version="11.1.0.201608251200">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ConcernAnnotationProfile="http://are.ipd.kit.edu/ConcernAnnotationProfile" xmlns:ConcernModel_1.0.1="http://are.ipd.kit.edu/ConcernModel/1.0.1" xmlns:ConcernStrategyConfigModel_1.0="http://edu.kit.ipd.are/ConcernStrategyConfigModel/1.0" xmlns:ConcernStrategyModel_1.0="http://edu.kit.ipd.are/ConcernStrategyModel/1.0" xmlns:TransformationModel_1.0.0="http://are.ipd.kit.edu/TransformationModel/1.0.0" xmlns:allocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2" xmlns:composition="http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:resourceenvironment="http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2" xmlns:seff_performance="http://palladiosimulator.org/PalladioComponentModel/SEFF/SEFF_Performance/5.2" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:system="http://palladiosimulator.org/PalladioComponentModel/System/5.2" xmlns:usagemodel="http://palladiosimulator.org/PalladioComponentModel/UsageModel/5.2" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://palladiosimulator.org/PalladioComponentModel/Allocation/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//allocation http://palladiosimulator.org/PalladioComponentModel/Core/Composition/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//core/composition http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://palladiosimulator.org/PalladioComponentModel/Repository/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//repository http://palladiosimulator.org/PalladioComponentModel/ResourceEnvironment/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//resourceenvironment http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff http://palladiosimulator.org/PalladioComponentModel/SEFF/SEFF_Performance/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//seff/seff_performance http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style http://palladiosimulator.org/PalladioComponentModel/System/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//system http://palladiosimulator.org/PalladioComponentModel/UsageModel/5.2 http://palladiosimulator.org/PalladioComponentModel/5.2#//usagemodel">
+  <viewpoint:DAnalysis xmi:id="_zrSPIGFaEeetxOZObiabqg" selectedViews="_ztnxcGFaEeetxOZObiabqg _1C-lYGFbEeetxOZObiabqg _jpA-AGFdEeetxOZObiabqg _Ovn30GFeEeetxOZObiabqg _bx6pcGFeEeetxOZObiabqg _l7COgGFeEeetxOZObiabqg _ig74oGjREeegN5on4EwZjA _io46wGjREeegN5on4EwZjA _ovUDkHiBEeeRzZ_keTeuDw _YWMiUJn6EeewW63v2sGHuw" version="13.0.0.201804031646">
     <semanticResources>palladio/repository.repository</semanticResources>
     <semanticResources>pathmap://PCM_MODELS/Palladio.resourcetype</semanticResources>
     <semanticResources>pathmap://PCM_MODELS/PrimitiveTypes.repository</semanticResources>
@@ -211,16 +211,17 @@
     <semanticResources>palladio/PerOpteryx_results/allCandidates0_2018-06-22-143655.designdecision</semanticResources>
     <semanticResources>palladio/PerOpteryx_results/population0_2018-06-22-143655.designdecision</semanticResources>
     <semanticResources>palladio/PerOpteryx_results/archiveCandidates0_2018-06-22-143655.designdecision</semanticResources>
+    <semanticResources>platform:/resource/de.uka.ipd.sdq.dsexplore.analysis.featurecompletions/Feature.qmlcontracttype</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_ztnxcGFaEeetxOZObiabqg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.palladiosimulator.editors.sirius.repository/description/repository.odesign#//@ownedViewpoints[name='Repository']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_zv_wAGFaEeetxOZObiabqg" name="PalladioMain" representation="_zv_wAWFaEeetxOZObiabqg">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_zv_wAGFaEeetxOZObiabqg" name="PalladioMain" repPath="#_y-gjQGoQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.palladiosimulator.editors.sirius.repository/description/repository.odesign#//@ownedViewpoints[name='Repository']/@ownedRepresentations[name='Repository%20Diagram']"/>
         <target xmi:type="repository:Repository" href="palladio/repository.repository#_yUT1IGFaEeetxOZObiabqg"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_1C-lYGFbEeetxOZObiabqg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.palladiosimulator.editors.sirius.seff/description/seff.odesign#//@ownedViewpoints[name='Seff']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_1DHvUGFbEeetxOZObiabqg" name="Seff Diagram" representation="_1DMAwGFbEeetxOZObiabqg">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_1DHvUGFbEeetxOZObiabqg" name="Seff Diagram" repPath="#_y_KqkWoQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.palladiosimulator.editors.sirius.seff/description/seff.odesign#//@ownedViewpoints[name='Seff']/@ownedRepresentations[name='Seff%20Diagram']"/>
         <target xmi:type="seff:ResourceDemandingSEFF" href="palladio/repository.repository#_1Cy_MGFbEeetxOZObiabqg"/>
       </ownedRepresentationDescriptors>
@@ -232,11 +233,11 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.palladiosimulator.editors.sirius.seff/description/seff.odesign#//@ownedViewpoints[name='Seff']/@ownedRepresentations[name='Seff%20Diagram']"/>
         <target xmi:type="seff:ResourceDemandingSEFF" href="palladio/repository.repository#_AZCesGFcEeetxOZObiabqg"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_9_JZsGFcEeetxOZObiabqg" name="Seff Diagram" representation="_9_MdAGFcEeetxOZObiabqg">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_9_JZsGFcEeetxOZObiabqg" name="Seff Diagram" repPath="#_y_OU82oQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.palladiosimulator.editors.sirius.seff/description/seff.odesign#//@ownedViewpoints[name='Seff']/@ownedRepresentations[name='Seff%20Diagram']"/>
         <target xmi:type="seff:ResourceDemandingSEFF" href="palladio/repository.repository#_AZACcGFcEeetxOZObiabqg"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_M9Rl4GFdEeetxOZObiabqg" name="Seff Diagram" representation="_M9UpMGFdEeetxOZObiabqg">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_M9Rl4GFdEeetxOZObiabqg" name="Seff Diagram" repPath="#_y_SmZGoQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.palladiosimulator.editors.sirius.seff/description/seff.odesign#//@ownedViewpoints[name='Seff']/@ownedRepresentations[name='Seff%20Diagram']"/>
         <target xmi:type="seff:ResourceDemandingSEFF" href="palladio/repository.repository#_-5afAGFbEeetxOZObiabqg"/>
       </ownedRepresentationDescriptors>
@@ -247,76 +248,76 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_jpA-AGFdEeetxOZObiabqg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.palladiosimulator.editors.sirius.assembly/description/assembly.odesign#//@ownedViewpoints[name='Assembly']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_jq8QoGFdEeetxOZObiabqg" name="systemdiagram" representation="_jq8QoWFdEeetxOZObiabqg">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_jq8QoGFdEeetxOZObiabqg" name="systemdiagram" repPath="#_y_TNcWoQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.palladiosimulator.editors.sirius.assembly/description/assembly.odesign#//@ownedViewpoints[name='Assembly']/@ownedRepresentations[name='Assembly%20Diagram']"/>
         <target xmi:type="system:System" href="palladio/assembly.system#_gNGQwGFdEeetxOZObiabqg"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_Ovn30GFeEeetxOZObiabqg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.palladiosimulator.editors.sirius.resourceenvironment/description/resourceenvironment.odesign#//@ownedViewpoints[name='ResourceEnvironment']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_OwT0UGFeEeetxOZObiabqg" name="environmentdiagram" representation="_OwT0UWFeEeetxOZObiabqg">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_OwT0UGFeEeetxOZObiabqg" name="environmentdiagram" repPath="#_y_YtAWoQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.palladiosimulator.editors.sirius.resourceenvironment/description/resourceenvironment.odesign#//@ownedViewpoints[name='ResourceEnvironment']/@ownedRepresentations[name='ResourceEnvironment%20Diagram']"/>
         <target xmi:type="resourceenvironment:ResourceEnvironment" href="palladio/environment.resourceenvironment#/"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_bx6pcGFeEeetxOZObiabqg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.palladiosimulator.editors.sirius.allocation/description/allocation.odesign#//@ownedViewpoints[name='Allocation']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_bziaEGFeEeetxOZObiabqg" name="allocationdiagram" representation="_bzjBIGFeEeetxOZObiabqg">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_bziaEGFeEeetxOZObiabqg" name="allocationdiagram" repPath="#_y_bJQmoQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.palladiosimulator.editors.sirius.allocation/description/allocation.odesign#//@ownedViewpoints[name='Allocation']/@ownedRepresentations[name='Allocation%20Diagram']"/>
         <target xmi:type="allocation:Allocation" href="palladio/allocation.allocation#_VHIMcGFeEeetxOZObiabqg"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_l7COgGFeEeetxOZObiabqg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.palladiosimulator.editors.sirius.usage/description/usage.odesign#//@ownedViewpoints[name='UsageModel']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_l8CUEGFeEeetxOZObiabqg" name="usagediagram" representation="_l8CUEWFeEeetxOZObiabqg">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_l8CUEGFeEeetxOZObiabqg" name="usagediagram" repPath="#_y_cXYWoQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.palladiosimulator.editors.sirius.usage/description/usage.odesign#//@ownedViewpoints[name='UsageModel']/@ownedRepresentations[name='UsageModel%20Diagram']"/>
         <target xmi:type="usagemodel:UsageModel" href="palladio/usage.usagemodel#/"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_ig74oGjREeegN5on4EwZjA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_inCgoGjREeegN5on4EwZjA" name="Enriched Repository Diagram" representation="_inDHsGjREeegN5on4EwZjA">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_inCgoGjREeegN5on4EwZjA" name="Enriched Repository Diagram" repPath="#_y_pLsGoQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']"/>
         <target xmi:type="repository:Repository" href="palladio/repository.repository#_yUT1IGFaEeetxOZObiabqg"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_ioZykGjREeegN5on4EwZjA" name="Enriched Repository Diagram" representation="_ioZykWjREeegN5on4EwZjA">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_ioZykGjREeegN5on4EwZjA" name="Enriched Repository Diagram" repPath="#_zAb14WoQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']"/>
         <target xmi:type="repository:Repository" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#_Ls3VgHv_Edub45jJKtm_Dg"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_iojjkGjREeegN5on4EwZjA" name="Enriched Repository Diagram" representation="_iojjkWjREeegN5on4EwZjA">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_iojjkGjREeegN5on4EwZjA" name="Enriched Repository Diagram" repPath="#_zAdEAWoQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']"/>
         <target xmi:type="repository:Repository" href="pathmap://PCM_MODELS/FailureTypes.repository#_oP6ycOgjEd-ir5gxNwImPA"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_nLLaMGjREeegN5on4EwZjA" name="repository.enriched" representation="_nLLaMWjREeegN5on4EwZjA">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_nLLaMGjREeegN5on4EwZjA" name="repository.enriched" repPath="#_zAe5MWoQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']"/>
         <target xmi:type="repository:Repository" href="palladio/repository.repository#_yUT1IGFaEeetxOZObiabqg"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_CaH-cGxZEeeQ_Pc6h3L3Dg" name="PalladioMainEnriched" representation="_CaIlgGxZEeeQ_Pc6h3L3Dg">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_CaH-cGxZEeeQ_Pc6h3L3Dg" name="PalladioMainEnriched" repPath="#_zAqfZWoQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']"/>
         <target xmi:type="repository:Repository" href="palladio/repository.repository#_yUT1IGFaEeetxOZObiabqg"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_io46wGjREeegN5on4EwZjA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_Tc2ZoJYcEeerrOENfAvrGw" name="Feature Diagram" representation="_Tc3AsJYcEeerrOENfAvrGw">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_Tc2ZoJYcEeerrOENfAvrGw" name="Feature Diagram" repPath="#_zA6-EGoQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']"/>
-        <target xmi:type="concernStrategy:FeatureDiagram" href="peropteryx/strategy.strategymodel#_hkPYcGxWEeeQ_Pc6h3L3Dg"/>
+        <target xmi:type="ConcernStrategyModel_1.0:FeatureDiagram" href="peropteryx/strategy.strategymodel#_hkPYcGxWEeeQ_Pc6h3L3Dg"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_iqxKEGjREeegN5on4EwZjA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_41O9QGxXEeeQ_Pc6h3L3Dg" name="ExampleConfigDiagram">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='configuration_diagram']"/>
-        <target xmi:type="strategyConfig:Configuration" href="peropteryx/concernconfig.concernconfig#/"/>
+        <target xmi:type="ConcernStrategyConfigModel_1.0:Configuration" href="peropteryx/concernconfig.concernconfig#/"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_ovUDkHiBEeeRzZ_keTeuDw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_ovm-gHiBEeeRzZ_keTeuDw" name="Concern Overview Diagram" representation="_ovm-gXiBEeeRzZ_keTeuDw">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_ovm-gHiBEeeRzZ_keTeuDw" name="Concern Overview Diagram" repPath="#_zA2FkGoQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']"/>
         <target xmi:type="ConcernModel_1.0.1:ConcernRepository" href="peropteryx/concernrepo.concernmodel#/0"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_oycQEHiBEeeRzZ_keTeuDw" name="Concern Detail Diagram" representation="_oycQEXiBEeeRzZ_keTeuDw">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_oycQEHiBEeeRzZ_keTeuDw" name="Concern Detail Diagram" repPath="#_zA2soGoQEemIeYjAfJ9czg">
         <description xmi:type="description_1:DiagramDescription" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']"/>
         <target xmi:type="ConcernModel_1.0.1:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
       </ownedRepresentationDescriptors>
@@ -333,7 +334,7 @@
       <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/SolutionRepository.design/description/SolutionRepository.odesign#//@ownedViewpoints[name='SolutionRepository%20Editor']"/>
     </ownedViews>
   </viewpoint:DAnalysis>
-  <diagram:DSemanticDiagram xmi:id="_zv_wAWFaEeetxOZObiabqg" name="PalladioMain">
+  <diagram:DSemanticDiagram xmi:id="_zv_wAWFaEeetxOZObiabqg" name="PalladioMain" uid="_y-gjQGoQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_zv_wAmFaEeetxOZObiabqg" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_zv_wA2FaEeetxOZObiabqg"/>
     </ownedAnnotationEntries>
@@ -553,7 +554,7 @@
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_2d-jwWFbEeetxOZObiabqg"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_2d-jwmFbEeetxOZObiabqg" fontName="Segoe UI" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2d-jw2FbEeetxOZObiabqg" points="[0, 0, -222, 84]$[220, -83, -2, 1]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2d-jw2FbEeetxOZObiabqg" points="[1, -1, -315, 81]$[313, -82, -3, 0]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_2d-jymFbEeetxOZObiabqg" id="(0.5,0.0)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_2d-jy2FbEeetxOZObiabqg" id="(0.015,0.74)"/>
         </edges>
@@ -826,7 +827,7 @@
     <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.palladiosimulator.editors.sirius.repository/description/repository.odesign#//@ownedViewpoints[name='Repository']/@ownedRepresentations[name='Repository%20Diagram']/@additionalLayers[name='DataTypes']"/>
     <target xmi:type="repository:Repository" href="palladio/repository.repository#_yUT1IGFaEeetxOZObiabqg"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_1DMAwGFbEeetxOZObiabqg" name="Seff Diagram">
+  <diagram:DSemanticDiagram xmi:id="_1DMAwGFbEeetxOZObiabqg" name="Seff Diagram" uid="_y_KqkWoQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_1DMAwWFbEeetxOZObiabqg" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_1DMAwmFbEeetxOZObiabqg"/>
     </ownedAnnotationEntries>
@@ -902,7 +903,7 @@
     <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.palladiosimulator.editors.sirius.seff/description/seff.odesign#//@ownedViewpoints[name='Seff']/@ownedRepresentations[name='Seff%20Diagram']/@defaultLayer"/>
     <target xmi:type="seff:ResourceDemandingSEFF" href="palladio/repository.repository#_1Cy_MGFbEeetxOZObiabqg"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_9_MdAGFcEeetxOZObiabqg" name="Seff Diagram">
+  <diagram:DSemanticDiagram xmi:id="_9_MdAGFcEeetxOZObiabqg" name="Seff Diagram" uid="_y_OU82oQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_9_MdAWFcEeetxOZObiabqg" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_9_MdAmFcEeetxOZObiabqg"/>
     </ownedAnnotationEntries>
@@ -1103,7 +1104,7 @@
     <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.palladiosimulator.editors.sirius.seff/description/seff.odesign#//@ownedViewpoints[name='Seff']/@ownedRepresentations[name='Seff%20Diagram']/@defaultLayer"/>
     <target xmi:type="seff:ResourceDemandingSEFF" href="palladio/repository.repository#_AZACcGFcEeetxOZObiabqg"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_M9UpMGFdEeetxOZObiabqg" name="Seff Diagram">
+  <diagram:DSemanticDiagram xmi:id="_M9UpMGFdEeetxOZObiabqg" name="Seff Diagram" uid="_y_SmZGoQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_M9UpMWFdEeetxOZObiabqg" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_M9UpMmFdEeetxOZObiabqg"/>
     </ownedAnnotationEntries>
@@ -1155,7 +1156,7 @@
     <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.palladiosimulator.editors.sirius.seff/description/seff.odesign#//@ownedViewpoints[name='Seff']/@ownedRepresentations[name='Seff%20Diagram']/@defaultLayer"/>
     <target xmi:type="seff:ResourceDemandingSEFF" href="palladio/repository.repository#_-5afAGFbEeetxOZObiabqg"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_jq8QoWFdEeetxOZObiabqg" name="systemdiagram">
+  <diagram:DSemanticDiagram xmi:id="_jq8QoWFdEeetxOZObiabqg" name="systemdiagram" uid="_y_TNcWoQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_jq8QomFdEeetxOZObiabqg" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_jq8Qo2FdEeetxOZObiabqg"/>
     </ownedAnnotationEntries>
@@ -1260,7 +1261,7 @@
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_BTrQEWFeEeetxOZObiabqg"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_BTrQEmFeEeetxOZObiabqg" fontName="Segoe UI" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BTrQE2FeEeetxOZObiabqg" points="[0, 0, -4, 53]$[4, -53, 0, 0]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BTrQE2FeEeetxOZObiabqg" points="[-1, 2, 8, -37]$[-9, 38, 0, -1]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BTrQGmFeEeetxOZObiabqg" id="(0.52,0.96)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BTr3IGFeEeetxOZObiabqg" id="(0.4666666666666667,0.03333333333333333)"/>
         </edges>
@@ -1358,7 +1359,7 @@
     <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.palladiosimulator.editors.sirius.assembly/description/assembly.odesign#//@ownedViewpoints[name='Assembly']/@ownedRepresentations[name='Assembly%20Diagram']/@additionalLayers[name='QoS']"/>
     <target xmi:type="system:System" href="palladio/assembly.system#_gNGQwGFdEeetxOZObiabqg"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_OwT0UWFeEeetxOZObiabqg" name="environmentdiagram">
+  <diagram:DSemanticDiagram xmi:id="_OwT0UWFeEeetxOZObiabqg" name="environmentdiagram" uid="_y_YtAWoQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_OwT0UmFeEeetxOZObiabqg" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_OwT0U2FeEeetxOZObiabqg"/>
     </ownedAnnotationEntries>
@@ -1466,7 +1467,7 @@
     <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.palladiosimulator.editors.sirius.resourceenvironment/description/resourceenvironment.odesign#//@ownedViewpoints[name='ResourceEnvironment']/@ownedRepresentations[name='ResourceEnvironment%20Diagram']/@defaultLayer"/>
     <target xmi:type="resourceenvironment:ResourceEnvironment" href="palladio/environment.resourceenvironment#/"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_bzjBIGFeEeetxOZObiabqg" name="allocationdiagram">
+  <diagram:DSemanticDiagram xmi:id="_bzjBIGFeEeetxOZObiabqg" name="allocationdiagram" uid="_y_bJQmoQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_bzjBIWFeEeetxOZObiabqg" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_bzjBImFeEeetxOZObiabqg"/>
     </ownedAnnotationEntries>
@@ -1531,7 +1532,7 @@
     <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.palladiosimulator.editors.sirius.allocation/description/allocation.odesign#//@ownedViewpoints[name='Allocation']/@ownedRepresentations[name='Allocation%20Diagram']/@defaultLayer"/>
     <target xmi:type="allocation:Allocation" href="palladio/allocation.allocation#_VHIMcGFeEeetxOZObiabqg"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_l8CUEWFeEeetxOZObiabqg" name="usagediagram">
+  <diagram:DSemanticDiagram xmi:id="_l8CUEWFeEeetxOZObiabqg" name="usagediagram" uid="_y_cXYWoQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_l8CUEmFeEeetxOZObiabqg" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_l8CUE2FeEeetxOZObiabqg"/>
     </ownedAnnotationEntries>
@@ -1628,7 +1629,7 @@
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_woOJ8WFeEeetxOZObiabqg"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_woOJ8mFeEeetxOZObiabqg" fontName="Segoe UI" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_woOJ82FeEeetxOZObiabqg" points="[28, 61, -47, 0]$[72, 61, -3, 0]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_woOJ82FeEeetxOZObiabqg" points="[5, 1, -204, -35]$[205, 35, -4, -1]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_woOJ-mFeEeetxOZObiabqg" id="(0.9693251533742331,0.5142857142857142)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_woOJ-2FeEeetxOZObiabqg" id="(0.1,0.525)"/>
         </edges>
@@ -1720,7 +1721,7 @@
     <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.palladiosimulator.editors.sirius.usage/description/usage.odesign#//@ownedViewpoints[name='UsageModel']/@ownedRepresentations[name='UsageModel%20Diagram']/@defaultLayer"/>
     <target xmi:type="usagemodel:UsageModel" href="palladio/usage.usagemodel#/"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_inDHsGjREeegN5on4EwZjA" name="Enriched Repository Diagram">
+  <diagram:DSemanticDiagram xmi:id="_inDHsGjREeegN5on4EwZjA" name="Enriched Repository Diagram" uid="_y_pLsGoQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_inDHsWjREeegN5on4EwZjA" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_inDHsmjREeegN5on4EwZjA"/>
     </ownedAnnotationEntries>
@@ -2018,7 +2019,7 @@
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_in41MWjREeegN5on4EwZjA"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_in41MmjREeegN5on4EwZjA" fontName="Segoe UI" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_in41M2jREeegN5on4EwZjA" points="[-1, -1, -1, -1]$[0, 0, 0, 0]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_in41M2jREeegN5on4EwZjA" points="[1, 1, -100, -50]$[1, 1, -100, -50]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ioAxAGjREeegN5on4EwZjA" id="(0.5,0.5)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ioBYEGjREeegN5on4EwZjA" id="(0.5,0.5)"/>
         </edges>
@@ -2034,7 +2035,7 @@
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_ioBYEmjREeegN5on4EwZjA"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_ioBYE2jREeegN5on4EwZjA" fontName="Segoe UI" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ioBYFGjREeegN5on4EwZjA" points="[-1, -1, -1, -1]$[0, 0, 0, 0]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ioBYFGjREeegN5on4EwZjA" points="[1, 1, -100, -50]$[1, 1, -100, -50]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ioCmMGjREeegN5on4EwZjA" id="(0.5,0.5)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ioCmMWjREeegN5on4EwZjA" id="(0.5,0.5)"/>
         </edges>
@@ -2050,7 +2051,7 @@
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_ioCmM2jREeegN5on4EwZjA"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_ioCmNGjREeegN5on4EwZjA" fontName="Segoe UI" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ioCmNWjREeegN5on4EwZjA" points="[-1, -1, -1, -1]$[0, 0, 0, 0]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ioCmNWjREeegN5on4EwZjA" points="[1, 1, -100, -50]$[1, 1, -100, -50]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ioDNRGjREeegN5on4EwZjA" id="(0.5,0.5)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ioDNRWjREeegN5on4EwZjA" id="(0.5,0.5)"/>
         </edges>
@@ -2066,7 +2067,7 @@
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_ioD0UWjREeegN5on4EwZjA"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_ioD0UmjREeegN5on4EwZjA" fontName="Segoe UI" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ioD0U2jREeegN5on4EwZjA" points="[-1, -1, -1, -1]$[0, 0, 0, 0]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ioD0U2jREeegN5on4EwZjA" points="[1, 1, -100, -50]$[1, 1, -100, -50]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ioFCcGjREeegN5on4EwZjA" id="(0.5,0.5)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ioFCcWjREeegN5on4EwZjA" id="(0.5,0.5)"/>
         </edges>
@@ -2407,13 +2408,9 @@
     <description xmi:type="description_1:DiagramDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_inDH9WjREeegN5on4EwZjA"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']"/>
     <target xmi:type="repository:Repository" href="palladio/repository.repository#_yUT1IGFaEeetxOZObiabqg"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_ioZykWjREeegN5on4EwZjA" name="Enriched Repository Diagram">
+  <diagram:DSemanticDiagram xmi:id="_ioZykWjREeegN5on4EwZjA" name="Enriched Repository Diagram" uid="_zAb14WoQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_ioZykmjREeegN5on4EwZjA" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_ioZyk2jREeegN5on4EwZjA"/>
     </ownedAnnotationEntries>
@@ -2483,13 +2480,9 @@
     <description xmi:type="description_1:DiagramDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_ioZylGjREeegN5on4EwZjA"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']"/>
     <target xmi:type="repository:Repository" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#_Ls3VgHv_Edub45jJKtm_Dg"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_iojjkWjREeegN5on4EwZjA" name="Enriched Repository Diagram">
+  <diagram:DSemanticDiagram xmi:id="_iojjkWjREeegN5on4EwZjA" name="Enriched Repository Diagram" uid="_zAdEAWoQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_iojjkmjREeegN5on4EwZjA" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_iojjk2jREeegN5on4EwZjA"/>
     </ownedAnnotationEntries>
@@ -2559,13 +2552,9 @@
     <description xmi:type="description_1:DiagramDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_iojjlGjREeegN5on4EwZjA"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']"/>
     <target xmi:type="repository:Repository" href="pathmap://PCM_MODELS/FailureTypes.repository#_oP6ycOgjEd-ir5gxNwImPA"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_nLLaMWjREeegN5on4EwZjA" name="repository.enriched">
+  <diagram:DSemanticDiagram xmi:id="_nLLaMWjREeegN5on4EwZjA" name="repository.enriched" uid="_zAe5MWoQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_nLLaMmjREeegN5on4EwZjA" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_nLLaM2jREeegN5on4EwZjA"/>
     </ownedAnnotationEntries>
@@ -3252,13 +3241,9 @@
     <description xmi:type="description_1:DiagramDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_nLLadmjREeegN5on4EwZjA"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']"/>
     <target xmi:type="repository:Repository" href="palladio/repository.repository#_yUT1IGFaEeetxOZObiabqg"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_CaIlgGxZEeeQ_Pc6h3L3Dg" name="PalladioMainEnriched">
+  <diagram:DSemanticDiagram xmi:id="_CaIlgGxZEeeQ_Pc6h3L3Dg" name="PalladioMainEnriched" uid="_zAqfZWoQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_CaIlgWxZEeeQ_Pc6h3L3Dg" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_CaIlgmxZEeeQ_Pc6h3L3Dg"/>
     </ownedAnnotationEntries>
@@ -3945,13 +3930,9 @@
     <description xmi:type="description_1:DiagramDescription" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_CaIlyWxZEeeQ_Pc6h3L3Dg"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@defaultLayer"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Component%20Types']"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Event-Based%20Communication']"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='DataTypes']"/>
-    <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/resource/repo.enriched/description/repository.enriched.odesign#//@ownedViewpoints[name='Repository%20Enriched']/@ownedRepresentations[name='Enriched%20Repository%20Diagram']/@additionalLayers[name='Annotations']"/>
     <target xmi:type="repository:Repository" href="palladio/repository.repository#_yUT1IGFaEeetxOZObiabqg"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_ovm-gXiBEeeRzZ_keTeuDw" name="Concern Overview Diagram">
+  <diagram:DSemanticDiagram xmi:id="_ovm-gXiBEeeRzZ_keTeuDw" name="Concern Overview Diagram" uid="_zA2FkGoQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_ovm-gniBEeeRzZ_keTeuDw" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_ovm-g3iBEeeRzZ_keTeuDw"/>
     </ownedAnnotationEntries>
@@ -3984,7 +3965,7 @@
     <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Overview%20Diagram']/@defaultLayer"/>
     <target xmi:type="ConcernModel_1.0.1:ConcernRepository" href="peropteryx/concernrepo.concernmodel#/0"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_oycQEXiBEeeRzZ_keTeuDw" name="Concern Detail Diagram">
+  <diagram:DSemanticDiagram xmi:id="_oycQEXiBEeeRzZ_keTeuDw" name="Concern Detail Diagram" uid="_zA2soGoQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_oycQEniBEeeRzZ_keTeuDw" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_oycQE3iBEeeRzZ_keTeuDw"/>
     </ownedAnnotationEntries>
@@ -4217,7 +4198,7 @@
     <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/concernmodeleditor.design/description/concernmodeleditor.odesign#//@ownedViewpoints[name='concern%20repository%20editor']/@ownedRepresentations[name='Concern%20Detail%20Diagram']/@defaultLayer"/>
     <target xmi:type="ConcernModel_1.0.1:Concern" href="peropteryx/concernrepo.concernmodel#/0/@concerns.0"/>
   </diagram:DSemanticDiagram>
-  <diagram:DSemanticDiagram xmi:id="_Tc3AsJYcEeerrOENfAvrGw" name="Feature Diagram">
+  <diagram:DSemanticDiagram xmi:id="_Tc3AsJYcEeerrOENfAvrGw" name="Feature Diagram" uid="_zA6-EGoQEemIeYjAfJ9czg">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_Tc3AsZYcEeerrOENfAvrGw" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_Tc3AspYcEeerrOENfAvrGw"/>
     </ownedAnnotationEntries>
@@ -4285,7 +4266,7 @@
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_TdiWIZYcEeerrOENfAvrGw"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_TdiWIpYcEeerrOENfAvrGw" fontName="Segoe UI"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TdiWI5YcEeerrOENfAvrGw" points="[-5, -4, 133, 84]$[-113, -73, 25, 15]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TdiWI5YcEeerrOENfAvrGw" points="[-5, -4, 159, 105]$[-163, -108, 1, 1]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_TdmnkJYcEeerrOENfAvrGw" id="(0.5,0.5)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_TdmnkZYcEeerrOENfAvrGw" id="(0.5,0.5)"/>
         </edges>
@@ -4308,65 +4289,65 @@
       </data>
     </ownedAnnotationEntries>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PNIFAJn6Eeeq0d2p6xwmTg" name="RootFeature" incomingEdges="_PNIFDJn6Eeeq0d2p6xwmTg _PNIFDpn6Eeeq0d2p6xwmTg">
-      <target xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_refbEGxWEeeQ_Pc6h3L3Dg"/>
-      <semanticElements xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_refbEGxWEeeQ_Pc6h3L3Dg"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PNIFAZn6Eeeq0d2p6xwmTg" borderSize="1" borderSizeComputationExpression="1" foregroundColor="194,239,255">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@conditionnalStyles.0/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']"/>
+      <target xmi:type="ConcernStrategyModel_1.0:Feature" href="peropteryx/strategy.strategymodel#_refbEGxWEeeQ_Pc6h3L3Dg"/>
+      <semanticElements xmi:type="ConcernStrategyModel_1.0:Feature" href="peropteryx/strategy.strategymodel#_refbEGxWEeeQ_Pc6h3L3Dg"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PNIFApn6Eeeq0d2p6xwmTg" name="OptionalFeature">
-      <target xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
-      <semanticElements xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
       <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_PNIFBpn6Eeeq0d2p6xwmTg" outgoingEdges="_PNIFDJn6Eeeq0d2p6xwmTg" width="1" height="1">
-        <target xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
-        <semanticElements xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
         <graphicalFilters xmi:type="diagram:HideLabelFilter" xmi:id="_PNIFCJn6Eeeq0d2p6xwmTg"/>
         <ownedStyle xmi:type="diagram:Dot" xmi:id="_PNIFB5n6Eeeq0d2p6xwmTg" showIcon="false" hideLabelByDefault="true" backgroundColor="255,255,255">
           <description xmi:type="style:DotDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='OptionalCircle']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='OptionalCircle']"/>
+        <target xmi:type="ConcernStrategyModel_1.0:Feature" href="peropteryx/strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
+        <semanticElements xmi:type="ConcernStrategyModel_1.0:Feature" href="peropteryx/strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
       </ownedBorderedNodes>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PNIFA5n6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']"/>
+      <target xmi:type="ConcernStrategyModel_1.0:Feature" href="peropteryx/strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
+      <semanticElements xmi:type="ConcernStrategyModel_1.0:Feature" href="peropteryx/strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_PNIFBJn6Eeeq0d2p6xwmTg" name="MandatoryFeature">
-      <target xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
-      <semanticElements xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
       <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_PNIFCZn6Eeeq0d2p6xwmTg" outgoingEdges="_PNIFDpn6Eeeq0d2p6xwmTg" width="1" height="1">
-        <target xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
-        <semanticElements xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
         <graphicalFilters xmi:type="diagram:HideLabelFilter" xmi:id="_PNIFC5n6Eeeq0d2p6xwmTg"/>
         <ownedStyle xmi:type="diagram:Dot" xmi:id="_PNIFCpn6Eeeq0d2p6xwmTg" showIcon="false" hideLabelByDefault="true" backgroundColor="0,0,0">
           <description xmi:type="style:DotDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='MandatoryCircle']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@borderedNodeMappings[name='MandatoryCircle']"/>
+        <target xmi:type="ConcernStrategyModel_1.0:Feature" href="peropteryx/strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+        <semanticElements xmi:type="ConcernStrategyModel_1.0:Feature" href="peropteryx/strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
       </ownedBorderedNodes>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_PNIFBZn6Eeeq0d2p6xwmTg" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@containerMappings[name='FeatureNodeContainer']"/>
+      <target xmi:type="ConcernStrategyModel_1.0:Feature" href="peropteryx/strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
+      <semanticElements xmi:type="ConcernStrategyModel_1.0:Feature" href="peropteryx/strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_PNIFDJn6Eeeq0d2p6xwmTg" sourceNode="_PNIFBpn6Eeeq0d2p6xwmTg" targetNode="_PNIFAJn6Eeeq0d2p6xwmTg">
-      <target xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_PNIFDZn6Eeeq0d2p6xwmTg" targetArrow="NoDecoration" size="2" centered="Both" strokeColor="0,0,0">
         <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@edgeMappings[name='optional_relation']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@edgeMappings[name='optional_relation']"/>
+      <target xmi:type="ConcernStrategyModel_1.0:Feature" href="peropteryx/strategy.strategymodel#_xRQD4GxWEeeQ_Pc6h3L3Dg"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_PNIFDpn6Eeeq0d2p6xwmTg" sourceNode="_PNIFCZn6Eeeq0d2p6xwmTg" targetNode="_PNIFAJn6Eeeq0d2p6xwmTg">
-      <target xmi:type="concernStrategy:Feature" href="peropteryx/strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_PNIFD5n6Eeeq0d2p6xwmTg" targetArrow="NoDecoration" size="2" centered="Both" strokeColor="0,0,0">
         <description xmi:type="style:EdgeStyleDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@edgeMappings[name='mandatory_relation']/@style"/>
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_PNIFEJn6Eeeq0d2p6xwmTg"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer/@edgeMappings[name='mandatory_relation']"/>
+      <target xmi:type="ConcernStrategyModel_1.0:Feature" href="peropteryx/strategy.strategymodel#_uUNrAWxWEeeQ_Pc6h3L3Dg"/>
     </ownedDiagramElements>
     <description xmi:type="description_1:DiagramDescription" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_Tc3AxJYcEeerrOENfAvrGw"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/resource/edu.kit.ipd.are.dsexplore.concernStrategy.design/description/concernStrategy.odesign#//@ownedViewpoints[name='feature_viewpoint']/@ownedRepresentations[name='feature_diagram']/@defaultLayer"/>
-    <target xmi:type="concernStrategy:FeatureDiagram" href="peropteryx/strategy.strategymodel#_hkPYcGxWEeeQ_Pc6h3L3Dg"/>
+    <target xmi:type="ConcernStrategyModel_1.0:FeatureDiagram" href="peropteryx/strategy.strategymodel#_hkPYcGxWEeeQ_Pc6h3L3Dg"/>
   </diagram:DSemanticDiagram>
 </xmi:XMI>

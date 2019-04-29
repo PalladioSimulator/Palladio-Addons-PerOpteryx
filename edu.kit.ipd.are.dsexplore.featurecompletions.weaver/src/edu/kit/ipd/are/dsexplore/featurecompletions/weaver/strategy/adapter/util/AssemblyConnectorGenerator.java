@@ -1,7 +1,5 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util;
 
-import java.util.function.Predicate;
-
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
 import org.palladiosimulator.pcm.repository.OperationRequiredRole;
@@ -16,16 +14,8 @@ public class AssemblyConnectorGenerator extends ConnectorGenerator implements IC
 	}
 
 	@Override
-	public Predicate<ConnectionInfo> canBeApplied() {
-		return this.isOperationRequiredRole().and(this.isOperationProvidedRole());
-	}
-
-	private Predicate<ConnectionInfo> isOperationRequiredRole() {
-		return connectionInfo -> connectionInfo.requiringRole instanceof OperationRequiredRole;
-	}
-
-	private Predicate<ConnectionInfo> isOperationProvidedRole() {
-		return connectionInfo -> connectionInfo.providingRole instanceof OperationProvidedRole;
+	public boolean canBeApplied(ConnectionInfo ci) {
+		return ci.requiringRole instanceof OperationRequiredRole && ci.providingRole instanceof OperationProvidedRole;
 	}
 
 	@Override

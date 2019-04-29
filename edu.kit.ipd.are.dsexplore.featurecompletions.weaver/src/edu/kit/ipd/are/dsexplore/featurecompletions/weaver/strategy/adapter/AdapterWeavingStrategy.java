@@ -1,7 +1,6 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.palladiosimulator.pcm.allocation.AllocationContext;
@@ -265,7 +264,7 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 		for (Choice fccClassChoice : this.allocationChoices) {
 			CompletionComponent fcc = (CompletionComponent) fccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
 			FCCStructureHandler fccHandler = new FCCStructureHandler(fcc, this.mrm);
-			for (RepositoryComponent comp : fccHandler.getStructureOfFCCAccordingTo(component -> Arrays.asList(component))) {
+			for (RepositoryComponent comp : fccHandler.getAffectedComponents()) {
 				try {
 					AllocationContext alloc = this.getPCMAllocationManager().getAllocationContextContaining(comp);
 					AllocationDegree ad = specificFactoryImpl.init().createAllocationDegree();

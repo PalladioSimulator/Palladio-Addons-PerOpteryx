@@ -67,7 +67,7 @@ public final class ComplementumWeaver {
 	 *             if complementum not found
 	 */
 	public void weave(List<Pair<Entity, Complementum>> require, List<Pair<AssemblyConnector, Complementum>> provides) throws FCCWeaverException {
-		Repository repo = this.repository;// this.getOrCreateRepo();
+		Repository repo = this.repository;
 
 		for (Pair<Entity, Complementum> complementum : require) {
 			AssemblyConnector provider = provides.stream().filter(p -> p.second == complementum.second).findFirst().map(p -> p.first).orElse(null);

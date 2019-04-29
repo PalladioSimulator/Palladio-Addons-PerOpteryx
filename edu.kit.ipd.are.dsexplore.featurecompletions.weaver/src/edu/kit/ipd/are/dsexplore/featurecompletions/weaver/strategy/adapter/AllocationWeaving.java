@@ -1,12 +1,10 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
@@ -65,15 +63,17 @@ public class AllocationWeaving {
 	}
 
 	private Optional<AllocationContext> getExistingAdapterAllocationContext() {
-		return this.parent.getPCMAllocationManager().getAllocationContextBy(this.adapterAllocationContextSearchCriteria());
+		return this.parent.getPCMAllocationManager().getAllocationContextBy(this::adapterAllocationContextSearchCriteria);
 	}
 
-	private Predicate<AllocationContext> adapterAllocationContextSearchCriteria() {
-		return alloc -> FCCUtil.areEqual(alloc.getAssemblyContext_AllocationContext(), this.parent.getAdapterAssemblyContext());
+	private boolean adapterAllocationContextSearchCriteria(AllocationContext alloc) {
+		return FCCUtil.areEqual(alloc.getAssemblyContext_AllocationContext(), this.parent.getAdapterAssemblyContext());
 	}
 
 	private void addECCAndRequiredAllocationContexts(CompletionComponent fcc) throws FCCWeaverException {
-		this.getAllocationContextsOfECCAndRequiredECCs(fcc).forEach(eachAllocationContext -> this.addAllocationContext(eachAllocationContext));
+		for (AllocationContext ac : this.getAllocationContextsOfECCAndRequiredECCs(fcc)) {
+			this.addAllocationContext(ac);
+		}
 	}
 
 	private void addAllocationContext(AllocationContext allocationContextToAdd) {
@@ -85,16 +85,20 @@ public class AllocationWeaving {
 
 	private List<AllocationContext> getAllocationContextsOfECCAndRequiredECCs(CompletionComponent fcc) throws FCCWeaverException {
 		try {
-			return this.getECCAndRequiredAssemblyContexts(fcc).map(eachAssemblyContext -> this.parent.getPCMAllocationManager().createAllocationContextBy(eachAssemblyContext, this.resourceContainer))
-					.collect(Collectors.toList());
+			List<AllocationContext> acs = new ArrayList<>();
+			for (AssemblyContext ac : this.getECCAndRequiredAssemblyContexts(fcc)) {
+				AllocationContext acx = this.parent.getPCMAllocationManager().createAllocationContextBy(ac, this.resourceContainer);
+				acs.add(acx);
+			}
+			return acs;
 		} catch (Exception ex) {
 			throw new FCCWeaverException(ex.getMessage());
 		}
 	}
 
-	private Stream<AssemblyContext> getECCAndRequiredAssemblyContexts(CompletionComponent fcc) {
+	private List<AssemblyContext> getECCAndRequiredAssemblyContexts(CompletionComponent fcc) {
 		try {
-			return new FCCStructureHandler(fcc, this.parent.getSolutionManager()).getStructureOfECCAndRequiredAccordingTo(this.getAssemblyContextCollector()).stream();
+			return new FCCStructureHandler(fcc, this.parent.getSolutionManager()).getStructureOfFCCAndRequiredAccordingTo(this.getAssemblyContextCollector());
 		} catch (FCCWeaverException ex) {
 			throw new RuntimeException(ex);
 		}
