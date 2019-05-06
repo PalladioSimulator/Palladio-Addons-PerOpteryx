@@ -89,6 +89,7 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
       <import plugin="de.uka.ipd.sdq.simucomframework" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="edu.kit.ipd.are.dsexplore.featurecompletions" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.qualitymodel" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.palladiosimulator.branding"/>
    </requires>
 
    <plugin
@@ -205,13 +206,6 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
 
    <plugin
          id="de.uka.ipd.sdq.dsexplore.bayesnets"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.palladiosimulator.branding"
          download-size="0"
          install-size="0"
          version="0.0.0"
