@@ -15,7 +15,7 @@ hs_err_pid*
 # Xtext
 *._trace
 *.xtendbin
-src-gen/
+#src-gen/
 xtend-gen/
 
 # Palladio
@@ -50,6 +50,7 @@ PerOpteryx_results/
 bin/
 local.properties
 tmp/
+target/
 
 # macOS
 ._*

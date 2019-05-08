@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<QMLContractType:Dimension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContractType="http:///QMLContractType.ecore" id="_K199EGoQEemt1666RKYeFg" entityName="Feature">
-  <type xsi:type="QMLContractType:DimensionTypeSet" id="_MvWuUGoVEemt1666RKYeFg">
-    <elements id="_QwC8kWoVEemt1666RKYeFg" entityName="Active"/>
-    <elements id="_SO110WoVEemt1666RKYeFg" entityName="Inactive"/>
-  </type>
-</QMLContractType:Dimension>
