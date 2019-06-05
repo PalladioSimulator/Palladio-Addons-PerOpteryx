@@ -56,7 +56,7 @@ public class AssemblyWeaving {
 	 * @param instruction the weaving instruction to apply.
 	 */
 	public void weave(IWeavingInstruction instruction) {
-		FCCModule.logger.debug("Assembly Behaviour Weaving");
+		FCCModule.LOGGER.debug("Assembly Behaviour Weaving");
 		
 		CompletionComponent perimeterProvidingFCC = instruction.getFccWithProvidedRole().first;
 		List<OperationSignature> providedSigs = instruction.getFccWithProvidedRole().getSecond(); 

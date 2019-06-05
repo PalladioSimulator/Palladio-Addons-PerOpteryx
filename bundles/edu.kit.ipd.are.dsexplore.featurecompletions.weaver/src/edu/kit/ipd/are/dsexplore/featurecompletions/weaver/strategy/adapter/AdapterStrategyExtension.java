@@ -110,7 +110,7 @@ public class AdapterStrategyExtension implements IStrategyExtension {
 		}
 		List<ComplementumVisnetis> cvs = StereotypeAPIHelper.getViaStereoTypeFrom(connector, ComplementumVisnetis.class);
 		if (cvs.size() != 1) {
-			FCCModule.logger.error("Wrong amount of CVs");
+			FCCModule.LOGGER.error("Wrong amount of CVs");
 			return;
 		}
 		res.add(Pair.of(connector, cvs.get(0)));

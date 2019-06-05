@@ -34,7 +34,7 @@ public class AllocationWeaving {
 	 * @throws FCCWeaverException
 	 */
 	public void weave(IWeavingInstruction instruction) throws FCCWeaverException {
-		FCCModule.logger.debug("Allocation Behaviour Weaving");
+		FCCModule.LOGGER.debug("Allocation Behaviour Weaving");
 
 		//determine random resource container
 		int bound = this.parent.getPCMToAdapt().getResourceEnvironment().getResourceContainer_ResourceEnvironment().size();

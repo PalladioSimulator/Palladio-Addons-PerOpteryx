@@ -9,18 +9,20 @@ import java.util.function.Predicate;
 
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.Connector;
+import org.palladiosimulator.pcm.repository.OperationRequiredRole;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RequiredRole;
 import org.palladiosimulator.pcm.repository.Role;
 
+import FeatureCompletionModel.Complementum;
 import FeatureCompletionModel.CompletionComponent;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util.ConnectionInfo;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util.ConnectorGenerator;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util.ConnectorGeneratorExplorationFactory;
@@ -90,7 +92,7 @@ public abstract class AssemblyWeaving {
 
 	private void createConnectorsFromFCCToRequiredFCCs(CompletionComponent fcc) throws FCCWeaverException {
 		FCCStructureHandler fccHandler = new FCCStructureHandler(fcc, this.parent.getSolutionManager());
-		for (RepositoryComponent eachComponent : fccHandler.getStructureOfECCAndRequiredAccordingTo(this.resolveOnlyComponents())) {
+		for (RepositoryComponent eachComponent : fccHandler.getStructureOfFCCAndRequiredAccordingTo(this.resolveOnlyComponents())) {
 			this.createConnectorsBy(eachComponent).forEach(this::addConnector);
 		}
 	}
@@ -104,6 +106,9 @@ public abstract class AssemblyWeaving {
 
 		List<Connector> createdConnectors = new ArrayList<>();
 		for (RequiredRole eachRequiredRole : component.getRequiredRoles_InterfaceRequiringEntity()) {
+			if (this.checkForComplementum(eachRequiredRole)) {
+				continue;
+			}
 			ProvidedRole providedRole = (ProvidedRole) this.getComplimentaryRoleOf(eachRequiredRole, this.parent.getSolutionManager().getAllProvidedRoles());
 			AssemblyContext providedAssemblyContext = this.getOrCreateAssemblyContextOf((RepositoryComponent) providedRole.eContainer());
 
@@ -112,6 +117,15 @@ public abstract class AssemblyWeaving {
 		}
 		return createdConnectors;
 
+	}
+
+	private boolean checkForComplementum(RequiredRole eachRequiredRole) {
+		if (!(eachRequiredRole instanceof OperationRequiredRole)) {
+			return false;
+		}
+		OperationRequiredRole orr = (OperationRequiredRole) eachRequiredRole;
+		List<Complementum> cmps = StereotypeAPIHelper.getViaStereoTypeFrom(orr.getRequiredInterface__OperationRequiredRole(), Complementum.class, "requiresComplementum");
+		return cmps.size() != 0;
 	}
 
 	protected <T extends Role> Role getComplimentaryRoleOf(Role role, List<T> complimentaryRoleSpace) throws FCCWeaverException {
@@ -148,6 +162,6 @@ public abstract class AssemblyWeaving {
 	 * @throws ConcernWeavingException
 	 *             - Will be thrown if an error occurs during weaving.
 	 */
-	public abstract void weaveAdapterIntoSystem(WeavingLocation weavingLocation) throws FCCWeaverException;
+	public abstract void weaveAdapterIntoSystem(Connector weavingLocation) throws FCCWeaverException;
 
 }

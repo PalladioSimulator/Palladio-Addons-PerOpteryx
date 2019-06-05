@@ -40,7 +40,7 @@ public final class InstructionGenerator {
 
 	public WeavingInstruction generate(Pair<ComplementumVisnetis, WeavingLocation> location) {
 		Pair<CompletionComponent, List<ProvidedRole>> fccWithReqFeatures = this.getFCCWithRequiredFeaturesFrom(location.first);
-		return this.generateWeavingInstructionFrom(fccWithReqFeatures, location.second);
+		return this.generateWeavingInstructionFrom(fccWithReqFeatures, location.second, location.first);
 	}
 
 	private CompletionComponent getFCCByVisnetis(ComplementumVisnetis cv) {
@@ -60,9 +60,10 @@ public final class InstructionGenerator {
 		return Pair.of(fcc, this.fccfh.getProvidedFeaturesOf(fcc));
 	}
 
-	private WeavingInstruction generateWeavingInstructionFrom(Pair<CompletionComponent, List<ProvidedRole>> fccWithRequiredFeatures, WeavingLocation wl) throws FCCWeaverException {
+	private WeavingInstruction generateWeavingInstructionFrom(Pair<CompletionComponent, List<ProvidedRole>> fccWithRequiredFeatures, WeavingLocation wl, ComplementumVisnetis cv)
+			throws FCCWeaverException {
 		ResourceContainer container = this.getResourceContainerFrom(fccWithRequiredFeatures.getFirst());
-		return new WeavingInstructionBuilder().setFCCWithConsumedFeatures(fccWithRequiredFeatures).setResourceContainer(container).setTransformationStrategy(this.im).setWeavingLocation(wl).build();
+		return new WeavingInstructionBuilder().setFCCWithConsumedFeatures(fccWithRequiredFeatures).setResourceContainer(container).setTransformationStrategy(this.im).setWeavingLocation(wl).build(cv);
 
 	}
 

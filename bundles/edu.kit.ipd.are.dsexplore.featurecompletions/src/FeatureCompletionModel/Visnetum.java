@@ -39,26 +39,6 @@ public enum Visnetum implements Enumerator {
 	INTERFACE(1, "INTERFACE", "INTERFACE"),
 
 	/**
-	 * The '<em><b>INTERFACE REQUIRES</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INTERFACE_REQUIRES_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INTERFACE_REQUIRES(2, "INTERFACE_REQUIRES", "INTERFACE_REQUIRES"),
-
-	/**
-	 * The '<em><b>INTERFACE PROVIDES</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INTERFACE_PROVIDES_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INTERFACE_PROVIDES(3, "INTERFACE_PROVIDES", "INTERFACE_PROVIDES"),
-
-	/**
 	 * The '<em><b>COMPONENT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -99,36 +79,6 @@ public enum Visnetum implements Enumerator {
 	public static final int INTERFACE_VALUE = 1;
 
 	/**
-	 * The '<em><b>INTERFACE REQUIRES</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>INTERFACE REQUIRES</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #INTERFACE_REQUIRES
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int INTERFACE_REQUIRES_VALUE = 2;
-
-	/**
-	 * The '<em><b>INTERFACE PROVIDES</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>INTERFACE PROVIDES</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #INTERFACE_PROVIDES
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int INTERFACE_PROVIDES_VALUE = 3;
-
-	/**
 	 * The '<em><b>COMPONENT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -153,8 +103,6 @@ public enum Visnetum implements Enumerator {
 		new Visnetum[] {
 			SIGNATURE,
 			INTERFACE,
-			INTERFACE_REQUIRES,
-			INTERFACE_PROVIDES,
 			COMPONENT,
 		};
 
@@ -214,8 +162,6 @@ public enum Visnetum implements Enumerator {
 		switch (value) {
 			case SIGNATURE_VALUE: return SIGNATURE;
 			case INTERFACE_VALUE: return INTERFACE;
-			case INTERFACE_REQUIRES_VALUE: return INTERFACE_REQUIRES;
-			case INTERFACE_PROVIDES_VALUE: return INTERFACE_PROVIDES;
 			case COMPONENT_VALUE: return COMPONENT;
 		}
 		return null;

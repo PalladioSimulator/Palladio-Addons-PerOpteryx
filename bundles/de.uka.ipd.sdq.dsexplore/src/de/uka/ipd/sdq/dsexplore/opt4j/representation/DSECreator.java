@@ -118,6 +118,7 @@ public class DSECreator implements Creator<DesignDecisionGenotype> {
 
 		Choice choice;
 		IModule module;
+		// Check whether module want to handle this degree.
 		if ((module = this.getModule(degree)) != null) {
 			choice = module.getCreateExtension().getChoice(degree);
 		} else if (degree instanceof IndicatorDegree) {

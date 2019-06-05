@@ -5,15 +5,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-
 import org.opt4j.genotype.ListGenotype;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
-import org.palladiosimulator.pcm.system.System;
-import org.palladiosimulator.solver.models.PCMInstance;
 
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
@@ -41,11 +37,11 @@ import placementDescription.SelectedCV;
 
 public class BehaviourStrategyExtension implements IStrategyExtension {
 
-	//dof for advice placements
+	// dof for advice placements
 	List<Choice> advicePlacementChoices;
-	//dof for multiple-flag in inclusion mechanism
+	// dof for multiple-flag in inclusion mechanism
 	Choice multipleInclusionChoice;
-	//dof for cv choice
+	// dof for cv choice
 	List<Choice> cvChoices;
 
 	@Override
@@ -70,19 +66,21 @@ public class BehaviourStrategyExtension implements IStrategyExtension {
 			}
 		}
 
-		//check if choices are consistent/valid (selected cvs are supported by selected solution)
-		//counter prevents an infinite loop if there is no appropriate solution
+		// check if choices are consistent/valid (selected cvs are supported by
+		// selected solution)
+		// counter prevents an infinite loop if there is no appropriate solution
 		int checkedSolutionsCounter = 0;
 		boolean solutionChoiceValid = this.checkSolutionChoiceSupportsSelectedCVs((Repository) fccChoice.getValue())
-									&& this.checkSolutionChoiceSupportsAllNonOptionalCVs((Repository) fccChoice.getValue());
-		
-		if (!solutionChoiceValid && checkedSolutionsCounter < 20) { 
-			//this is a dirty fix, if still no appropriate solution exists there will be an exception thrown
+				&& this.checkSolutionChoiceSupportsAllNonOptionalCVs((Repository) fccChoice.getValue());
+
+		if (!solutionChoiceValid && checkedSolutionsCounter < 20) {
+			// this is a dirty fix, if still no appropriate solution exists
+			// there will be an exception thrown
 			List<EObject> solutions = ((FeatureCompletionDegree) fccChoice.getDegreeOfFreedomInstance()).getClassDesignOptions();
 			fccChoice.setValue(solutions.get(new Random().nextInt(solutions.size())));
-			this.grabChoices(fccChoice, notTransformedChoices); 
+			this.grabChoices(fccChoice, notTransformedChoices);
 		}
-		 
+
 		notTransformedChoices.remove(this.multipleInclusionChoice);
 		for (Choice ac : this.advicePlacementChoices) {
 			notTransformedChoices.remove(ac);
@@ -94,16 +92,14 @@ public class BehaviourStrategyExtension implements IStrategyExtension {
 
 	/**
 	 * Checks if the given solution supports all CVs that need to be evaluated.
-	 * 
-	 * @param solution the given solution.
+	 *
+	 * @param solution
+	 *            the given solution.
 	 * @return whether the given solution supports all CVs.
 	 */
 	private boolean checkSolutionChoiceSupportsAllNonOptionalCVs(Repository solution) {
-		List<SelectedCV> allSelectedCVs = this.cvChoices.stream()
-				.map(choice -> (ComplementumVisnetisDegree) choice.getDegreeOfFreedomInstance())
-				.flatMap(cvDegree -> cvDegree.getClassDesignOptions().stream().map(option -> (SelectedCV) option))
-				.filter(selectedCV -> !selectedCV.isOptional())
-				.collect(Collectors.toList());
+		List<SelectedCV> allSelectedCVs = this.cvChoices.stream().map(choice -> (ComplementumVisnetisDegree) choice.getDegreeOfFreedomInstance())
+				.flatMap(cvDegree -> cvDegree.getClassDesignOptions().stream().map(option -> (SelectedCV) option)).filter(selectedCV -> !selectedCV.isOptional()).collect(Collectors.toList());
 
 		FCCFeatureHandler featureHandler = new FCCFeatureHandler(new SolutionManager(solution));
 		List<ComplementumVisnetis> supportedCVs = featureHandler.extractProvidedCVs().stream().map(pair -> pair.second).collect(Collectors.toList());
@@ -112,11 +108,13 @@ public class BehaviourStrategyExtension implements IStrategyExtension {
 		java.lang.System.out.println("Solution: " + solution.getEntityName() + " ------------ optional checkChoicesValid: " + valid + " -----------");
 		return valid;
 	}
-	
+
 	/**
-	 * Checks if the given solution supports the currently selected CVs for this iteration.
-	 * 
-	 * @param solution the given solution.
+	 * Checks if the given solution supports the currently selected CVs for this
+	 * iteration.
+	 *
+	 * @param solution
+	 *            the given solution.
 	 * @return whether the given solution supports the currently selected CVs.
 	 */
 	private boolean checkSolutionChoiceSupportsSelectedCVs(Repository solution) {
@@ -134,18 +132,19 @@ public class BehaviourStrategyExtension implements IStrategyExtension {
 
 	@Override
 	public void additionalCreateFCCDegreeBy(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, FCCWeaver weaver) {
-		//add dof for multiple-flag in inclusion mechanism
+		// add dof for multiple-flag in inclusion mechanism
 		this.createMultipleInclusionDegree(degree, dds, initialCandidate, weaver.getInclusionMechanism());
-		//add dof for advice placement policy
+		// add dof for advice placement policy
 		this.createAdvicePlacementDegree(dds, initialCandidate, weaver.getInclusionMechanism());
-		//add dof for cv selection
+		// add dof for cv selection
 		this.createComplementumVisnetisDegree(degree, dds, initialCandidate, weaver.getInclusionMechanism());
-		//add dof for allocation
+		// add dof for allocation
 		this.createFCCAllocationDegree(degree, dds, initialCandidate, weaver.getInclusionMechanism(), weaver.getInitialPartition());
 	}
 
-	private void createFCCAllocationDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, InclusionMechanism inclusionMechanism, PCMResourceSetPartition pcmResourceSetPartition) {
-		//add allocation degrees for FCCs
+	private void createFCCAllocationDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, InclusionMechanism inclusionMechanism,
+			PCMResourceSetPartition pcmResourceSetPartition) {
+		// add allocation degrees for FCCs
 		List<ResourceContainer> allPcmResourceContainer = pcmResourceSetPartition.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
 		List<CompletionComponent> fccs = ((BehaviourInclusion) inclusionMechanism).getFeatureCompletion().getCompletion().getCompletionComponents();
 		for (CompletionComponent fcc : fccs) {
@@ -181,7 +180,7 @@ public class BehaviourStrategyExtension implements IStrategyExtension {
 	private void createMultipleInclusionDegree(FeatureCompletionDegree degree, List<DegreeOfFreedomInstance> dds, ListGenotype<Choice> initialCandidate, InclusionMechanism im) {
 		if (((BehaviourInclusion) im).isMultiple()) {
 			BoolChoice choice = new MultipleInclusionDesignDecision(im).generateMultipleInclusionDegree();
-	
+
 			initialCandidate.add(choice);
 			dds.add(choice.getDegreeOfFreedomInstance());
 		}

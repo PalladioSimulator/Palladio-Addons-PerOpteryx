@@ -5,6 +5,7 @@ import java.util.List;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
+import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
@@ -38,8 +39,8 @@ public class WeavingInstructionBuilder {
 		return this;
 	}
 
-	public WeavingInstruction build() {
-		return new WeavingInstruction(this.fccWithConsumedFeatures, this.weavingLocation, this.inclusionMechanism, this.resourceContainer);
+	public WeavingInstruction build(ComplementumVisnetis cv) {
+		return new WeavingInstruction(this.fccWithConsumedFeatures, this.weavingLocation, this.inclusionMechanism, this.resourceContainer, cv);
 	}
 
 }

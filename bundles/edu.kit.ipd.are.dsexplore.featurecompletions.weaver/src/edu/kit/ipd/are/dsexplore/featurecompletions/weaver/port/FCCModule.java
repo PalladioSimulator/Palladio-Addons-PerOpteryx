@@ -14,8 +14,15 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.extensions.FCCCreateE
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.extensions.FCCDecoderExtension;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.extensions.FCCProblemExtension;
 
+/**
+ * The FeatureCompletionComponent Module. This module allows a dynamic addition
+ * of features to a given System.
+ *
+ * @author Dominik Fuchss
+ *
+ */
 public class FCCModule implements IModule {
-	public static Logger logger = Logger.getLogger("edu.kit.ipd.are.dsexplore.featurecompletions.weaver");
+	public static final Logger LOGGER = Logger.getLogger("edu.kit.ipd.are.dsexplore.featurecompletions.weaver");
 
 	private final Pointer<FCCWeaver> weaver;
 

@@ -101,7 +101,7 @@
     <booleanAttribute key="iterationOverPhysicalSystemStatesEnabled" value="true"/>
     <stringAttribute key="logFile" value=""/>
     <stringAttribute key="lqnPragmas" value=""/>
-    <stringAttribute key="lqnsOutputDir" value="D:\tmp"/>
+    <stringAttribute key="lqnsOutputDir" value="D:\Projects\tmp"/>
     <stringAttribute key="lqsimOutputDir" value="C:\Users\Maxi\Workspace_Peropteryx\InnerEclipse\SimpleBookingExample\PerOpteryx_results"/>
     <stringAttribute key="lqsimoutput" value="XML Output"/>
     <stringAttribute key="markovEvaluationMode" value="POINTSOFFAILURE"/>

@@ -63,8 +63,6 @@
   <eClassifiers xsi:type="ecore:EEnum" name="Visnetum">
     <eLiterals name="SIGNATURE"/>
     <eLiterals name="INTERFACE" value="1"/>
-    <eLiterals name="INTERFACE_REQUIRES" value="2"/>
-    <eLiterals name="INTERFACE_PROVIDES" value="3"/>
     <eLiterals name="COMPONENT" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Replication">

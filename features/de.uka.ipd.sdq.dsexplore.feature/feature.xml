@@ -105,6 +105,13 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+   
+   <plugin
+         id="de.uka.ipd.sdq.dsexplore.analysis.featurecompletions"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
    <plugin
          id="de.uka.ipd.sdq.dsexplore.analysis.simucom"

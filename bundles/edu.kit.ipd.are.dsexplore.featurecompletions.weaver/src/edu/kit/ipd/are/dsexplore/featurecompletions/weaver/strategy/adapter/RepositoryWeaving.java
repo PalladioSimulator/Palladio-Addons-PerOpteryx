@@ -3,6 +3,7 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter;
 import java.util.List;
 import java.util.Optional;
 
+import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.repository.RequiredRole;
@@ -11,7 +12,6 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.RoleHandler;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.handler.RoleHandlerFactory;
 
@@ -36,7 +36,7 @@ public abstract class RepositoryWeaving {
 	}
 
 	private void setAdapterComponentRegarding(WeavingInstruction weavingInstruction) {
-		String uniqueAdapterName = FCCUtil.createUniqueAdapterNameBy(weavingInstruction.getWeavingLocation().getLocation());
+		String uniqueAdapterName = FCCUtil.createUniqueAdapterNameBy(weavingInstruction.getWeavingLocation());
 		if (weavingInstruction.getInclusionMechanism().isMultiple()) {
 			this.parent.setAdapter(this.parent.getSolutionManager().createAndAddAdapter(uniqueAdapterName));
 		} else {
@@ -103,5 +103,5 @@ public abstract class RepositoryWeaving {
 	 * @param weavingLocation
 	 *            - Contains the weaving location informations.
 	 */
-	protected abstract void weaveAdapterIntoRepository(WeavingLocation weavingLocation);
+	protected abstract void weaveAdapterIntoRepository(Connector weavingLocation);
 }

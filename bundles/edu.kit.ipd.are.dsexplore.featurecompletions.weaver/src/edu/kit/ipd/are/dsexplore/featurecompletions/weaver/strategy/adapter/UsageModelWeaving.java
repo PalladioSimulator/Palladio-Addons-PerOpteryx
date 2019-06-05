@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.composition.ProvidedDelegationConnector;
 import org.palladiosimulator.pcm.repository.OperationInterface;
 import org.palladiosimulator.pcm.repository.OperationProvidedRole;
@@ -13,7 +14,6 @@ import org.palladiosimulator.pcm.usagemodel.EntryLevelSystemCall;
 
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingInstruction;
-import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.WeavingLocation;
 
 /**
  * This class is responsible for weaving the usage model view-type in the
@@ -35,16 +35,16 @@ public class UsageModelWeaving {
 		}
 	}
 
-	private boolean isUsageModelAffected(WeavingLocation weavingLocation) {
+	private boolean isUsageModelAffected(Connector weavingLocation) {
 		return this.isDelegationConnectorLocation(weavingLocation) && this.isOuterProvidedRoleExposedByTheSystem(weavingLocation);
 	}
 
-	private boolean isDelegationConnectorLocation(WeavingLocation weavingLocation) {
-		return weavingLocation.getLocation() instanceof ProvidedDelegationConnector;
+	private boolean isDelegationConnectorLocation(Connector weavingLocation) {
+		return weavingLocation instanceof ProvidedDelegationConnector;
 	}
 
-	private boolean isOuterProvidedRoleExposedByTheSystem(WeavingLocation weavingLocation) {
-		ProvidedRole outerProvidedRole = ((ProvidedDelegationConnector) weavingLocation.getLocation()).getOuterProvidedRole_ProvidedDelegationConnector();
+	private boolean isOuterProvidedRoleExposedByTheSystem(Connector weavingLocation) {
+		ProvidedRole outerProvidedRole = ((ProvidedDelegationConnector) weavingLocation).getOuterProvidedRole_ProvidedDelegationConnector();
 		return outerProvidedRole.eContainer() instanceof System;
 	}
 

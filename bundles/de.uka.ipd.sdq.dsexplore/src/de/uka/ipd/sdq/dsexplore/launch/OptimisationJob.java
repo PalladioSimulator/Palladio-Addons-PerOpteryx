@@ -86,8 +86,11 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 		} finally {
 
 			OptimisationJob.logger.warn("DSE launch done. It took " + ((System.currentTimeMillis() - this.startTimestampMillis) / 1000) + " seconds.");
+
 			// Cleanup DSEProblem
-			Opt4JStarter.getProblem().cleanup();
+			if (Opt4JStarter.getProblem() != null) {
+				Opt4JStarter.getProblem().cleanup();
+			}
 			try {
 				/*
 				 * There was quite some memory allocation at this point

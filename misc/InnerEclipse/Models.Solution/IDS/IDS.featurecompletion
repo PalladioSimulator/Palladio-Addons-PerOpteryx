@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FeatureCompletion:FeatureCompletionRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FeatureCompletion="http://are.ipd.kit.edu/FeatureCompletionModel/1.0.1">
+  <featureCompletions id="_DvCOoBnXEemiorxBpJTCRg" name="IDS (FC)">
+    <featureObjectives href="IDS.featureobjective#_WT34QBnWEemiorxBpJTCRg"/>
+    <completionComponents id="_HlhYABnXEemiorxBpJTCRg" name="Sensor" requiredComponents="_Jw9U0BnXEemiorxBpJTCRg">
+      <perimeterProviding id="_OJZUsBnXEemiorxBpJTCRg" name="SensorProvide">
+        <featureProviding href="IDS.featureobjective#_vDArgBnWEemiorxBpJTCRg"/>
+        <featureProviding href="IDS.featureobjective#_xaTTABnWEemiorxBpJTCRg"/>
+        <featureProviding href="IDS.featureobjective#_12ubABnWEemiorxBpJTCRg"/>
+        <featureProviding href="IDS.featureobjective#_jY_7cBnWEemiorxBpJTCRg"/>
+        <featureProviding href="IDS.featureobjective#_0Iia4BnWEemiorxBpJTCRg"/>
+        <featureProviding href="IDS.featureobjective#_6lfQMBnWEemiorxBpJTCRg"/>
+        <featureProviding href="IDS.featureobjective#_tEw2IBnWEemiorxBpJTCRg"/>
+        <featureProviding href="IDS.featureobjective#_3-JagBnWEemiorxBpJTCRg"/>
+        <featureProviding href="IDS.featureobjective#_8v-KwBnWEemiorxBpJTCRg"/>
+      </perimeterProviding>
+    </completionComponents>
+    <completionComponents id="_Jw9U0BnXEemiorxBpJTCRg" name="Handler" requiredComponents="_MCddYBnXEemiorxBpJTCRg _Y4eGgBnXEemiorxBpJTCRg _afypoBnXEemiorxBpJTCRg"/>
+    <completionComponents id="_MCddYBnXEemiorxBpJTCRg" name="Store" requiredComponents="_afypoBnXEemiorxBpJTCRg"/>
+    <completionComponents id="_Y4eGgBnXEemiorxBpJTCRg" name="Response"/>
+    <completionComponents id="_afypoBnXEemiorxBpJTCRg" name="Analyzer" requiredComponents="_MCddYBnXEemiorxBpJTCRg"/>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_uaZ98hnXEemiorxBpJTCRg" name="FunctionalAbuse">
+      <complementaryFeature href="IDS.featureobjective#_vDArgBnWEemiorxBpJTCRg"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_xTJsshnXEemiorxBpJTCRg" name="DisableAccount">
+      <complementaryFeature href="IDS.featureobjective#_xaTTABnWEemiorxBpJTCRg"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_L_Gx8hnYEemiorxBpJTCRg" name="LogFileAnalysis">
+      <complementaryFeature href="IDS.featureobjective#_12ubABnWEemiorxBpJTCRg"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_tZeDsiJOEemJIZoadPYzbg" name="AuthCheck">
+      <complementaryFeature href="IDS.featureobjective#_jY_7cBnWEemiorxBpJTCRg"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_0q9UUiJOEemJIZoadPYzbg" name="InputValidation" visnetum="INTERFACE">
+      <complementaryFeature href="IDS.featureobjective#_tEw2IBnWEemiorxBpJTCRg"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_4joPAiJOEemJIZoadPYzbg" name="DisableComponents">
+      <complementaryFeature href="IDS.featureobjective#_0Iia4BnWEemiorxBpJTCRg"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_7luuEiJOEemJIZoadPYzbg" name="RegistryAnalysis">
+      <complementaryFeature href="IDS.featureobjective#_3-JagBnWEemiorxBpJTCRg"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_AGgxoiJPEemJIZoadPYzbg" name="FileIntegrity">
+      <complementaryFeature href="IDS.featureobjective#_6lfQMBnWEemiorxBpJTCRg"/>
+    </complementa>
+    <complementa xsi:type="FeatureCompletion:ComplementumVisnetis" id="_CWsrkiJPEemJIZoadPYzbg" name="RootkitAnalysis">
+      <complementaryFeature href="IDS.featureobjective#_8v-KwBnWEemiorxBpJTCRg"/>
+    </complementa>
+  </featureCompletions>
+</FeatureCompletion:FeatureCompletionRepository>

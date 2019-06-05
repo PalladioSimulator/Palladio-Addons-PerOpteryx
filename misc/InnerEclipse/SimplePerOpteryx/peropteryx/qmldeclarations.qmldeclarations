@@ -2,6 +2,7 @@
 <QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:QMLContractType="http:///QMLContractType.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" xmlns:QMLProfile="http:///QMLProfile.ecore" id="_Dbn-kGFfEeetxOZObiabqg">
   <qmlDeclarations xsi:type="QMLContractType:QMLContractType" id="_Gw0_1GFfEeetxOZObiabqg" entityName="CostContractType">
     <dimensions href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
+    <dimensions href="../../de.uka.ipd.sdq.dsexplore.analysis.featurecompletions/Feature.qmlcontracttype#_K199EGoQEemt1666RKYeFg"/>
   </qmlDeclarations>
   <qmlDeclarations xsi:type="QMLContract:SimpleQMLContract" id="_Qv-JgmFfEeetxOZObiabqg" entityName="CostContract" contractType="_Gw0_1GFfEeetxOZObiabqg">
     <criteria xsi:type="QMLContract:Objective" id="_XJ0ngGFfEeetxOZObiabqg">
@@ -9,9 +10,15 @@
       <aspects xsi:type="QMLContract:Value" id="_amT8hGFfEeetxOZObiabqg"/>
     </criteria>
   </qmlDeclarations>
+  <qmlDeclarations xsi:type="QMLContract:SimpleQMLContract" id="_201UkmoQEemIeYjAfJ9czg" entityName="Features" contractType="_Gw0_1GFfEeetxOZObiabqg">
+    <criteria xsi:type="QMLContract:Objective" id="_4mh7sGoQEemIeYjAfJ9czg">
+      <dimension href="../../de.uka.ipd.sdq.dsexplore.analysis.featurecompletions/Feature.qmlcontracttype#_K199EGoQEemt1666RKYeFg"/>
+      <aspects xsi:type="QMLContract:Value" id="_w1Ei1GoWEembapRQ8GGYzA"/>
+    </criteria>
+  </qmlDeclarations>
   <qmlDeclarations xsi:type="QMLProfile:SimpleQMLProfile" id="_UkCRAGFfEeetxOZObiabqg" entityName="CostProfile">
     <usageModel href="../palladio/usage.usagemodel#/"/>
-    <requirements xsi:type="QMLProfile:UsageScenarioRequirement" id="_gblGwGFfEeetxOZObiabqg" requireContract="_Qv-JgmFfEeetxOZObiabqg">
+    <requirements xsi:type="QMLProfile:UsageScenarioRequirement" id="_gblGwGFfEeetxOZObiabqg" requireContract="_Qv-JgmFfEeetxOZObiabqg _201UkmoQEemIeYjAfJ9czg">
       <usageScenario href="../palladio/usage.usagemodel#_qZ938GFeEeetxOZObiabqg"/>
     </requirements>
   </qmlDeclarations>

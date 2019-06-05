@@ -2,9 +2,12 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy;
 
 import java.util.List;
 
+import org.palladiosimulator.pcm.core.composition.Connector;
+import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 
+import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import featureSolution.InclusionMechanism;
@@ -22,6 +25,7 @@ public class WeavingInstruction {
 	private final WeavingLocation weavingLocation;
 	private final InclusionMechanism inclusionMechanism;
 	private final ResourceContainer resourceContainer;
+	private final ComplementumVisnetis visnetis;
 
 	/**
 	 * The constructor.
@@ -37,11 +41,12 @@ public class WeavingInstruction {
 	 *            - The resource container the ECC is going to be allocated.
 	 */
 	public WeavingInstruction(Pair<CompletionComponent, List<ProvidedRole>> eccWithConsumedFeatures, WeavingLocation weavingLocation, InclusionMechanism inclusionMechanism,
-			ResourceContainer resourceContainer) {
+			ResourceContainer resourceContainer, ComplementumVisnetis visnetis) {
 		this.fccWithConsumedFeatures = eccWithConsumedFeatures;
 		this.weavingLocation = weavingLocation;
 		this.inclusionMechanism = inclusionMechanism;
 		this.resourceContainer = resourceContainer;
+		this.visnetis = visnetis;
 
 	}
 
@@ -59,8 +64,8 @@ public class WeavingInstruction {
 	 *
 	 * @return the concrete weaving location in the PCM model.
 	 */
-	public WeavingLocation getWeavingLocation() {
-		return this.weavingLocation;
+	public Connector getWeavingLocation() {
+		return this.weavingLocation.getLocation();
 	}
 
 	/**
@@ -80,6 +85,14 @@ public class WeavingInstruction {
 	 */
 	public ResourceContainer getResourceContainer() {
 		return this.resourceContainer;
+	}
+
+	public ComplementumVisnetis getCV() {
+		return this.visnetis;
+	}
+
+	public List<? extends OperationSignature> getAffected() {
+		return this.weavingLocation.getAffectedSignatures();
 	}
 
 }

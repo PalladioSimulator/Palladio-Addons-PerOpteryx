@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:QMLContractType="http:///QMLContractType.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" xmlns:QMLProfile="http:///QMLProfile.ecore" id="_AghL0CVqEemGdpkUgoRGzw">
+  <qmlDeclarations xsi:type="QMLContract:SimpleQMLContract" id="_BPt0IiVqEemGdpkUgoRGzw" contractType="_Ds62ZCVqEemGdpkUgoRGzw">
+    <criteria xsi:type="QMLContract:Objective" id="_QR8AsCVrEemGdpkUgoRGzw">
+      <dimension href="pathmap://PCM_MODELS/Dimension_responsetime.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA"/>
+      <aspects xsi:type="QMLContract:Mean" id="_QyhlQSVrEemGdpkUgoRGzw"/>
+    </criteria>
+    <criteria xsi:type="QMLContract:Objective" id="_TUcIYCVrEemGdpkUgoRGzw">
+      <dimension href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
+      <aspects xsi:type="QMLContract:Value" id="_HgRhVCVsEemGdpkUgoRGzw"/>
+    </criteria>
+  </qmlDeclarations>
+  <qmlDeclarations xsi:type="QMLContractType:QMLContractType" id="_Ds62ZCVqEemGdpkUgoRGzw">
+    <dimensions href="pathmap://PCM_MODELS/Dimension_cost.qmlcontracttype#_r_iViqCrEd-s9uTaURbrKA"/>
+    <dimensions href="pathmap://PCM_MODELS/Dimension_responsetime.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA"/>
+  </qmlDeclarations>
+  <qmlDeclarations xsi:type="QMLProfile:SimpleQMLProfile" id="_EWibICVqEemGdpkUgoRGzw">
+    <usageModel href="usage.usagemodel#/"/>
+    <requirements xsi:type="QMLProfile:UsageScenarioRequirement" id="_K3kNQCVsEemGdpkUgoRGzw" requireContract="_BPt0IiVqEemGdpkUgoRGzw">
+      <usageScenario href="usage.usagemodel#_qZ938GFeEeetxOZObiabqg"/>
+    </requirements>
+  </qmlDeclarations>
+</QMLDeclarations:QMLDeclarations>

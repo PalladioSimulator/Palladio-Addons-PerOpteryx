@@ -1,7 +1,5 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.util;
 
-import java.util.function.Predicate;
-
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.repository.SinkRole;
 import org.palladiosimulator.pcm.repository.SourceRole;
@@ -16,17 +14,9 @@ public class AssemblyEventConnectorGenerator extends ConnectorGenerator implemen
 	}
 
 	@Override
-	public Predicate<ConnectionInfo> canBeApplied() {
-		return this.isSourceRole().and(this.isSinkRole());
+	public boolean canBeApplied(ConnectionInfo ci) {
+		return ci.requiringRole instanceof SourceRole && ci.providingRole instanceof SinkRole;
 
-	}
-
-	private Predicate<ConnectionInfo> isSourceRole() {
-		return connectionInfo -> connectionInfo.requiringRole instanceof SourceRole;
-	}
-
-	private Predicate<ConnectionInfo> isSinkRole() {
-		return connectionInfo -> connectionInfo.providingRole instanceof SinkRole;
 	}
 
 	@Override

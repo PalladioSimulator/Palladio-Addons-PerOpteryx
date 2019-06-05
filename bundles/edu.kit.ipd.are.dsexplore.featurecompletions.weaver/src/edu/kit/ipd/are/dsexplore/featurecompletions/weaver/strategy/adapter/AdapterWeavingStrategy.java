@@ -1,10 +1,10 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.palladiosimulator.pcm.allocation.AllocationContext;
+import org.palladiosimulator.pcm.core.composition.AssemblyConnector;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.core.composition.Connector;
 import org.palladiosimulator.pcm.core.entity.Entity;
@@ -64,16 +64,9 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 
 	@Override
 	public void weave() throws FCCWeaverException {
-		/*
-		 * this.weavingChain.add(new RepositoryWeaver());
-		 * this.weavingChain.add(new AssemblyWeaver());
-		 * this.weavingChain.add(new AllocationWeaver());
-		 * this.weavingChain.add(new ServiceEffectSpecificationWeaver());
-		 * this.weavingChain.add(new UsageModelWeaver());
-		 */
 		AllocationWeaving alw = new AllocationWeaving(this);
 		UsageModelWeaving umw = new UsageModelWeaving(this);
-		for (WeavingInstruction instruction : this.instructions) {
+		for (WeavingInstruction instruction : new ArrayList<>(this.instructions)) {
 			RepositoryWeaving rw = AdapterWeavingFactory.getAdapterRepositoryWeaverBy(instruction.getWeavingLocation()).apply(this);
 			AssemblyWeaving asw = AdapterWeavingFactory.getAdapterAssemblyWeaverBy(instruction.getWeavingLocation()).apply(this);
 			ServiceEffectSpecificationWeaving sew = AdapterWeavingFactory.getAdapterSeffWeaverBy(instruction.getWeavingLocation()).apply(this);
@@ -96,21 +89,20 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 		// fulfillsComplementum: Complementum -> Interface
 
 		List<Pair<Entity, Complementum>> require = this.getRequiresComplementum();
-		List<Pair<OperationInterface, Complementum>> provides = this.getProvidesComplementum();
+		List<Pair<AssemblyConnector, Complementum>> provides = this.getProvidesComplementum();
 
-		// TODO Connect require & provides
+		ComplementumWeaver cv = new ComplementumWeaver(this.pcmToAdapt, this.mrm.getRepository());
+		cv.weave(require, provides);
 
 	}
 
-	private List<Pair<OperationInterface, Complementum>> getProvidesComplementum() {
-		List<Pair<OperationInterface, Complementum>> res = new ArrayList<>();
-		for (Repository repo : this.pcmToAdapt.getRepositories()) {
-			for (Interface iface : repo.getInterfaces__Repository()) {
-				List<Complementum> complementa = StereotypeAPIHelper.getViaStereoTypeFrom(iface, Complementum.class, "fulfillsComplementum");
-				if (complementa.size() != 0) {
-					// Model defines 1..1 as amount of complementa
-					res.add(Pair.of((OperationInterface) iface, complementa.get(0)));
-				}
+	private List<Pair<AssemblyConnector, Complementum>> getProvidesComplementum() {
+		List<Pair<AssemblyConnector, Complementum>> res = new ArrayList<>();
+		for (Connector connector : this.pcmToAdapt.getSystem().getConnectors__ComposedStructure()) {
+			List<Complementum> complementa = StereotypeAPIHelper.getViaStereoTypeFrom(connector, Complementum.class, "fulfillsComplementum");
+			if (complementa.size() != 0) {
+				// Model defines 1..1 as amount of complementa
+				res.add(Pair.of((AssemblyConnector) connector, complementa.get(0)));
 			}
 		}
 		return res;
@@ -136,7 +128,9 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 				for (OperationSignature opSig : ((OperationInterface) iface).getSignatures__OperationInterface()) {
 					complementa = StereotypeAPIHelper.getViaStereoTypeFrom(opSig, Complementum.class, "fulfillsComplementum");
 					// Model defines 1..1 as amount of complementa
-					res.add(Pair.of(opSig, complementa.get(0)));
+					if (complementa.size() != 0) {
+						res.add(Pair.of(opSig, complementa.get(0)));
+					}
 				}
 
 			}
@@ -248,7 +242,7 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 			instructions.add(instruction);
 		}
 
-		instructions.removeIf(i -> notShallConnectors.contains(i.getWeavingLocation().getLocation().getId()));
+		instructions.removeIf(i -> notShallConnectors.contains(i.getWeavingLocation().getId()));
 		return instructions;
 
 	}
@@ -270,7 +264,7 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 		for (Choice fccClassChoice : this.allocationChoices) {
 			CompletionComponent fcc = (CompletionComponent) fccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
 			FCCStructureHandler fccHandler = new FCCStructureHandler(fcc, this.mrm);
-			for (RepositoryComponent comp : fccHandler.getStructureOfFCCAccordingTo(component -> Arrays.asList(component))) {
+			for (RepositoryComponent comp : fccHandler.getAffectedComponents()) {
 				try {
 					AllocationContext alloc = this.getPCMAllocationManager().getAllocationContextContaining(comp);
 					AllocationDegree ad = specificFactoryImpl.init().createAllocationDegree();
@@ -280,7 +274,7 @@ public class AdapterWeavingStrategy implements IWeavingStrategy, IAdapterWeaving
 					choice.setChosenValue(((ClassChoice) fccClassChoice).getChosenValue());
 					allocChoices.add(choice);
 				} catch (Exception e) {
-					FCCModule.logger.warn(e.getMessage());
+					FCCModule.LOGGER.warn(e.getMessage());
 				}
 			}
 		}

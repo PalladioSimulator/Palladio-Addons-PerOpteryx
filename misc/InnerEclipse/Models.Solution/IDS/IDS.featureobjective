@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<featureObjective:FeatureObjective xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:featureObjective="http://are.ipd.kit.edu/FeatureObjectivesModel/1.0.0" id="_WT34QBnWEemiorxBpJTCRg" name="IDS (FO)">
+  <featureGroups>
+    <features id="_jY_7cBnWEemiorxBpJTCRg" name="Authorization Check"/>
+  </featureGroups>
+  <featureGroups>
+    <features id="_tEw2IBnWEemiorxBpJTCRg" name="Input Validation"/>
+  </featureGroups>
+  <featureGroups>
+    <features id="_vDArgBnWEemiorxBpJTCRg" name="Functional abuse"/>
+  </featureGroups>
+  <featureGroups>
+    <features id="_xaTTABnWEemiorxBpJTCRg" name="Disable account"/>
+  </featureGroups>
+  <featureGroups>
+    <features id="_0Iia4BnWEemiorxBpJTCRg" name="Disable Components"/>
+  </featureGroups>
+  <featureGroups>
+    <features id="_12ubABnWEemiorxBpJTCRg" name="Log file analysis"/>
+  </featureGroups>
+  <featureGroups>
+    <features id="_3-JagBnWEemiorxBpJTCRg" name="Registry analysis"/>
+  </featureGroups>
+  <featureGroups>
+    <features id="_6lfQMBnWEemiorxBpJTCRg" name="File integrity"/>
+  </featureGroups>
+  <featureGroups>
+    <features id="_8v-KwBnWEemiorxBpJTCRg" name="Rootkit check"/>
+  </featureGroups>
+</featureObjective:FeatureObjective>

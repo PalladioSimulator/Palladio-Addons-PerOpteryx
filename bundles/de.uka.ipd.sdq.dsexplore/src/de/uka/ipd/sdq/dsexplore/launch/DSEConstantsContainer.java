@@ -92,6 +92,11 @@ public class DSEConstantsContainer {
 	 * TODO: Move this to {@link AnalysisQualityAttributes}?
 	 */
 	public enum QualityAttribute {
+		FEATURE_QUALITY{
+			@Override
+			public String getName() { return "de.uka.ipd.sdq.dsexplore.featurecompletions"; }
+			@Override
+			public String getPrettyName() { return "FeatureCompletion"; }},
 		PERFORMANCE_QUALITY {
 			@Override
 			public String getName() { return "de.uka.ipd.sdq.dsexplore.performance"; }
@@ -147,23 +152,10 @@ public class DSEConstantsContainer {
 		public abstract String getName();
 
 		public static QualityAttribute getQualityAttribute(String name){
-			if (name.equals(PERFORMANCE_QUALITY.getName())){
-				return PERFORMANCE_QUALITY;
-			} else if (name.equals(RELIABILITY_QUALITY.getName())){
-				return RELIABILITY_QUALITY;
-			} else if (name.equals(COST_QUALITY.getName())){
-				return COST_QUALITY;
-			} else if (name.equals(SECURITY_QUALITY.getName())){
-				return SECURITY_QUALITY;
-			} else if (name.equals(NEW_SECURITY_QUALITY.getName())) {
-				return NEW_SECURITY_QUALITY;
-			} else if (name.equals(NQR_QUALITY.getName())){
-				return NQR_QUALITY;
-			} else if (name.equals(REASONING_QUALITY.getName())) {
-				return REASONING_QUALITY;
-			} else {
-				return null;
-			}
+			for (QualityAttribute qa : QualityAttribute.values())
+				if(name.equals(qa.getName()))
+					return qa;
+			return null;
 		}
 
 		public abstract String getPrettyName();

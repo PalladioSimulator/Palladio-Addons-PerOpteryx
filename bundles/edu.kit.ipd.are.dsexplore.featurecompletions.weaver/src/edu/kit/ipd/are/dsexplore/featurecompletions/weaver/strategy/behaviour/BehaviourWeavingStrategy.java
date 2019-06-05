@@ -5,13 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.OperationSignature;
-import org.palladiosimulator.pcm.repository.ProvidedRole;
 import org.palladiosimulator.pcm.repository.Repository;
-import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
 import org.palladiosimulator.solver.transformations.EMFHelper;
 
@@ -19,16 +16,13 @@ import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.PlacementPolicy;
-
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
-import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import de.uka.ipd.sdq.pcm.designdecision.BoolChoice;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
 import de.uka.ipd.sdq.pcm.designdecision.ClassChoice;
 import de.uka.ipd.sdq.pcm.designdecision.impl.designdecisionFactoryImpl;
 import de.uka.ipd.sdq.pcm.designdecision.specific.AllocationDegree;
 import de.uka.ipd.sdq.pcm.designdecision.specific.impl.specificFactoryImpl;
-
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCModule;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.IWeavingStrategy;
@@ -42,15 +36,14 @@ import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmS
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmSystemManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.PcmUsageModelManager;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
-
-import placementDescription.Advice;
-import placementDescription.SelectedCV;
 import featureSolution.BehaviourInclusion;
 import featureSolution.InclusionMechanism;
+import featureSolution.impl.BehaviourInclusionImpl;
+import placementDescription.Advice;
 import placementDescription.PlacementStrategy;
 import placementDescription.PointCut;
+import placementDescription.SelectedCV;
 import placementDescription.impl.ControlFlowPlacementStrategyImpl;
-import featureSolution.impl.BehaviourInclusionImpl;
 import placementDescription.impl.ExternalCallPlacementStrategyImpl;
 import placementDescription.impl.InternalActionPlacementStrategyImpl;
 
@@ -62,7 +55,8 @@ import placementDescription.impl.InternalActionPlacementStrategyImpl;
  *
  * (It is based on the AdapterWeavingStrategy)
  *
- * @author Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
+ * @author Maximilian Eckert (maximilian.eckert@student.kit.edu,
+ *         maxieckert@web.de)
  *
  */
 public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWeaving {
@@ -130,7 +124,7 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 	private List<IWeavingInstruction> instructions;
 
 	// choices for fc solution
-	private Choice solutionChoice;
+	// private Choice solutionChoice;
 	// choices for allocation
 	private List<Choice> allocationChoices;
 	// choices for multiple-flag
@@ -161,33 +155,35 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 	 */
 	@Override
 	public void initialize(List<Pair<ComplementumVisnetis, WeavingLocation>> locations, Choice solutionChoice, List<Choice> allocationChoices) {
-		FCCModule.logger.debug("Initializing Behaviour Weaving Strategy");
+		FCCModule.LOGGER.debug("Initializing Behaviour Weaving Strategy");
 
 		BehaviourStrategyExtension ese = (BehaviourStrategyExtension) WeavingStrategies.BEHAVIOUR.getExtension();
-		
-		//set choices
-		this.solutionChoice = solutionChoice;
-		//allocation choices will be filled after weaving when actually needed allocations are known
-		//this.allocationChoices = new ArrayList<Choice>();
+
+		// set choices
+		// this.solutionChoice = solutionChoice;
+		// allocation choices will be filled after weaving when actually needed
+		// allocations are known
+		// this.allocationChoices = new ArrayList<Choice>();
 		this.allocationChoices = allocationChoices;
 		this.multipleInclusionChoice = ese.multipleInclusionChoice;
 		this.advicePlacementChoices = ese.advicePlacementChoices;
 		this.cvChoices = ese.cvChoices;
-		
-		//set chosen multiple flag
+
+		// set chosen multiple flag
 		if (this.multipleInclusionChoice != null) {
 			this.im.setMultiple(((BoolChoice) this.multipleInclusionChoice).isChosenValue());
 		} else {
 			this.im.setMultiple(false);
 		}
-		
-		//set selected cv choices
+
+		// set selected cv choices
 		this.setSelectedCVs();
 
 		List<IWeavingInstruction> instructions = this.determineInstructions();
 		this.instructions = instructions;
 
-		FCCModule.logger.debug("Initialized " + instructions.size() + " instructions with " + instructions.stream().flatMap(instr -> instr.getWeavingLocations().stream()).count() + " weaving locations");
+		FCCModule.LOGGER
+				.debug("Initialized " + instructions.size() + " instructions with " + instructions.stream().flatMap(instr -> instr.getWeavingLocations().stream()).count() + " weaving locations");
 	}
 
 	private void setSelectedCVs() {
@@ -215,13 +211,13 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 	 * @return all weaving instructions.
 	 */
 	private List<IWeavingInstruction> determineInstructions() {
-		FCCModule.logger.debug("Behaviour Weaving Strategy: Determine Weaving Locations");
-		
+		FCCModule.LOGGER.debug("Behaviour Weaving Strategy: Determine Weaving Locations");
+
 		List<IWeavingInstruction> instructions = new ArrayList<>();
 
 		BehaviourInclusionImpl behaviourIncl = (BehaviourInclusionImpl) this.im;
-		
-		//ig takes care of generating the corresponding weaving instructions
+
+		// ig takes care of generating the corresponding weaving instructions
 		BehaviourInclusionInstructionGenerator ig = new BehaviourInclusionInstructionGenerator(this.psm, new FCCFeatureHandler(this.mrm));
 
 		for (Advice advice : this.getSelectedAdvices()) {
@@ -251,12 +247,12 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 	 */
 	@Override
 	public void weave() throws FCCWeaverException {
-		FCCModule.logger.debug("Behaviour Weaving Strategy: Start Weaving");
+		FCCModule.LOGGER.debug("Behaviour Weaving Strategy: Start Weaving");
 
 		AllocationWeaving allocationWeaving = new AllocationWeaving(this);
 		AssemblyWeaving assemblyWeaving = new AssemblyWeaving(this);
 		RepositoryWeaving repositoryWeaving = new RepositoryWeaving(this);
-		//UsageModelWeaving usageModelWeaving = new UsageModelWeaving(this);
+		// UsageModelWeaving usageModelWeaving = new UsageModelWeaving(this);
 
 		for (IWeavingInstruction instruction : this.instructions) {
 			ServiceEffectSpecificationWeaving seffWeaving = BehaviourWeavingFactory.getBehaviourSeffWeaverBy(instruction.getAdvice().getPointCut().getPlacementStrategy()).apply(this);
@@ -266,13 +262,14 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 			seffWeaving.weave(instruction);
 			assemblyWeaving.weave(instruction);
 			allocationWeaving.weave(instruction);
-			//usageModelWeaving.weave(instruction);
+			// usageModelWeaving.weave(instruction);
 		}
 
-		FCCModule.logger.debug("Behaviour Weaving Strategy: Weaving Finished");
-		//DEBUG print pcm
-//		 savePcmInstanceToFile(pcmToAdapt, "C:/Users/Maxi/git/PerOpteryxPlus/InnerEclipse/SimplePerOpteryx/pcm_debug/pcm_debug");
-		//DEBUG print pcm
+		FCCModule.LOGGER.debug("Behaviour Weaving Strategy: Weaving Finished");
+		// DEBUG print pcm
+		// savePcmInstanceToFile(pcmToAdapt,
+		// "C:/Users/Maxi/git/PerOpteryxPlus/InnerEclipse/SimplePerOpteryx/pcm_debug/pcm_debug");
+		// DEBUG print pcm
 	}
 
 	/**
@@ -307,8 +304,9 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 	}
 
 	/**
-	 * Determine the actual allocations of all inserted components and creates corresponding allocation choices.
-	 * 
+	 * Determine the actual allocations of all inserted components and creates
+	 * corresponding allocation choices.
+	 *
 	 * @return corresponding allocation choices.
 	 */
 	@Override
@@ -316,18 +314,18 @@ public class BehaviourWeavingStrategy implements IWeavingStrategy, IBehaviourWea
 		List<Choice> allocChoices = new ArrayList<>();
 		for (Choice fccClassChoice : this.allocationChoices) {
 			CompletionComponent fcc = (CompletionComponent) fccClassChoice.getDegreeOfFreedomInstance().getPrimaryChanged();
-			AssemblyContext assemblyContext = new FCCStructureHandler(fcc, mrm).getComponentsIntantiatingFCC(fcc, this.psm.getAssemblyContextsBy(context -> true));
-				try {
-					AllocationContext alloc = this.getPCMAllocationManager().getAllocationContextBy(ac -> ac.getAssemblyContext_AllocationContext().getId().equals(assemblyContext.getId())).get();
-					AllocationDegree ad = specificFactoryImpl.init().createAllocationDegree();
-					ad.setPrimaryChanged(alloc);
-					ClassChoice choice = designdecisionFactoryImpl.init().createClassChoice();
-					choice.setDegreeOfFreedomInstance(ad);
-					choice.setChosenValue(((ClassChoice) fccClassChoice).getChosenValue());
-					allocChoices.add(choice);
-				} catch (Exception e) {
-					FCCModule.logger.warn(e.getMessage());
-				}
+			AssemblyContext assemblyContext = new FCCStructureHandler(fcc, this.mrm).getComponentsIntantiatingFCC(fcc, this.psm.getAssemblyContextsBy(context -> true));
+			try {
+				AllocationContext alloc = this.getPCMAllocationManager().getAllocationContextBy(ac -> ac.getAssemblyContext_AllocationContext().getId().equals(assemblyContext.getId())).get();
+				AllocationDegree ad = specificFactoryImpl.init().createAllocationDegree();
+				ad.setPrimaryChanged(alloc);
+				ClassChoice choice = designdecisionFactoryImpl.init().createClassChoice();
+				choice.setDegreeOfFreedomInstance(ad);
+				choice.setChosenValue(((ClassChoice) fccClassChoice).getChosenValue());
+				allocChoices.add(choice);
+			} catch (Exception e) {
+				FCCModule.LOGGER.warn(e.getMessage());
+			}
 		}
 		return allocChoices;
 	}

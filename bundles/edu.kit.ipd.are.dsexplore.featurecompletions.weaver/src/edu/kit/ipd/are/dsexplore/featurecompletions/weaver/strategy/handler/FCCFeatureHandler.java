@@ -16,20 +16,19 @@ import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;
 import FeatureCompletionModel.FeatureCompletion;
 import FeatureCompletionModel.PerimeterProviding;
-
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pair;
 import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager.SolutionManager;
-
 import featureObjective.Feature;
 
 /**
  * This class is responsible to resolve the corresponding provided roles a
  * particular ECC is providing.
  *
- * @author scheerer, Maximilian Eckert (maximilian.eckert@student.kit.edu, maxieckert@web.de)
+ * @author scheerer, Maximilian Eckert (maximilian.eckert@student.kit.edu,
+ *         maxieckert@web.de)
  *
  */
 public class FCCFeatureHandler {
@@ -50,11 +49,11 @@ public class FCCFeatureHandler {
 	 *             - Will be thrown if the ECC is incorrectly annotated.
 	 */
 	public List<ProvidedRole> getProvidedFeaturesOf(CompletionComponent fcc) throws FCCWeaverException {
-		Feature providedFCCFeature = this.getFeatureProvidedBy(fcc);
+		List<Feature> providedFCCFeatures = this.getFeaturesProvidedBy(fcc);
 		List<ProvidedRole> result = new ArrayList<>();
 
 		for (Pair<Entity, ComplementumVisnetis> partAndCV : this.extractProvidedCVs()) {
-			if (!FCCUtil.areEqual(partAndCV.second.getComplementaryFeature(), providedFCCFeature)) {
+			if (!this.hasFeature(partAndCV.second.getComplementaryFeature(), providedFCCFeatures)) {
 				continue;
 			}
 
@@ -63,7 +62,9 @@ public class FCCFeatureHandler {
 					for (ProvidedRole provided : comps.getProvidedRoles_InterfaceProvidingEntity()) {
 						if (provided instanceof OperationProvidedRole) {
 							if (FCCUtil.areEqual(((OperationProvidedRole) provided).getProvidedInterface__OperationProvidedRole(), partAndCV.first)) {
-								result.add(provided);
+								if (!result.contains(provided)) {
+									result.add(provided);
+								}
 							}
 						}
 					}
@@ -74,14 +75,20 @@ public class FCCFeatureHandler {
 					for (ProvidedRole provided : comps.getProvidedRoles_InterfaceProvidingEntity()) {
 						if (provided instanceof OperationProvidedRole) {
 							if (FCCUtil.areEqual(((OperationProvidedRole) provided).getProvidedInterface__OperationProvidedRole(), parentPartAndCVFirst)) {
-								result.add(provided);
+								if (!result.contains(provided)) {
+									result.add(provided);
+								}
 							}
 						}
 					}
 				}
 			} else if (partAndCV.first instanceof RepositoryComponent) {
 				RepositoryComponent rc = (RepositoryComponent) partAndCV.first;
-				result.addAll(rc.getProvidedRoles_InterfaceProvidingEntity());
+				for (ProvidedRole provided : rc.getProvidedRoles_InterfaceProvidingEntity()) {
+					if (!result.contains(provided)) {
+						result.add(provided);
+					}
+				}
 			}
 		}
 
@@ -96,11 +103,23 @@ public class FCCFeatureHandler {
 		return result;
 	}
 
+	private boolean hasFeature(Feature feature, List<Feature> providedFCCFeatures) {
+		for (Feature f : providedFCCFeatures) {
+			if (FCCUtil.areEqual(feature, f)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/**
-	 * Determines the FCC of a FC that offers the specified complementum visnetis via its perimeter provided interface.
-	 * 
-	 * @param selectedCVs the complementum visnetis.
-	 * @param fc the feature completion.
+	 * Determines the FCC of a FC that offers the specified complementum
+	 * visnetis via its perimeter provided interface.
+	 *
+	 * @param selectedCVs
+	 *            the complementum visnetis.
+	 * @param fc
+	 *            the feature completion.
 	 * @return the FCC that offers the specified complementum visnetis.
 	 * @throws FCCWeaverException
 	 */
@@ -110,7 +129,8 @@ public class FCCFeatureHandler {
 
 		for (CompletionComponent fccCurrent : fc.getCompletionComponents()) {
 			List<Feature> providedFeatures = fccCurrent.getPerimeterProviding().getFeatureProviding();
-			//FCC has to provide all selected CVs in order to be the entry point
+			// FCC has to provide all selected CVs in order to be the entry
+			// point
 			if (selectedFeatures.stream().allMatch(selectedFeature -> providedFeatures.stream().anyMatch(providedFeature -> providedFeature.getId().equals(selectedFeature.getId())))) {
 				fcc = fccCurrent;
 				return fcc;
@@ -118,35 +138,41 @@ public class FCCFeatureHandler {
 		}
 		return fcc;
 	}
-	
+
 	/**
-	 * Determines the perimeter provided roles of the solution component for a given fcc.
-	 * 
-	 * @param completionComponent the fcc.
-	 * @param selectedCVs the selected CVs.
-	 * @param fc the fc to be weaved.
+	 * Determines the perimeter provided roles of the solution component for a
+	 * given fcc.
+	 *
+	 * @param completionComponent
+	 *            the fcc.
+	 * @param selectedCVs
+	 *            the selected CVs.
+	 * @param fc
+	 *            the fc to be weaved.
 	 * @return the perimeter provided roles of the solution component.
 	 */
 	public List<OperationSignature> getPerimeterProvidedRolesFor(CompletionComponent completionComponent, List<ComplementumVisnetis> selectedCVs, FeatureCompletion fc) {
 		List<OperationSignature> result = new ArrayList<>();
-		
-		//get solution components fulfilling fcc
+
+		// get solution components fulfilling fcc
 		List<RepositoryComponent> components = this.solutionManager.getAffectedComponentsByFCCList(Arrays.asList(completionComponent));
 		RepositoryComponent component = this.solutionManager.getComponentFullfillingCV(components, selectedCVs);
-		
-		//fulfilled by component
+
+		// fulfilled by component
 		List<ComplementumVisnetis> fullfilledByComponentCVs = StereotypeAPIHelper.getViaStereoTypeFrom(component, ComplementumVisnetis.class);
 		if (SolutionManager.anyCVcontainedInList(fullfilledByComponentCVs, selectedCVs)) {
-			result.addAll(component.getProvidedRoles_InterfaceProvidingEntity().stream().flatMap(role -> ((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface().stream()).collect(Collectors.toList()));
+			result.addAll(component.getProvidedRoles_InterfaceProvidingEntity().stream()
+					.flatMap(role -> ((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole().getSignatures__OperationInterface().stream()).collect(Collectors.toList()));
 		}
-		
-		//fulfilled by interface
-		for (OperationInterface iface : component.getProvidedRoles_InterfaceProvidingEntity().stream().map(role -> ((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole()).collect(Collectors.toList())) {
+
+		// fulfilled by interface
+		for (OperationInterface iface : component.getProvidedRoles_InterfaceProvidingEntity().stream().map(role -> ((OperationProvidedRole) role).getProvidedInterface__OperationProvidedRole())
+				.collect(Collectors.toList())) {
 			List<ComplementumVisnetis> fullfilledByInterfaceCVs = StereotypeAPIHelper.getViaStereoTypeFrom(iface, ComplementumVisnetis.class);
 			if (SolutionManager.anyCVcontainedInList(fullfilledByInterfaceCVs, selectedCVs)) {
 				result.addAll(iface.getSignatures__OperationInterface());
 			}
-			//fulfilled by signature
+			// fulfilled by signature
 			for (OperationSignature sig : iface.getSignatures__OperationInterface()) {
 				List<ComplementumVisnetis> fullfilledBySignatureCVs = StereotypeAPIHelper.getViaStereoTypeFrom(sig, ComplementumVisnetis.class);
 				if (SolutionManager.anyCVcontainedInList(fullfilledBySignatureCVs, selectedCVs)) {
@@ -154,7 +180,7 @@ public class FCCFeatureHandler {
 				}
 			}
 		}
-		
+
 		return result;
 	}
 
@@ -162,15 +188,15 @@ public class FCCFeatureHandler {
 		return FeatureHelper.getCVsFromRepo(this.solutionManager.getRepository());
 	}
 
-	private Feature getFeatureProvidedBy(CompletionComponent fcc) throws FCCWeaverException {
+	private List<Feature> getFeaturesProvidedBy(CompletionComponent fcc) throws FCCWeaverException {
 		PerimeterProviding pp = fcc.getPerimeterProviding();
 		if (pp == null) {
 			throw new FCCWeaverException("No suitable amount of features provided: NIL");
 		}
 		List<Feature> features = pp.getFeatureProviding();
-		if (features.size() != 1) {
+		if (features.size() == 0) {
 			throw new FCCWeaverException("No suitable amount of features provided: " + features.size());
 		}
-		return features.get(0);
+		return features;
 	}
 }

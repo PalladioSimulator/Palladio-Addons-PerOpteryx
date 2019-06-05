@@ -9,7 +9,7 @@ and (maybe later) other useful stuff for a 'newbe' like myself.
 
 # Subprojects
 Don't forget to load subprojects via git (`git submodule update --init`)
-You may need to import some subprojects for developing. These are located in the lib folder. Currently you may need the follwing subprojects:
+You may need to import some subprojects for developing. These are located in the lib folder. Currently you may need the following subprojects:
 * libs/recorderframework/bundles/org.palladiosimulator.recorderframework
 * libs/recorderframework/bundles/org.palladiosimulator.recorderframework.sensorframework
 * libs/solver/bundles/org.palladiosimulator.solver

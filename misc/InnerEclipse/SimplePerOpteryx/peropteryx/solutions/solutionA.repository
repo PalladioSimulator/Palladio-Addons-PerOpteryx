@@ -3,34 +3,53 @@
   <repository:Repository id="_FS8AUJmYEeeDvYNI8KVQWQ" entityName="SolutionARepo" repositoryDescription="">
     <components__Repository xsi:type="repository:BasicComponent" id="_JHQmgJmYEeeDvYNI8KVQWQ" entityName="ComponentA_SolA">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_bgFX8JmYEeeDvYNI8KVQWQ" entityName="Provided_CompA_ComponentA_SolA" providedInterface__OperationProvidedRole="_VwU_0JmYEeeDvYNI8KVQWQ"/>
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_FAn7sEqSEemV5-x5o5KlRg" entityName="Provided_CompA2_ComponentA_SolA" providedInterface__OperationProvidedRole="_DOMUwEqSEemV5-x5o5KlRg"/>
       <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_h4MJgJmYEeeDvYNI8KVQWQ" entityName="Required_CompB_ComponentA_SolA" requiredInterface__OperationRequiredRole="_XdP0oJmYEeeDvYNI8KVQWQ"/>
       <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_2jYUQJmaEee4PoOYbWOA6A" describedService__SEFF="_yAD6EJmaEee4PoOYbWOA6A">
         <steps_Behaviour xsi:type="seff:StartAction" id="_3QrfIJmaEee4PoOYbWOA6A" entityName="start" successor_AbstractAction="_yvRgkH8EEeiQyp7aPIMdmQ"/>
-        <steps_Behaviour xsi:type="seff:StopAction" id="_3QrfIZmaEee4PoOYbWOA6A" entityName="stop" predecessor_AbstractAction="_yvRgkH8EEeiQyp7aPIMdmQ"/>
-        <steps_Behaviour xsi:type="seff:InternalAction" id="_yvRgkH8EEeiQyp7aPIMdmQ" entityName="VeryImpressive" predecessor_AbstractAction="_3QrfIJmaEee4PoOYbWOA6A" successor_AbstractAction="_3QrfIZmaEee4PoOYbWOA6A">
+        <steps_Behaviour xsi:type="seff:StopAction" id="_3QrfIZmaEee4PoOYbWOA6A" entityName="stop" predecessor_AbstractAction="_iMt1sNylEeiTJZm3LCkAhg"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_yvRgkH8EEeiQyp7aPIMdmQ" entityName="VeryImpressive" predecessor_AbstractAction="_3QrfIJmaEee4PoOYbWOA6A" successor_AbstractAction="_iMt1sNylEeiTJZm3LCkAhg">
           <resourceDemand_Action>
             <specification_ParametericResourceDemand specification="1000"/>
             <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
           </resourceDemand_Action>
         </steps_Behaviour>
+        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_iMt1sNylEeiTJZm3LCkAhg" predecessor_AbstractAction="_yvRgkH8EEeiQyp7aPIMdmQ" successor_AbstractAction="_3QrfIZmaEee4PoOYbWOA6A" calledService_ExternalService="_0fph8JmaEee4PoOYbWOA6A" role_ExternalService="_h4MJgJmYEeeDvYNI8KVQWQ"/>
+      </serviceEffectSpecifications__BasicComponent>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_IYTpMEqSEemV5-x5o5KlRg" describedService__SEFF="_F6EsMEqSEemV5-x5o5KlRg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_JZPhwEqSEemV5-x5o5KlRg" entityName="start" successor_AbstractAction="_JZPhwUqSEemV5-x5o5KlRg"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_JZPhwUqSEemV5-x5o5KlRg" entityName="stop" predecessor_AbstractAction="_JZPhwEqSEemV5-x5o5KlRg"/>
+      </serviceEffectSpecifications__BasicComponent>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_JzueUEqSEemV5-x5o5KlRg" describedService__SEFF="_HZiT0EqSEemV5-x5o5KlRg">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_KTeVYEqSEemV5-x5o5KlRg" entityName="start" successor_AbstractAction="_KTeVYUqSEemV5-x5o5KlRg"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_KTeVYUqSEemV5-x5o5KlRg" entityName="stop" predecessor_AbstractAction="_KTeVYEqSEemV5-x5o5KlRg"/>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
     <components__Repository xsi:type="repository:BasicComponent" id="_UUrhMJmYEeeDvYNI8KVQWQ" entityName="ComponentB_SolA">
       <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_cIxIkJmYEeeDvYNI8KVQWQ" entityName="Provided_CompB_ComponentB_SolB" providedInterface__OperationProvidedRole="_XdP0oJmYEeeDvYNI8KVQWQ"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_EkKFINyUEeiZBZaG2slbHw" entityName="Required_ComplementumInFC_ComponentB_SolA" requiredInterface__OperationRequiredRole="_BTSxUNyUEeiZBZaG2slbHw"/>
       <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_5qTo8JmaEee4PoOYbWOA6A" describedService__SEFF="_0fph8JmaEee4PoOYbWOA6A">
-        <steps_Behaviour xsi:type="seff:StartAction" id="_6F4KoJmaEee4PoOYbWOA6A" entityName="start" successor_AbstractAction="_6F4KoZmaEee4PoOYbWOA6A"/>
-        <steps_Behaviour xsi:type="seff:StopAction" id="_6F4KoZmaEee4PoOYbWOA6A" entityName="stop" predecessor_AbstractAction="_6F4KoJmaEee4PoOYbWOA6A"/>
+        <steps_Behaviour xsi:type="seff:StartAction" id="_6F4KoJmaEee4PoOYbWOA6A" entityName="start" successor_AbstractAction="_IJrxoNylEeiTJZm3LCkAhg"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_6F4KoZmaEee4PoOYbWOA6A" entityName="stop" predecessor_AbstractAction="_IJrxoNylEeiTJZm3LCkAhg"/>
+        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_IJrxoNylEeiTJZm3LCkAhg" predecessor_AbstractAction="_6F4KoJmaEee4PoOYbWOA6A" successor_AbstractAction="_6F4KoZmaEee4PoOYbWOA6A" calledService_ExternalService="_C92OoNyUEeiZBZaG2slbHw" role_ExternalService="_EkKFINyUEeiZBZaG2slbHw"/>
       </serviceEffectSpecifications__BasicComponent>
     </components__Repository>
     <interfaces__Repository xsi:type="repository:OperationInterface" id="_VwU_0JmYEeeDvYNI8KVQWQ" entityName="CompA">
       <signatures__OperationInterface id="_yAD6EJmaEee4PoOYbWOA6A" entityName="a">
         <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
       </signatures__OperationInterface>
+      <signatures__OperationInterface id="_F6EsMEqSEemV5-x5o5KlRg" entityName="b"/>
     </interfaces__Repository>
     <interfaces__Repository xsi:type="repository:OperationInterface" id="_XdP0oJmYEeeDvYNI8KVQWQ" entityName="CompB">
       <signatures__OperationInterface id="_0fph8JmaEee4PoOYbWOA6A" entityName="b">
         <returnType__OperationSignature xsi:type="repository:PrimitiveDataType" href="pathmap://PCM_MODELS/PrimitiveTypes.repository#//@dataTypes__Repository.2"/>
       </signatures__OperationInterface>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_BTSxUNyUEeiZBZaG2slbHw" entityName="ComplementumInFC">
+      <signatures__OperationInterface id="_C92OoNyUEeiZBZaG2slbHw" entityName="testAtFC"/>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_DOMUwEqSEemV5-x5o5KlRg" entityName="CompA2">
+      <signatures__OperationInterface id="_HZiT0EqSEemV5-x5o5KlRg" entityName="a2"/>
     </interfaces__Repository>
   </repository:Repository>
   <emfprofileapplication:ProfileApplication>
@@ -50,8 +69,12 @@
       <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_K5dvwBfjEeixnp8iZNZNhA"/>
       <realizes href="../FCompletion.featurecompletion#_X-aVoCeuEeiIeo5GuXQT1g"/>
     </stereotypeApplications>
-    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_VwU_0JmYEeeDvYNI8KVQWQ">
-      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqanYVEeirzP2CXhR6Fg"/>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:requiresComplementum" appliedTo="_BTSxUNyUEeiZBZaG2slbHw">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uEmRYnYVEeirzP2CXhR6Fg"/>
+      <requires href="../FCompletion.featurecompletion#_OtMnIdyTEeiZBZaG2slbHw"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_yAD6EJmaEee4PoOYbWOA6A">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaXYVEeirzP2CXhR6Fg"/>
       <fulfills href="../FCompletion.featurecompletion#_uj5UwieuEeiIeo5GuXQT1g"/>
     </stereotypeApplications>
     <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/resource/FeatureCompletionProfile/completion.emfprofile_diagram"/>

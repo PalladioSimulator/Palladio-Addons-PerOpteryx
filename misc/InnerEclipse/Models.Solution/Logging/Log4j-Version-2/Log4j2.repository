@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FeatureCompletionProfile="http://are.ipd.kit.edu/FeatureCompletionProfile" xmlns:emfprofileapplication="http://www.modelversioning.org/emfprofile/application/1.1" xmlns:repository="http://palladiosimulator.org/PalladioComponentModel/Repository/5.2" xmlns:seff="http://palladiosimulator.org/PalladioComponentModel/SEFF/5.2">
+  <repository:Repository id="_xrUmkHueEeiQ2-JKBP-N_g" entityName="Log4j2" repositoryDescription="">
+    <components__Repository xsi:type="repository:BasicComponent" id="_sabowPiZEeeT85tFTnTIqQ" entityName="XMLFormatting">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_-JwKMPiZEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Format" providedInterface__OperationProvidedRole="_t3dn0OfMEeeT85tFTnTIqQ"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_-JwKMfiZEeeT85tFTnTIqQ" describedService__SEFF="_m_hDIOfNEeeT85tFTnTIqQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_-JwKMviZEeeT85tFTnTIqQ" successor_AbstractAction="_FHBs0PkzEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_-JwKM_iZEeeT85tFTnTIqQ" predecessor_AbstractAction="_FHBs0PkzEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_FHBs0PkzEeeT85tFTnTIqQ" entityName="format XML layout" predecessor_AbstractAction="_-JwKMviZEeeT85tFTnTIqQ" successor_AbstractAction="_-JwKM_iZEeeT85tFTnTIqQ">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="DoublePMF[(385200.0; 0.999959)(9630000.0; 0.00003)(1.605E7; 0.000008)(2.568E7; 0.000002)]"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_JKkMoOfNEeeT85tFTnTIqQ" entityName="Logging">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_gOiekOfNEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Log" providedInterface__OperationProvidedRole="_jgVb8OfMEeeT85tFTnTIqQ"/>
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_Y6hNkBnaEemiorxBpJTCRg" entityName="Provided_IFiltLog_Log4j2Logger" providedInterface__OperationProvidedRole="_WLOVwBnaEemiorxBpJTCRg"/>
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_vNSFABnaEemiorxBpJTCRg" entityName="Provided_IFormLog_Log4j2Logger" providedInterface__OperationProvidedRole="_t7VU8BnaEemiorxBpJTCRg"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_jGwo4OfNEeeT85tFTnTIqQ" entityName="OperationRequiredRole_Append" requiredInterface__OperationRequiredRole="_qdZ7wOfMEeeT85tFTnTIqQ"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_gOsPkOfNEeeT85tFTnTIqQ" describedService__SEFF="_oRT3oOfMEeeT85tFTnTIqQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_gOsPkefNEeeT85tFTnTIqQ" successor_AbstractAction="_XzCVcPkyEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_gOsPkufNEeeT85tFTnTIqQ" predecessor_AbstractAction="_qHwioPk1EeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_XzCVcPkyEeeT85tFTnTIqQ" entityName="log intenal" predecessor_AbstractAction="_gOsPkefNEeeT85tFTnTIqQ" successor_AbstractAction="_qHwioPk1EeeT85tFTnTIqQ">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="32000"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_qHwioPk1EeeT85tFTnTIqQ" entityName="call append" predecessor_AbstractAction="_XzCVcPkyEeeT85tFTnTIqQ" successor_AbstractAction="_gOsPkufNEeeT85tFTnTIqQ" calledService_ExternalService="_mI0rsOfNEeeT85tFTnTIqQ" role_ExternalService="_jGwo4OfNEeeT85tFTnTIqQ"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_ndiTsLAyEei9-ucuJtAM2g" entityName="LocationInfoLogger">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_tp0P2LAyEei9-ucuJtAM2g" entityName="OperationProvidedRole_Log" providedInterface__OperationProvidedRole="_jgVb8OfMEeeT85tFTnTIqQ"/>
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_Yd1RkBnaEemiorxBpJTCRg" entityName="Provided_IFiltLog_Log4j2LocationInfoLogger" providedInterface__OperationProvidedRole="_WLOVwBnaEemiorxBpJTCRg"/>
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_v8CBYBnaEemiorxBpJTCRg" entityName="Provided_IFormLog_Log4j2LocationInfoLogger" providedInterface__OperationProvidedRole="_t7VU8BnaEemiorxBpJTCRg"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_uFk-tbAyEei9-ucuJtAM2g" entityName="OperationRequiredRole_Append" requiredInterface__OperationRequiredRole="_qdZ7wOfMEeeT85tFTnTIqQ"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_DXYlN5tHEeiYReZFY0WRHg" describedService__SEFF="_oRT3oOfMEeeT85tFTnTIqQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_Bcg-gptIEeiYReZFY0WRHg" successor_AbstractAction="_CJQIvJtIEeiYReZFY0WRHg"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_CJQIvJtIEeiYReZFY0WRHg" entityName="locationlog internal" predecessor_AbstractAction="_Bcg-gptIEeiYReZFY0WRHg" successor_AbstractAction="_C4AFFptIEeiYReZFY0WRHg">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="64000"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_C4AFFptIEeiYReZFY0WRHg" entityName="call appendl" predecessor_AbstractAction="_CJQIvJtIEeiYReZFY0WRHg" successor_AbstractAction="_DoyBwJtIEeiYReZFY0WRHg" calledService_ExternalService="_mI0rsOfNEeeT85tFTnTIqQ" role_ExternalService="_uFk-tbAyEei9-ucuJtAM2g"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_DoyBwJtIEeiYReZFY0WRHg" predecessor_AbstractAction="_C4AFFptIEeiYReZFY0WRHg"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_PA5G0OfNEeeT85tFTnTIqQ" entityName="ConsoleAppending">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_qUwgoOfNEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Append" providedInterface__OperationProvidedRole="_qdZ7wOfMEeeT85tFTnTIqQ"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_jld-IOfNEeeT85tFTnTIqQ" entityName="OperationRequiredRole_Format" requiredInterface__OperationRequiredRole="_t3dn0OfMEeeT85tFTnTIqQ"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_jqAZoBnbEemiorxBpJTCRg" entityName="Required_IFilter_ConsoleAppending" requiredInterface__OperationRequiredRole="_aX58IBnbEemiorxBpJTCRg"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_qUwgoefNEeeT85tFTnTIqQ" describedService__SEFF="_mI0rsOfNEeeT85tFTnTIqQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_qUwgoufNEeeT85tFTnTIqQ" successor_AbstractAction="_qzyCgPkyEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_qUwgo-fNEeeT85tFTnTIqQ" predecessor_AbstractAction="_K8a9cPk0EeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_qzyCgPkyEeeT85tFTnTIqQ" entityName="append internal" predecessor_AbstractAction="_qUwgoufNEeeT85tFTnTIqQ" successor_AbstractAction="_rdsiMPkyEeeT85tFTnTIqQ">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="80000"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_rdsiMPkyEeeT85tFTnTIqQ" entityName="call format" predecessor_AbstractAction="_qzyCgPkyEeeT85tFTnTIqQ" successor_AbstractAction="_K8a9cPk0EeeT85tFTnTIqQ" calledService_ExternalService="_m_hDIOfNEeeT85tFTnTIqQ" role_ExternalService="_jld-IOfNEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_K8a9cPk0EeeT85tFTnTIqQ" entityName="write to console" predecessor_AbstractAction="_rdsiMPkyEeeT85tFTnTIqQ" successor_AbstractAction="_qUwgo-fNEeeT85tFTnTIqQ">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="DoublePMF[(28890.0; 0.999964)(3210000.0; 0.000035)(6420000.0; 0.000001)]"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_QldQ4OfNEeeT85tFTnTIqQ" entityName="PatternFormatting">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_q9bDIOfNEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Format" providedInterface__OperationProvidedRole="_t3dn0OfMEeeT85tFTnTIqQ"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_q9bqMOfNEeeT85tFTnTIqQ" describedService__SEFF="_m_hDIOfNEeeT85tFTnTIqQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_q9bqMefNEeeT85tFTnTIqQ" successor_AbstractAction="_CTGMoPkzEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_q9bqMufNEeeT85tFTnTIqQ" predecessor_AbstractAction="_CTGMoPkzEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_CTGMoPkzEeeT85tFTnTIqQ" entityName="format pattern layout" predecessor_AbstractAction="_q9bqMefNEeeT85tFTnTIqQ" successor_AbstractAction="_q9bqMufNEeeT85tFTnTIqQ">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="DoublePMF[(205440.0; 0.999769)(3210000.0; 0.000213)(6420000.0; 0.000012)(9630000.0; 0.000003)(1.284E7; 0.000002)(1.605E7; 0.000001)]"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_xaIRkO8EEeeT85tFTnTIqQ" entityName="SQLAppending">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_IG8nwO8FEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Append" providedInterface__OperationProvidedRole="_qdZ7wOfMEeeT85tFTnTIqQ"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_DDQrcO8FEeeT85tFTnTIqQ" entityName="OperationRequiredRole_Format" requiredInterface__OperationRequiredRole="_t3dn0OfMEeeT85tFTnTIqQ"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_ioae0O8GEeeT85tFTnTIqQ" entityName="OperationRequiredRole_Database" requiredInterface__OperationRequiredRole="_QT0ikO8FEeeT85tFTnTIqQ"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_IHPisO8FEeeT85tFTnTIqQ" describedService__SEFF="_mI0rsOfNEeeT85tFTnTIqQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_IHPise8FEeeT85tFTnTIqQ" successor_AbstractAction="_btBewPkyEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_IHPisu8FEeeT85tFTnTIqQ" predecessor_AbstractAction="_dk-e4PkyEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_btBewPkyEeeT85tFTnTIqQ" entityName="append internal" predecessor_AbstractAction="_IHPise8FEeeT85tFTnTIqQ" successor_AbstractAction="_co0_sPkyEeeT85tFTnTIqQ">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="80000"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_co0_sPkyEeeT85tFTnTIqQ" entityName="call format" predecessor_AbstractAction="_btBewPkyEeeT85tFTnTIqQ" successor_AbstractAction="_0em6MP-iEeeT85tFTnTIqQ" calledService_ExternalService="_m_hDIOfNEeeT85tFTnTIqQ" role_ExternalService="_DDQrcO8FEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_dk-e4PkyEeeT85tFTnTIqQ" entityName="write to db" predecessor_AbstractAction="_0em6MP-iEeeT85tFTnTIqQ" successor_AbstractAction="_IHPisu8FEeeT85tFTnTIqQ" calledService_ExternalService="_TzUIQO8FEeeT85tFTnTIqQ" role_ExternalService="_ioae0O8GEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_0em6MP-iEeeT85tFTnTIqQ" entityName="db write overhead" predecessor_AbstractAction="_co0_sPkyEeeT85tFTnTIqQ" successor_AbstractAction="_dk-e4PkyEeeT85tFTnTIqQ">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="DoublePMF[(2210000.0; 0.1476)(5420000.0; 0.7765)(8630000.0; 0.0281)(1.184E7; 0.0098)(1.505E7; 0.0267)(1.826E7; 0.0077)(2.147E7; 0.0012)(2.468E7; 0.0017)(2.789E7; 0.0004)(3.11E7; 0.0003)]"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_o-0S8PiYEeeT85tFTnTIqQ" entityName="FileAppending">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_7LcbcPiYEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Append" providedInterface__OperationProvidedRole="_qdZ7wOfMEeeT85tFTnTIqQ"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_6CJ4IPiYEeeT85tFTnTIqQ" entityName="OperationRequiredRole_Format" requiredInterface__OperationRequiredRole="_t3dn0OfMEeeT85tFTnTIqQ"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_kEVlMBnbEemiorxBpJTCRg" entityName="Required_IFilter_FileAppending" requiredInterface__OperationRequiredRole="_aX58IBnbEemiorxBpJTCRg"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_7LdCgPiYEeeT85tFTnTIqQ" describedService__SEFF="_mI0rsOfNEeeT85tFTnTIqQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_7LdCgfiYEeeT85tFTnTIqQ" successor_AbstractAction="_kTm6EPkyEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_7LdCgviYEeeT85tFTnTIqQ" predecessor_AbstractAction="_FbdPQPk0EeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_kTm6EPkyEeeT85tFTnTIqQ" entityName="append internal" predecessor_AbstractAction="_7LdCgfiYEeeT85tFTnTIqQ" successor_AbstractAction="_lC63IPkyEeeT85tFTnTIqQ">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="80000"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_lC63IPkyEeeT85tFTnTIqQ" entityName="call format" predecessor_AbstractAction="_kTm6EPkyEeeT85tFTnTIqQ" successor_AbstractAction="_FbdPQPk0EeeT85tFTnTIqQ" calledService_ExternalService="_m_hDIOfNEeeT85tFTnTIqQ" role_ExternalService="_6CJ4IPiYEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_FbdPQPk0EeeT85tFTnTIqQ" entityName="write to file" predecessor_AbstractAction="_lC63IPkyEeeT85tFTnTIqQ" successor_AbstractAction="_7LdCgviYEeeT85tFTnTIqQ">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="DoublePMF[(28890.0; 0.999952)(3210000.0; 0.000032)(6420000.0; 0.000015)(9630000.0; 0.000001)]"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_FfgFMPiZEeeT85tFTnTIqQ" entityName="NoSQLAppending">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_L_vfEPiZEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Append" providedInterface__OperationProvidedRole="_qdZ7wOfMEeeT85tFTnTIqQ"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_K2_HQPiZEeeT85tFTnTIqQ" entityName="OperationRequiredRole_Format" requiredInterface__OperationRequiredRole="_t3dn0OfMEeeT85tFTnTIqQ"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_XKwmAPiZEeeT85tFTnTIqQ" entityName="OperationRequiredRole_Database" requiredInterface__OperationRequiredRole="_O5moIPiZEeeT85tFTnTIqQ"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_L_wGIPiZEeeT85tFTnTIqQ" describedService__SEFF="_mI0rsOfNEeeT85tFTnTIqQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_L_wGIfiZEeeT85tFTnTIqQ" successor_AbstractAction="_v07BIPkyEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_L_wGIviZEeeT85tFTnTIqQ" predecessor_AbstractAction="_xbVlUPkyEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_v07BIPkyEeeT85tFTnTIqQ" entityName="append internal" predecessor_AbstractAction="_L_wGIfiZEeeT85tFTnTIqQ" successor_AbstractAction="_wfkgoPkyEeeT85tFTnTIqQ">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="80000"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_wfkgoPkyEeeT85tFTnTIqQ" entityName="call format" predecessor_AbstractAction="_v07BIPkyEeeT85tFTnTIqQ" successor_AbstractAction="_xbVlUPkyEeeT85tFTnTIqQ" calledService_ExternalService="_m_hDIOfNEeeT85tFTnTIqQ" role_ExternalService="_K2_HQPiZEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:ExternalCallAction" id="_xbVlUPkyEeeT85tFTnTIqQ" entityName="write to db" predecessor_AbstractAction="_wfkgoPkyEeeT85tFTnTIqQ" successor_AbstractAction="_L_wGIviZEeeT85tFTnTIqQ" calledService_ExternalService="_RUYBcPiZEeeT85tFTnTIqQ" role_ExternalService="_XKwmAPiZEeeT85tFTnTIqQ"/>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_gxjhIPiZEeeT85tFTnTIqQ" entityName="CSVFormatting">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_80Zg0PiZEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Format" providedInterface__OperationProvidedRole="_t3dn0OfMEeeT85tFTnTIqQ"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_80aH4PiZEeeT85tFTnTIqQ" describedService__SEFF="_m_hDIOfNEeeT85tFTnTIqQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_80aH4fiZEeeT85tFTnTIqQ" successor_AbstractAction="_7oIJcPkyEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_80aH4viZEeeT85tFTnTIqQ" predecessor_AbstractAction="_7oIJcPkyEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_7oIJcPkyEeeT85tFTnTIqQ" entityName="format CSV layout" predecessor_AbstractAction="_80aH4fiZEeeT85tFTnTIqQ" successor_AbstractAction="_80aH4viZEeeT85tFTnTIqQ">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="DoublePMF[(513600.0; 0.9983)(1605000.0; 0.0011)(3210000.0; 0.00044)(6420000.0; 0.00013)(9630000.0; 0.00002)(1.284E7; 0.00001)]"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_m8VBUPiZEeeT85tFTnTIqQ" entityName="JSONFormatting">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_9cSAMPiZEeeT85tFTnTIqQ" entityName="OperationProvidedRole_Format" providedInterface__OperationProvidedRole="_t3dn0OfMEeeT85tFTnTIqQ"/>
+      <serviceEffectSpecifications__BasicComponent xsi:type="seff:ResourceDemandingSEFF" id="_9cSnQPiZEeeT85tFTnTIqQ" describedService__SEFF="_m_hDIOfNEeeT85tFTnTIqQ">
+        <steps_Behaviour xsi:type="seff:StartAction" id="_9cSnQfiZEeeT85tFTnTIqQ" successor_AbstractAction="_-yksMPkyEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:StopAction" id="_9cSnQviZEeeT85tFTnTIqQ" predecessor_AbstractAction="_-yksMPkyEeeT85tFTnTIqQ"/>
+        <steps_Behaviour xsi:type="seff:InternalAction" id="_-yksMPkyEeeT85tFTnTIqQ" entityName="format JSON layout" predecessor_AbstractAction="_9cSnQfiZEeeT85tFTnTIqQ" successor_AbstractAction="_9cSnQviZEeeT85tFTnTIqQ">
+          <resourceDemand_Action>
+            <specification_ParametericResourceDemand specification="DoublePMF[(353100.0; 0.999939)(6420000.0; 0.000047)(1.605E7; 0.000011)(2.247E7; 0.000002)(3.21E7; 0.000001)]"/>
+            <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
+          </resourceDemand_Action>
+        </steps_Behaviour>
+      </serviceEffectSpecifications__BasicComponent>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_ctLKYBnbEemiorxBpJTCRg" entityName="ThresholdFiltering">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_gJYykBnbEemiorxBpJTCRg" entityName="Provided_IFilter_ThresholdFiltering" providedInterface__OperationProvidedRole="_aX58IBnbEemiorxBpJTCRg"/>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_eaFYIBnbEemiorxBpJTCRg" entityName="TimeFiltering">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_g1UrgBnbEemiorxBpJTCRg" entityName="Provided_IFilter_TimeFiltering" providedInterface__OperationProvidedRole="_aX58IBnbEemiorxBpJTCRg"/>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_CpqlMBnbEemiorxBpJTCRg" entityName="AsyncLogging">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_F51VcBnbEemiorxBpJTCRg" entityName="Provided_IAsyncLogging_AsyncLogging" providedInterface__OperationProvidedRole="_elOtoBnaEemiorxBpJTCRg"/>
+    </components__Repository>
+    <components__Repository xsi:type="repository:BasicComponent" id="_94xMkBnbEemiorxBpJTCRg" entityName="MessageQueueAppending">
+      <providedRoles_InterfaceProvidingEntity xsi:type="repository:OperationProvidedRole" id="_ARleEBncEemiorxBpJTCRg" entityName="Provided_IAppend_MessageQueueAppending" providedInterface__OperationProvidedRole="_qdZ7wOfMEeeT85tFTnTIqQ"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_DYin8BncEemiorxBpJTCRg" entityName="Required_IMessageQueue_MessageQueueAppending" requiredInterface__OperationRequiredRole="_63l6kBnbEemiorxBpJTCRg"/>
+      <requiredRoles_InterfaceRequiringEntity xsi:type="repository:OperationRequiredRole" id="_FY7yYBncEemiorxBpJTCRg" entityName="Required_IFormat_MessageQueueAppending" requiredInterface__OperationRequiredRole="_t3dn0OfMEeeT85tFTnTIqQ"/>
+    </components__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_jgVb8OfMEeeT85tFTnTIqQ" entityName="ILogging">
+      <signatures__OperationInterface id="_oRT3oOfMEeeT85tFTnTIqQ" entityName="log"/>
+      <signatures__OperationInterface id="_4syDsJtGEeiYReZFY0WRHg" entityName="locationInfoLog"/>
+      <signatures__OperationInterface id="_zI0GcBnaEemiorxBpJTCRg" entityName="toConsole"/>
+      <signatures__OperationInterface id="_0h1H0BnaEemiorxBpJTCRg" entityName="toSQL"/>
+      <signatures__OperationInterface id="_1ZqHsBnaEemiorxBpJTCRg" entityName="toNoSQL"/>
+      <signatures__OperationInterface id="_5nG_kBnaEemiorxBpJTCRg" entityName="toMessageQueue"/>
+      <signatures__OperationInterface id="_AHGh0BnbEemiorxBpJTCRg" entityName="locationInfoLog"/>
+      <signatures__OperationInterface id="_o4j-4CCOEem0PoJQXq_r6Q" entityName="toFile"/>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_qdZ7wOfMEeeT85tFTnTIqQ" entityName="IAppend">
+      <signatures__OperationInterface id="_mI0rsOfNEeeT85tFTnTIqQ" entityName="append"/>
+      <signatures__OperationInterface id="_VLjMABnbEemiorxBpJTCRg" entityName="filteredAppend"/>
+      <signatures__OperationInterface id="_Wd8A8BnbEemiorxBpJTCRg" entityName="formattedAppend"/>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_t3dn0OfMEeeT85tFTnTIqQ" entityName="IFormat">
+      <signatures__OperationInterface id="_m_hDIOfNEeeT85tFTnTIqQ" entityName="format"/>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_QT0ikO8FEeeT85tFTnTIqQ" entityName="ISQLDatabase">
+      <signatures__OperationInterface id="_TzUIQO8FEeeT85tFTnTIqQ" entityName="SQLwrite"/>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_O5moIPiZEeeT85tFTnTIqQ" entityName="INoSQLDatabase">
+      <signatures__OperationInterface id="_RUYBcPiZEeeT85tFTnTIqQ" entityName="NoSQLwrite"/>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_WLOVwBnaEemiorxBpJTCRg" entityName="IFiltLog">
+      <signatures__OperationInterface id="_2flzYJtGEeiYReZFY0WRHg" entityName="filteredLog"/>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_elOtoBnaEemiorxBpJTCRg" entityName="IAsyncLogging">
+      <signatures__OperationInterface id="_INBgEBnbEemiorxBpJTCRg" entityName="asyncLog"/>
+      <signatures__OperationInterface id="_JjT9kBnbEemiorxBpJTCRg" entityName="locationInfoAsyncLog"/>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_t7VU8BnaEemiorxBpJTCRg" entityName="IFormLog">
+      <signatures__OperationInterface id="_wxRnUBnaEemiorxBpJTCRg" entityName="format"/>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_aX58IBnbEemiorxBpJTCRg" entityName="IFilter">
+      <signatures__OperationInterface id="_hUvLYBnbEemiorxBpJTCRg" entityName="filtering"/>
+    </interfaces__Repository>
+    <interfaces__Repository xsi:type="repository:OperationInterface" id="_63l6kBnbEemiorxBpJTCRg" entityName="IMessageQueue">
+      <signatures__OperationInterface id="_73KhMBnbEemiorxBpJTCRg" entityName="push"/>
+    </interfaces__Repository>
+  </repository:Repository>
+  <emfprofileapplication:ProfileApplication>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_zI0GcBnaEemiorxBpJTCRg">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaXYVEeirzP2CXhR6Fg"/>
+      <fulfills href="../Logging.featurecompletion#_tGBoc-TaEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_0h1H0BnaEemiorxBpJTCRg">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaXYVEeirzP2CXhR6Fg"/>
+      <fulfills href="../Logging.featurecompletion#_Lb-cgeWGEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_1ZqHsBnaEemiorxBpJTCRg">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaXYVEeirzP2CXhR6Fg"/>
+      <fulfills href="../Logging.featurecompletion#_MX218eWGEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_5nG_kBnaEemiorxBpJTCRg">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaXYVEeirzP2CXhR6Fg"/>
+      <fulfills href="../Logging.featurecompletion#_fvBSYiCMEem0PoJQXq_r6Q"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_wxRnUBnaEemiorxBpJTCRg">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaXYVEeirzP2CXhR6Fg"/>
+      <fulfills href="../Logging.featurecompletion#_1XUJMeTaEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_INBgEBnbEemiorxBpJTCRg">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaXYVEeirzP2CXhR6Fg"/>
+      <fulfills href="../Logging.featurecompletion#_NXczQiCOEem0PoJQXq_r6Q"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_2flzYJtGEeiYReZFY0WRHg">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaXYVEeirzP2CXhR6Fg"/>
+      <fulfills href="../Logging.featurecompletion#_IpczEiCOEem0PoJQXq_r6Q"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:requiresComplementum" appliedTo="_QT0ikO8FEeeT85tFTnTIqQ">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uEmRYnYVEeirzP2CXhR6Fg"/>
+      <requires href="../Logging.featurecompletion#_RVapIOZXEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:requiresComplementum" appliedTo="_O5moIPiZEeeT85tFTnTIqQ">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uEmRYnYVEeirzP2CXhR6Fg"/>
+      <requires href="../Logging.featurecompletion#_c0hwwOZXEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:requiresComplementum" appliedTo="_63l6kBnbEemiorxBpJTCRg">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uEmRYnYVEeirzP2CXhR6Fg"/>
+      <requires href="../Logging.featurecompletion#_OamZsSCLEem0PoJQXq_r6Q"/>
+    </stereotypeApplications>
+    <stereotypeApplications xsi:type="FeatureCompletionProfile:fulfillsComplementumVisnetis" appliedTo="_o4j-4CCOEem0PoJQXq_r6Q">
+      <extension href="../../../FeatureCompletionProfile/completion.emfprofile_diagram#_uElqaXYVEeirzP2CXhR6Fg"/>
+      <fulfills href="../Logging.featurecompletion#_JysxkeWGEeeT85tFTnTIqQ"/>
+    </stereotypeApplications>
+    <importedProfiles nsURI="http://are.ipd.kit.edu/FeatureCompletionProfile" location="platform:/plugin/FeatureCompletionProfile/completion.emfprofile_diagram"/>
+  </emfprofileapplication:ProfileApplication>
+</xmi:XMI>

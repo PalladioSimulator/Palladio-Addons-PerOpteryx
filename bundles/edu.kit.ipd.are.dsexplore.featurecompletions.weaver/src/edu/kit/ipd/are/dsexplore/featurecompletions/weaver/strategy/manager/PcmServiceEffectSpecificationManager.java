@@ -2,6 +2,7 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.manager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -49,6 +50,12 @@ public class PcmServiceEffectSpecificationManager {
 	 *            - The SEFF which is going to be added to a given component.
 	 */
 	public void addServiceEffectSpecificationTo(BasicComponent component, ServiceEffectSpecification seff) {
+		for (ServiceEffectSpecification s : component.getServiceEffectSpecifications__BasicComponent()) {
+			if (Objects.equals(seff.getDescribedService__SEFF().getId(), s.getDescribedService__SEFF().getId())) {
+				// Dont add seff iff already described.
+				return;
+			}
+		}
 		component.getServiceEffectSpecifications__BasicComponent().add(seff);
 	}
 
