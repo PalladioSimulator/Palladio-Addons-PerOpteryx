@@ -25,7 +25,12 @@ Require-Bundle: org.eclipse.ui,
  org.palladiosimulator.solver.context;bundle-version="2.0.0",
  org.palladiosimulator.simulizar;bundle-version="2.1.0",
  org.palladiosimulator.simulizar.ui;bundle-version="2.0.0",
- de.uka.ipd.sdq.workflow.mdsd
+ de.uka.ipd.sdq.workflow.mdsd,
+ de.uka.ipd.sdq.codegen.simucontroller,
+ de.uka.ipd.sdq.simulation,
+ org.palladiosimulator.edp2.dao,
+ org.palladiosimulator.edp2.util,
+ org.palladiosimulator.edp2
 Bundle-ActivationPolicy: lazy
 Export-Package: de.uka.ipd.sdq.dsexplore.analysis.simulizar
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
