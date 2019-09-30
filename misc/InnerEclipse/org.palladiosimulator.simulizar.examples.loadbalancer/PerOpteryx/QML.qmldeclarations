@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QMLDeclarations:QMLDeclarations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QMLContract="http:///QMLContract.ecore" xmlns:QMLContractType="http:///QMLContractType.ecore" xmlns:QMLDeclarations="http:///QMLDeclarations.ecore" xmlns:QMLProfile="http:///QMLProfile.ecore" id="_rsefIONpEemY2__DfVFIUw">
+  <qmlDeclarations xsi:type="QMLContract:SimpleQMLContract" id="_wxKhAuNpEemY2__DfVFIUw" entityName="Contract" contractType="_zVMkBONpEemY2__DfVFIUw">
+    <criteria xsi:type="QMLContract:Objective" id="_4biywONpEemY2__DfVFIUw">
+      <dimension href="pathmap://PCM_MODELS/Dimension_responsetime.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA"/>
+      <aspects xsi:type="QMLContract:Mean" id="_6CvaEuNpEemY2__DfVFIUw"/>
+    </criteria>
+  </qmlDeclarations>
+  <qmlDeclarations xsi:type="QMLContractType:QMLContractType" id="_zVMkBONpEemY2__DfVFIUw" entityName="ContractType">
+    <dimensions href="pathmap://PCM_MODELS/Dimension_responsetime.qmlcontracttype#_r_iVkKCrEd-s9uTaURbrKA"/>
+  </qmlDeclarations>
+  <qmlDeclarations xsi:type="QMLProfile:SimpleQMLProfile" id="_8kPGcONpEemY2__DfVFIUw" entityName="Profile">
+    <usageModel href="../overload.usagemodel#/"/>
+    <requirements xsi:type="QMLProfile:UsageScenarioRequirement" id="_HR_poONqEemY2__DfVFIUw" requireContract="_wxKhAuNpEemY2__DfVFIUw">
+      <usageScenario href="../overload.usagemodel#_YtqF4AEqEeS7FKokKTKFow"/>
+    </requirements>
+  </qmlDeclarations>
+</QMLDeclarations:QMLDeclarations>
