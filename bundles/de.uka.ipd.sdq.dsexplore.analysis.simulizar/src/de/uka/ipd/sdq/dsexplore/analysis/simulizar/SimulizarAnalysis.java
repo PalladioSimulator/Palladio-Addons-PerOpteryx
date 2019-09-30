@@ -73,7 +73,7 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 		launchWorkingCopy.setAttribute(AbstractSimulationConfig.VARIATION_ID, experimentSettingName);
 
 		// TODO DTHF1 Set Mode
-		this.workflowConfig = this.deriveConfiguration(launchWorkingCopy, "MODE");
+		this.workflowConfig = this.deriveConfiguration(launchWorkingCopy, "run");
 		this.workflowConfig.setOverwriteWithoutAsking(true);
 
 		System.gc();
