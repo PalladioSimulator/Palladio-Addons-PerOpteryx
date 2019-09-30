@@ -90,6 +90,12 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 			pcmPartition.loadModel(featureConfigFile);
 		}
 
+		final String monitorRepository = this.workflowConfig.getMonitorRepositoryFile();
+		if (monitorRepository != null && !"".equals(monitorRepository)) {
+			final ResourceSetPartition pcmPartition = this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
+			pcmPartition.loadModel(monitorRepository);
+		}
+
 		this.workflowConfig.setInteractive(false);
 
 		final PCMStartInterpretationJob job = new PCMStartInterpretationJob(this.workflowConfig);
