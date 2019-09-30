@@ -8,6 +8,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.opt4j.core.Criterion;
 import org.palladiosimulator.analyzer.resultdecorator.ResultDecoratorRepository;
 import org.palladiosimulator.analyzer.resultdecorator.ResultdecoratorFactory;
@@ -23,6 +24,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.AbstractPerformanceAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IPerformanceAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.analysis.IStatisticAnalysisResult;
+import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;
 
@@ -30,11 +32,15 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 
 	private static Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore");
 
-	private long observations = 0;
+	private long observations;
 	private final Map<Criterion, EvaluationAspectWithContext> objectiveToAspects;
 	private final SimulizarQualityAttributeDeclaration qualityAttributeInfo;
 	private final ExperimentSetting experimentSetting;
 	private final ExperimentRun run;
+
+	private double meanValue;
+	private double throughput;
+	private double maxUtilization;
 
 	protected SimulizarAnalysisResult(final ExperimentRun run, final ExperimentSetting experiment, final PCMInstance pcmInstance, final Entity pcmEntity,
 			final Map<Criterion, EvaluationAspectWithContext> objectiveToAspect, final SimulizarQualityAttributeDeclaration qualityAttributeInfo) throws AnalysisFailedException {
@@ -51,7 +57,16 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 		// The following two lines basically do nothing right now.
 		this.results = this.retrieveResults(pcmInstance);
 
+		this.calculateResults();
+
 		SimulizarAnalysisResult.logger.debug("Initialised Simulizar EDP2 result");
+	}
+
+	private void calculateResults() {
+		this.observations = 0;
+		this.maxUtilization = Double.NaN;
+		this.throughput = Double.NaN;
+		this.maxUtilization = Double.NaN;
 	}
 
 	// From SimuComAnalysisEDP2Result
@@ -73,8 +88,25 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 
 	@Override
 	public double getValueFor(Criterion criterion) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (EcoreUtil.equals(this.getDimensionForCriterion(criterion), this.qualityAttributeInfo.getResponseTime())) {
+			return this.meanValue;
+		} else if (EcoreUtil.equals(this.getDimensionForCriterion(criterion), this.qualityAttributeInfo.getThroughput())) {
+			return this.throughput;
+		} else if (EcoreUtil.equals(this.getDimensionForCriterion(criterion), this.qualityAttributeInfo.getMaxUtilization())) {
+			return this.maxUtilization;
+		}
+
+		SimulizarAnalysisResult.logger.warn("Unknown aspect for simu com result, adding NaN.");
+		return Double.NaN;
+	}
+
+	private Dimension getDimensionForCriterion(final Criterion criterion) {
+		final EvaluationAspectWithContext aspect = this.objectiveToAspects.get(criterion);
+		if (aspect != null) {
+			return aspect.getDimension();
+		} else {
+			return null;
+		}
 	}
 
 	@Override
@@ -97,8 +129,9 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 
 	@Override
 	public double getCoefficientOfVariance() {
-		// TODO Auto-generated method stub
-		return 0;
+		final double std = this.getStandardDeviation();
+		final double mean = this.getMeanValue();
+		return std / mean;
 	}
 
 	@Override
@@ -109,8 +142,7 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 
 	@Override
 	public long getNumberOfObservations() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.observations;
 	}
 
 	////////////////////// LOAD /////////////////////////
