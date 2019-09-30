@@ -43,8 +43,6 @@ import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
  */
 public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 
-	private static final String EDP2 = "EDP2";
-
 	/** Logger for log4j. */
 	private static Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore");
 
@@ -134,6 +132,11 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 		this.previousExperimentNames.clear();
 
 		this.config = configuration.getRawConfiguration();
+
+		if (!this.config.getAttribute("persistenceFramework", "").contains("EDP2")) {
+			throw ExceptionHelper.createNewCoreException("Only EDP2 is supported");
+		}
+
 		if (this.blackboard == null) {
 			throw ExceptionHelper.createNewCoreException("Error in initialisation: No Blackboard was set when initialising the SimuCom Analysis. Contact the developers.");
 		}
@@ -159,23 +162,16 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 		IStatisticAnalysisResult result = null;
 
 		// Decide whether it's SensorFramework or EDP2
-		if (this.config.getAttribute("persistenceFramework", "").equals(SimulizarAnalysis.EDP2)) {
-			Repository selectedRepo = SimulizarAnalysisResult.findSelectedEDP2Repository(this.config);
+		Repository selectedRepo = SimulizarAnalysisResult.findSelectedEDP2Repository(this.config);
 
-			result = SimulizarAnalysisResult.findExperimentRunAndCreateResult(entity, experimentName, experimentSettingName, pcmInstance, selectedRepo, this.criterionToAspect,
-					(SimulizarQualityAttributeDeclaration) this.qualityAttribute);
+		result = SimulizarAnalysisResult.findExperimentRunAndCreateResult(entity, experimentName, experimentSettingName, pcmInstance, selectedRepo, this.criterionToAspect,
+				(SimulizarQualityAttributeDeclaration) this.qualityAttribute);
 
-			if (result == null) {
-				final String errormessage = "There was no experiment named \"" + experimentName + "\" with an experiment setting \"" + experimentSettingName + "\""
-						+ " in the selected data source after analysing the PCM instance \"" + experimentName + "\" of candidate " + pheno.getNumericID() + " " + pheno.getGenotypeID();
-				SimulizarAnalysis.logger.error(errormessage);
-				throw new AnalysisFailedException(errormessage);
-			}
-
-		}
-
-		else {
-			throw new Error("Only EDP2 is supported.");
+		if (result == null) {
+			final String errormessage = "There was no experiment named \"" + experimentName + "\" with an experiment setting \"" + experimentSettingName + "\""
+					+ " in the selected data source after analysing the PCM instance \"" + experimentName + "\" of candidate " + pheno.getNumericID() + " " + pheno.getGenotypeID();
+			SimulizarAnalysis.logger.error(errormessage);
+			throw new AnalysisFailedException(errormessage);
 		}
 
 		return result;
@@ -211,12 +207,7 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 	 * @return
 	 */
 	private boolean isExperimentRunDoesNotExist(final String experimentName, final String experimentSettingName) throws CoreException {
-		// We only Support EDP2
-		if (this.config.getAttribute("persistenceFramework", "").equals(SimulizarAnalysis.EDP2)) {
-			return !SimulizarAnalysisResult.isExperimentRunExisting(experimentName, experimentSettingName, SimulizarAnalysisResult.findSelectedEDP2Repository(this.config));
-		}
-		throw new Error("Only EDP2 is supported.");
-
+		return !SimulizarAnalysisResult.isExperimentRunExisting(experimentName, experimentSettingName, SimulizarAnalysisResult.findSelectedEDP2Repository(this.config));
 	}
 
 	// From PCMInterpreterLauncher
@@ -234,10 +225,7 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 	}
 
 	private String getExperimentName(final PCMPhenotype pheno) throws CoreException {
-		if (this.config.getAttribute("persistenceFramework", "").equals(SimulizarAnalysis.EDP2)) {
-			return this.initialExperimentName + " " + pheno.getGenotypeID();
-		}
-		throw new Error("Only EDP2 is supported.");
+		return this.initialExperimentName + " " + pheno.getGenotypeID();
 	}
 
 	private String getExperimentSettingName(final PCMPhenotype pheno) throws CoreException {
