@@ -5,8 +5,8 @@
   <eAnnotations source="http://www.eclipse.org/OCL/Import">
     <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
     <details key="featureObjective" value="featureObjective.ecore#/"/>
-    <details key="identifier" value="../../de.uka.ipd.sdq.identifier/model/identifier.ecore#/"/>
-    <details key="pcm" value="../../org.palladiosimulator.pcm/model/pcm.ecore#/"/>
+    <details key="identifier" value="platform:/resource/de.uka.ipd.sdq.identifier/model/identifier.ecore#/"/>
+    <details key="pcm" value="platform:/resource/org.palladiosimulator.pcm/model/pcm.ecore#/"/>
   </eAnnotations>
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
