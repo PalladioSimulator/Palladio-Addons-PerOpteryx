@@ -19,6 +19,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.genotype.DesignDecisionGenotype;
 public class UniformDesignDecisionGenotypeCrossover implements Crossover<DesignDecisionGenotype>  {
 
 	private Rand random;
+	private CopyDesignDecisionGenotype copyMaker = new CopyDesignDecisionGenotype();
 
 	@Inject
 	public UniformDesignDecisionGenotypeCrossover(Rand random) {
@@ -35,13 +36,13 @@ public class UniformDesignDecisionGenotypeCrossover implements Crossover<DesignD
 			throw new RuntimeException("Two genomes do not have the same length: "+parent1 + " and "+parent2);
 		}
 		
-		for (int i = 0; i < o2.size(); i ++) {
+		for (int i = 0; i < parent1.size(); i ++) {
 			if (this.random.nextBoolean()){
-				o1.add(parent1.get(i));
-				o2.add(parent2.get(i));
+				o1.add(copyMaker.copy(parent1).get(i));
+				o2.add(copyMaker.copy(parent2).get(i));
 			} else {
-				o1.add(parent2.get(i));
-				o2.add(parent1.get(i));
+				o1.add(copyMaker.copy(parent2).get(i));
+				o2.add(copyMaker.copy(parent1).get(i));
 			}
 		}
 
