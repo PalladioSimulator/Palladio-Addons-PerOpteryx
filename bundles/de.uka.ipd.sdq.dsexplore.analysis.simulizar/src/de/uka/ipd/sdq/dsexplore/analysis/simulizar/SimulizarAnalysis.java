@@ -16,7 +16,7 @@ import org.palladiosimulator.analyzer.workflow.configurations.PCMWorkflowConfigu
 import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
 import org.palladiosimulator.edp2.models.Repository.Repository;
 import org.palladiosimulator.pcm.core.entity.Entity;
-import org.palladiosimulator.simulizar.launcher.jobs.PCMStartInterpretationJob;
+import org.palladiosimulator.simulizar.launcher.jobs.PCMInterpreterRootCompositeJob;
 import org.palladiosimulator.simulizar.runconfig.SimuLizarLaunchConfigurationBasedConfigBuilder;
 import org.palladiosimulator.simulizar.runconfig.SimuLizarWorkflowConfiguration;
 import org.palladiosimulator.solver.models.PCMInstance;
@@ -98,7 +98,7 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 
 		this.workflowConfig.setInteractive(false);
 
-		final PCMStartInterpretationJob job = new PCMStartInterpretationJob(this.workflowConfig);
+		final PCMInterpreterRootCompositeJob job = new PCMInterpreterRootCompositeJob(this.workflowConfig);
 		job.setBlackboard(this.blackboard);
 
 		// retry simulation if the cause was that an extension could not be
