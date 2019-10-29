@@ -1,15 +1,9 @@
 package de.uka.ipd.sdq.dsexplore.analysis.simulizar;
 
-import java.util.Collection;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.math.stat.descriptive.moment.Mean;
-import org.apache.commons.math.stat.descriptive.moment.StandardDeviation;
-import org.apache.commons.math.stat.descriptive.rank.Median;
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
@@ -21,7 +15,6 @@ import org.palladiosimulator.analyzer.resultdecorator.ResultDecoratorRepository;
 import org.palladiosimulator.analyzer.resultdecorator.ResultdecoratorFactory;
 import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.ActiveResourceUtilisationResult;
 import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.LinkingResourceResults;
-import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.PassiveResourceResult;
 import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.ProcessingResourceSpecificationResult;
 import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.ResourceenvironmentdecoratorFactory;
 import org.palladiosimulator.edp2.impl.RepositoryManager;
@@ -30,16 +23,12 @@ import org.palladiosimulator.edp2.models.ExperimentData.ExperimentRun;
 import org.palladiosimulator.edp2.models.ExperimentData.ExperimentSetting;
 import org.palladiosimulator.edp2.models.ExperimentData.Measurement;
 import org.palladiosimulator.edp2.models.Repository.Repository;
-import org.palladiosimulator.pcm.core.composition.AssemblyContext;
+import org.palladiosimulator.metricspec.constants.MetricDescriptionConstants;
 import org.palladiosimulator.pcm.core.entity.Entity;
-import org.palladiosimulator.pcm.repository.BasicComponent;
-import org.palladiosimulator.pcm.repository.PassiveResource;
-import org.palladiosimulator.pcm.repository.RepositoryComponent;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourcetype.ResourceType;
-import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractPerformanceAnalysisResult;
@@ -74,7 +63,6 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 		this.objectiveToAspects = objectiveToAspect;
 		this.qualityAttributeInfo = qualityAttributeInfo;
 
-
 		this.results = this.retrieveResults(pcmInstance);
 		this.calculateResults();
 		SimulizarAnalysisResult.logger.debug("Initialised Simulizar EDP2 result");
@@ -85,18 +73,19 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 		this.maxUtilization = Double.NaN;
 		this.throughput = Double.NaN;
 		this.maxUtilization = Double.NaN;
-		
-//	    final SensorAndMeasurements sam = getUsageScenarioMeasurements();
-//        this.meanValue =  calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new Mean());
-//        this.stdDeviation = calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new StandardDeviation());
-//        this.medianValue = calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new Median());
-//        this.throughput = calculateThroughput(sam);
-//        this.observations = sam.getMeasurements().size();
-//        this.confidenceInterval = determineConfidenceInterval(sam);
 
-		
+		// final SensorAndMeasurements sam = getUsageScenarioMeasurements();
+		// this.meanValue = calculateUnivariateStatistic(sam,
+		// TimeseriesData.TIMESPAN, new Mean());
+		// this.stdDeviation = calculateUnivariateStatistic(sam,
+		// TimeseriesData.TIMESPAN, new StandardDeviation());
+		// this.medianValue = calculateUnivariateStatistic(sam,
+		// TimeseriesData.TIMESPAN, new Median());
+		// this.throughput = calculateThroughput(sam);
+		// this.observations = sam.getMeasurements().size();
+		// this.confidenceInterval = determineConfidenceInterval(sam);
+
 	}
-
 
 	private ResultDecoratorRepository retrieveResults(final PCMInstance pcmInstance) throws AnalysisFailedException {
 		final ResultDecoratorRepository repo = ResultdecoratorFactory.eINSTANCE.createResultDecoratorRepository();
@@ -107,129 +96,166 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 	}
 
 	private void retrievePassiveResourceUtil(ResultDecoratorRepository repo, PCMInstance pcmInstance) {
-//
-//        final Map<String, PassiveResourceResult> idsToPassiveResourceResult = new HashMap<String, PassiveResourceResult>();
-//
-//        // results for passive resources
-//        final List<AssemblyContext> allAssemblyContexts = de.uka.ipd.sdq.dsexplore.helper.EMFHelper.getAllUsedAssemblyContexts(pcm.getSystem());
-//        for (final AssemblyContext assemblyContext : allAssemblyContexts) {
-//            final RepositoryComponent innerComponent = assemblyContext.getEncapsulatedComponent__AssemblyContext();
-//            if (innerComponent instanceof BasicComponent){
-//
-//                final BasicComponent basicComponent = (BasicComponent) innerComponent;
-//                final List<PassiveResource> passiveResourceOfComponentList = basicComponent
-//                        .getPassiveResource_BasicComponent();
-//                for (final PassiveResource passiveResource : passiveResourceOfComponentList) {
-//
-//                    final String passiveResourceAndAssemblyContextId = passiveResource.getId()+":"+assemblyContext.getId();
-//
-//                    final PassiveResourceResult result = ResourceenvironmentdecoratorFactory.eINSTANCE.createPassiveResourceResult();
-//
-//                    result.setPassiveResource_PassiveResourceResult(passiveResource);
-//                    result.setAssemblyContext_PassiveResourceResult(assemblyContext);
-//                    result.setEntityName("Utilisation of "+passiveResource.getEntityName()+" id: "+passiveResourceAndAssemblyContextId);
-//
-//
-//                    repo.getUtilisationResults_ResultDecoratorRepository().add(result);
-//                    idsToPassiveResourceResult.put(passiveResourceAndAssemblyContextId, result);
-//
-//                }
-//
-//            }
-//
-//        }
-//
-//        return retrievePassiveResourceUtilFinish(idsToPassiveResourceResult);
-//		
+		//
+		// final Map<String, PassiveResourceResult> idsToPassiveResourceResult =
+		// new HashMap<String, PassiveResourceResult>();
+		//
+		// // results for passive resources
+		// final List<AssemblyContext> allAssemblyContexts =
+		// de.uka.ipd.sdq.dsexplore.helper.EMFHelper.getAllUsedAssemblyContexts(pcm.getSystem());
+		// for (final AssemblyContext assemblyContext : allAssemblyContexts) {
+		// final RepositoryComponent innerComponent =
+		// assemblyContext.getEncapsulatedComponent__AssemblyContext();
+		// if (innerComponent instanceof BasicComponent){
+		//
+		// final BasicComponent basicComponent = (BasicComponent)
+		// innerComponent;
+		// final List<PassiveResource> passiveResourceOfComponentList =
+		// basicComponent
+		// .getPassiveResource_BasicComponent();
+		// for (final PassiveResource passiveResource :
+		// passiveResourceOfComponentList) {
+		//
+		// final String passiveResourceAndAssemblyContextId =
+		// passiveResource.getId()+":"+assemblyContext.getId();
+		//
+		// final PassiveResourceResult result =
+		// ResourceenvironmentdecoratorFactory.eINSTANCE.createPassiveResourceResult();
+		//
+		// result.setPassiveResource_PassiveResourceResult(passiveResource);
+		// result.setAssemblyContext_PassiveResourceResult(assemblyContext);
+		// result.setEntityName("Utilisation of
+		// "+passiveResource.getEntityName()+" id:
+		// "+passiveResourceAndAssemblyContextId);
+		//
+		//
+		// repo.getUtilisationResults_ResultDecoratorRepository().add(result);
+		// idsToPassiveResourceResult.put(passiveResourceAndAssemblyContextId,
+		// result);
+		//
+		// }
+		//
+		// }
+		//
+		// }
+		//
+		// return retrievePassiveResourceUtilFinish(idsToPassiveResourceResult);
+		//
 	}
-	
-	
-//	 @Override
-//	    protected Map<String, PassiveResourceResult> retrievePassiveResourceUtilFinish(final Map<String, PassiveResourceResult> idsToPassiveResourceResult)
-//	    {
-//	        final Collection<Sensor> sensorList = this.experiment.getSensors();
-//
-//	        for (final Sensor sensor : sensorList) {
-//	            final String sensorName = sensor.getSensorName();
-//	            if (sensorName.contains("Passive Resource")){
-//	                final String passiveResourceAndAssemblyContextID = sensorName.substring(sensorName.lastIndexOf(" ")+1);
-//	                final PassiveResourceResult passiveResourceResult = idsToPassiveResourceResult.get(passiveResourceAndAssemblyContextID);
-//
-//	                if (passiveResourceResult != null){
-//
-//	                    final SensorAndMeasurements results = run.getMeasurementsOfSensor(sensor);
-//
-//	                    if (sensorName.contains("Hold time")){
-//	                        passiveResourceResult.setAverageHoldingTime(calculateUnivariateStatistic(results, TimeseriesData.TIMESPAN, new Mean()));
-//	                    } else if (sensorName.contains("Wait time")){
-//	                        passiveResourceResult.setAverageWaitTime(calculateUnivariateStatistic(results, TimeseriesData.TIMESPAN, new Mean()));
-//	                    } else if (sensorName.contains("Util")){
-//	                        // for passive resources, also consider the capacity when calculating the util
-//	                        final int capacity = Integer.parseInt(passiveResourceResult.getPassiveResource_PassiveResourceResult().getCapacity_PassiveResource().getSpecification());
-//	                        retrieveUtilisationFromSensor(sensor, passiveResourceResult, capacity);
-//
-//	                    }
-//	                } else {
-//	                    logger.warn("Unknown passive resource id "+passiveResourceAndAssemblyContextID+", ignoring this sensor.");
-//	                }
-//	            }
-//
-//	        }
-//
-//	        return idsToPassiveResourceResult;
-//	    }
+
+	// @Override
+	// protected Map<String, PassiveResourceResult>
+	// retrievePassiveResourceUtilFinish(final Map<String,
+	// PassiveResourceResult> idsToPassiveResourceResult)
+	// {
+	// final Collection<Sensor> sensorList = this.experiment.getSensors();
+	//
+	// for (final Sensor sensor : sensorList) {
+	// final String sensorName = sensor.getSensorName();
+	// if (sensorName.contains("Passive Resource")){
+	// final String passiveResourceAndAssemblyContextID =
+	// sensorName.substring(sensorName.lastIndexOf(" ")+1);
+	// final PassiveResourceResult passiveResourceResult =
+	// idsToPassiveResourceResult.get(passiveResourceAndAssemblyContextID);
+	//
+	// if (passiveResourceResult != null){
+	//
+	// final SensorAndMeasurements results =
+	// run.getMeasurementsOfSensor(sensor);
+	//
+	// if (sensorName.contains("Hold time")){
+	// passiveResourceResult.setAverageHoldingTime(calculateUnivariateStatistic(results,
+	// TimeseriesData.TIMESPAN, new Mean()));
+	// } else if (sensorName.contains("Wait time")){
+	// passiveResourceResult.setAverageWaitTime(calculateUnivariateStatistic(results,
+	// TimeseriesData.TIMESPAN, new Mean()));
+	// } else if (sensorName.contains("Util")){
+	// // for passive resources, also consider the capacity when calculating the
+	// util
+	// final int capacity =
+	// Integer.parseInt(passiveResourceResult.getPassiveResource_PassiveResourceResult().getCapacity_PassiveResource().getSpecification());
+	// retrieveUtilisationFromSensor(sensor, passiveResourceResult, capacity);
+	//
+	// }
+	// } else {
+	// logger.warn("Unknown passive resource id
+	// "+passiveResourceAndAssemblyContextID+", ignoring this sensor.");
+	// }
+	// }
+	//
+	// }
+	//
+	// return idsToPassiveResourceResult;
+	// }
 
 	private void retrieveServiceResults(PCMInstance pcmInstance, ResultDecoratorRepository repo) {
-//		 final Collection<Sensor> sensorList = this.experiment.getSensors();
-//	        final List<ExternalCallActionWithSensors> externalCallsInContextWithSensorsList = new LinkedList<ExternalCallActionWithSensors>();
-//
-//	        for (final Sensor sensor : sensorList) {
-//	            final String sensorName = sensor.getSensorName();
-//	            if (sensorName.contains("CallID")){
-//	                //current sensor is an ExternalCall sensor
-//
-//	                // parse external call id
-//	                if (sensorName.lastIndexOf(" ") < sensorName.length()-2
-//	                        && sensorName.lastIndexOf(" ") > -1
-//	                        && sensorName.length() > 2){
-//	                    final String externalCallID = sensorName.substring(sensorName.lastIndexOf(" ")+1, sensorName.length()-1);
-//
-//	                    // 	find the external call in the model
-//	                    final ExternalCallAction myCall = idToExternalCallMap.get(externalCallID);
-//
-//	                    if (myCall != null){
-//
-//	                        //retrieve AssemblyContext from sensor name
-//	                        final String assemblyContextID = sensorName.substring(sensorName.indexOf("AssemblyCtx")+13,sensorName.indexOf("CallID")-2);
-//	                        final AssemblyContextContext myAssemblyContext = idToAssemblyContextMap.get(assemblyContextID);
-//	                        if (myAssemblyContext != null){
-//
-//	                            ExternalCallActionWithSensors externalCallInContextWithSensors = new ExternalCallActionWithSensors(myCall, myAssemblyContext);
-//
-//	                            //reuse pair if it already there
-//	                            final int index = externalCallsInContextWithSensorsList.indexOf(externalCallInContextWithSensors);
-//	                            if (index > 0){
-//	                                externalCallInContextWithSensors = externalCallsInContextWithSensorsList.get(index);
-//	                            } else {
-//	                                externalCallsInContextWithSensorsList.add(externalCallInContextWithSensors);
-//	                            }
-//
-//	                            // map all result sensors to the SEFF they call
-//	                            externalCallInContextWithSensors.addSensor(sensor);
-//	                            continue;
-//	                        }
-//	                    } else {
-//	                        // check if this is a completion component, if yes, ignore it and continue
-//	                        final String componentID = sensorName.substring(sensorName.indexOf("Component: ")+11,sensorName.indexOf("AssemblyCtx")-2);
-//	                        if (completionComponentIdsToIgnore.contains(componentID)){
-//	                            logger.info("Ignoring completion component sensor "+sensorName+" when reading in SimuCom results.");
-//	                            continue;
-//	                        }
-//	                    }
-//	                }
-//	                logger.warn("Cannot retrieve external call id from sensor. If this is a completion component, this is ok. Otherwise, sensor name labels must have changed. Contact developers if this sensors is needed. Sensor: "+sensorName);
-//	            }
-		
+		// final Collection<Sensor> sensorList = this.experiment.getSensors();
+		// final List<ExternalCallActionWithSensors>
+		// externalCallsInContextWithSensorsList = new
+		// LinkedList<ExternalCallActionWithSensors>();
+		//
+		// for (final Sensor sensor : sensorList) {
+		// final String sensorName = sensor.getSensorName();
+		// if (sensorName.contains("CallID")){
+		// //current sensor is an ExternalCall sensor
+		//
+		// // parse external call id
+		// if (sensorName.lastIndexOf(" ") < sensorName.length()-2
+		// && sensorName.lastIndexOf(" ") > -1
+		// && sensorName.length() > 2){
+		// final String externalCallID =
+		// sensorName.substring(sensorName.lastIndexOf(" ")+1,
+		// sensorName.length()-1);
+		//
+		// // find the external call in the model
+		// final ExternalCallAction myCall =
+		// idToExternalCallMap.get(externalCallID);
+		//
+		// if (myCall != null){
+		//
+		// //retrieve AssemblyContext from sensor name
+		// final String assemblyContextID =
+		// sensorName.substring(sensorName.indexOf("AssemblyCtx")+13,sensorName.indexOf("CallID")-2);
+		// final AssemblyContextContext myAssemblyContext =
+		// idToAssemblyContextMap.get(assemblyContextID);
+		// if (myAssemblyContext != null){
+		//
+		// ExternalCallActionWithSensors externalCallInContextWithSensors = new
+		// ExternalCallActionWithSensors(myCall, myAssemblyContext);
+		//
+		// //reuse pair if it already there
+		// final int index =
+		// externalCallsInContextWithSensorsList.indexOf(externalCallInContextWithSensors);
+		// if (index > 0){
+		// externalCallInContextWithSensors =
+		// externalCallsInContextWithSensorsList.get(index);
+		// } else {
+		// externalCallsInContextWithSensorsList.add(externalCallInContextWithSensors);
+		// }
+		//
+		// // map all result sensors to the SEFF they call
+		// externalCallInContextWithSensors.addSensor(sensor);
+		// continue;
+		// }
+		// } else {
+		// // check if this is a completion component, if yes, ignore it and
+		// continue
+		// final String componentID =
+		// sensorName.substring(sensorName.indexOf("Component:
+		// ")+11,sensorName.indexOf("AssemblyCtx")-2);
+		// if (completionComponentIdsToIgnore.contains(componentID)){
+		// logger.info("Ignoring completion component sensor "+sensorName+" when
+		// reading in SimuCom results.");
+		// continue;
+		// }
+		// }
+		// }
+		// logger.warn("Cannot retrieve external call id from sensor. If this is
+		// a completion component, this is ok. Otherwise, sensor name labels
+		// must have changed. Contact developers if this sensors is needed.
+		// Sensor: "+sensorName);
+		// }
+
 	}
 
 	private void retrieveResourceUtilisation(PCMInstance pcmInstance, ResultDecoratorRepository repo) {
@@ -263,12 +289,13 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 
 	private void getUtilisationOfResource(final ActiveResourceUtilisationResult resultToFill, final Entity container, final ResourceType resourceType) {
 		List<Measurement> measurements = this.run.getMeasurement();
+		Object o = MetricDescriptionConstants.HOLDING_TIME_METRIC_TUPLE;
 		for (Measurement measurement : measurements) {
+			measurement.getMeasuringType().getMeasuringPoint();
 			// TODO DTHF1
 		}
 	}
 
-	
 	@Override
 	public double getValueFor(Criterion criterion) {
 		if (EcoreUtil.equals(this.getDimensionForCriterion(criterion), this.qualityAttributeInfo.getResponseTime())) {
