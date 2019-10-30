@@ -4,6 +4,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+import javax.measure.Measure;
+import javax.measure.quantity.Quantity;
+
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
@@ -17,14 +20,19 @@ import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorat
 import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.LinkingResourceResults;
 import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.ProcessingResourceSpecificationResult;
 import org.palladiosimulator.analyzer.resultdecorator.resourceenvironmentdecorator.ResourceenvironmentdecoratorFactory;
+import org.palladiosimulator.edp2.dao.MeasurementsDao;
 import org.palladiosimulator.edp2.impl.RepositoryManager;
+import org.palladiosimulator.edp2.models.ExperimentData.DataSeries;
 import org.palladiosimulator.edp2.models.ExperimentData.ExperimentGroup;
 import org.palladiosimulator.edp2.models.ExperimentData.ExperimentRun;
 import org.palladiosimulator.edp2.models.ExperimentData.ExperimentSetting;
 import org.palladiosimulator.edp2.models.ExperimentData.Measurement;
+import org.palladiosimulator.edp2.models.ExperimentData.MeasurementRange;
 import org.palladiosimulator.edp2.models.ExperimentData.MeasuringType;
+import org.palladiosimulator.edp2.models.ExperimentData.RawMeasurements;
 import org.palladiosimulator.edp2.models.Repository.Repository;
 import org.palladiosimulator.edp2.models.measuringpoint.MeasuringPoint;
+import org.palladiosimulator.edp2.util.MeasurementsUtility;
 import org.palladiosimulator.metricspec.MetricDescription;
 import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
@@ -270,6 +278,19 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 			MeasuringPoint mp = measurement.getMeasuringType().getMeasuringPoint();
 			String name = mp.getStringRepresentation();
 			String uri = mp.getResourceURIRepresentation();
+
+			MeasurementRange range = measurement.getMeasurementRanges().get(0);
+			Measurement m =  range.getMeasurement();
+			RawMeasurements raw = range.getRawMeasurements();
+			List<DataSeries> series = raw.getDataSeries();
+			for(DataSeries ds : series) {
+				MeasurementsDao<Object, Quantity> qa = (MeasurementsDao<Object, Quantity>) MeasurementsUtility.getMeasurementsDao(ds);
+				List<Measure<Object, Quantity>> q = qa.getMeasurements();
+
+				System.out.println(name + ":: "+ ds + ": "+q);
+			}
+
+			System.out.println(name + " " + uri);
 			// TODO Find correct Measuring Point .. for Util and Demand
 
 
