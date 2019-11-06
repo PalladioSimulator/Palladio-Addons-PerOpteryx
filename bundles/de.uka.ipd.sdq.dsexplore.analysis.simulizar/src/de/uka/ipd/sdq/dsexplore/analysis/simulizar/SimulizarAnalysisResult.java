@@ -7,6 +7,9 @@ import java.util.Map;
 import javax.measure.Measure;
 import javax.measure.quantity.Quantity;
 
+import org.apache.commons.math.stat.descriptive.moment.Mean;
+import org.apache.commons.math.stat.descriptive.moment.StandardDeviation;
+import org.apache.commons.math.stat.descriptive.rank.Median;
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
@@ -29,16 +32,17 @@ import org.palladiosimulator.edp2.models.ExperimentData.ExperimentSetting;
 import org.palladiosimulator.edp2.models.ExperimentData.Measurement;
 import org.palladiosimulator.edp2.models.ExperimentData.MeasurementRange;
 import org.palladiosimulator.edp2.models.ExperimentData.MeasuringType;
-import org.palladiosimulator.edp2.models.ExperimentData.RawMeasurements;
 import org.palladiosimulator.edp2.models.Repository.Repository;
 import org.palladiosimulator.edp2.models.measuringpoint.MeasuringPoint;
 import org.palladiosimulator.edp2.util.MeasurementsUtility;
 import org.palladiosimulator.metricspec.MetricDescription;
+import org.palladiosimulator.metricspec.constants.MetricDescriptionConstants;
 import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourcetype.ResourceType;
+import org.palladiosimulator.pcmmeasuringpoint.UsageScenarioMeasuringPoint;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractPerformanceAnalysisResult;
@@ -83,7 +87,7 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 	}
 
 	private void calculateResults() {
-		this.observations = this.run.getMeasurement().size();
+		this.observations = 0;
 
 		this.meanValue = Double.NaN;
 		this.stdDeviation = Double.NaN;
@@ -91,10 +95,56 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 		this.throughput = Double.NaN;
 		this.maxUtilization = Double.NaN;
 
+
+		double[] values = null;
 		// TODO Get Measurement Point for Scenario
+		List<Measurement> measurements = this.run.getMeasurement();
+		for (Measurement measurement : measurements) {
+			MeasuringType type = measurement.getMeasuringType();
+			MetricDescription mdsc = type.getMetric();
+
+			if(!mdsc.getId().equals(MetricDescriptionConstants.RESPONSE_TIME_METRIC_TUPLE.getId())) {
+				continue;
+			}
+
+			MeasuringPoint mp = measurement.getMeasuringType().getMeasuringPoint();
+			if(!(mp instanceof UsageScenarioMeasuringPoint)) {
+				continue;
+			}
+
+			// Get the one an only measurement range
+			MeasurementRange range = measurement.getMeasurementRanges().get(0);
+			// Read Response times
+			DataSeries series = range.getRawMeasurements().getDataSeries().get(1);
+			@SuppressWarnings("unchecked")
+			MeasurementsDao<Double, Quantity> qa = (MeasurementsDao<Double, Quantity>) MeasurementsUtility.getMeasurementsDao(series);
+			List<Measure<Double, Quantity>> q = qa.getMeasurements();
+			values = new double[q.size()];
+			int i = 0;
+			for(Measure<Double, Quantity> m : q) {
+				values[i++] = m.getValue();
+			}
+
+			break;
+		}
+
+		if(values == null) {
+			return;
+		}
+
+		this.observations = values.length;
+		this.meanValue = new Mean().evaluate(values);
+		this.stdDeviation = new StandardDeviation().evaluate(values);
+		this.medianValue = new Median().evaluate(values);
+
+			// TODO ...
+			//			this.throughput =
+			//			this.maxUtilization =
 
 
-//	    final SensorAndMeasurements sam = getUsageScenarioMeasurements();
+
+
+//	      final SensorAndMeasurements sam = getUsageScenarioMeasurements();
 //        this.meanValue =  calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new Mean());
 //        this.stdDeviation = calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new StandardDeviation());
 //        this.medianValue = calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new Median());
@@ -270,37 +320,10 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 	}
 
 	private void getUtilisationOfResource(final ActiveResourceUtilisationResult resultToFill, final Entity container, final ResourceType resourceType) {
-		List<Measurement> measurements = this.run.getMeasurement();
-		for (Measurement measurement : measurements) {
-			MeasuringType type = measurement.getMeasuringType();
-			MetricDescription mdsc = type.getMetric();
 
-			MeasuringPoint mp = measurement.getMeasuringType().getMeasuringPoint();
-			String name = mp.getStringRepresentation();
-			String uri = mp.getResourceURIRepresentation();
-
-			MeasurementRange range = measurement.getMeasurementRanges().get(0);
-			Measurement m =  range.getMeasurement();
-			RawMeasurements raw = range.getRawMeasurements();
-			List<DataSeries> series = raw.getDataSeries();
-			for(DataSeries ds : series) {
-				MeasurementsDao<Object, Quantity> qa = (MeasurementsDao<Object, Quantity>) MeasurementsUtility.getMeasurementsDao(ds);
-				List<Measure<Object, Quantity>> q = qa.getMeasurements();
-
-				System.out.println(name + ":: "+ ds + ": "+q);
-			}
-
-			System.out.println(name + " " + uri);
-			// TODO Find correct Measuring Point .. for Util and Demand
-
-
-		}
 		// Iff none found .. NaN
 		resultToFill.setResourceUtilisation(Double.NaN);
 	}
-
-
-
 
 	// GETTERS //
 
@@ -351,11 +374,11 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 
 	@Override
 	public ConfidenceInterval getConfidenceInterval(Criterion criterion) {
-		if (EcoreUtil.equals(this.getDimensionForCriterion(criterion), this.qualityAttributeInfo.getResponseTime())){
-    		return this.confidenceInterval;
-    	} else {
-    		return null;
-    	}
+		if (EcoreUtil.equals(this.getDimensionForCriterion(criterion), this.qualityAttributeInfo.getResponseTime())) {
+			return this.confidenceInterval;
+		} else {
+			return null;
+		}
 	}
 
 	@Override
