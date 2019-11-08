@@ -15,9 +15,9 @@
     </criteria>
   </qmlDeclarations>
   <qmlDeclarations xsi:type="QMLProfile:SimpleQMLProfile" id="_UkCRAGFfEeetxOZObiabqg" entityName="Profile">
-    <usageModel href="../palladio/usage.usagemodel#/"/>
+    <usageModel href="usage.usagemodel#/"/>
     <requirements xsi:type="QMLProfile:UsageScenarioRequirement" id="_gblGwGFfEeetxOZObiabqg" requireContract="_Qv-JgmFfEeetxOZObiabqg">
-      <usageScenario href="../palladio/usage.usagemodel#_qZ938GFeEeetxOZObiabqg"/>
+      <usageScenario href="usage.usagemodel#_qZ938GFeEeetxOZObiabqg"/>
     </requirements>
   </qmlDeclarations>
 </QMLDeclarations:QMLDeclarations>
