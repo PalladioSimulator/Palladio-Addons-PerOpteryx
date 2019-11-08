@@ -10,13 +10,13 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
+import org.eclipse.debug.core.ILaunchManager;
 import org.opt4j.core.Criterion;
 import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.analyzer.workflow.configurations.PCMWorkflowConfigurationBuilder;
 import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
 import org.palladiosimulator.edp2.models.Repository.Repository;
 import org.palladiosimulator.pcm.core.entity.Entity;
-import org.palladiosimulator.simulizar.launcher.jobs.PCMInterpreterRootCompositeJob;
 import org.palladiosimulator.simulizar.runconfig.SimuLizarLaunchConfigurationBasedConfigBuilder;
 import org.palladiosimulator.simulizar.runconfig.SimuLizarWorkflowConfiguration;
 import org.palladiosimulator.solver.models.PCMInstance;
@@ -72,8 +72,7 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 		launchWorkingCopy.setAttribute(AbstractSimulationConfig.EXPERIMENT_RUN, experimentName);
 		launchWorkingCopy.setAttribute(AbstractSimulationConfig.VARIATION_ID, experimentSettingName);
 
-		// TODO DTHF1 Set Mode
-		this.workflowConfig = this.deriveConfiguration(launchWorkingCopy, "run");
+		this.workflowConfig = this.deriveConfiguration(launchWorkingCopy, ILaunchManager.RUN_MODE);
 		this.workflowConfig.setOverwriteWithoutAsking(true);
 
 		System.gc();
@@ -98,7 +97,7 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 
 		this.workflowConfig.setInteractive(false);
 
-		final PCMInterpreterRootCompositeJob job = new PCMInterpreterRootCompositeJob(this.workflowConfig);
+		final SimulizarJob job = new SimulizarJob(this.workflowConfig);
 		job.setBlackboard(this.blackboard);
 
 		// retry simulation if the cause was that an extension could not be
