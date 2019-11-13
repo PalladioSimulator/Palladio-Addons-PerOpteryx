@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: de.uka.ipd.sdq.pcm.designdecision.provider.DesignDecisionEditPlugin$Implementation
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: de.uka.ipd.sdq.pcm.designdecision.gdof.provider,
  de.uka.ipd.sdq.pcm.designdecision.provider,
  de.uka.ipd.sdq.pcm.designdecision.qualityproperties.provider,

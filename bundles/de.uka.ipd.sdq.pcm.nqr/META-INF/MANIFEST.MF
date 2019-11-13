@@ -6,7 +6,7 @@ Bundle-Version: 1.0.1.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: de.uka.ipd.sdq.nqr,
  de.uka.ipd.sdq.nqr.impl,
  de.uka.ipd.sdq.nqr.util,

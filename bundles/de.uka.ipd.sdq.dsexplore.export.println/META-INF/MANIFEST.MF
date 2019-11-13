@@ -10,6 +10,6 @@ Require-Bundle: org.eclipse.ui,
  org.opt4j,
  org.palladiosimulator.pcm,
  org.palladiosimulator.analyzer.workflow
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: de.uka.ipd.sdq.dsexplore.export.println
