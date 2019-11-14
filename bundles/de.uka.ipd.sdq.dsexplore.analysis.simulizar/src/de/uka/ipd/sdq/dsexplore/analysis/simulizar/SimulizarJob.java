@@ -1,5 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.analysis.simulizar;
 
+import org.palladiosimulator.analyzer.workflow.jobs.CreatePluginProjectJob;
 import org.palladiosimulator.simulizar.launcher.jobs.PCMInterpreterRootCompositeJob;
 import org.palladiosimulator.simulizar.runconfig.SimuLizarWorkflowConfiguration;
 
@@ -10,6 +11,7 @@ public class SimulizarJob extends SequentialBlackboardInteractingJob<MDSDBlackbo
 
 	public SimulizarJob(final SimuLizarWorkflowConfiguration configuration) {
 		super(false);
+		this.add(new CreatePluginProjectJob(configuration));
 		// Copies the PCM to a temporary project and modifies the configuration
 		this.add(new PCMToProjectJob(configuration));
 		// Evaluate
