@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Bayesnets
 Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore.bayesnets
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 4.2.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: de.uka.ipd.sdq.dsexplore.bayesnets.samplers,
  de.uka.ipd.sdq.dsexplore.bayesnets.searchers,
