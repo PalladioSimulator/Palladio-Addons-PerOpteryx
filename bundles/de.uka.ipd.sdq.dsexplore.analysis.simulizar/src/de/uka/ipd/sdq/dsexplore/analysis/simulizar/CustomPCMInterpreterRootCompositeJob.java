@@ -25,7 +25,7 @@ public class CustomPCMInterpreterRootCompositeJob extends SequentialBlackboardIn
 		super(false);
 
 		// Always begin with an empty Blackboard;
-		this.setBlackboard(new MDSDBlackboard());
+		// this.setBlackboard(new MDSDBlackboard());
 
 		this.addJob(new CustomLoadSimuLizarModelsIntoBlackboardJob(configuration));
 

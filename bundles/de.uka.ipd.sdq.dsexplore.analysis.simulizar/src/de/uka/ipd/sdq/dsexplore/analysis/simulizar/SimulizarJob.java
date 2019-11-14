@@ -1,29 +1,24 @@
 package de.uka.ipd.sdq.dsexplore.analysis.simulizar;
 
-import org.palladiosimulator.analyzer.workflow.jobs.CreatePluginProjectJob;
-import org.palladiosimulator.analyzer.workflow.jobs.CreateWorkingCopyOfModelsJob;
+import org.eclipse.core.runtime.CoreException;
 import org.palladiosimulator.simulizar.runconfig.SimuLizarWorkflowConfiguration;
 
-import de.uka.ipd.sdq.workflow.jobs.SequentialBlackboardInteractingJob;
-import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import de.uka.ipd.sdq.codegen.simucontroller.workflow.jobs.AbstractSimulationJob;
 
-public class SimulizarJob extends SequentialBlackboardInteractingJob<MDSDBlackboard> {
+public class SimulizarJob extends AbstractSimulationJob<SimuLizarWorkflowConfiguration> {
 
-	private String folder;
-	private String original;
-	private static int COUNTER = 0;
+	public SimulizarJob(final SimuLizarWorkflowConfiguration configuration, int counter) throws CoreException {
+		super(SimulizarJob.updateConfig(configuration, counter));
 
-	public SimulizarJob(final SimuLizarWorkflowConfiguration configuration) {
-		super(false);
+	}
 
-		this.folder = configuration.getStoragePluginID() + "_" + (++SimulizarJob.COUNTER);
-		this.original = configuration.getStoragePluginID();
-		configuration.setStoragePluginID(this.folder);
+	private static SimuLizarWorkflowConfiguration updateConfig(SimuLizarWorkflowConfiguration configuration, int counter) {
+		configuration.setStoragePluginID(configuration.getStoragePluginID() + "_" + (counter));
+		return configuration;
+	}
 
-		this.add(new CreatePluginProjectJob(configuration));
-		// Copies the PCM to a temporary project and modifies the configuration
-		this.add(new CreateWorkingCopyOfModelsJob(configuration));
-		// Evaluate
+	@Override
+	protected void addSimulatorSpecificJobs(SimuLizarWorkflowConfiguration configuration) {
 		this.add(new CustomPCMInterpreterRootCompositeJob(configuration));
 	}
 }

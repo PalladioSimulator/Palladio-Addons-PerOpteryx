@@ -43,6 +43,8 @@ import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
  */
 public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 
+	private static int COUNTER = 0;
+
 	/** Logger for log4j. */
 	private static Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore");
 
@@ -89,15 +91,9 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 			pcmPartition.loadModel(featureConfigFile);
 		}
 
-		final String monitorRepository = this.workflowConfig.getMonitorRepositoryFile();
-		if (monitorRepository != null && !"".equals(monitorRepository)) {
-			final ResourceSetPartition pcmPartition = this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
-			pcmPartition.loadModel(monitorRepository);
-		}
-
 		this.workflowConfig.setInteractive(false);
 
-		final SimulizarJob job = new SimulizarJob(this.workflowConfig);
+		final SimulizarJob job = new SimulizarJob(this.workflowConfig, ++SimulizarAnalysis.COUNTER);
 		job.setBlackboard(this.blackboard);
 
 		// retry simulation if the cause was that an extension could not be
