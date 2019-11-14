@@ -31,7 +31,8 @@ Require-Bundle: org.eclipse.ui,
  org.palladiosimulator.edp2.dao,
  org.palladiosimulator.edp2.util,
  org.palladiosimulator.edp2,
- org.palladiosimulator.pcm.edp2.measuringpoint;bundle-version="1.0.0"
+ org.palladiosimulator.pcm.edp2.measuringpoint;bundle-version="1.0.0",
+ org.palladiosimulator.commons;bundle-version="1.0.1"
 Bundle-ActivationPolicy: lazy
 Export-Package: de.uka.ipd.sdq.dsexplore.analysis.simulizar
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
