@@ -30,7 +30,7 @@
       <steps_Behaviour xsi:type="seff:StopAction" id="_AZACcmFcEeetxOZObiabqg" predecessor_AbstractAction="__ugegGFcEeetxOZObiabqg"/>
       <steps_Behaviour xsi:type="seff:InternalAction" id="__ugegGFcEeetxOZObiabqg" entityName="InternalAction1" predecessor_AbstractAction="_AZACcWFcEeetxOZObiabqg" successor_AbstractAction="_AZACcmFcEeetxOZObiabqg">
         <resourceDemand_Action>
-          <specification_ParametericResourceDemand specification="DoublePDF[(5.0; 0.1)(15.0; 0.8)(50.0; 0.1)]"/>
+          <specification_ParametericResourceDemand specification="10000"/>
           <requiredResource_ParametricResourceDemand href="pathmap://PCM_MODELS/Palladio.resourcetype#_oro4gG3fEdy4YaaT-RYrLQ"/>
         </resourceDemand_Action>
       </steps_Behaviour>
