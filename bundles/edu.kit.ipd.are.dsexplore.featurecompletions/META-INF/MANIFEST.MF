@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.featurecompletions;singleton:=true
-Bundle-Version: 1.0.1.qualifier
+Bundle-Version: 4.2.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -18,7 +18,7 @@ Export-Package: FeatureCompletionModel,
  placementDescription,
  placementDescription.impl,
  placementDescription.util
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.palladiosimulator.pcm;visibility:=reexport,
@@ -34,7 +34,7 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.stoex.analyser;bundle-version="2.0.0",
  de.uka.ipd.sdq.simucomframework;bundle-version="1.0.0",
  de.uka.ipd.sdq.probfunction.math;bundle-version="2.0.0",
- de.uka.ipd.sdq.pcm.cost;bundle-version="1.0.0"
+ de.uka.ipd.sdq.pcm.cost;bundle-version="4.2.0"
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: edu.kit.ipd.are.dsexplore.featurecompletions

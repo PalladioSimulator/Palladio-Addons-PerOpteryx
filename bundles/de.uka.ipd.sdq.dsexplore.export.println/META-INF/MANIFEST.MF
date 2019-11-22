@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Println
 Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore.export.println;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 4.2.0.qualifier
 Bundle-Activator: de.uka.ipd.sdq.dsexplore.export.println.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -10,6 +10,6 @@ Require-Bundle: org.eclipse.ui,
  org.opt4j,
  org.palladiosimulator.pcm,
  org.palladiosimulator.analyzer.workflow
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: de.uka.ipd.sdq.dsexplore.export.println
