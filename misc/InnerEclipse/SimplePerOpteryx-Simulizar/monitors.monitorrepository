@@ -10,7 +10,9 @@
   <monitors id="_cNKdsAIDEeq77qf84TfXzw" entityName="UsageScenarioResponseTime">
     <measurementSpecifications id="_dIQ0AAIDEeq77qf84TfXzw">
       <metricDescription xsi:type="metricspec:NumericalBaseMetricDescription" href="pathmap://METRIC_SPEC_MODELS/commonMetrics.metricspec#_6rYmYs7nEeOX_4BzImuHbA"/>
-      <processingType xsi:type="monitorrepository:FeedThrough" id="_eTuhkAIDEeq77qf84TfXzw"/>
+      <processingType xsi:type="monitorrepository:TimeDrivenAggregation" id="_52XhQg0GEeqcZrnvT9BZgA">
+        <statisticalCharacterization xsi:type="monitorrepository:GeometricMean"/>
+      </processingType>
     </measurementSpecifications>
     <measuringPoint xsi:type="pcmmeasuringpoint:UsageScenarioMeasuringPoint" href="measuringpoints.measuringpoint#//@measuringPoints.1"/>
   </monitors>
