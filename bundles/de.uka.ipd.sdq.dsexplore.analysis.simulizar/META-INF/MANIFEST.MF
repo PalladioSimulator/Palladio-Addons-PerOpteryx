@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Simulizer Analysis for DSE
+Bundle-Name: SimuLizar Analysis for DSE
 Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore.analysis.simulizar;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 4.2.0.qualifier
 Bundle-Activator: de.uka.ipd.sdq.dsexplore.analysis.simulizar.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -35,11 +35,11 @@ Require-Bundle: org.eclipse.ui,
  org.palladiosimulator.commons;bundle-version="1.0.1"
 Bundle-ActivationPolicy: lazy
 Export-Package: de.uka.ipd.sdq.dsexplore.analysis.simulizar
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-Vendor: sdq.ipd.uka.de
 Import-Package: javax.measure,
  javax.measure.converter,
  org.palladiosimulator.edp2.impl,
  org.palladiosimulator.edp2.models.ExperimentData,
  org.palladiosimulator.edp2.models.Repository
-Automatic-Module-Name: de.uka.ipd.sdq.dsexplore.analysis.simucom
+Automatic-Module-Name: de.uka.ipd.sdq.dsexplore.analysis.simulizar

@@ -36,6 +36,14 @@
 <repository location="https://updatesite.palladio-simulator.com/palladio-analyzer-simucom/nightly/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="release" refresh="true">
+<unit id="org.palladiosimulator.simulizar.feature.feature.group" version="4.2.0.201911220107"/>
+<repository location="https://updatesite.palladio-simulator.com/palladio-analyzer-simulizar/releases/latest/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="nightly" refresh="true">
+<unit id="org.palladiosimulator.simulizar.feature.feature.group" version="4.2.0.201911220107"/>
+<repository location="https://updatesite.palladio-simulator.com/palladio-analyzer-simulizar/nightly/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="release" refresh="true">
 <unit id="org.palladiosimulator.pcm.feature.feature.group" version="4.1.0.201709282114"/>
 <repository location="https://updatesite.palladio-simulator.com/palladio-core-pcm/releases/latest/"/>
 </location>
