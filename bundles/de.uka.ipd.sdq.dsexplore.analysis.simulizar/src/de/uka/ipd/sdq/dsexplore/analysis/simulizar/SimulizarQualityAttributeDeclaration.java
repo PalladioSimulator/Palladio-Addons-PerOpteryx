@@ -8,6 +8,12 @@ import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.EvaluationAspect;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.Mean;
 import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 
+/**
+ * Defines the Dimensions of this analyzer.
+ * 
+ * @author Dominik Fuchss
+ *
+ */
 public class SimulizarQualityAttributeDeclaration extends AbstractPerformanceAttributeDeclaration implements IAnalysisQualityAttributeDeclaration {
 
 	public SimulizarQualityAttributeDeclaration() {

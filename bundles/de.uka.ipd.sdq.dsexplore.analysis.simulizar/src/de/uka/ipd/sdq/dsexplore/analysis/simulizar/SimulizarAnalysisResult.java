@@ -60,7 +60,6 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 	private long observations;
 	private final Map<Criterion, EvaluationAspectWithContext> objectiveToAspects;
 	private final SimulizarQualityAttributeDeclaration qualityAttributeInfo;
-	private final ExperimentSetting experimentSetting;
 	private final ExperimentRun run;
 
 	private double meanValue;
@@ -70,16 +69,14 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 	private double maxUtilization;
 	private ConfidenceInterval confidenceInterval;
 
-	protected SimulizarAnalysisResult(final ExperimentRun run, final ExperimentSetting experiment, final PCMInstance pcmInstance, final Entity pcmEntity,
-			final Map<Criterion, EvaluationAspectWithContext> objectiveToAspect, final SimulizarQualityAttributeDeclaration qualityAttributeInfo) throws AnalysisFailedException {
+	protected SimulizarAnalysisResult(final ExperimentRun run, final PCMInstance pcmInstance, final Entity pcmEntity, final Map<Criterion, EvaluationAspectWithContext> objectiveToAspect,
+			final SimulizarQualityAttributeDeclaration qualityAttributeInfo) throws AnalysisFailedException {
 		super(pcmInstance);
 
-		this.experimentSetting = experiment;
 		this.run = run;
 
 		this.objectiveToAspects = objectiveToAspect;
 		this.qualityAttributeInfo = qualityAttributeInfo;
-
 
 		this.results = this.retrieveResults(pcmInstance);
 		this.calculateResults();
@@ -95,20 +92,39 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 		this.throughput = Double.NaN;
 		this.maxUtilization = Double.NaN;
 
+		double[] values = this.getResponseTimesOfScenario();
+		if (values == null) {
+			return;
+		}
 
+		this.observations = values.length;
+		this.meanValue = new Mean().evaluate(values);
+		this.stdDeviation = new StandardDeviation().evaluate(values);
+		this.medianValue = new Median().evaluate(values);
+
+		// TODO ...
+		// this.throughput =
+		// this.maxUtilization =
+
+		// final SensorAndMeasurements sam = getUsageScenarioMeasurements();
+		// this.throughput = calculateThroughput(sam);
+		// this.confidenceInterval = determineConfidenceInterval(sam);
+
+	}
+
+	private double[] getResponseTimesOfScenario() {
 		double[] values = null;
-		// TODO Get Measurement Point for Scenario
 		List<Measurement> measurements = this.run.getMeasurement();
 		for (Measurement measurement : measurements) {
 			MeasuringType type = measurement.getMeasuringType();
 			MetricDescription mdsc = type.getMetric();
 
-			if(!mdsc.getId().equals(MetricDescriptionConstants.RESPONSE_TIME_METRIC_TUPLE.getId())) {
+			if (!mdsc.getId().equals(MetricDescriptionConstants.RESPONSE_TIME_METRIC_TUPLE.getId())) {
 				continue;
 			}
 
 			MeasuringPoint mp = measurement.getMeasuringType().getMeasuringPoint();
-			if(!(mp instanceof UsageScenarioMeasuringPoint)) {
+			if (!(mp instanceof UsageScenarioMeasuringPoint)) {
 				continue;
 			}
 
@@ -121,40 +137,14 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 			List<Measure<Double, Quantity>> q = qa.getMeasurements();
 			values = new double[q.size()];
 			int i = 0;
-			for(Measure<Double, Quantity> m : q) {
+			for (Measure<Double, Quantity> m : q) {
 				values[i++] = m.getValue();
 			}
 
 			break;
 		}
-
-		if(values == null) {
-			return;
-		}
-
-		this.observations = values.length;
-		this.meanValue = new Mean().evaluate(values);
-		this.stdDeviation = new StandardDeviation().evaluate(values);
-		this.medianValue = new Median().evaluate(values);
-
-			// TODO ...
-			//			this.throughput =
-			//			this.maxUtilization =
-
-
-
-
-//	      final SensorAndMeasurements sam = getUsageScenarioMeasurements();
-//        this.meanValue =  calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new Mean());
-//        this.stdDeviation = calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new StandardDeviation());
-//        this.medianValue = calculateUnivariateStatistic(sam, TimeseriesData.TIMESPAN, new Median());
-//        this.throughput = calculateThroughput(sam);
-//        this.observations = sam.getMeasurements().size();
-//        this.confidenceInterval = determineConfidenceInterval(sam);
-
-
+		return values;
 	}
-
 
 	private ResultDecoratorRepository retrieveResults(final PCMInstance pcmInstance) throws AnalysisFailedException {
 		final ResultDecoratorRepository repo = ResultdecoratorFactory.eINSTANCE.createResultDecoratorRepository();
@@ -165,128 +155,11 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 	}
 
 	private void retrievePassiveResourceUtil(ResultDecoratorRepository repo, PCMInstance pcmInstance) {
-//
-//        final Map<String, PassiveResourceResult> idsToPassiveResourceResult = new HashMap<String, PassiveResourceResult>();
-//
-//        // results for passive resources
-//        final List<AssemblyContext> allAssemblyContexts = de.uka.ipd.sdq.dsexplore.helper.EMFHelper.getAllUsedAssemblyContexts(pcm.getSystem());
-//        for (final AssemblyContext assemblyContext : allAssemblyContexts) {
-//            final RepositoryComponent innerComponent = assemblyContext.getEncapsulatedComponent__AssemblyContext();
-//            if (innerComponent instanceof BasicComponent){
-//
-//                final BasicComponent basicComponent = (BasicComponent) innerComponent;
-//                final List<PassiveResource> passiveResourceOfComponentList = basicComponent
-//                        .getPassiveResource_BasicComponent();
-//                for (final PassiveResource passiveResource : passiveResourceOfComponentList) {
-//
-//                    final String passiveResourceAndAssemblyContextId = passiveResource.getId()+":"+assemblyContext.getId();
-//
-//                    final PassiveResourceResult result = ResourceenvironmentdecoratorFactory.eINSTANCE.createPassiveResourceResult();
-//
-//                    result.setPassiveResource_PassiveResourceResult(passiveResource);
-//                    result.setAssemblyContext_PassiveResourceResult(assemblyContext);
-//                    result.setEntityName("Utilisation of "+passiveResource.getEntityName()+" id: "+passiveResourceAndAssemblyContextId);
-//
-//
-//                    repo.getUtilisationResults_ResultDecoratorRepository().add(result);
-//                    idsToPassiveResourceResult.put(passiveResourceAndAssemblyContextId, result);
-//
-//                }
-//
-//            }
-//
-//        }
-//
-//        return retrievePassiveResourceUtilFinish(idsToPassiveResourceResult);
-//
+		// TODO Implement me
 	}
 
-
-//	 @Override
-//	    protected Map<String, PassiveResourceResult> retrievePassiveResourceUtilFinish(final Map<String, PassiveResourceResult> idsToPassiveResourceResult)
-//	    {
-//	        final Collection<Sensor> sensorList = this.experiment.getSensors();
-//
-//	        for (final Sensor sensor : sensorList) {
-//	            final String sensorName = sensor.getSensorName();
-//	            if (sensorName.contains("Passive Resource")){
-//	                final String passiveResourceAndAssemblyContextID = sensorName.substring(sensorName.lastIndexOf(" ")+1);
-//	                final PassiveResourceResult passiveResourceResult = idsToPassiveResourceResult.get(passiveResourceAndAssemblyContextID);
-//
-//	                if (passiveResourceResult != null){
-//
-//	                    final SensorAndMeasurements results = run.getMeasurementsOfSensor(sensor);
-//
-//	                    if (sensorName.contains("Hold time")){
-//	                        passiveResourceResult.setAverageHoldingTime(calculateUnivariateStatistic(results, TimeseriesData.TIMESPAN, new Mean()));
-//	                    } else if (sensorName.contains("Wait time")){
-//	                        passiveResourceResult.setAverageWaitTime(calculateUnivariateStatistic(results, TimeseriesData.TIMESPAN, new Mean()));
-//	                    } else if (sensorName.contains("Util")){
-//	                        // for passive resources, also consider the capacity when calculating the util
-//	                        final int capacity = Integer.parseInt(passiveResourceResult.getPassiveResource_PassiveResourceResult().getCapacity_PassiveResource().getSpecification());
-//	                        retrieveUtilisationFromSensor(sensor, passiveResourceResult, capacity);
-//
-//	                    }
-//	                } else {
-//	                    logger.warn("Unknown passive resource id "+passiveResourceAndAssemblyContextID+", ignoring this sensor.");
-//	                }
-//	            }
-//
-//	        }
-//
-//	        return idsToPassiveResourceResult;
-//	    }
-
 	private void retrieveServiceResults(PCMInstance pcmInstance, ResultDecoratorRepository repo) {
-//		 final Collection<Sensor> sensorList = this.experiment.getSensors();
-//	        final List<ExternalCallActionWithSensors> externalCallsInContextWithSensorsList = new LinkedList<ExternalCallActionWithSensors>();
-//
-//	        for (final Sensor sensor : sensorList) {
-//	            final String sensorName = sensor.getSensorName();
-//	            if (sensorName.contains("CallID")){
-//	                //current sensor is an ExternalCall sensor
-//
-//	                // parse external call id
-//	                if (sensorName.lastIndexOf(" ") < sensorName.length()-2
-//	                        && sensorName.lastIndexOf(" ") > -1
-//	                        && sensorName.length() > 2){
-//	                    final String externalCallID = sensorName.substring(sensorName.lastIndexOf(" ")+1, sensorName.length()-1);
-//
-//	                    // 	find the external call in the model
-//	                    final ExternalCallAction myCall = idToExternalCallMap.get(externalCallID);
-//
-//	                    if (myCall != null){
-//
-//	                        //retrieve AssemblyContext from sensor name
-//	                        final String assemblyContextID = sensorName.substring(sensorName.indexOf("AssemblyCtx")+13,sensorName.indexOf("CallID")-2);
-//	                        final AssemblyContextContext myAssemblyContext = idToAssemblyContextMap.get(assemblyContextID);
-//	                        if (myAssemblyContext != null){
-//
-//	                            ExternalCallActionWithSensors externalCallInContextWithSensors = new ExternalCallActionWithSensors(myCall, myAssemblyContext);
-//
-//	                            //reuse pair if it already there
-//	                            final int index = externalCallsInContextWithSensorsList.indexOf(externalCallInContextWithSensors);
-//	                            if (index > 0){
-//	                                externalCallInContextWithSensors = externalCallsInContextWithSensorsList.get(index);
-//	                            } else {
-//	                                externalCallsInContextWithSensorsList.add(externalCallInContextWithSensors);
-//	                            }
-//
-//	                            // map all result sensors to the SEFF they call
-//	                            externalCallInContextWithSensors.addSensor(sensor);
-//	                            continue;
-//	                        }
-//	                    } else {
-//	                        // check if this is a completion component, if yes, ignore it and continue
-//	                        final String componentID = sensorName.substring(sensorName.indexOf("Component: ")+11,sensorName.indexOf("AssemblyCtx")-2);
-//	                        if (completionComponentIdsToIgnore.contains(componentID)){
-//	                            logger.info("Ignoring completion component sensor "+sensorName+" when reading in SimuCom results.");
-//	                            continue;
-//	                        }
-//	                    }
-//	                }
-//	                logger.warn("Cannot retrieve external call id from sensor. If this is a completion component, this is ok. Otherwise, sensor name labels must have changed. Contact developers if this sensors is needed. Sensor: "+sensorName);
-//	            }
+		// TODO Implement me
 
 	}
 
@@ -404,17 +277,13 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 
 	public static IStatisticAnalysisResult findExperimentRunAndCreateResult(Entity entity, String experimentName, String experimentSettingName, PCMInstance pcmInstance, Repository repo,
 			Map<Criterion, EvaluationAspectWithContext> criterionToAspect, SimulizarQualityAttributeDeclaration qualityAttribute) throws AnalysisFailedException {
-		ExperimentSetting mySetting = SimulizarAnalysisResult.findExperimentRun(experimentName, experimentSettingName, repo);
 
+		ExperimentSetting mySetting = SimulizarAnalysisResult.findExperimentRun(experimentName, experimentSettingName, repo);
 		if (mySetting != null) {
 
 			final EList<ExperimentRun> expRuns = mySetting.getExperimentRuns();
-
-			// Find latest run
-			final Comparator<ExperimentRun> comp = new ExperimentRunComparator();
-
 			/* sort so that the newest it at the beginning */
-			ECollections.sort(expRuns, comp);
+			ECollections.sort(expRuns, new ExperimentRunComparator());
 
 			ExperimentRun reqRun = null;
 			for (ExperimentRun experimentRun : expRuns) {
@@ -423,10 +292,7 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 					break;
 				}
 			}
-
-			// Return new instance of SimuComAnalysisEDP2Result for the
-			// requested run
-			return new SimulizarAnalysisResult(reqRun, mySetting, pcmInstance, entity, criterionToAspect, qualityAttribute);
+			return new SimulizarAnalysisResult(reqRun, pcmInstance, entity, criterionToAspect, qualityAttribute);
 		}
 
 		return null;

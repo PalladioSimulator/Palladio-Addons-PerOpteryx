@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.eclipse.debug.ui.ILaunchConfigurationDialog;
 import org.eclipse.debug.ui.ILaunchConfigurationTab;
+import org.palladiosimulator.simulizar.ui.configuration.InterpreterConfigurationTab;
 import org.palladiosimulator.simulizar.ui.configuration.InterpreterFileNamesInputTab;
 
 import de.uka.ipd.sdq.codegen.simucontroller.runconfig.FeatureOptionsTab;
@@ -18,11 +19,18 @@ import de.uka.ipd.sdq.codegen.simucontroller.workflow.jobs.WorkflowHooks;
 import de.uka.ipd.sdq.workflow.launchconfig.extension.ExtendableTabGroup;
 import de.uka.ipd.sdq.workflow.launchconfig.tabs.DebugEnabledCommonTab;
 
+/**
+ * This class defines the representation of this analyzer in the Run
+ * Configuration View. It has been adopted from
+ * {@link InterpreterConfigurationTab}.
+ *
+ * @author Dominik Fuchss
+ *
+ */
 public class SimulizarAnalysisTabGroup extends ExtendableTabGroup {
 
 	@Override
 	public void createTabs(ILaunchConfigurationDialog dialog, String mode) {
-		// From InterpreterConfigurationTab
 		List<ILaunchConfigurationTab> tabs = new ArrayList<>();
 		ILaunchConfigurationTab commonTab = new DebugEnabledCommonTab();
 		tabs.add(new InterpreterFileNamesInputTab());

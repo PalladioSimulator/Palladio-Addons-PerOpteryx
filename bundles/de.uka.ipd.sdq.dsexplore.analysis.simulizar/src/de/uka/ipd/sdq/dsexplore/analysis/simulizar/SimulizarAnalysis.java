@@ -36,10 +36,10 @@ import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
-import de.uka.ipd.sdq.workflow.mdsd.blackboard.ResourceSetPartition;
 
 /**
- * Starts a Simulizar Analysis for the design space exploration.
+ * Starts a SimuLizar Analysis for the design space exploration. Mainly adopted
+ * from classes in de.uka.ipd.sdq.dsexplore.analysis.simucom
  */
 public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 
@@ -85,53 +85,25 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 	}
 
 	private void launchSimulizar(IProgressMonitor monitor) throws CoreException, AnalysisFailedException {
-		final String featureConfigFile = this.workflowConfig.getFeatureConfigFile();
-		if (featureConfigFile != null && !"".equals(featureConfigFile)) {
-			final ResourceSetPartition pcmPartition = this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
-			pcmPartition.loadModel(featureConfigFile);
-		}
-
 		this.workflowConfig.setInteractive(false);
 
 		final SimulizarJob job = new SimulizarJob(this.workflowConfig, ++SimulizarAnalysis.COUNTER);
 		job.setBlackboard(this.blackboard);
 
-		// retry simulation if the cause was that an extension could not be
-		// loaded, because that seems to be a transient problem (it only happens
-		// sometimes)
-		final int numberOfTries = 2;
-		for (int i = 0; i < numberOfTries; i++) {
-			try {
-				// start SimuCom
-				job.execute(monitor);
-				SimulizarAnalysis.logger.debug("Finished Simulizar analysis");
-				break;
-			} catch (final JobFailedException | UserCanceledException e) {
-				SimulizarAnalysis.logger.error(e.getMessage());
-				if (e.getCause() != null) {
-					String causingErrorMessage = e.getCause().getMessage();
-					if (numberOfTries > 0 && causingErrorMessage != null && causingErrorMessage.contains("Couldn't find extension")) {
-						SimulizarAnalysis.logger.warn("Trying to start Simulizar again.");
-						continue;
-					}
-				}
-				// try to roll back and clean up (e.g. delete temporary folder).
-				// This is not tested yet and may cause problems.
-				try {
-					job.cleanup(monitor);
-				} catch (CleanupFailedException e1) {
-					SimulizarAnalysis.logger.error("Cleanup of failed simulizar run failed, probably you need to clean up manually (e.g. delete temorary plugin);");
-					e1.printStackTrace();
-				}
-				throw new AnalysisFailedException(e);
-			}
+		try {
+			job.execute(monitor);
+			SimulizarAnalysis.logger.debug("Finished Simulizar analysis");
+			job.cleanup(monitor);
+		} catch (JobFailedException | UserCanceledException | CleanupFailedException e) {
+			SimulizarAnalysis.logger.error("Error during simulation.");
+			e.printStackTrace();
+			throw new AnalysisFailedException(e);
 		}
 	}
 
 	@Override
 	public void initialise(DSEWorkflowConfiguration configuration) throws CoreException {
 		this.previousExperimentNames.clear();
-
 		this.config = configuration.getRawConfiguration();
 
 		if (!this.config.getAttribute("persistenceFramework", "").contains("EDP2")) {
@@ -139,11 +111,10 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 		}
 
 		if (this.blackboard == null) {
-			throw ExceptionHelper.createNewCoreException("Error in initialisation: No Blackboard was set when initialising the SimuCom Analysis. Contact the developers.");
+			throw ExceptionHelper.createNewCoreException("Error in initialisation: No Blackboard was set when initialising the SimuLizar Analysis. Contact the developers.");
 		}
 
 		this.initialExperimentName = this.config.getAttribute(AbstractSimulationConfig.EXPERIMENT_RUN, "");
-
 		this.initialiseCriteria(configuration);
 	}
 
@@ -160,16 +131,13 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 		final PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
 		final PCMInstance pcmInstance = new PCMInstance(pcmPartition);
 
-		IStatisticAnalysisResult result = null;
-
-		// Decide whether it's SensorFramework or EDP2
-		Repository selectedRepo = SimulizarAnalysisResult.findSelectedEDP2Repository(this.config);
-
-		result = SimulizarAnalysisResult.findExperimentRunAndCreateResult(entity, experimentName, experimentSettingName, pcmInstance, selectedRepo, this.criterionToAspect,
-				(SimulizarQualityAttributeDeclaration) this.qualityAttribute);
+		Repository repo = SimulizarAnalysisResult.findSelectedEDP2Repository(this.config);
+		SimulizarQualityAttributeDeclaration sq = (SimulizarQualityAttributeDeclaration) this.qualityAttribute;
+		IStatisticAnalysisResult result = SimulizarAnalysisResult.findExperimentRunAndCreateResult(entity, experimentName, experimentSettingName, pcmInstance, repo, this.criterionToAspect, sq);
 
 		if (result == null) {
-			final String errormessage = "There was no experiment named \"" + experimentName + "\" with an experiment setting \"" + experimentSettingName + "\""
+			final String errormessage = ""//
+					+ "There was no experiment named \"" + experimentName + "\" with an experiment setting \"" + experimentSettingName + "\"" //
 					+ " in the selected data source after analysing the PCM instance \"" + experimentName + "\" of candidate " + pheno.getNumericID() + " " + pheno.getGenotypeID();
 			SimulizarAnalysis.logger.error(errormessage);
 			throw new AnalysisFailedException(errormessage);
@@ -205,7 +173,7 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 	 * run with this name and check that it contains some results.
 	 *
 	 * @param experimentSettingName
-	 * @return
+	 * @return the indicator
 	 */
 	private boolean isExperimentRunDoesNotExist(final String experimentName, final String experimentSettingName) throws CoreException {
 		return !SimulizarAnalysisResult.isExperimentRunExisting(experimentName, experimentSettingName, SimulizarAnalysisResult.findSelectedEDP2Repository(this.config));

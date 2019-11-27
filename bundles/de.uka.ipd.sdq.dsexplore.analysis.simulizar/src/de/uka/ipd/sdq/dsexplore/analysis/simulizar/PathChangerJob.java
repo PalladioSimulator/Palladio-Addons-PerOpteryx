@@ -11,11 +11,26 @@ import de.uka.ipd.sdq.workflow.jobs.IJob;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
 
+/**
+ * This job modifies the paths to PCM Models in the
+ * {@link SimuLizarWorkflowConfiguration} to the temporary model created by
+ * PerOpteryx and stored by {@link SimulizarJob}.
+ *
+ * @author Dominik Fuchss
+ *
+ */
 public class PathChangerJob implements IJob {
 
 	private final SimuLizarWorkflowConfiguration configuration;
 	private String basePath;
 
+	/**
+	 * Create the job
+	 *
+	 * @param configuration
+	 *            the configuration to be changed by
+	 *            {@link SimuLizarWorkflowConfiguration#getStoragePluginID()}
+	 */
 	public PathChangerJob(SimuLizarWorkflowConfiguration configuration) {
 		this.configuration = configuration;
 	}
@@ -28,8 +43,6 @@ public class PathChangerJob implements IJob {
 		this.setUsageFile();
 		this.setModelPaths();
 	}
-
-
 
 	private void setAllocationFiles() {
 		this.configuration.setAllocationFiles(this.changePaths(this.configuration.getAllocationFiles()));
@@ -52,6 +65,13 @@ public class PathChangerJob implements IJob {
 
 	}
 
+	/**
+	 * Change a path to the new model path.
+	 *
+	 * @param model
+	 *            the path to the model
+	 * @return the new path
+	 */
 	private String changePath(String model) {
 		if (model.startsWith("pathmap") || model.contains("cand.")) {
 			return model;
@@ -73,13 +93,13 @@ public class PathChangerJob implements IJob {
 			return file;
 		}
 
-		return this.fileWithoutExtension(file)  + ending + "cand" + ending;
+		return this.fileWithoutExtension(file) + ending + "cand" + ending;
 
 	}
 
 	@Override
 	public void cleanup(IProgressMonitor monitor) throws CleanupFailedException {
-
+		// Do nothing for now ..
 	}
 
 	@Override
