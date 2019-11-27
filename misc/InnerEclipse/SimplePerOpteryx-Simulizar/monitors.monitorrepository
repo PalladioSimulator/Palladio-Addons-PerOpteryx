@@ -16,4 +16,11 @@
     </measurementSpecifications>
     <measuringPoint xsi:type="pcmmeasuringpoint:UsageScenarioMeasuringPoint" href="measuringpoints.measuringpoint#//@measuringPoints.1"/>
   </monitors>
+  <monitors id="_4yZIkBE0Eeq5E8FXi1X1HQ" entityName="Util">
+    <measurementSpecifications id="_5-JxEBE0Eeq5E8FXi1X1HQ">
+      <metricDescription xsi:type="metricspec:NumericalBaseMetricDescription" href="pathmap://METRIC_SPEC_MODELS/commonMetrics.metricspec#_QIb6cikUEeSuf8LV7cHLgA"/>
+      <processingType xsi:type="monitorrepository:FeedThrough" id="_KpcNNBE2Eeq8NIWnjUN10g"/>
+    </measurementSpecifications>
+    <measuringPoint xsi:type="pcmmeasuringpoint:ActiveResourceMeasuringPoint" href="measuringpoints.measuringpoint#//@measuringPoints.0"/>
+  </monitors>
 </monitorrepository:MonitorRepository>
