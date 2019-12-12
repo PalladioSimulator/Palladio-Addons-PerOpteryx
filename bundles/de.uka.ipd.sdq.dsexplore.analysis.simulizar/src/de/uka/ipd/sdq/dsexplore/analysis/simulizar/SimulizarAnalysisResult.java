@@ -148,7 +148,7 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 
 	private ResultDecoratorRepository retrieveResults(final PCMInstance pcmInstance) throws AnalysisFailedException {
 		final ResultDecoratorRepository repo = ResultdecoratorFactory.eINSTANCE.createResultDecoratorRepository();
-		this.retrieveResourceUtilisation(pcmInstance, repo);
+		this.retrieveActiveResourceUtil(pcmInstance, repo);
 		this.retrieveServiceResults(pcmInstance, repo);
 		this.retrievePassiveResourceUtil(repo, pcmInstance);
 		return repo;
@@ -156,14 +156,17 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 
 	private void retrievePassiveResourceUtil(ResultDecoratorRepository repo, PCMInstance pcmInstance) {
 		// TODO Implement me
+		// See also SimuComAnalysisSensorFrameworkResult
+		SimulizarAnalysisResult.logger.warn("Passive Resources will not monitored so far");
 	}
 
 	private void retrieveServiceResults(PCMInstance pcmInstance, ResultDecoratorRepository repo) {
 		// TODO Implement me
-
+		// See also SimuComAnalysisSensorFrameworkResult
+		SimulizarAnalysisResult.logger.warn("Services will not monitored so far");
 	}
 
-	private void retrieveResourceUtilisation(PCMInstance pcmInstance, ResultDecoratorRepository repo) {
+	private void retrieveActiveResourceUtil(PCMInstance pcmInstance, ResultDecoratorRepository repo) {
 		final List<ResourceContainer> resourceContainerList = pcmInstance.getResourceEnvironment().getResourceContainer_ResourceEnvironment();
 		for (final ResourceContainer resourceContainer : resourceContainerList) {
 			final List<ProcessingResourceSpecification> resources = resourceContainer.getActiveResourceSpecifications_ResourceContainer();
