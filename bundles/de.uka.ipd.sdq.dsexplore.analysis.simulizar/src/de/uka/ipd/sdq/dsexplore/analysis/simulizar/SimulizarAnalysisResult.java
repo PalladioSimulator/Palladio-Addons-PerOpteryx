@@ -1,5 +1,6 @@
 package de.uka.ipd.sdq.dsexplore.analysis.simulizar;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -36,12 +37,15 @@ import org.palladiosimulator.edp2.models.Repository.Repository;
 import org.palladiosimulator.edp2.models.measuringpoint.MeasuringPoint;
 import org.palladiosimulator.edp2.util.MeasurementsUtility;
 import org.palladiosimulator.metricspec.MetricDescription;
+import org.palladiosimulator.metricspec.MetricSetDescription;
 import org.palladiosimulator.metricspec.constants.MetricDescriptionConstants;
 import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
 import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
+import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.ResourceType;
+import org.palladiosimulator.pcmmeasuringpoint.ActiveResourceMeasuringPoint;
 import org.palladiosimulator.pcmmeasuringpoint.UsageScenarioMeasuringPoint;
 import org.palladiosimulator.solver.models.PCMInstance;
 
@@ -112,37 +116,50 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 
 	}
 
-	private double[] getResponseTimesOfScenario() {
-		double[] values = null;
+	private List<Measurement> findMeasurement(MetricSetDescription id, Class<? extends MeasuringPoint> type) {
+		List<Measurement> result = new ArrayList<>();
+
 		List<Measurement> measurements = this.run.getMeasurement();
 		for (Measurement measurement : measurements) {
-			MeasuringType type = measurement.getMeasuringType();
-			MetricDescription mdsc = type.getMetric();
-
-			if (!mdsc.getId().equals(MetricDescriptionConstants.RESPONSE_TIME_METRIC_TUPLE.getId())) {
+			MeasuringType mType = measurement.getMeasuringType();
+			MetricDescription mdsc = mType.getMetric();
+			if (!mdsc.getId().equals(id.getId())) {
 				continue;
 			}
 
 			MeasuringPoint mp = measurement.getMeasuringType().getMeasuringPoint();
-			if (!(mp instanceof UsageScenarioMeasuringPoint)) {
+			if (type != null && !(type.isInstance(mp))) {
 				continue;
 			}
-
-			// Get the one an only measurement range
-			MeasurementRange range = measurement.getMeasurementRanges().get(0);
-			// Read Response times
-			DataSeries series = range.getRawMeasurements().getDataSeries().get(1);
-			@SuppressWarnings("unchecked")
-			MeasurementsDao<Double, Quantity> qa = (MeasurementsDao<Double, Quantity>) MeasurementsUtility.getMeasurementsDao(series);
-			List<Measure<Double, Quantity>> q = qa.getMeasurements();
-			values = new double[q.size()];
-			int i = 0;
-			for (Measure<Double, Quantity> m : q) {
-				values[i++] = m.getValue();
-			}
-
-			break;
+			result.add(measurement);
 		}
+
+		return result;
+	}
+
+	private double[] getResponseTimesOfScenario() {
+		double[] values = null;
+		List<Measurement> measurements = this.findMeasurement(MetricDescriptionConstants.RESPONSE_TIME_METRIC_TUPLE, UsageScenarioMeasuringPoint.class);
+		if (measurements.size() != 1) {
+			SimulizarAnalysisResult.logger.error("Invalid amount of measurement points for scenario have been found!");
+			return null;
+		}
+
+		Measurement measurement = measurements.get(0);
+
+		// Get the one an only measurement range
+		MeasurementRange range = measurement.getMeasurementRanges().get(0);
+		// Read Response times
+		DataSeries series = range.getRawMeasurements().getDataSeries().get(1);
+		@SuppressWarnings("unchecked")
+		MeasurementsDao<Double, Quantity> qa = (MeasurementsDao<Double, Quantity>) MeasurementsUtility.getMeasurementsDao(series);
+		List<Measure<Double, Quantity>> q = qa.getMeasurements();
+		values = new double[q.size()];
+		int i = 0;
+		for (Measure<Double, Quantity> m : q) {
+			values[i++] = m.getValue();
+		}
+
 		return values;
 	}
 
@@ -196,7 +213,42 @@ public class SimulizarAnalysisResult extends AbstractPerformanceAnalysisResult i
 	}
 
 	private void getUtilisationOfResource(final ActiveResourceUtilisationResult resultToFill, final Entity container, final ResourceType resourceType) {
+		List<Measurement> measurements = this.findMeasurement(MetricDescriptionConstants.UTILIZATION_OF_ACTIVE_RESOURCE_TUPLE, ActiveResourceMeasuringPoint.class);
+		if (measurements.isEmpty()) {
+			resultToFill.setResourceUtilisation(Double.NaN);
+			return;
+		}
 
+		// For non CPU:
+		if (!(resourceType instanceof ProcessingResourceType)) {
+			SimulizarAnalysisResult.logger.warn("Only CPU measurements are currently supported ..");
+			resultToFill.setResourceUtilisation(Double.NaN);
+			return;
+		}
+
+		String cpuId = ((ResourceContainer) container).getActiveResourceSpecifications_ResourceContainer().get(0).getId();
+		for (Measurement measurement : measurements) {
+			MeasuringType type = measurement.getMeasuringType();
+			MeasuringPoint mp = type.getMeasuringPoint();
+			if (!mp.getResourceURIRepresentation().endsWith(cpuId)) {
+				continue;
+			}
+
+			// CPU Monitor found:
+			// Get the one an only measurement range
+			MeasurementRange range = measurement.getMeasurementRanges().get(0);
+			// Read Response times
+			DataSeries series = range.getRawMeasurements().getDataSeries().get(1);
+			@SuppressWarnings("unchecked")
+			MeasurementsDao<Double, Quantity> qa = (MeasurementsDao<Double, Quantity>) MeasurementsUtility.getMeasurementsDao(series);
+			List<Measure<Double, Quantity>> q = qa.getMeasurements();
+			double[] values = new double[q.size()];
+			int i = 0;
+			for (Measure<Double, Quantity> m : q) {
+				values[i++] = m.getValue();
+			}
+			resultToFill.setResourceUtilisation(new Mean().evaluate(values));
+		}
 		// Iff none found .. NaN
 		resultToFill.setResourceUtilisation(Double.NaN);
 	}
