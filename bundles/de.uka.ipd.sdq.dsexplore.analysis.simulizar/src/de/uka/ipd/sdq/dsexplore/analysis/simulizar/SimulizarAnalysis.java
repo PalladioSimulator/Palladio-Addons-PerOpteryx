@@ -94,6 +94,7 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 			job.execute(monitor);
 			SimulizarAnalysis.logger.debug("Finished Simulizar analysis");
 			job.cleanup(monitor);
+			this.blackboard = job.getBlackboard();
 		} catch (JobFailedException | UserCanceledException | CleanupFailedException e) {
 			SimulizarAnalysis.logger.error("Error during simulation.");
 			e.printStackTrace();
@@ -129,6 +130,8 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 		final String experimentName = this.getExperimentName(pheno);
 		final String experimentSettingName = this.getExperimentSettingName(pheno);
 		final PCMResourceSetPartition pcmPartition = (PCMResourceSetPartition) this.blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
+		// TODO Iff no copy of Blackboard in launchSimulizar is done this fails
+		// .. (shall not be so)
 		final PCMInstance pcmInstance = new PCMInstance(pcmPartition);
 
 		Repository repo = SimulizarAnalysisResult.findSelectedEDP2Repository(this.config);
