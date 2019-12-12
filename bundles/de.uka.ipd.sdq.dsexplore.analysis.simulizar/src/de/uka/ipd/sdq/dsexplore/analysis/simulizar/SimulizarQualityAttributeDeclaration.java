@@ -10,7 +10,7 @@ import de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension;
 
 /**
  * Defines the Dimensions of this analyzer.
- * 
+ *
  * @author Dominik Fuchss
  *
  */
@@ -26,12 +26,13 @@ public class SimulizarQualityAttributeDeclaration extends AbstractPerformanceAtt
 		if (EcoreUtil.equals(dimension, this.responseTimeDimension) && aspect instanceof Mean) {
 			return true;
 		}
-		if (EcoreUtil.equals(dimension, this.throughputDimension) && aspect instanceof Mean) {
-			return true;
-		}
-		if (EcoreUtil.equals(dimension, this.maxUtilizationDimension)) {
-			return true;
-		}
+		// if (EcoreUtil.equals(dimension, this.throughputDimension) && aspect
+		// instanceof Mean) {
+		// return true;
+		// }
+		// if (EcoreUtil.equals(dimension, this.maxUtilizationDimension)) {
+		// return true;
+		// }
 		return false;
 	}
 
