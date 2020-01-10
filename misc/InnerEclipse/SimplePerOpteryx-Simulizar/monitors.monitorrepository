@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monitorrepository:MonitorRepository xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:metricspec="http://palladiosimulator.org/MetricSpec/1.0" xmlns:monitorrepository="http://palladiosimulator.org/MonitorRepository/1.0" xmlns:pcmmeasuringpoint="http://palladiosimulator.org/PCM/MeasuringPoint/1.0" id="_FUUdsAIDEeq77qf84TfXzw">
+  <monitors id="_ZB9F8AIDEeq77qf84TfXzw" entityName="CPUUtilizationMonitor">
+    <measurementSpecifications id="_aG3fkAIDEeq77qf84TfXzw">
+      <metricDescription xsi:type="metricspec:NumericalBaseMetricDescription" href="pathmap://METRIC_SPEC_MODELS/commonMetrics.metricspec#_paDhIs7qEeOX_4BzImuHbA"/>
+      <processingType xsi:type="monitorrepository:FeedThrough" id="_b-MNkAIDEeq77qf84TfXzw"/>
+    </measurementSpecifications>
+    <measuringPoint xsi:type="pcmmeasuringpoint:ActiveResourceMeasuringPoint" href="measuringpoints.measuringpoint#//@measuringPoints.0"/>
+  </monitors>
+  <monitors id="_cNKdsAIDEeq77qf84TfXzw" entityName="UsageScenarioResponseTime">
+    <measurementSpecifications id="_dIQ0AAIDEeq77qf84TfXzw">
+      <metricDescription xsi:type="metricspec:NumericalBaseMetricDescription" href="pathmap://METRIC_SPEC_MODELS/commonMetrics.metricspec#_6rYmYs7nEeOX_4BzImuHbA"/>
+      <processingType xsi:type="monitorrepository:FeedThrough" id="_o63GFBgBEeqak7aWkET6bg"/>
+    </measurementSpecifications>
+    <measuringPoint xsi:type="pcmmeasuringpoint:UsageScenarioMeasuringPoint" href="measuringpoints.measuringpoint#//@measuringPoints.1"/>
+  </monitors>
+  <monitors id="_7-eg8RgBEeqak7aWkET6bg" entityName="StateAggregated">
+    <measurementSpecifications id="_9msb8BgBEeqak7aWkET6bg">
+      <metricDescription xsi:type="metricspec:MetricSetDescription" href="pathmap://METRIC_SPEC_MODELS/commonMetrics.metricspec#_mhws4SkUEeSuf8LV7cHLgA"/>
+      <processingType xsi:type="monitorrepository:TimeDriven" id="_OBwgMRgCEeqak7aWkET6bg"/>
+    </measurementSpecifications>
+    <measuringPoint xsi:type="pcmmeasuringpoint:ActiveResourceMeasuringPoint" href="measuringpoints.measuringpoint#//@measuringPoints.0"/>
+  </monitors>
+</monitorrepository:MonitorRepository>

@@ -19,6 +19,7 @@
 		<module>de.uka.ipd.sdq.dsexplore.analysis.reliability</module>
 		<module>de.uka.ipd.sdq.dsexplore.analysis.security</module>
 		<module>de.uka.ipd.sdq.dsexplore.analysis.simucom</module>
+		<module>de.uka.ipd.sdq.dsexplore.analysis.simulizar</module>
 		<module>de.uka.ipd.sdq.dsexplore.analysis.featurecompletions</module>
 		<module>de.uka.ipd.sdq.dsexplore.bayesnets</module>
 		<module>de.uka.ipd.sdq.dsexplore.csvanalyzer</module>

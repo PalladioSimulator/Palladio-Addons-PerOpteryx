@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.palladiosimulator.edp2.models:MeasuringPointRepository xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.palladiosimulator.edp2.models="http://palladiosimulator.org/EDP2/MeasuringPoint/1.0" xmlns:pcmmeasuringpoint="http://palladiosimulator.org/PCM/MeasuringPoint/1.0" id="_CxLLgAIDEeq77qf84TfXzw">
+  <measuringPoints xsi:type="pcmmeasuringpoint:ActiveResourceMeasuringPoint" stringRepresentation="CPU [0] in Server" resourceURIRepresentation="platform:/resource/SimplePerOpteryx-Simulizar/environment.resourceenvironment#_RbOicGFeEeetxOZObiabqg">
+    <activeResource href="environment.resourceenvironment#_RbOicGFeEeetxOZObiabqg"/>
+  </measuringPoints>
+  <measuringPoints xsi:type="pcmmeasuringpoint:UsageScenarioMeasuringPoint" stringRepresentation="Usage Scenario: BaseUsageScenario" resourceURIRepresentation="platform:/resource/SimplePerOpteryx-Simulizar/usage.usagemodel#_qZ938GFeEeetxOZObiabqg">
+    <usageScenario href="usage.usagemodel#_qZ938GFeEeetxOZObiabqg"/>
+  </measuringPoints>
+</org.palladiosimulator.edp2.models:MeasuringPointRepository>

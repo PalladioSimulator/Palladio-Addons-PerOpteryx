@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="de.uka.ipd.sdq.dsexplore.analysis">
+      <analysis
+            delegate="de.uka.ipd.sdq.dsexplore.analysis.simulizar.SimulizarAnalysis"
+            launchConfigContribution="de.uka.ipd.sdq.dsexplore.analysis.simulizar.launch.SimulizarAnalysisTabGroup"
+            name="SimuLizar Analysis"
+            qualityAttribute="de.uka.ipd.sdq.dsexplore.performance"
+            qualityAttributeHandler="de.uka.ipd.sdq.dsexplore.analysis.simulizar.SimulizarQualityAttributeDeclaration">
+      </analysis>
+   </extension>
+
+</plugin>

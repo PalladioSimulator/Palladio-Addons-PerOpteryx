@@ -22,6 +22,7 @@ import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import org.palladiosimulator.pcm.seff.SetVariableAction;
 
 import FeatureCompletionModel.ComplementumVisnetis;
+import de.uka.ipd.sdq.dsexplore.tools.stereotypeapi.StereotypeAPIHelper;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.ErrorMessage;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.FCCUtil;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.port.FCCWeaverException;
@@ -78,7 +79,7 @@ public abstract class ServiceEffectSpecificationWeaving {
 		this.inclusionMechanism = inclusionMechanism;
 	}
 
-	private void setConsumedFeautresOfECC(List<ProvidedRole> consumedFeautresOfECC) {
+	private void setConsumedFeaturesOfECC(List<ProvidedRole> consumedFeautresOfECC) {
 		this.consumedFeautresOfECC = consumedFeautresOfECC;
 	}
 
@@ -90,7 +91,7 @@ public abstract class ServiceEffectSpecificationWeaving {
 	public void weave(WeavingInstruction weavingInstruction) throws FCCWeaverException {
 		this.visnetis = weavingInstruction.getCV();
 		this.setWeavingLocation(weavingInstruction.getWeavingLocation(), weavingInstruction.getAffected());
-		this.setConsumedFeautresOfECC(weavingInstruction.getFCCWithConsumedFeatures().getSecond());
+		this.setConsumedFeaturesOfECC(weavingInstruction.getFCCWithConsumedFeatures().getSecond());
 		this.setTransformationStrategy(weavingInstruction.getInclusionMechanism());
 		this.createServiceEffectSpecificationForAdapterBy(this.getCalledComponent());
 	}
@@ -156,12 +157,46 @@ public abstract class ServiceEffectSpecificationWeaving {
 	}
 
 	private boolean isInvokedByAdapter(Signature signature) {
-		for (Signature sig : this.getAllRequiredServicesOfAdapter().collect(Collectors.toList())) {
+		List<Signature> signatures = this.getAllRequiredServicesOfAdapter().collect(Collectors.toList());
+
+		for (Signature sig : signatures) {
 			if (FCCUtil.areEqual(sig, signature)) {
 				return true;
 			}
 		}
 		return false;
+
+	}
+
+	/**
+	 * Filter all signatures without annotation iff any annotated
+	 *
+	 * @author Dominik Fuchss
+	 */
+	private List<ExternalCallInfo> filterAccordingToOptionalAnnotations(List<ExternalCallInfo> infos) {
+
+		List<ExternalCallInfo> infosWithoutAnnotationInSolution = new ArrayList<>();
+		List<ExternalCallInfo> infosWithAnnotationInSolution = new ArrayList<>();
+
+		for (ExternalCallInfo ei : infos) {
+			boolean isInSolution = !StereotypeAPIHelper.getViaStereoTypeFrom(ei.calledService.eContainer(), ComplementumVisnetis.class, "fulfillsComplementumVisnetis").isEmpty();
+			if (!isInSolution) {
+				continue;
+			}
+
+			List<ComplementumVisnetis> vis = StereotypeAPIHelper.getViaStereoTypeFrom(ei.calledService, ComplementumVisnetis.class, "fulfillsComplementumVisnetis");
+			if (vis.contains(this.visnetis)) {
+				infosWithAnnotationInSolution.add(ei);
+			} else {
+				infosWithoutAnnotationInSolution.add(ei);
+			}
+		}
+
+		if (!infosWithAnnotationInSolution.isEmpty()) {
+			infos.removeAll(infosWithoutAnnotationInSolution);
+		}
+
+		return infos;
 	}
 
 	private Stream<Signature> getAllRequiredServicesOfAdapter() {
@@ -194,7 +229,7 @@ public abstract class ServiceEffectSpecificationWeaving {
 	}
 
 	private List<ExternalCallInfo> createOrdinaryPutThroughActionPipeBy(ServiceEffectSpecification seffToTransform) throws FCCWeaverException {
-		return Arrays.asList(this.getExternalCallInfoFrom(seffToTransform));
+		return this.filterAccordingToOptionalAnnotations(Arrays.asList(this.getExternalCallInfoFrom(seffToTransform)));
 	}
 
 	private List<ExternalCallInfo> createOrderedExternalCallActionPipeBy(ServiceEffectSpecification seffToTransform) throws FCCWeaverException {
@@ -218,7 +253,7 @@ public abstract class ServiceEffectSpecificationWeaving {
 			externalCallInfos.add(this.getExternalCallInfoFrom(seffToTransform));
 			break;
 		}
-		return externalCallInfos;
+		return this.filterAccordingToOptionalAnnotations(externalCallInfos);
 	}
 
 	private List<ExternalCallInfo> getExternalCallInfosFrom(List<ProvidedRole> consumedFeautresOfECC, boolean isInSolution) {
