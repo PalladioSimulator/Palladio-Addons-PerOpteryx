@@ -94,7 +94,6 @@ public class SimulizarAnalysis extends AbstractAnalysis implements IAnalysis {
 			job.execute(monitor);
 			SimulizarAnalysis.logger.debug("Finished Simulizar analysis");
 			job.cleanup(monitor);
-			this.blackboard = job.getBlackboard();
 		} catch (JobFailedException | UserCanceledException | CleanupFailedException e) {
 			SimulizarAnalysis.logger.error("Error during simulation.");
 			e.printStackTrace();
