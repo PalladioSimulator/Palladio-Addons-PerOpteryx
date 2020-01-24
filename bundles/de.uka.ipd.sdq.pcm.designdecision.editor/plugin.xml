@@ -92,22 +92,6 @@
       </editor>
    </extension>
 
-   <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated DesignDecision -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
-      <wizard
-            id="de.uka.ipd.sdq.pcm.designdecision.gdof.presentation.gdofModelWizardID"
-            name="%_UI_gdofModelWizard_label"
-            class="de.uka.ipd.sdq.pcm.designdecision.gdof.presentation.gdofModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/gdofModelFile.gif">
-         <description>%_UI_gdofModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
-   </extension>
-
    <extension point="org.eclipse.ui.editors">
       <!-- @generated DesignDecision -->
       <editor
@@ -164,18 +148,6 @@
             id="de.uka.ipd.sdq.pcm.designdecision.gdof.presentation.gdofEditorID"
             name="gdof">
       </editor>
-   </extension>
-   <extension
-         point="org.eclipse.ui.newWizards">
-      <category
-            id="de.uka.ipd.sdq.pcm.designdecision.editor.category1"
-            name="name">
-      </category>
-      <wizard
-            class="de.uka.ipd.sdq.pcm.designdecision.gdof.presentation.gdofModelWizard"
-            id="de.uka.ipd.sdq.pcm.designdecision.gdof.presentation.gdofModelWizardID"
-            name="gdof">
-      </wizard>
    </extension>
 
 </plugin>
