@@ -11,10 +11,10 @@ import org.eclipse.debug.core.ILaunchManager;
 import org.opt4j.core.Criterion;
 import org.palladiosimulator.analyzer.workflow.configurations.PCMWorkflowConfigurationBuilder;
 import org.palladiosimulator.pcm.usagemodel.UsageScenario;
-import org.palladiosimulator.solver.reliability.pcm2markov.MarkovTransformationResult;
-import org.palladiosimulator.solver.reliability.pcm2markov.Pcm2MarkovStrategy;
-import org.palladiosimulator.solver.reliability.runconfig.PCMSolverReliabilityConfigurationBasedConfigBuilder;
-import org.palladiosimulator.solver.reliability.runconfig.RunPCMReliabilityAnalysisJob;
+import org.palladiosimulator.reliability.solver.pcm2markov.MarkovTransformationResult;
+import org.palladiosimulator.reliability.solver.pcm2markov.Pcm2MarkovStrategy;
+import org.palladiosimulator.reliability.solver.runconfig.PCMSolverReliabilityConfigurationBasedConfigBuilder;
+import org.palladiosimulator.reliability.solver.runconfig.RunPCMReliabilityAnalysisJob;
 import org.palladiosimulator.solver.runconfig.PCMSolverConfigurationBasedConfigBuilder;
 import org.palladiosimulator.solver.runconfig.PCMSolverWorkflowRunConfiguration;
 
