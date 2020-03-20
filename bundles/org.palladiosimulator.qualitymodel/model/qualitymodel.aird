@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" uid="_eZgDwGqNEeq-HIxDcL3HTA" version="14.1.0.201810161215">
+  <semanticResources>qualitymodel.ecore</semanticResources>
+  <semanticResources>platform:/plugin/org.palladiosimulator.pcm/model/pcm.ecore</semanticResources>
+  <semanticResources>http://www.eclipse.org/emf/2002/Ecore</semanticResources>
+  <semanticResources>platform:/plugin/de.uka.ipd.sdq.dsexplore.qml/model/QMLContract.ecore</semanticResources>
+  <semanticResources>platform:/plugin/de.uka.ipd.sdq.dsexplore.qml/model/QMLContractType.ecore</semanticResources>
+  <semanticResources>platform:/plugin/de.uka.ipd.sdq.stoex/model/stoex.ecore</semanticResources>
+  <semanticResources>platform:/plugin/de.uka.ipd.sdq.identifier/model/identifier.ecore</semanticResources>
+  <semanticResources>platform:/plugin/de.uka.ipd.sdq.units/model/Units.ecore</semanticResources>
+  <semanticResources>platform:/plugin/de.uka.ipd.sdq.probfunction/model/ProbabilityFunction.ecore</semanticResources>
+  <semanticResources>platform:/plugin/de.uka.ipd.sdq.dsexplore.qml/model/QMLDeclarations.ecore</semanticResources>
+</viewpoint:DAnalysis>
