@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore.qml.editor;singleton:=true
-Bundle-Version: 4.2.0.qualifier
+Bundle-Version: 4.3.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: de.uka.ipd.sdq.dsexplore.qml.profile.QMLProfile.presentation.QMLProfileEditorPlugin$Implementation
 Bundle-Vendor: %providerName
@@ -23,7 +23,7 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.probfunction.edit;visibility:=reexport,
  de.uka.ipd.sdq.stoex.edit;bundle-version="2.2.0";visibility:=reexport,
  de.uka.ipd.sdq.units.edit;bundle-version="2.1.0";visibility:=reexport,
- de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="4.2.0",
+ de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="4.3.0",
  org.palladiosimulator.editors.commons.propertytabs;bundle-version="1.0.0",
  org.palladiosimulator.pcm.ui;bundle-version="2.0.0"
 Bundle-ActivationPolicy: lazy
