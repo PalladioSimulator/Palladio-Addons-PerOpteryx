@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.antlr.runtime.RecognitionException;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.palladiosimulator.pcm.repository.BasicComponent;
@@ -24,12 +23,13 @@ import org.palladiosimulator.pcm.usagemodel.UsagemodelFactory;
 import org.palladiosimulator.pcm.usagemodel.util.UsagemodelSwitch;
 import org.palladiosimulator.solver.transformations.ContextWrapper;
 import org.palladiosimulator.solver.transformations.EMFHelper;
+import org.palladiosimulator.solver.utils.ManagedPMFParser;
+import org.palladiosimulator.solver.utils.StringNotPMFException;
 
 import de.uka.ipd.sdq.pcm.taskmodel.Task;
 import de.uka.ipd.sdq.pcm.taskmodel.TaskList;
 import de.uka.ipd.sdq.probfunction.Sample;
 import de.uka.ipd.sdq.probfunction.math.ManagedPMF;
-import de.uka.ipd.sdq.probfunction.math.exception.StringNotPDFException;
 
 public class Pcm2TaskmodelUsagemodelSwitch extends UsagemodelSwitch<List<Task>> {
 
@@ -63,10 +63,8 @@ public class Pcm2TaskmodelUsagemodelSwitch extends UsagemodelSwitch<List<Task>> 
 		/* Copied from Rdseff2Taskmodel#caseAbstractLoopAction: Do not change here, but there. */
 		ManagedPMF iterations = null;
 		try {
-			iterations = ManagedPMF.createFromString(object.getLoopIteration_Loop().getSpecification());
-		} catch (StringNotPDFException e) {
-			e.printStackTrace();
-		} catch (RecognitionException e) {
+			iterations = ManagedPMFParser.createFromString(object.getLoopIteration_Loop().getSpecification());
+		} catch (StringNotPMFException e) {
 			e.printStackTrace();
 		}
 		//ManagedPMF iterations = contextWrapper.getLoopIterations(object);
