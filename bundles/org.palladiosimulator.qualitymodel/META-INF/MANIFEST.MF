@@ -2,14 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Quality Model
 Bundle-SymbolicName: org.palladiosimulator.qualitymodel;singleton:=true
-Bundle-Version: 4.3.0.qualifier
+Bundle-Version: 5.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: palladiosimulator.org
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Export-Package: org.palladiosimulator.qualitymodel;version="4.3.0",
- org.palladiosimulator.qualitymodel.impl;version="4.3.0",
- org.palladiosimulator.qualitymodel.util;version="4.3.0",
+Export-Package: org.palladiosimulator.qualitymodel;version="5.0.0",
+ org.palladiosimulator.qualitymodel.impl;version="5.0.0",
+ org.palladiosimulator.qualitymodel.util;version="5.0.0",
  org.palladiosimulator.qualitymodel.helper
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Lqnsolver for DSE
 Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore.analysis.lqn;singleton:=true
-Bundle-Version: 4.3.0.qualifier
+Bundle-Version: 5.0.0.qualifier
 Bundle-Activator: de.uka.ipd.sdq.dsexplore.analysis.lqn.Activator
 Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.dsexplore,
@@ -19,7 +19,7 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.statistics;bundle-version="1.0.0",
  org.opt4j;bundle-version="1.0.0",
  org.opt4j,
- de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="4.3.0",
+ de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="5.0.0",
  de.uka.ipd.sdq.dsexplore.qml,
  org.palladiosimulator.solver.lqn;bundle-version="2.0.0",
  org.palladiosimulator.solver.context;bundle-version="2.0.0",

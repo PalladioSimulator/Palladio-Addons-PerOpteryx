@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-	<feature url="features/de.uka.ipd.sdq.dsexplore.feature_4.3.0.qualifier.jar" id="de.uka.ipd.sdq.dsexplore.feature" version="4.3.0.qualifier">
+	<feature url="features/de.uka.ipd.sdq.dsexplore.feature_5.0.0.qualifier.jar" id="de.uka.ipd.sdq.dsexplore.feature" version="5.0.0.qualifier">
 	   <category name="org.palladiosimulator.addons.category"/>
 	</feature>
-	<feature url="features/de.uka.ipd.sdq.dsexplore.feature.source_4.3.0.qualifier.jar" id="de.uka.ipd.sdq.dsexplore.feature.source" version="4.3.0.qualifier">
+	<feature url="features/de.uka.ipd.sdq.dsexplore.feature.source_5.0.0.qualifier.jar" id="de.uka.ipd.sdq.dsexplore.feature.source" version="5.0.0.qualifier">
 	   <category name="org.palladiosimulator.addons.source.category"/>
 	</feature>
 	<category-def name="org.palladiosimulator.addons.category" label="Palladio Bench Addons">
