@@ -47,10 +47,10 @@ public class SimulizarJob extends AbstractSimulationJob<SimuLizarWorkflowConfigu
 	@Override
 	protected void addSimulatorSpecificJobs(SimuLizarWorkflowConfiguration configuration) {
 		this.add(new PathChangerJob(configuration));
-        this.add(SimuLizarPlatform.getPlatformComponent()
-                .analysisFactory()
-                .create((SimuLizarWorkflowConfiguration) configuration)
-                .rootJob());
+		this.add(SimuLizarPlatform.getPlatformComponent()
+				.analysisFactory()
+				.create((SimuLizarWorkflowConfiguration) configuration)
+				.rootJob());
 	}
 
 	@Override
