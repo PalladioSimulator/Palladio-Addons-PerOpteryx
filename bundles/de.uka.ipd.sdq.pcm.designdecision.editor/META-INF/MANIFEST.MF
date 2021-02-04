@@ -22,7 +22,7 @@ Require-Bundle: de.uka.ipd.sdq.pcm.designdecision.edit;bundle-version="5.0.0";vi
  de.uka.ipd.sdq.pcm.cost.edit;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.palladiosimulator.pcm.ui;bundle-version="2.0.0",
- de.uka.ipd.sdq.featuremodel.edit;bundle-version="[2.1.0,5.0.0)";visibility:=reexport,
+ de.uka.ipd.sdq.featuremodel.edit;bundle-version="5.0.0";visibility:=reexport,
  de.uka.ipd.sdq.identifier.edit;visibility:=reexport,
  org.palladiosimulator.pcm.edit;visibility:=reexport,
  org.palladiosimulator.analyzer.resultdecorator.edit;visibility:=reexport,

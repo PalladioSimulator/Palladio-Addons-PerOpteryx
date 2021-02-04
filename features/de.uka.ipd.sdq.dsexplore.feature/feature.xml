@@ -61,14 +61,14 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.palladiosimulator.pcm.ui" version="2.0.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.editors.commons.propertytabs" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.featuremodel" version="4.2.0" match="compatible"/>
+      <import plugin="de.uka.ipd.sdq.featuremodel" version="5.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.dsexplore.qml" version="5.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.dsexplore.tools" version="5.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.dsexplore.facade" version="5.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.pcm.cost" version="5.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.uml2.types"/>
       <import plugin="de.uka.ipd.sdq.pcm.designdecision" version="5.0.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.featuremodel.edit" version="4.2.0" match="compatible"/>
+      <import plugin="de.uka.ipd.sdq.featuremodel.edit" version="5.0.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.analyzer.resultdecorator.edit"/>
       <import plugin="de.uka.ipd.sdq.pcm.designdecision.edit" version="5.0.0" match="greaterOrEqual"/>
       <import plugin="org.apache.commons.collections15" version="1.0.0" match="greaterOrEqual"/>
