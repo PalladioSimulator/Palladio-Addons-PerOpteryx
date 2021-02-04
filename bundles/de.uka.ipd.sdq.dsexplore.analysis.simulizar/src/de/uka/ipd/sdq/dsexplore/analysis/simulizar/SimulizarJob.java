@@ -2,7 +2,7 @@ package de.uka.ipd.sdq.dsexplore.analysis.simulizar;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.palladiosimulator.simulizar.launcher.jobs.PCMInterpreterRootCompositeJob;
+import org.palladiosimulator.simulizar.SimuLizarPlatform;
 import org.palladiosimulator.simulizar.runconfig.SimuLizarWorkflowConfiguration;
 
 import de.uka.ipd.sdq.codegen.simucontroller.workflow.jobs.AbstractSimulationJob;
@@ -47,7 +47,10 @@ public class SimulizarJob extends AbstractSimulationJob<SimuLizarWorkflowConfigu
 	@Override
 	protected void addSimulatorSpecificJobs(SimuLizarWorkflowConfiguration configuration) {
 		this.add(new PathChangerJob(configuration));
-		this.add(new PCMInterpreterRootCompositeJob(configuration));
+        this.add(SimuLizarPlatform.getPlatformComponent()
+                .analysisFactory()
+                .create((SimuLizarWorkflowConfiguration) configuration)
+                .rootJob());
 	}
 
 	@Override
