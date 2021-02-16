@@ -257,7 +257,7 @@ public class InternalFcDslParser extends AbstractInternalAntlrParser {
                     					if (current==null) {
                     						current = createModelElement(grammarAccess.getBehaviourInclusionRule());
                     					}
-                    					setWithLastConsumed(current, "multiple", true, "multiple");
+                    					setWithLastConsumed(current, "multiple", lv_multiple_1_0 != null, "multiple");
                     				
 
                     }
@@ -1834,7 +1834,7 @@ public class InternalFcDslParser extends AbstractInternalAntlrParser {
                     					if (current==null) {
                     						current = createModelElement(grammarAccess.getSelectedCVRule());
                     					}
-                    					setWithLastConsumed(current, "optional", true, "optional");
+                    					setWithLastConsumed(current, "optional", lv_optional_0_0 != null, "optional");
                     				
 
                     }
