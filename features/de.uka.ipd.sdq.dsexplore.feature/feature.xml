@@ -121,6 +121,13 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
          unpack="false"/>
 
    <plugin
+         id="de.uka.ipd.sdq.dsexplore.analysis.simulizar"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="de.uka.ipd.sdq.pcm.cost"
          download-size="0"
          install-size="0"
