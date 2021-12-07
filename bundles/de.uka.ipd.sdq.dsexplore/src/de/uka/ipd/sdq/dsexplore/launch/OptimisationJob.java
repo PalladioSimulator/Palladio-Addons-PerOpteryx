@@ -34,6 +34,7 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 	private MDSDBlackboard blackboard;
 
 	private DSEWorkflowConfiguration dseConfig;
+	
 
 	public OptimisationJob(DSEWorkflowConfiguration config, DSELaunch launch) {
 
@@ -56,8 +57,9 @@ public class OptimisationJob implements IJob, IBlackboardInteractingJob<MDSDBlac
 			this.pcmInstance = this.getPCMInstance();
 			List<PCMInstance> instances = new ArrayList<>();
 			instances.add(this.pcmInstance);
-
-			Opt4JStarter.init(this.evaluators, this.dseConfig, this.getPCMInstance(), monitor, this.blackboard);
+			
+			var filtering = dseConfig.getFilteringAnalysis();
+			Opt4JStarter.init(this.evaluators, this.dseConfig, this.getPCMInstance(), monitor, this.blackboard, filtering);
 
 			if (this.dseConfig.hasCacheInstances()) {
 				this.fillCacheWithValues(this.dseConfig.getCacheInstancesFileName());

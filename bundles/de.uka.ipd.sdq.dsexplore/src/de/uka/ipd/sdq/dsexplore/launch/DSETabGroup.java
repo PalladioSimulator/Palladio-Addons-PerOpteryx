@@ -51,6 +51,7 @@ public class DSETabGroup extends AbstractLaunchConfigurationTabGroup {
 		tabs.addAll(analysisTabs);
 
 		tabs.add(new TacticsTab());
+		tabs.add(new FilteringTab());
 		tabs.add(new StartingPopulationHeuristicTab());
 		
 		if (ResultsHandlerController.resultHandlersAvailable(Platform.getExtensionRegistry())) {

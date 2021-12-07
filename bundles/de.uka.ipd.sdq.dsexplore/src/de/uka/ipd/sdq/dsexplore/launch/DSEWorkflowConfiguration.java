@@ -1,6 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.launch;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -12,6 +13,7 @@ import org.eclipse.emf.common.util.URI;
 import org.palladiosimulator.analyzer.workflow.configurations.AbstractPCMWorkflowRunConfiguration;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.FilteringAnalysis;
 import de.uka.ipd.sdq.tcfmoop.config.IConfiguration;
 
 /**
@@ -169,6 +171,7 @@ AbstractPCMWorkflowRunConfiguration {
 	private URI cacheInstancesFileName;
 	private URI predefinedAllCandidatesFileName;
 	private URI archiveCandidateFileName;
+	private List<FilteringAnalysis> filtering = new ArrayList<FilteringAnalysis>();
 
 
 	/**
@@ -227,6 +230,13 @@ AbstractPCMWorkflowRunConfiguration {
 		this.numberOfCandidatesPerAllocationLevel = numberOfCandidatesPerAllocationLevel;
 	}
 
+	public void setFilteringAnalysis(FilteringAnalysis filter) {
+		this.filtering.add(filter);
+	}
+	
+	public List<FilteringAnalysis> getFilteringAnalysis(){
+		return filtering;
+	}
 
 	public DSEWorkflowConfiguration()  {
 		String DATE_FORMAT_NOW = "yyyy-MM-dd-HHmmss";

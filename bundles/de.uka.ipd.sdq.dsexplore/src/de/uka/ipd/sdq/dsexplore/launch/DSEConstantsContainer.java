@@ -289,6 +289,12 @@ public class DSEConstantsContainer {
 	public static final String DEFAULT_DESIGN_DECISION_FILE = "";
 	/** Default URI for the QML criteria definitions file. */
 	public static final String DEFAULT_QML_CRITERIA_DEFINITIONS_FILE = "";
+	
+	
+	//Extensions point
+	public static final String FILTERING_EXTENSION_POINT = "de.uka.ipd.sdq.dsexplore.filter";
+	public static final String FILTERING_EXTENSION_POINT_INTERFACE = "class";
+	public static final String FILTERING_EXTENSION_POINT_NAME = "name";
 
 
 

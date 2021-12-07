@@ -60,6 +60,7 @@ import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEIndividualFactory;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEMutateModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEProblem;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.FilteringAnalysis;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.GivenInstanceModule;
 import de.uka.ipd.sdq.dsexplore.opt4j.representation.RuleBasedSearchModule;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.UsageScenarioBasedObjective;
@@ -98,7 +99,7 @@ public class Opt4JStarter {
 
 	private static List<ResultsWriter> writers = null;
 	
-	public static void init(List<IAnalysis> evaluators, DSEWorkflowConfiguration dseConfig, PCMInstance pcmInstance, IProgressMonitor monitor, MDSDBlackboard blackboard) throws CoreException{
+	public static void init(List<IAnalysis> evaluators, DSEWorkflowConfiguration dseConfig, PCMInstance pcmInstance, IProgressMonitor monitor, MDSDBlackboard blackboard, List<FilteringAnalysis> filtering) throws CoreException{
 		
 		Opt4JStarter.myDSEConfig = dseConfig;
 		
@@ -136,7 +137,7 @@ public class Opt4JStarter {
 		GenotypeReader.setTask(task); //QUICKHACK
 		
 		DSEEvaluator ev = task.getInstance(DSEEvaluator.class);
-		ev.init(evaluators, monitor,blackboard, dseConfig.isStopOnInitialFailure());
+		ev.init(evaluators, monitor,blackboard, dseConfig.isStopOnInitialFailure(),filtering);
 		
 		//Termination Criteria Manager Initializitation if needed
 		if(myDSEConfig.getUseTerminationCriteria()){

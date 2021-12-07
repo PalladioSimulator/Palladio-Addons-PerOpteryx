@@ -71,6 +71,7 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 	private Provider<DSEObjectives> objectivesProvider;
 	private boolean stopOnInitialFailure;
 	private MDSDBlackboard blackboard;
+	private List<FilteringAnalysis> filteringAnalysis;
 
 	/** Logger for log4j. */
 	private static Logger logger = Logger.getLogger("de.uka.ipd.sdq.dsexplore.opt4j.representation.DSEEvaluator");
@@ -80,7 +81,8 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 		this.objectivesProvider = provider;
 	}
 
-	public void init(List<IAnalysis> evaluators, IProgressMonitor monitor, MDSDBlackboard blackboard, boolean stopOnInitialFailure) {
+	public void init(List<IAnalysis> evaluators, IProgressMonitor monitor, MDSDBlackboard blackboard,
+			boolean stopOnInitialFailure, List<FilteringAnalysis> filtering) {
 
 		this.blackboard = blackboard;
 		DSEEvaluator.copyPCMPartitionToAnalysisSlot(blackboard);
@@ -96,6 +98,7 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 		this.monitor = monitor;
 		this.evaluators = evaluators;
 		this.stopOnInitialFailure = stopOnInitialFailure;
+		this.filteringAnalysis = filtering;
 
 	}
 
@@ -157,6 +160,9 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 			DSEObjectives obj = this.objectivesProvider.get();
 			try {
 
+				if(!applyFilter(pheno, obj))
+					return obj;
+
 				for (IAnalysis evaluator : this.evaluators) {
 					evaluator.analyse(pheno, this.monitor);
 					for (int i = 0; i < this.constraints.size(); i++) {
@@ -183,10 +189,14 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 				// to be wrong, throw an exception
 				if (!this.firstRunSuccessful && this.stopOnInitialFailure) {
 					e.printStackTrace();
-					throw new RuntimeException("An exception was raised at the beginning, I assume it makes no sense to continue. See stacktrace for details.", e);
+					throw new RuntimeException(
+							"An exception was raised at the beginning, I assume it makes no sense to continue. See stacktrace for details.",
+							e);
 				}
 				// else try to retrieve the results anyway
-				DSEEvaluator.logger.error("Quality analysis threw exception, trying to ignoring it and retrieve results. Cause: " + e.getMessage());
+				DSEEvaluator.logger
+						.error("Quality analysis threw exception, trying to ignoring it and retrieve results. Cause: "
+								+ e.getMessage());
 				e.printStackTrace();
 			}
 
@@ -219,12 +229,44 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 		}
 	}
 
+	/**
+	 * Checks whether the current candidate fullfills the filter criteria. If it
+	 * fullfill the filter requirements it returns true, if not false. In case of
+	 * false the candidate should be discarded
+	 * 
+	 * @param pheno
+	 * @param obj
+	 * @return false if the candidate should be discarded
+	 * @throws CoreException
+	 * @throws JobFailedException
+	 */
+	private boolean applyFilter(PCMPhenotype pheno, DSEObjectives obj) throws CoreException, JobFailedException {
+
+		for (var analysis : filteringAnalysis) {
+
+			analysis.init();
+			var filterResult = analysis.runAnalysis(pheno.getPCMInstance(), pheno.getGenotypeID(),
+					pheno.getNumericID());
+			if (!filterResult) {
+				this.fillObjectivesWithInfeasible(obj);
+				this.fillConstraintsWithInfeasible(obj);
+				this.firstRunSuccessful = true;
+				this.phenotypeResultsCache.put(pheno.getGenotypeID(), obj);
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	private DSEObjectives ignoreOrFailWithRuntimeException(DSEObjectives obj, Exception e) {
 		// If this is the first evaluation, then something severe seems to be
 		// wrong, throw an exception
 		if (!this.firstRunSuccessful && this.stopOnInitialFailure) {
 			e.printStackTrace();
-			throw new RuntimeException("An exception was raised at the beginning, I assume it makes no sense to continue. See stacktrace for details.", e);
+			throw new RuntimeException(
+					"An exception was raised at the beginning, I assume it makes no sense to continue. See stacktrace for details.",
+					e);
 		} else {
 			// if this is just a failure during the course of the run, ignore it
 			// and output it later
@@ -248,13 +290,15 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 		// candidate is evaluated right after decoding can be dropped, and even
 		// further, allow parallel
 		// blackboard partitions so that analyses can run in parallel.
-		PCMResourceSetPartition analysisPartition = (PCMResourceSetPartition) blackboard.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
+		PCMResourceSetPartition analysisPartition = (PCMResourceSetPartition) blackboard
+				.getPartition(LoadPCMModelsIntoBlackboardJob.PCM_MODELS_PARTITION_ID);
 		ResourceSet analysisResourceSet = analysisPartition.getResourceSet();
 
 		// clear any previous content.
 		analysisResourceSet.getResources().clear();
 
-		PCMResourceSetPartition originalModelPartition = (PCMResourceSetPartition) blackboard.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
+		PCMResourceSetPartition originalModelPartition = (PCMResourceSetPartition) blackboard
+				.getPartition(MoveInitialPCMModelPartitionJob.INITIAL_PCM_MODEL_PARTITION_ID);
 		EList<Resource> resourceList = originalModelPartition.getResourceSet().getResources();
 
 		Copier copier = new Copier();
@@ -267,7 +311,8 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 			} else {
 				List<EObject> contentList = resource.getContents();
 				Collection<EObject> copiedContent = copier.copyAll(contentList);
-				Resource newResource = analysisResourceSet.createResource(URI.createURI(resource.getURI() + "cand." + resource.getURI().fileExtension()));
+				Resource newResource = analysisResourceSet
+						.createResource(URI.createURI(resource.getURI() + "cand." + resource.getURI().fileExtension()));
 				newResource.getContents().addAll(copiedContent);
 			}
 		}
@@ -293,7 +338,8 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 		}
 	}
 
-	private void retrieveQuality(PCMPhenotype pheno, DSEObjectives obj, ObjectiveAndEvaluator o) throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
+	private void retrieveQuality(PCMPhenotype pheno, DSEObjectives obj, ObjectiveAndEvaluator o)
+			throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
 		// retrieve response time
 		IAnalysisResult result = o.getEvaluator().retrieveResultsFor(pheno, o.getObjective());
 		obj.add(o.getObjective(), result.getValueFor(o.getCriterion()));
@@ -304,7 +350,8 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 
 	}
 
-	private void retrieveConstraint(PCMPhenotype pheno, DSEObjectives obj, ConstraintAndEvaluator o) throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
+	private void retrieveConstraint(PCMPhenotype pheno, DSEObjectives obj, ConstraintAndEvaluator o)
+			throws CoreException, UserCanceledException, JobFailedException, AnalysisFailedException {
 		IAnalysisResult result = o.getEvaluator().retrieveResultsFor(pheno, o.getConstraint());
 		Constraints con = obj.getConstraints();
 		con.add(o.getConstraint(), result.getValueFor(o.getCriterion()));
@@ -319,7 +366,8 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 		} else if (criterionAndEvaluator instanceof ConstraintAndEvaluator) {
 			this.retrieveConstraint(pheno, obj, (ConstraintAndEvaluator) criterionAndEvaluator);
 		} else {
-			throw new RuntimeException("Unknown type of criterion and evaluator" + criterionAndEvaluator.getClass() + ", adjust code in " + this.getClass());
+			throw new RuntimeException("Unknown type of criterion and evaluator" + criterionAndEvaluator.getClass()
+					+ ", adjust code in " + this.getClass());
 		}
 
 	}
@@ -330,7 +378,8 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 	}
 
 	public List<CriterionAndEvaluator> getCriterionAndEvaluatorList() {
-		List<CriterionAndEvaluator> criterionAndEvaluatorList = new ArrayList<>(this.objectives.size() + this.constraints.size());
+		List<CriterionAndEvaluator> criterionAndEvaluatorList = new ArrayList<>(
+				this.objectives.size() + this.constraints.size());
 		criterionAndEvaluatorList.addAll(this.objectives);
 		criterionAndEvaluatorList.addAll(this.constraints);
 		return criterionAndEvaluatorList;
@@ -351,7 +400,8 @@ public class DSEEvaluator implements Evaluator<PCMPhenotype> {
 	}
 
 	private void addInfeasibleValue(Objectives obj, int objectiveIndex) {
-		obj.add(this.objectives.get(objectiveIndex).getObjective(), this.getInfeasibleValue(this.objectives.get(objectiveIndex)));
+		obj.add(this.objectives.get(objectiveIndex).getObjective(),
+				this.getInfeasibleValue(this.objectives.get(objectiveIndex)));
 	}
 
 	public void addToPhenotypeCache(String genotypeID, DSEObjectives oc) {
@@ -498,7 +548,8 @@ class ObjectiveAndEvaluatorListDecorator implements Collection<Objective> {
 	@Override
 	public <T> T[] toArray(T[] a) {
 		if (a.length < this.decoratedCollection.size()) {
-			a = (T[]) java.lang.reflect.Array.newInstance(a.getClass().getComponentType(), this.decoratedCollection.size());
+			a = (T[]) java.lang.reflect.Array.newInstance(a.getClass().getComponentType(),
+					this.decoratedCollection.size());
 		}
 
 		int i = 0;

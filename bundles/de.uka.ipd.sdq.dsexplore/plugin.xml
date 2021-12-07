@@ -4,6 +4,7 @@
    <extension-point id="de.uka.ipd.sdq.dsexplore.analysis" name="de.uka.ipd.sdq.dsexplore.analysis" schema="schema/de.uka.ipd.sdq.dsexplore.analysis.exsd"/>
    <extension-point id="de.uka.ipd.sdq.dsexplore.newcandidates" name="de.uka.ipd.sdq.dsexplore.newcandidates" schema="schema/de.uka.ipd.sdq.dsexplore.newcandidates.exsd"/>
    <extension-point id="de.uka.ipd.sdq.dsexplore.currentcandidates" name="de.uka.ipd.sdq.dsexplore.currentcandidates" schema="schema/de.uka.ipd.sdq.dsexplore.currentcandidates.exsd"/>
+   <extension-point id="de.uka.ipd.sdq.dsexplore.filter" name="de.uka.ipd.sdq.dsexplore.filter" schema="schema/de.uka.ipd.sdq.dsexplore.filter.exsd"/>
    <extension
          point="org.eclipse.debug.core.launchConfigurationTypes">
       <launchConfigurationType

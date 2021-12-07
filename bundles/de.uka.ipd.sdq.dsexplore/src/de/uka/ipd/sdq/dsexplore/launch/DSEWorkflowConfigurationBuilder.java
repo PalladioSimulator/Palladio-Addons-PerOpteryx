@@ -12,7 +12,11 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.emf.common.util.URI;
@@ -25,6 +29,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.AnalysisQualityAttributes;
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysis;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration.SearchMethod;
+import de.uka.ipd.sdq.dsexplore.opt4j.representation.FilteringAnalysis;
 import de.uka.ipd.sdq.tcfmoop.config.ElapsedTimeConfig;
 import de.uka.ipd.sdq.tcfmoop.config.ElapsedTimeConfig.TimeType;
 import de.uka.ipd.sdq.tcfmoop.config.GivenParetoFrontIsReachedConfig;
@@ -184,6 +189,29 @@ public class DSEWorkflowConfigurationBuilder extends
 		config.setStopOnInitialFailure(getBooleanAttribute(DSEConstantsContainer.STOP_ON_INITIAL_FAILURE));
 		config.setResultsAsEMF(getBooleanAttribute(DSEConstantsContainer.STORE_RESULTS_AS_EMF));
 		config.setResultsAsCSV(getBooleanAttribute(DSEConstantsContainer.STORE_RESULTS_AS_CSV));
+		
+		
+		
+		//Get filtering extensions from name
+		var filteringList = this.configuration.getAttribute(FilteringTab.optionsName, new ArrayList<String>());		
+		IExtensionRegistry reg = Platform.getExtensionRegistry();
+		IExtensionPoint ep = reg.getExtensionPoint(DSEConstantsContainer.FILTERING_EXTENSION_POINT);
+		IExtension[] extensions = ep.getExtensions();
+
+		for (var ext : extensions) {
+			for (var ce : ext.getConfigurationElements()) {
+
+				var name = ce.getAttribute(DSEConstantsContainer.FILTERING_EXTENSION_POINT_NAME);
+				if(filteringList.contains(name)) {
+					var execution = (FilteringAnalysis) ce.createExecutableExtension(DSEConstantsContainer.FILTERING_EXTENSION_POINT_INTERFACE);
+					config.setFilteringAnalysis(execution);
+				}
+
+			}
+		}
+		
+		
+		
 
 	}
 
