@@ -309,4 +309,31 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="edu.kit.ipd.are.dsexplore.analysis.security"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.kit.ipd.are.dsexplore.componentSecurity"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+   <plugin
+         id="edu.kit.ipd.are.dsexplore.componentSecurity.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+   <plugin
+         id="edu.kit.ipd.are.dsexplore.componentSecurity.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+
 </feature>
