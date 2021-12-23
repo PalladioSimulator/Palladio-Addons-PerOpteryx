@@ -3,7 +3,7 @@
  */
 package de.uka.ipd.sdq.dsexplore.analysis;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer.QualityAttribute;
@@ -30,15 +30,7 @@ public class AnalysisQualityAttributes {
 		// dimensions.add(reader.getDimension(dimensionDefinition));
 		// }
 		// return dimensions;
-		List<QualityAttribute> attributes = new ArrayList<>(5);
-		attributes.add(QualityAttribute.PERFORMANCE_QUALITY);
-		attributes.add(QualityAttribute.RELIABILITY_QUALITY);
-		attributes.add(QualityAttribute.COST_QUALITY);
-		attributes.add(QualityAttribute.SECURITY_QUALITY);
-		attributes.add(QualityAttribute.NQR_QUALITY);
-		attributes.add(QualityAttribute.FEATURE_QUALITY);
-
-		return attributes;
+        return Arrays.asList(QualityAttribute.values());
 
 	}
 }
