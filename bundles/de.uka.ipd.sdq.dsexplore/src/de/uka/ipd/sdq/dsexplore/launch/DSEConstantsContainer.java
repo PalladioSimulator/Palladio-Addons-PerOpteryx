@@ -64,7 +64,7 @@ public class DSEConstantsContainer {
 	public static final String[] QML_CONTRACT_EXTENSION = new String[] {"*.qmlcontracttype"};
 	public static final String[] QUALITY_EFFECT_SPECIFICATION_EXTENSION = new String[] {"*.qes"};
 
-	public static final String[] SECURITY_MODEL_EXTENSION = new String[] { "*.security" };;
+	public static final String[] SECURITY_MODEL_EXTENSION = new String[] { "*.security" };
 
 	/**
 	 * Set the file extensions which the dialog can use to filter the files it
@@ -146,15 +146,28 @@ public class DSEConstantsContainer {
 							public String getPrettyName() {
 								return "Qualitative Reasoning";
 							}
-						};
+        },
+        Confidentiality {
+            @Override
+            public String getName() {
+                return "edu.kit.sdq.dsis.fluidTrust.confidentiality";
+            }
+
+            @Override
+            public String getPrettyName() {
+                return "Confidentiality";
+            }
+        },;
 
 
 		public abstract String getName();
 
 		public static QualityAttribute getQualityAttribute(String name){
-			for (QualityAttribute qa : QualityAttribute.values())
-				if(name.equals(qa.getName()))
-					return qa;
+			for (QualityAttribute qa : QualityAttribute.values()) {
+                if(name.equals(qa.getName())) {
+                    return qa;
+                }
+            }
 			return null;
 		}
 
