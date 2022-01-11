@@ -34,7 +34,7 @@ import de.uka.ipd.sdq.dsexplore.qml.reader.QMLDimensionReader;
  * The QMLManager component can be queried for getting the currently activated QML criteria.
  * Based on the activated criteria, it de-/activates evaluators in the launch configuration
  * tabs.
- * 
+ *
  * TODO: this class seems to slow-down the opening of the launch configuration tab tremendously and needs to be profiled.
  * TODO: this class and the QML plugin have their own methods to access files based on the filename Strings in the launch config. It would be better to add an abstraction layer (maybe use DSEWriter).
  *
@@ -59,7 +59,7 @@ public class QMLManager {
     private static Logger logger =
             Logger.getLogger("de.uka.ipd.sdq.dsexplore");
 
-    protected List<DSEAnalysisMethodTab> tabs = new ArrayList<DSEAnalysisMethodTab>();
+    protected List<DSEAnalysisMethodTab> tabs = new ArrayList<>();
 
     /**
      * Indicates if {@code processQMLFile(String, String)} was successful.
@@ -78,39 +78,43 @@ public class QMLManager {
     protected DSEAnalysisMethodTab securityTab = null;
     protected DSEAnalysisMethodTab nqrTab = null;
     protected DSEAnalysisMethodTab reasoningTab = null;
+    protected DSEAnalysisMethodTab confidentialityTab = null;
 
     //Set to ensure uniqueness of entries
     protected Set<EvaluationAspectWithContext> objectives = Collections.synchronizedSet(new HashSet<EvaluationAspectWithContext>(5));
 
     public List<EvaluationAspectWithContext> getActivatedObjectives(){
-        List<EvaluationAspectWithContext> returnList = new ArrayList<EvaluationAspectWithContext>(this.objectives);
+        List<EvaluationAspectWithContext> returnList = new ArrayList<>(this.objectives);
         return returnList;
     }
 
     public boolean hasActivatedObjectives(){
-        return (this.objectives.size() > 0);
+        return this.objectives.size() > 0;
     }
 
     /**
      * Add tabs to be de-/activates here.
-     * 
+     *
      * @param tabs
      */
     public void addTabs(DSEAnalysisMethodTab... tabs) {
         for(DSEAnalysisMethodTab tab : tabs) {
             this.tabs.add(tab);
             if(tab.getId().equals(QualityAttribute.PERFORMANCE_QUALITY.getName())) {
-                performanceTab = tab;
+                this.performanceTab = tab;
             } else if(tab.getId().equals(QualityAttribute.COST_QUALITY.getName())) {
-                costTab = tab;
+                this.costTab = tab;
             } else if(tab.getId().equals(QualityAttribute.RELIABILITY_QUALITY.getName())) {
-                pofodTab = tab;
+                this.pofodTab = tab;
             } else if(tab.getId().equals(QualityAttribute.SECURITY_QUALITY.getName())) {
-                securityTab = tab;
+                this.securityTab = tab;
             } else if(tab.getId().equals(QualityAttribute.NQR_QUALITY.getName())) {
-                nqrTab = tab;
+                this.nqrTab = tab;
             } else if (tab.getId().equals(QualityAttribute.REASONING_QUALITY.getName())) {
-                reasoningTab = tab;
+                this.reasoningTab = tab;
+            } else if (tab.getId()
+                .equals(QualityAttribute.Confidentiality.getName())) {
+                this.confidentialityTab = tab;
             }
         }
     }
@@ -119,21 +123,21 @@ public class QMLManager {
      * Reads QML definitions and activates or deactivates extensions in the tabs
      * based on the definitions. If processing is successful,
      * {@code isQMLLoaded()} returns {@code true}.
-     * 
+     *
      * @param qmlFilePath
      * @param usageModelFilePath
      */
     public void processQMLFile(String qmlFilePath, String usageModelFilePath){
 
-        if (currentQMLPath.equals(qmlFilePath) && currentUsageModelPath.equals(usageModelFilePath)) {
+        if (this.currentQMLPath.equals(qmlFilePath) && this.currentUsageModelPath.equals(usageModelFilePath)) {
             return;
         }
 
-        currentQMLPath = qmlFilePath;
-        currentUsageModelPath = usageModelFilePath;
+        this.currentQMLPath = qmlFilePath;
+        this.currentUsageModelPath = usageModelFilePath;
 
-        qmlLoaded = false;
-        objectives.clear();
+        this.qmlLoaded = false;
+        this.objectives.clear();
         deactivateAllTabs();
 
         ResourceSet rs = new ResourceSetImpl();
@@ -144,11 +148,11 @@ public class QMLManager {
             if (!uri.isPlatform() && !(usageModelFilePath.indexOf("://") >= 0)) {
                 uri = URI.createFileURI(usageModelFilePath);
             }
-            Resource r = (Resource) rs.getResource(uri, true);
+            Resource r = rs.getResource(uri, true);
             List<?> contents = r.getContents();
             //Supposed to be exactly one element
             for (Iterator<?> iterator = contents.iterator(); iterator.hasNext();) {
-                Object object = (Object) iterator.next();
+                Object object = iterator.next();
                 if (object instanceof UsageModel) {
                     usageModel = (UsageModel) object;
                     break;
@@ -159,7 +163,7 @@ public class QMLManager {
             e.printStackTrace();
         }
         if (usageModel == null) {
-            diagnosis = "Could not load usage model from " + usageModelFilePath + "! Please check the UsageModel file and path!";
+            this.diagnosis = "Could not load usage model from " + usageModelFilePath + "! Please check the UsageModel file and path!";
             return;
         }
 
@@ -167,90 +171,42 @@ public class QMLManager {
                 || !qmlFilePath.endsWith(DSEConstantsContainer.QML_DEFINITION_EXTENSION.substring(
                         DSEConstantsContainer.QML_DEFINITION_EXTENSION.lastIndexOf('.'),
                         DSEConstantsContainer.QML_DEFINITION_EXTENSION.length()))) {
-            diagnosis = "Could not load qml definition model! Please check the path!";
+            this.diagnosis = "Could not load qml definition model! Please check the path!";
             return;
         }
 
-        pcmReader = new PCMDeclarationsReader(qmlFilePath);
-        List<IExtension> exts = new ArrayList<IExtension>();
+        this.pcmReader = new PCMDeclarationsReader(qmlFilePath);
+        List<IExtension> exts = new ArrayList<>();
         int init;
 
         //Activate or deactivate Evalutators depending on the qml definitions
         //COST
         {
-            List<EvaluationAspectWithContext> costObjectives = pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_TOTAL_COST_DEFINITION_PATH).getId());
-            costObjectives.addAll(pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_INITIAL_COST_DEFINITION_PATH).getId()));
-            costObjectives.addAll(pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_OPERATING_COST_DEFINITION_PATH).getId()));
-            List<EvaluationAspectWithContext> costConstraints = pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_TOTAL_COST_DEFINITION_PATH).getId());
-            costConstraints.addAll(pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_INITIAL_COST_DEFINITION_PATH).getId()));
-            costConstraints.addAll(pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_OPERATING_COST_DEFINITION_PATH).getId()));
-            List<EvaluationAspectWithContext> costCriteria = new ArrayList<EvaluationAspectWithContext>();
+            List<EvaluationAspectWithContext> costObjectives = this.pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, this.dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_TOTAL_COST_DEFINITION_PATH).getId());
+            costObjectives.addAll(this.pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, this.dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_INITIAL_COST_DEFINITION_PATH).getId()));
+            costObjectives.addAll(this.pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, this.dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_OPERATING_COST_DEFINITION_PATH).getId()));
+            List<EvaluationAspectWithContext> costConstraints = this.pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, this.dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_TOTAL_COST_DEFINITION_PATH).getId());
+            costConstraints.addAll(this.pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, this.dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_INITIAL_COST_DEFINITION_PATH).getId()));
+            costConstraints.addAll(this.pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, this.dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_OPERATING_COST_DEFINITION_PATH).getId()));
+            List<EvaluationAspectWithContext> costCriteria = new ArrayList<>();
             costCriteria.addAll(costObjectives);
             costCriteria.addAll(costConstraints);
             exts.clear();
             init = 0;
-            //Get evaluators that can evaluate every aspect
-            for(EvaluationAspectWithContext aspect : costCriteria) {
-                List<IExtension> tmp_exts = getExtensionsThatEvaluateAspect(aspect);
-                if(init == 0) {
-                    //initialize
-                    exts.addAll(tmp_exts);
-                    init++;
-                } else {
-                    //calculate intersection
-                    List<IExtension> removeList = new ArrayList<IExtension>();
-                    for(IExtension e : exts) {
-                        if(!tmp_exts.contains(e)){
-                            removeList.add(e);
-                        }
-                    }
-                    exts.removeAll(removeList);
-                }
-            }
-            if(costTab != null) {
-                if(exts.size() == 0) {
-                    costTab.deactivate();
-                } else  {
-                    costTab.activate(exts);
-                    this.objectives.addAll(costObjectives);
-                }
-            }
+            findExtensionsForAspect(exts, init, costCriteria);
+            activateTab(exts, costObjectives, this.costTab);
         }
         //POFOD
         {
-            List<EvaluationAspectWithContext> pofodObjectives = pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_POFOD_DEFINITION_PATH).getId());
-            List<EvaluationAspectWithContext> pofodConstraints = pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_POFOD_DEFINITION_PATH).getId());
-            List<EvaluationAspectWithContext> pofodCriteria = new ArrayList<EvaluationAspectWithContext>();
+            List<EvaluationAspectWithContext> pofodObjectives = this.pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, this.dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_POFOD_DEFINITION_PATH).getId());
+            List<EvaluationAspectWithContext> pofodConstraints = this.pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, this.dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_POFOD_DEFINITION_PATH).getId());
+            List<EvaluationAspectWithContext> pofodCriteria = new ArrayList<>();
             pofodCriteria.addAll(pofodObjectives);
             pofodCriteria.addAll(pofodConstraints);
             exts.clear();
             init = 0;
-            //Get evaluators that can evaluate every aspect
-            for(EvaluationAspectWithContext aspect : pofodCriteria) {
-                List<IExtension> tmp_exts = getExtensionsThatEvaluateAspect(aspect);
-                if(init == 0) {
-                    //initialize
-                    exts.addAll(tmp_exts);
-                    init++;
-                } else {
-                    //calculate intersection
-                    List<IExtension> removeList = new ArrayList<IExtension>();
-                    for(IExtension e : exts) {
-                        if(!tmp_exts.contains(e)){
-                            removeList.add(e);
-                        }
-                    }
-                    exts.removeAll(removeList);
-                }
-            }
-            if(pofodTab != null) {
-                if(exts.size() == 0) {
-                    pofodTab.deactivate();
-                } else  {
-                    pofodTab.activate(exts);
-                    this.objectives.addAll(pofodObjectives);
-                }
-            }
+            findExtensionsForAspect(exts, init, pofodCriteria);
+            activateTab(exts, pofodObjectives, this.pofodTab);
         }
         //		Security
         {
@@ -259,58 +215,34 @@ public class QMLManager {
             List<EvaluationAspectWithContext> securityObjectives = null;
             try {
 
-                securityObjectives = pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH).getId());
-                List<EvaluationAspectWithContext> securityConstraints = pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH).getId());
-                List<EvaluationAspectWithContext> securityCriteria = new ArrayList<EvaluationAspectWithContext>();
+                securityObjectives = this.pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, this.dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH).getId());
+                List<EvaluationAspectWithContext> securityConstraints = this.pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, this.dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH).getId());
+                List<EvaluationAspectWithContext> securityCriteria = new ArrayList<>();
                 securityCriteria.addAll(securityObjectives);
                 securityCriteria.addAll(securityConstraints);
                 exts.clear();
                 init = 0;
-                //Get evaluators that can evaluate every aspect
-                for(EvaluationAspectWithContext aspect : securityCriteria) {
-                    List<IExtension> tmp_exts = getExtensionsThatEvaluateAspect(aspect);
-                    if(init == 0) {
-                        //initialize
-                        exts.addAll(tmp_exts);
-                        init++;
-                    } else {
-                        //calculate intersection
-                        List<IExtension> removeList = new ArrayList<IExtension>();
-                        for(IExtension e : exts) {
-                            if(!tmp_exts.contains(e)){
-                                removeList.add(e);
-                            }
-                        }
-                        exts.removeAll(removeList);
-                    }
-                }
+                findExtensionsForAspect(exts, init, securityCriteria);
             } catch (Exception e){
                 logger.warn("Security dimension file could not be loaded. Ignoring it.");
                 e.printStackTrace();
                 exts.clear();
             }
-            if(securityTab != null) {
-                if(exts.size() == 0) {
-                    securityTab.deactivate();
-                } else  {
-                    securityTab.activate(exts);
-                    this.objectives.addAll(securityObjectives);
-                }
-            }
+            activateTab(exts, securityObjectives, this.securityTab);
         }
         //NQR
         {
 
-            List<EvaluationAspectWithContext> nqrObjectives = new ArrayList<EvaluationAspectWithContext>();
-            List<EvaluationAspectWithContext> nqrConstraints = new ArrayList<EvaluationAspectWithContext>();
+            List<EvaluationAspectWithContext> nqrObjectives = new ArrayList<>();
+            List<EvaluationAspectWithContext> nqrConstraints = new ArrayList<>();
             try {
-                QMLContractType contractTypeForUsageModel = pcmReader.getContractTypeForUsageModel(usageModel);
+                QMLContractType contractTypeForUsageModel = this.pcmReader.getContractTypeForUsageModel(usageModel);
                 for (de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.Dimension dim: contractTypeForUsageModel.getDimensions())
                 {
-                    nqrObjectives.addAll(pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dim.getId()));
-                    nqrConstraints.addAll(pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, dim.getId()));
+                    nqrObjectives.addAll(this.pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dim.getId()));
+                    nqrConstraints.addAll(this.pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, dim.getId()));
                 }
-                List<EvaluationAspectWithContext> nqrCriteria = new ArrayList<EvaluationAspectWithContext>();
+                List<EvaluationAspectWithContext> nqrCriteria = new ArrayList<>();
                 nqrCriteria.addAll(nqrObjectives);
                 nqrCriteria.addAll(nqrConstraints);
                 exts.clear();
@@ -349,14 +281,14 @@ public class QMLManager {
                     break;
                 }
             }
-            if(nqrTab != null) {
+            if(this.nqrTab != null) {
                 if(exts.size() == 0 || extentionIntersection) {
-                    nqrTab.deactivate();
+                    this.nqrTab.deactivate();
                 } else  {
-                    nqrTab.activate(exts);
+                    this.nqrTab.activate(exts);
                     for (EvaluationAspectWithContext eawc: nqrObjectives) {
-                        if (!objectives.contains(eawc)) {
-                            objectives.add(eawc);
+                        if (!this.objectives.contains(eawc)) {
+                            this.objectives.add(eawc);
                         }
                     }
                 }
@@ -365,56 +297,69 @@ public class QMLManager {
         //RESPONSE TIME bzw. Performance in general
         {
             List<EvaluationAspectWithContext> performanceObjectives =
-                    pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH).getId());
+                    this.pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, this.dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH).getId());
             performanceObjectives.addAll(
-                    pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_THROUGHPUT_DEFINITION_PATH).getId()));
+                    this.pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, this.dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_THROUGHPUT_DEFINITION_PATH).getId()));
 
             List<EvaluationAspectWithContext> performanceConstraints =
-                    pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH).getId());
+                    this.pcmReader.getDimensionConstraintContextsForUsageModel(usageModel, this.dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH).getId());
             performanceConstraints.addAll(
-                    pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_THROUGHPUT_DEFINITION_PATH).getId()));
+                    this.pcmReader.getDimensionObjectiveContextsForUsageModel(usageModel, this.dimensionReader.getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_THROUGHPUT_DEFINITION_PATH).getId()));
 
-            List<EvaluationAspectWithContext> performanceCriteria = new ArrayList<EvaluationAspectWithContext>(performanceObjectives.size()+performanceConstraints.size());
+            List<EvaluationAspectWithContext> performanceCriteria = new ArrayList<>(performanceObjectives.size()+performanceConstraints.size());
             performanceCriteria.addAll(performanceObjectives);
             performanceCriteria.addAll(performanceConstraints);
             exts.clear();
             init = 0;
             //Get evaluators that can evaluate every aspect
-            for(EvaluationAspectWithContext aspect : performanceCriteria) {
-                List<IExtension> tmp_exts = getExtensionsThatEvaluateAspect(aspect);
-                if(init == 0) {
-                    //initialize
-                    exts.addAll(tmp_exts);
-                    init++;
-                } else {
-                    //calculate intersection
-                    List<IExtension> removeList = new ArrayList<IExtension>();
-                    for(IExtension e : exts) {
-                        if(!tmp_exts.contains(e)){
-                            removeList.add(e);
-                        }
-                    }
-                    exts.removeAll(removeList);
-                }
-            }
-            if(performanceTab != null) {
-                if(exts.size() == 0) {
-                    performanceTab.deactivate();
-                } else  {
-                    performanceTab.activate(exts);
-                    this.objectives.addAll(performanceObjectives);
-                }
-            }
+            findExtensionsForAspect(exts, init, performanceCriteria);
+
+            activateTab(exts, performanceObjectives, this.performanceTab);
         }
 
-        qmlLoaded = true;
+        confidentialityTab();
+
+        this.qmlLoaded = true;
+    }
+
+    private void activateTab(List<IExtension> exts, List<EvaluationAspectWithContext> objectives,
+            DSEAnalysisMethodTab tab) {
+        if (tab != null) {
+            if (exts.size() == 0) {
+                tab.deactivate();
+            } else {
+                tab.activate(exts);
+                this.objectives.addAll(objectives);
+            }
+        }
+    }
+
+    private void findExtensionsForAspect(List<IExtension> exts, int init, List<EvaluationAspectWithContext> criteria) {
+        for (EvaluationAspectWithContext aspect : criteria) {
+            List<IExtension> tmp_exts = getExtensionsThatEvaluateAspect(aspect);
+            if (init == 0) {
+                // initialize
+                exts.addAll(tmp_exts);
+                init++;
+            } else {
+                // calculate intersection
+                List<IExtension> removeList = new ArrayList<>();
+                for (IExtension e : exts) {
+                    if (!tmp_exts.contains(e)) {
+                        removeList.add(e);
+                    }
+                }
+                exts.removeAll(removeList);
+            }
+        }
     }
 
     protected void deactivateAllTabs(){
-        for(DSEAnalysisMethodTab tab : tabs) {
+        for (DSEAnalysisMethodTab tab : this.tabs) {
             tab.deactivate();
         }
     }
+
 
     protected boolean fileExists(String path) {
         // if this is a platform URL, first resolve it to an absolute path
@@ -434,7 +379,7 @@ public class QMLManager {
 
     protected List<IExtension> getExtensionsThatEvaluateAspect(EvaluationAspectWithContext aspect) {
         List<IExtension> exts = ExtensionHelper.loadAnalysisExtensions(aspect.getDimension().getId());
-        List<IExtension> return_list = new ArrayList<IExtension>(exts);
+        List<IExtension> return_list = new ArrayList<>(exts);
         for(IExtension ex : exts) {
             IConfigurationElement[] elements = ex.getConfigurationElements();
             for(IConfigurationElement e : elements) {
@@ -453,20 +398,24 @@ public class QMLManager {
         return return_list;
     }
 
+    private void confidentialityTab() {
+
+    }
+
     /**
      * Indicates if {@code processQMLFile(String, String)} was successful.
-     * 
+     *
      * @return the QMLLoaded
      */
     public boolean isQMLLoaded() {
-        return qmlLoaded;
+        return this.qmlLoaded;
     }
 
     /**
      * @return the diagnosis
      */
     public String getDiagnosis() {
-        return diagnosis;
+        return this.diagnosis;
     }
 
 
