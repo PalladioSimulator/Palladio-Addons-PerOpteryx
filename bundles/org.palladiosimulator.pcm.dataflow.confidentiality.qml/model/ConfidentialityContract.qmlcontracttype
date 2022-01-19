@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QMLContractType:QMLContractType xmlns:QMLContractType="http:///QMLContractType.ecore" id="_BBLcEHe6EeyqWdwf1u0RUg" entityName="ConfidentialityContractType">
+  <dimensions href="Dimension_Confidentiality.qmlcontracttype#_lzV00Fv5EeyWNI3A5PdLkQ"/>
+</QMLContractType:QMLContractType>

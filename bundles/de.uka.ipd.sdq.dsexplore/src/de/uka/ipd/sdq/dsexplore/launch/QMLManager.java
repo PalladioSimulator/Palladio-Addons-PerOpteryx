@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
@@ -113,7 +115,7 @@ public class QMLManager {
             } else if (tab.getId().equals(QualityAttribute.REASONING_QUALITY.getName())) {
                 this.reasoningTab = tab;
             } else if (tab.getId()
-                .equals(QualityAttribute.Confidentiality.getName())) {
+                .equals(QualityAttribute.CONFIDENTIALITY_QUALITY.getName())) {
                 this.confidentialityTab = tab;
             }
         }
@@ -317,7 +319,7 @@ public class QMLManager {
             activateTab(exts, performanceObjectives, this.performanceTab);
         }
 
-        confidentialityTab();
+        confidentialityTab(usageModel);
 
         this.qmlLoaded = true;
     }
@@ -398,7 +400,29 @@ public class QMLManager {
         return return_list;
     }
 
-    private void confidentialityTab() {
+    private void confidentialityTab(UsageModel usageModel) {
+
+
+        var confidentialityObjectives = this.pcmReader.getDimensionObjectiveContextsForUsageModel(
+                usageModel,
+                this.dimensionReader
+                    .getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_CONFIDENTIALITY_PATH)
+                    .getId());
+
+        var confidentialityConstraints = this.pcmReader.getDimensionConstraintContextsForUsageModel(
+                usageModel,
+                this.dimensionReader
+                    .getDimension(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_CONFIDENTIALITY_PATH)
+                    .getId());
+
+
+        var confidentialityCriteria = Stream
+            .concat(confidentialityConstraints.stream(), confidentialityObjectives.stream())
+            .collect(Collectors.toList());
+        var exts = new ArrayList<IExtension>();
+
+        findExtensionsForAspect(exts, 0, confidentialityCriteria);
+        activateTab(exts, confidentialityObjectives, this.confidentialityTab);
 
     }
 
