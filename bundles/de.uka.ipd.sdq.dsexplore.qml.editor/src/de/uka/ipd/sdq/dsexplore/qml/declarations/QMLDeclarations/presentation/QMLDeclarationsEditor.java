@@ -960,6 +960,8 @@ public class QMLDeclarationsEditor extends MultiPageEditorPart
 		this.AddExtraResource(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH);
 		this.AddExtraResource(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_THROUGHPUT_DEFINITION_PATH);
 		this.AddExtraResource(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_MAX_UTIL_DEFINITION_PATH);
+		this.AddExtraResource(QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_CONFIDENTIALITY_PATH);
+		this.AddExtraResource(QMLConstantsContainer.QUALITY_ATTRIBUTE_CONTRACT_CONFIDENTIALITY_PATH);
 	}
 
 	private void AddExtraResource(final String uri) {

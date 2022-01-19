@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Qml
+Bundle-SymbolicName: org.palladiosimulator.pcm.dataflow.confidentiality.qml
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.palladiosimulator.pcm.dataflow.confidentiality.qml.Activator
+Require-Bundle: org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: org.palladiosimulator.pcm.dataflow.confidentiality.qml
+Bundle-ActivationPolicy: lazy

@@ -147,7 +147,7 @@ public class DSEConstantsContainer {
 								return "Qualitative Reasoning";
 							}
         },
-        Confidentiality {
+        CONFIDENTIALITY_QUALITY {
             @Override
             public String getName() {
                 return "edu.kit.sdq.dsis.fluidTrust.confidentiality";

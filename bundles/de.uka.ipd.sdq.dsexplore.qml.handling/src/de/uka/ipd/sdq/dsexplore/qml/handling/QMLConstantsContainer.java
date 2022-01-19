@@ -26,10 +26,15 @@ public class QMLConstantsContainer {
 	// added:
 	public static final String QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH = "platform:/plugin/edu.kit.ipd.are.dsexplore.analysis.security/Security.qmlcontracttype";
 	public static final String QUALITY_ATTRIBUTE_DIMENSION_HASFEATURE_PATH = "platform:/plugin/de.uka.ipd.sdq.dsexplore.analysis.featurecompletions/Feature.qmlcontracttype";
+    public static final String QUALITY_ATTRIBUTE_CONTRACT_CONFIDENTIALITY_PATH = "platform:/plugin/org.palladiosimulator.pcm.dataflow.confidentiality.qml/model/ConfidentialityContract.qmlcontracttype";
+    public static final String QUALITY_ATTRIBUTE_DIMENSION_CONFIDENTIALITY_PATH = "platform:/plugin/org.palladiosimulator.pcm.dataflow.confidentiality.qml/model/Dimension_Confidentiality.qmlcontracttype";
 
 	public static final String[] QUALITY_ATTRIBUTE_DIMENSION_DEFINITION_PATHS = new String[] { QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_RESPONSETIME_DEFINITION_PATH,
 			QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_THROUGHPUT_DEFINITION_PATH, QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_POFOD_DEFINITION_PATH,
-			QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_TOTAL_COST_DEFINITION_PATH, QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH,
+            QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_TOTAL_COST_DEFINITION_PATH,
+            QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_SECURITY_PATH,
+            QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_CONFIDENTIALITY_PATH,
+            QMLConstantsContainer.QUALITY_ATTRIBUTE_CONTRACT_CONFIDENTIALITY_PATH,
 			QMLConstantsContainer.QUALITY_ATTRIBUTE_DIMENSION_HASFEATURE_PATH };
 
 	// quick version, delete later
