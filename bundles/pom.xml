@@ -58,6 +58,7 @@
 		<module>org.palladiosimulator.qualitymodel</module>
 		<module>org.palladiosimulator.qualitymodel.edit</module>
 		<module>org.palladiosimulator.qualitymodel.editor</module>
+		<module>org.palladiosimulator.pcm.dataflow.confidentiality.qml</module>
 	</modules>
 	
 </project>
