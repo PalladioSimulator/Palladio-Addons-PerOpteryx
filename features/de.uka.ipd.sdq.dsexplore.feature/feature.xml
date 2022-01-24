@@ -334,6 +334,11 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
+   <plugin
+         id="org.palladiosimulator.pcm.dataflow.confidentiality.qml"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
