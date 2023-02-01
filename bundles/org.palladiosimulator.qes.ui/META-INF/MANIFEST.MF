@@ -18,7 +18,7 @@ Require-Bundle: org.palladiosimulator.qes,
  org.eclipse.xtend.lib;resolution:=optional,
  org.eclipse.xtext.xbase.lib
 Import-Package: org.apache.log4j
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: org.palladiosimulator.qes.ui.quickfix,
  org.palladiosimulator.qes.ui.contentassist,
  org.palladiosimulator.qes.ui.internal

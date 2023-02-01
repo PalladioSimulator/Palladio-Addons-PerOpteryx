@@ -6,7 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.tests,
  de.uka.ipd.sdq.dsexplore.qml.contracttype.QMLContractType.tests,
  de.uka.ipd.sdq.dsexplore.qml.declarations.QMLDeclarations.tests,

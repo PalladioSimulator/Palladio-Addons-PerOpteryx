@@ -35,7 +35,7 @@ Require-Bundle: org.eclipse.ui,
  org.palladiosimulator.commons;bundle-version="1.0.1"
 Bundle-ActivationPolicy: lazy
 Export-Package: de.uka.ipd.sdq.dsexplore.analysis.simulizar
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-Vendor: sdq.ipd.uka.de
 Import-Package: javax.measure,
  javax.measure.converter,

@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Bayesnets
 Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore.bayesnets
 Bundle-Version: 5.1.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: de.uka.ipd.sdq.dsexplore.bayesnets.samplers,
  de.uka.ipd.sdq.dsexplore.bayesnets.searchers,
  de.uka.ipd.sdq.dsexplore.bayesnets.utility

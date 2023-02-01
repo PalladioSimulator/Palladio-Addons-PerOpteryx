@@ -6,7 +6,7 @@ Bundle-Version: 5.1.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: de.uka.ipd.sdq.pcm.designdecision;
   uses:="de.uka.ipd.sdq.pcm.core.composition,
    de.uka.ipd.sdq.pcm.repository,

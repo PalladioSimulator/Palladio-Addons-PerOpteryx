@@ -7,5 +7,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.modelversioning.emfprofile,
  org.modelversioning.emfprofile.registry
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy

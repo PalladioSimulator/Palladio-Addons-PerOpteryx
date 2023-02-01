@@ -18,7 +18,7 @@ Require-Bundle: org.eclipse.ui,
  org.palladiosimulator.mdsdprofiles.api;bundle-version="1.0.1",
  org.modelversioning.emfprofile;bundle-version="1.1.0"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-Vendor: palladiosimulator.org
 Import-Package: org.palladiosimulator.mdsdprofiles.api
 Export-Package: edu.kit.ipd.are.dsexplore.featurecompletions.design

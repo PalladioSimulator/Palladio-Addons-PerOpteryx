@@ -8,7 +8,7 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: org.palladiosimulator.qes,
  org.eclipse.xtext.ide,
  org.eclipse.xtext.xbase.ide
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: org.palladiosimulator.qes.ide.contentassist.antlr.internal,
  org.palladiosimulator.qes.ide.contentassist.antlr
 

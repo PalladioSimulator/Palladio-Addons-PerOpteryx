@@ -10,6 +10,6 @@ Require-Bundle: edu.kit.ipd.are.dsexplore.fcdsl,
  org.eclipse.xtext.ide,
  org.eclipse.xtext.xbase.ide,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: edu.kit.ipd.are.dsexplore.ide.contentassist.antlr,
  edu.kit.ipd.are.dsexplore.ide.contentassist.antlr.internal

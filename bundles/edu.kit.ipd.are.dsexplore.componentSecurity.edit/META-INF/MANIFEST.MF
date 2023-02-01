@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: componentSecurity.provider.ComponentSecurityEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: componentSecurity.provider
 Require-Bundle: org.eclipse.core.runtime,
  edu.kit.ipd.are.dsexplore.componentSecurity;visibility:=reexport,

@@ -6,7 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: de.uka.ipd.sdq.pcm.designdecision.gdof.tests,
  de.uka.ipd.sdq.pcm.designdecision.qualityproperties.tests,
  de.uka.ipd.sdq.pcm.designdecision.specific.tests,

@@ -13,7 +13,7 @@ Require-Bundle: edu.kit.ipd.are.dsexplore.featurecompletions,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
  org.eclipse.xtext.util,
  org.eclipse.xtend.lib;bundle-version="2.14.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: edu.kit.ipd.are.dsexplore.validation,
  edu.kit.ipd.are.dsexplore.generator,
  edu.kit.ipd.are.dsexplore.parser.antlr,

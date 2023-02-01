@@ -43,7 +43,7 @@ Export-Package: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.opt4j.representation
 Bundle-ClassPath: .,
  log4j/
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Eclipse-BuddyPolicy: dependent 
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-ActivationPolicy: lazy
