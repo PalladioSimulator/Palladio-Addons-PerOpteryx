@@ -17,7 +17,7 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
       <import plugin="de.uka.ipd.sdq.workflow.mdsd" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.workflow" version="1.1.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.statistics" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.simucomframework" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.simucomframework"/>
       <import plugin="de.uka.ipd.sdq.dsexplore.bayesnets" version="5.1.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.analyzer.workflow" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.analyzer.resultdecorator" version="1.0.0" match="greaterOrEqual"/>
@@ -33,7 +33,7 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
       <import plugin="de.uka.ipd.sdq.codegen.simucontroller"/>
       <import plugin="de.uka.ipd.sdq.sensorframework"/>
       <import plugin="de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes"/>
-      <import plugin="org.opt4j" version="2.5.0" match="greaterOrEqual"/>
+      <import plugin="org.opt4j"/>
       <import plugin="org.apache.commons.math" version="2.1.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.edp2.dao" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.edp2.util"/>
@@ -77,16 +77,13 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.palladiosimulator.solver.lqn" version="2.0.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.dsexplore" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.debug.ui" version="3.5.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.debug.ui"/>
       <import plugin="org.junit" version="4.11.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ocl.ecore"/>
       <import plugin="org.palladiosimulator.mdsdprofiles.api" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.modelversioning.emfprofile" version="1.1.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.debug.ui" version="3.4.1" match="greaterOrEqual"/>
-      <import plugin="org.opt4j" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.pcm.edp2.measuringpoint"/>
       <import plugin="org.palladiosimulator.recorderframework.edp2" version="2.0.2" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.simucomframework" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="edu.kit.ipd.are.dsexplore.featurecompletions" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.qualitymodel" version="5.1.0" match="greaterOrEqual"/>
       <import plugin="org.palladiosimulator.branding"/>
