@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.featurecompletions;singleton:=true
-Bundle-Version: 5.1.0.qualifier
+Bundle-Version: 5.2.0
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -34,7 +34,7 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.stoex.analyser;bundle-version="2.0.0",
  de.uka.ipd.sdq.simucomframework;bundle-version="1.0.0",
  de.uka.ipd.sdq.probfunction.math;bundle-version="2.0.0",
- de.uka.ipd.sdq.pcm.cost;bundle-version="5.1.0"
+ de.uka.ipd.sdq.pcm.cost;bundle-version="5.2.0"
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: edu.kit.ipd.are.dsexplore.featurecompletions

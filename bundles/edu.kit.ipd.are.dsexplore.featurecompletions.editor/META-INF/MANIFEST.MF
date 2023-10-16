@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.featurecompletions.editor;singleton:=true
 Automatic-Module-Name: edu.kit.ipd.are.dsexplore.featurecompletions.editor
-Bundle-Version: 5.1.0.qualifier
+Bundle-Version: 5.2.0
 Bundle-ClassPath: .
 Bundle-Activator: FeatureCompletionModel.presentation.FeatureCompletionsEditorPlugin$Implementation
 Bundle-Vendor: %providerName

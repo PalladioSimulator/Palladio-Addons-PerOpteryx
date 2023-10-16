@@ -2,7 +2,7 @@
 <feature
       id="de.uka.ipd.sdq.dsexplore.feature"
       label="Palladio DSE (PerOpteryx)"
-      version="5.1.0.qualifier"
+      version="5.2.0"
       plugin="org.palladiosimulator.branding"
       license-feature="org.palladiosimulator.license"
       license-feature-version="1.0.0">
