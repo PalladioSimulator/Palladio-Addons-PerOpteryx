@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Design decision Model Edit Plug-in
 Bundle-SymbolicName: de.uka.ipd.sdq.pcm.designdecision.edit;singleton:=true
-Bundle-Version: 5.1.0.qualifier
+Bundle-Version: 5.2.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: de.uka.ipd.sdq.pcm.designdecision.provider.DesignDecisionEditPlugin$Implementation
 Bundle-Vendor: sdq.ipd.uka.de
@@ -14,7 +14,7 @@ Export-Package: de.uka.ipd.sdq.pcm.designdecision.gdof.provider,
  de.uka.ipd.sdq.pcm.designdecision.specific.provider,
  de.uka.ipd.sdq.pcm.resourcerepository.provider
 Require-Bundle: org.eclipse.core.runtime,
- de.uka.ipd.sdq.pcm.designdecision;bundle-version="5.1.0";visibility:=reexport,
+ de.uka.ipd.sdq.pcm.designdecision;bundle-version="5.2.0";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  de.uka.ipd.sdq.pcm.cost;visibility:=reexport,
  de.uka.ipd.sdq.pcm.cost.edit;visibility:=reexport,
