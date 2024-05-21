@@ -2,11 +2,11 @@
 PerOpteryx is an optimization framwork to improve component-based software architectures based on model-based quality prediction techniques. 
 
 ## Documentation
-For comprehensive documentation, please visit our [wiki page](http://sdqweb.ipd.uka.de/wiki/PerOpteryx).
+For documentation, please visit our [wiki page](https://sdq.kastel.kit.edu/wiki/PerOpteryx).
 
 ## Support
 For support
-* visit our [issue tracking system](https://palladio-simulator.com/jira)
-* contact us via our [mailing list](https://lists.ira.uni-karlsruhe.de/mailman/listinfo/palladio-dev)
+* visit our [issue tracking system]([https://palladio-simulator.atlassian.net/browse/PEROPTERYX)
+* contact us via our [mailing list](https://www.palladio-simulator.com/contact/)
 
-For professional support, please fill in our [contact form](http://www.palladio-simulator.com/about_palladio/support/).
+For support, please contact [Anne Koziolek](https://mcse.kastel.kit.edu/staff_Koziolek_Anne.php).
