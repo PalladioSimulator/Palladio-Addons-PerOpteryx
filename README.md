@@ -2,7 +2,7 @@
 PerOpteryx is an optimization framwork to improve component-based software architectures based on model-based quality prediction techniques. 
 
 ## Documentation
-For documentation, please visit our [wiki page](http://sdqweb.ipd.uka.de/wiki/PerOpteryx).
+For documentation, please visit our [wiki page](https://sdq.kastel.kit.edu/wiki/PerOpteryx).
 
 ## Support
 For support
