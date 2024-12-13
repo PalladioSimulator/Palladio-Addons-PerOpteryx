@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: CVS Analyzer for PerOpteryx
 Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore.cvsanalyzer;singleton:=true
-Bundle-Version: 5.2.0.qualifier
+Bundle-Version: 5.2.1.qualifier
 Bundle-Activator: de.uka.ipd.sdq.dsexplore.CVSAnalyzerPluginActivator
 Eclipse-LazyStart: true
 Export-Package: de.uka.ipd.sdq.dsexplore,
@@ -18,5 +18,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-17
 Eclipse-BuddyPolicy: dependent 
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-ActivationPolicy: lazy
-Require-Bundle: de.uka.ipd.sdq.dsexplore;bundle-version="5.2.0",
+Require-Bundle: de.uka.ipd.sdq.dsexplore;bundle-version="5.2.1",
  org.opt4j;bundle-version="2.5.0"

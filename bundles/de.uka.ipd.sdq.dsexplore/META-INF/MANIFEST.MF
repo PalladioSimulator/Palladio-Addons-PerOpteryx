@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Design Space Exploration (PerOpteryx)
 Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore;singleton:=true
-Bundle-Version: 5.2.0.qualifier
+Bundle-Version: 5.2.1.qualifier
 Bundle-Activator: de.uka.ipd.sdq.dsexplore.DSEPluginActivator
 Require-Bundle: de.uka.ipd.sdq.workflow.mdsd,
  de.uka.ipd.sdq.workflow,
@@ -14,7 +14,7 @@ Require-Bundle: de.uka.ipd.sdq.workflow.mdsd,
  de.uka.ipd.sdq.simucomframework;bundle-version="2.0.0",
  de.uka.ipd.sdq.tcfmoop,
  de.uka.ipd.sdq.pcm.cost,
- de.uka.ipd.sdq.dsexplore.bayesnets;bundle-version="5.2.0",
+ de.uka.ipd.sdq.dsexplore.bayesnets;bundle-version="5.2.1",
  org.palladiosimulator.analyzer.workflow;bundle-version="1.0.0",
  org.palladiosimulator.analyzer.resultdecorator,
  org.palladiosimulator.solver;bundle-version="3.0.0",
