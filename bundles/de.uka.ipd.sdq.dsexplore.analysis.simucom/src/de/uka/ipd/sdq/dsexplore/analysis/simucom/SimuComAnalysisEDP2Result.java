@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.measure.quantity.Quantity;
+import jakarta.measure.quantity.Quantity;
 
 import org.apache.commons.math.stat.descriptive.UnivariateStatistic;
 import org.apache.commons.math.stat.descriptive.moment.Mean;
@@ -387,7 +387,7 @@ public class SimuComAnalysisEDP2Result extends SimuComAnalysisResult {
 
 		final MeasurementsDao<Double, Quantity> meaDao = (MeasurementsDao<Double, Quantity>) MeasurementsUtility
 				.getMeasurementsDao(dataSeries);
-		final List<javax.measure.Measure<Double, Quantity>> values = meaDao.getMeasurements();
+		final List<jakarta.measure.Measure<Double, Quantity>> values = meaDao.getMeasurements();
 
 		// Create array for result
 		final double[] result = new double[values.size()];

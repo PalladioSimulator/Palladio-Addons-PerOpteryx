@@ -3,7 +3,7 @@ package de.uka.ipd.sdq.dsexplore.bayesnets.searchers;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.JFrame;
+import jakarta.swing.JFrame;
 
 import de.uka.ipd.sdq.dsexplore.bayesnets.utility.BayesEdge;
 import de.uka.ipd.sdq.dsexplore.bayesnets.utility.BayesNetwork;

@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import jakarta.imageio.ImageIO;
+import jakarta.swing.JFrame;
+import jakarta.swing.JPanel;
 
 /**
  * Class for visualizing a Bayesian Network or a Graph.

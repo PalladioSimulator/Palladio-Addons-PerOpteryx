@@ -72,7 +72,7 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
       <import plugin="org.palladiosimulator.analyzer.resultdecorator.edit"/>
       <import plugin="de.uka.ipd.sdq.pcm.designdecision.edit" version="5.1.0" match="greaterOrEqual"/>
       <import plugin="org.apache.commons.collections15" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="javax.inject" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="jakarta.inject" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.debug.core" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.palladiosimulator.solver.lqn" version="2.0.0" match="greaterOrEqual"/>

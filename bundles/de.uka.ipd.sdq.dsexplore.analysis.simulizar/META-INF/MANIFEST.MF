@@ -37,8 +37,8 @@ Bundle-ActivationPolicy: lazy
 Export-Package: de.uka.ipd.sdq.dsexplore.analysis.simulizar
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-Vendor: sdq.ipd.uka.de
-Import-Package: javax.measure,
- javax.measure.converter,
+Import-Package: jakarta.measure,
+ jakarta.measure.converter,
  org.palladiosimulator.edp2.impl,
  org.palladiosimulator.edp2.models.ExperimentData,
  org.palladiosimulator.edp2.models.Repository
