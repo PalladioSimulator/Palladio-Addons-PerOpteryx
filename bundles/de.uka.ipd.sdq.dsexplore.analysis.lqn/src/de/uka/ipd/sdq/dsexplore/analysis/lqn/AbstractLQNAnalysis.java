@@ -11,7 +11,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
 import org.opt4j.core.Criterion;
-import org.palladiosimulator.analyzer.workflow.configurations.PCMWorkflowConfigurationBuilder;
+import org.palladiosimulator.analyzer.workflow.core.configurations.PCMWorkflowConfigurationBuilder;
 import org.palladiosimulator.solver.RunPCMAnalysisJob;
 import org.palladiosimulator.solver.lqn.DocumentRoot;
 import org.palladiosimulator.solver.lqn.LqnModelType;

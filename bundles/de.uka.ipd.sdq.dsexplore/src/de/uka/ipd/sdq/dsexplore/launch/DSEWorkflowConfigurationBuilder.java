@@ -18,7 +18,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.emf.common.util.URI;
 import org.opt4j.core.DoubleValue;
 import org.opt4j.core.Value;
-import org.palladiosimulator.analyzer.workflow.ConstantsContainer;
+import org.palladiosimulator.analyzer.workflow.core.ConstantsContainer;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisProxy;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisQualityAttributes;

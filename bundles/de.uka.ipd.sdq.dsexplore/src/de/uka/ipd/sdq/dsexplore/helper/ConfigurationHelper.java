@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
-import org.palladiosimulator.analyzer.workflow.ConstantsContainer;
+import org.palladiosimulator.analyzer.workflow.core.ConstantsContainer;
 import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.simucomframework.SimuComConfig;
