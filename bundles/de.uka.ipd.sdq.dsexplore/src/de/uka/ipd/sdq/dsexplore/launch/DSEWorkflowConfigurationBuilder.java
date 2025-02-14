@@ -37,8 +37,8 @@ import de.uka.ipd.sdq.tcfmoop.config.NoNewParetoOptimalCandidatesFoundConfig;
 import de.uka.ipd.sdq.tcfmoop.config.ParetoOptimalSetStabilityConfig;
 import de.uka.ipd.sdq.tcfmoop.config.ParetoOptimalSetStabilityConfig.EvaluationMode;
 import de.uka.ipd.sdq.tcfmoop.config.exceptions.InvalidConfigException;
-import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowBasedRunConfiguration;
-import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder;
+import de.uka.ipd.sdq.workflow.launchconfig.core.AbstractWorkflowBasedRunConfiguration;
+import de.uka.ipd.sdq.workflow.launchconfig.core.AbstractWorkflowConfigurationBuilder;
 
 public class DSEWorkflowConfigurationBuilder extends
 		AbstractWorkflowConfigurationBuilder {

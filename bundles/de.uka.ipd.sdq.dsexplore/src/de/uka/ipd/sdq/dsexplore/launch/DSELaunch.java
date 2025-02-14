@@ -12,7 +12,7 @@ import org.palladiosimulator.analyzer.workflow.configurations.AbstractPCMLaunchC
 import org.palladiosimulator.analyzer.workflow.configurations.PCMWorkflowConfigurationBuilder;
 
 import de.uka.ipd.sdq.workflow.jobs.IJob;
-import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder;
+import de.uka.ipd.sdq.workflow.launchconfig.core.AbstractWorkflowConfigurationBuilder;
 import de.uka.ipd.sdq.workflow.logging.console.LoggerAppenderStruct;
 import de.uka.ipd.sdq.workflow.ui.WorkflowProcess;
 
