@@ -1,6 +1,7 @@
 package de.uka.ipd.sdq.dsexplore.launch;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -102,8 +103,8 @@ public class DSELaunch extends AbstractPCMLaunchConfigurationDelegate<DSEWorkflo
      * @throws CoreException
      */
     @Override
-    protected ArrayList<LoggerAppenderStruct> setupLogging(Level logLevel) throws CoreException {
-        ArrayList<LoggerAppenderStruct> loggerList = super.setupLogging(logLevel);
+    protected List<LoggerAppenderStruct> setupLogging(Level logLevel) throws CoreException {
+        List<LoggerAppenderStruct> loggerList = new ArrayList<>(super.setupLogging(logLevel));
 
         // Setup SDQ workflow engine logging
         loggerList.add(setupLogger("de.uka.ipd.sdq.dsexplore", logLevel,

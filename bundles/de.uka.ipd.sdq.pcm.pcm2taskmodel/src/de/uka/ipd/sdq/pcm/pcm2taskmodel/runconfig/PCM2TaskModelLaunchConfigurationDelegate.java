@@ -1,6 +1,7 @@
 package de.uka.ipd.sdq.pcm.pcm2taskmodel.runconfig;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Level;
 import org.eclipse.core.runtime.CoreException;
@@ -62,8 +63,8 @@ public class PCM2TaskModelLaunchConfigurationDelegate
     }
 
     @Override
-    protected ArrayList<LoggerAppenderStruct> setupLogging(Level logLevel) throws CoreException {
-        ArrayList<LoggerAppenderStruct> loggerList = super.setupLogging(logLevel);
+    protected List<LoggerAppenderStruct> setupLogging(Level logLevel) throws CoreException {
+        List<LoggerAppenderStruct> loggerList = new ArrayList<>(super.setupLogging(logLevel));
         loggerList.add(setupLogger("de.uka.ipd.sdq.pcm.pcm2taskmodel", logLevel,
                 Level.DEBUG == logLevel ? DETAILED_LOG_PATTERN : SHORT_LOG_PATTERN));
 
