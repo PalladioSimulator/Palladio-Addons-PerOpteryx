@@ -12,7 +12,7 @@ import org.palladiosimulator.analyzer.workflow.core.configurations.PCMWorkflowCo
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.pcm.pcm2taskmodel.jobs.PCM2TaskModelJob;
 import de.uka.ipd.sdq.workflow.jobs.IJob;
-import de.uka.ipd.sdq.workflow.launchconfig.core.AbstractWorkflowConfigurationBuilder;
+import de.uka.ipd.sdq.workflow.launchconfig.core.configbuilder.AbstractWorkflowConfigurationBuilder;
 import de.uka.ipd.sdq.workflow.logging.console.LoggerAppenderStruct;
 
 public class PCM2TaskModelLaunchConfigurationDelegate
