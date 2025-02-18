@@ -11,11 +11,14 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.palladiosimulator.analyzer.workflow.configurations.AbstractPCMLaunchConfigurationDelegate;
 import org.palladiosimulator.analyzer.workflow.core.configurations.PCMWorkflowConfigurationBuilder;
 
+import de.uka.ipd.sdq.workflow.BlackboardBasedWorkflow;
 import de.uka.ipd.sdq.workflow.WorkflowExceptionHandler;
 import de.uka.ipd.sdq.workflow.WorkflowProcess;
 import de.uka.ipd.sdq.workflow.jobs.IJob;
 import de.uka.ipd.sdq.workflow.launchconfig.core.configbuilder.AbstractWorkflowConfigurationBuilder;
 import de.uka.ipd.sdq.workflow.logging.console.LoggerAppenderStruct;
+import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
+import de.uka.ipd.sdq.workflow.ui.UIBasedWorkflow;
 import de.uka.ipd.sdq.workflow.ui.UIBasedWorkflowExceptionHandler;
 
 /**
@@ -29,6 +32,14 @@ import de.uka.ipd.sdq.workflow.ui.UIBasedWorkflowExceptionHandler;
  *
  */
 public class DSELaunch extends AbstractPCMLaunchConfigurationDelegate<DSEWorkflowConfiguration> {
+    @Override
+    protected BlackboardBasedWorkflow<MDSDBlackboard> createWorkflow(
+            final DSEWorkflowConfiguration workflowConfiguration, final IProgressMonitor monitor, final ILaunch launch)
+            throws CoreException {
+        return new UIBasedWorkflow<>(this.createWorkflowJob(workflowConfiguration, launch), monitor,
+                this.createExceptionHandler(workflowConfiguration.isInteractive()), this.createBlackboard());
+    }
+
     @Override
     protected WorkflowExceptionHandler createExceptionHandler(boolean interactive) {
         return new UIBasedWorkflowExceptionHandler(!interactive);
