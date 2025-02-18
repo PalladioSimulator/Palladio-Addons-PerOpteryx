@@ -11,10 +11,10 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.palladiosimulator.analyzer.workflow.configurations.AbstractPCMLaunchConfigurationDelegate;
 import org.palladiosimulator.analyzer.workflow.core.configurations.PCMWorkflowConfigurationBuilder;
 
+import de.uka.ipd.sdq.workflow.WorkflowProcess;
 import de.uka.ipd.sdq.workflow.jobs.IJob;
 import de.uka.ipd.sdq.workflow.launchconfig.core.AbstractWorkflowConfigurationBuilder;
 import de.uka.ipd.sdq.workflow.logging.console.LoggerAppenderStruct;
-import de.uka.ipd.sdq.workflow.ui.WorkflowProcess;
 
 /**
  * Launches multiple simulation runs. 
