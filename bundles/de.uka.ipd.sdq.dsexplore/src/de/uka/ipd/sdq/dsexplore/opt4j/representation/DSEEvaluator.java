@@ -24,7 +24,7 @@ import org.opt4j.core.Objective;
 import org.opt4j.core.Objectives;
 import org.opt4j.core.problem.Evaluator;
 import org.palladiosimulator.analyzer.workflow.core.blackboard.PCMResourceSetPartition;
-import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJob;
+import org.palladiosimulator.analyzer.workflow.core.jobs.LoadPCMModelsIntoBlackboardJob;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
