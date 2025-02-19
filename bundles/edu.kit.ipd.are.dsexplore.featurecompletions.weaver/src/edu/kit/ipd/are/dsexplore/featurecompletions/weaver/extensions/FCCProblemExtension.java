@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
 import org.opt4j.genotype.ListGenotype;
-import org.palladiosimulator.analyzer.workflow.blackboard.PCMResourceSetPartition;
+import org.palladiosimulator.analyzer.workflow.core.blackboard.PCMResourceSetPartition;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.system.System;
