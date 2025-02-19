@@ -2,7 +2,8 @@ package de.uka.ipd.sdq.dsexplore.analysis.simucom.tests;
 
 import java.util.Properties;
 
-import org.palladiosimulator.solver.models.PCMInstance;
+import org.junit.Ignore;
+import org.palladiosimulator.solver.core.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.analysis.simucom.SimuComAnalysisResult;
 import de.uka.ipd.sdq.sensorframework.dao.file.entities.ExperimentImpl;
@@ -10,7 +11,6 @@ import de.uka.ipd.sdq.sensorframework.dao.file.entities.ExperimentRunImpl;
 import de.uka.ipd.sdq.sensorframework.entities.Experiment;
 import de.uka.ipd.sdq.sensorframework.entities.ExperimentRun;
 import junit.framework.TestCase;
-import org.junit.Ignore;
 
 @Ignore
 public class SimuComAnalysisResultTest extends TestCase {
