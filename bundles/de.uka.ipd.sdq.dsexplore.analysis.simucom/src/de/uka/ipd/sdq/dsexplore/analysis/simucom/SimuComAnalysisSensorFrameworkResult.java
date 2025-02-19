@@ -39,7 +39,7 @@ import org.palladiosimulator.recorderframework.sensorframework.SensorFrameworkRe
 import org.palladiosimulator.solver.core.models.PCMInstance;
 import org.palladiosimulator.solver.transformations.ContextWrapper;
 
-import de.uka.ipd.sdq.codegen.simucontroller.runconfig.SimuComWorkflowConfiguration;
+import de.uka.ipd.sdq.codegen.simucontroller.core.runconfig.SimuComWorkflowConfiguration;
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.AbstractPie;
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.PieEntity;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;

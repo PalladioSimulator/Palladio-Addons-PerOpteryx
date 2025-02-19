@@ -17,7 +17,7 @@ import org.palladiosimulator.edp2.models.Repository.Repository;
 import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.solver.core.models.PCMInstance;
 
-import de.uka.ipd.sdq.codegen.simucontroller.runconfig.SimuComWorkflowConfiguration;
+import de.uka.ipd.sdq.codegen.simucontroller.core.runconfig.SimuComWorkflowConfiguration;
 import de.uka.ipd.sdq.codegen.simucontroller.runconfig.SimuComWorkflowLauncher;
 import de.uka.ipd.sdq.codegen.simucontroller.workflow.jobs.SimuComJob;
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
