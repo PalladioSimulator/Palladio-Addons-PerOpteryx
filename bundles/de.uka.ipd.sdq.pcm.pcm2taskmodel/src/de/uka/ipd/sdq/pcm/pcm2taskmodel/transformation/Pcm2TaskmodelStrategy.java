@@ -18,9 +18,9 @@ import org.palladiosimulator.pcm.seff.AbstractAction;
 import org.palladiosimulator.pcm.seff.InternalAction;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import org.palladiosimulator.pcm.seff.seff_performance.ParametricResourceDemand;
-import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.core.models.PCMInstance;
+import org.palladiosimulator.solver.core.transformations.EMFHelper;
 import org.palladiosimulator.solver.transformations.ContextWrapper;
-import org.palladiosimulator.solver.transformations.EMFHelper;
 import org.palladiosimulator.solver.transformations.SolverStrategy;
 
 import de.uka.ipd.sdq.dsexplore.helper.FixDesignDecisionReferenceSwitch;

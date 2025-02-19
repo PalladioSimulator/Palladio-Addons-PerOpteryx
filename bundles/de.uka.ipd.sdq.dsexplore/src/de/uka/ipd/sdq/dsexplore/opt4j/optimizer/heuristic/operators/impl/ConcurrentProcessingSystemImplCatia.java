@@ -30,7 +30,7 @@ import org.palladiosimulator.solver.context.aggregatedUsageContext.AggregatedCom
 import org.palladiosimulator.solver.context.aggregatedUsageContext.AggregatedResourceDemand;
 import org.palladiosimulator.solver.context.aggregatedUsageContext.ComputedAggregatedUsage;
 import org.palladiosimulator.solver.context.aggregatedUsageContext.ServiceExecutionContext;
-import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.core.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.helper.Pair;

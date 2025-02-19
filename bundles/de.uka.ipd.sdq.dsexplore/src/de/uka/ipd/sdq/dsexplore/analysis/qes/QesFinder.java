@@ -42,7 +42,7 @@ import org.palladiosimulator.qes.qualityEffectSpecification.Role;
 import org.palladiosimulator.qes.qualityEffectSpecification.RoleProperty;
 import org.palladiosimulator.qes.qualityEffectSpecification.RoleType;
 import org.palladiosimulator.qes.qualityEffectSpecification.Type;
-import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.core.models.PCMInstance;
 
 import FeatureCompletionModel.ComplementumVisnetis;
 

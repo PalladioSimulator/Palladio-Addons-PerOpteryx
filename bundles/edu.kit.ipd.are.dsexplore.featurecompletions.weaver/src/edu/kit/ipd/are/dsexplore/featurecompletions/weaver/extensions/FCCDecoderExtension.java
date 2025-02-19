@@ -3,7 +3,7 @@ package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.extensions;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.core.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.facade.IDecodeExtension;
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pointer;

@@ -2,7 +2,7 @@ package de.uka.ipd.sdq.dsexplore.facade;
 
 import java.util.List;
 
-import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.core.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.tools.primitives.Pointer;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;

@@ -7,7 +7,7 @@ import org.palladiosimulator.analyzer.workflow.jobs.LoadPCMModelsIntoBlackboardJ
 import org.palladiosimulator.solver.context.aggregatedUsageContext.ComputedAggregatedUsage;
 import org.palladiosimulator.solver.context.computed_allocation.ComputedAllocation;
 import org.palladiosimulator.solver.context.computed_usage.ComputedUsage;
-import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.core.models.PCMInstance;
 import org.palladiosimulator.solver.transformations.SolverStrategy;
 
 import de.uka.ipd.sdq.pcm.pcm2taskmodel.runconfig.PCM2TaskModelWorkflowRunConfiguration;

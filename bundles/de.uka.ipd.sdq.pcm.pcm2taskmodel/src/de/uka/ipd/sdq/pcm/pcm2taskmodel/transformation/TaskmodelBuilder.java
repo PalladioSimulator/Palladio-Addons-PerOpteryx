@@ -11,7 +11,7 @@ import org.palladiosimulator.pcm.seff.InternalAction;
 import org.palladiosimulator.pcm.seff.ResourceDemandingBehaviour;
 import org.palladiosimulator.pcm.seff.SeffFactory;
 import org.palladiosimulator.pcm.seff.StartAction;
-import org.palladiosimulator.solver.transformations.EMFHelper;
+import org.palladiosimulator.solver.core.transformations.EMFHelper;
 
 import de.uka.ipd.sdq.pcm.taskmodel.Edge;
 import de.uka.ipd.sdq.pcm.taskmodel.Task;

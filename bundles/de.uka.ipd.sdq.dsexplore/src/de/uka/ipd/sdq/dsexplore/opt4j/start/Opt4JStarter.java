@@ -34,7 +34,7 @@ import org.opt4j.optimizer.ea.ScalingNsga2Module;
 import org.opt4j.optimizer.rs.RandomSearchModule;
 import org.opt4j.start.Opt4J;
 import org.opt4j.start.Opt4JTask;
-import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.core.models.PCMInstance;
 
 import com.google.inject.Module;
 import com.google.inject.TypeLiteral;

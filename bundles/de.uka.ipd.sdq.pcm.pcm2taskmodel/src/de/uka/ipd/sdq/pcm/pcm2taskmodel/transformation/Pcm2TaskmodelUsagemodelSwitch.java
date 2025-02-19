@@ -21,8 +21,8 @@ import org.palladiosimulator.pcm.usagemodel.UsageModel;
 import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 import org.palladiosimulator.pcm.usagemodel.UsagemodelFactory;
 import org.palladiosimulator.pcm.usagemodel.util.UsagemodelSwitch;
+import org.palladiosimulator.solver.core.transformations.EMFHelper;
 import org.palladiosimulator.solver.transformations.ContextWrapper;
-import org.palladiosimulator.solver.transformations.EMFHelper;
 import org.palladiosimulator.solver.utils.ManagedPMFParser;
 import org.palladiosimulator.solver.utils.StringNotPMFException;
 

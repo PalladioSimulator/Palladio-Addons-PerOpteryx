@@ -34,6 +34,7 @@ import org.palladiosimulator.pcm.resourceenvironment.ProcessingResourceSpecifica
 import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import org.palladiosimulator.pcm.usagemodel.UsageScenario;
+import org.palladiosimulator.solver.core.models.PCMInstance;
 import org.palladiosimulator.solver.lqn.ActivityDefType;
 import org.palladiosimulator.solver.lqn.ActivityPhasesType;
 import org.palladiosimulator.solver.lqn.EntryType;
@@ -41,7 +42,6 @@ import org.palladiosimulator.solver.lqn.LqnModelType;
 import org.palladiosimulator.solver.lqn.OutputResultType;
 import org.palladiosimulator.solver.lqn.ProcessorType;
 import org.palladiosimulator.solver.lqn.TaskType;
-import org.palladiosimulator.solver.models.PCMInstance;
 import org.palladiosimulator.solver.transformations.pcm2lqn.Pcm2LqnHelper;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractPerformanceAnalysisResult;

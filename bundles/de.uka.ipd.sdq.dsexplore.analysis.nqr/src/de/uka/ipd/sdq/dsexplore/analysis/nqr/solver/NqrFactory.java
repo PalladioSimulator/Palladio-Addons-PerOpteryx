@@ -26,7 +26,8 @@ import org.palladiosimulator.qualitymodel.ReasoningComponent;
 import org.palladiosimulator.qualitymodel.ReasoningSystem;
 import org.palladiosimulator.qualitymodel.Reduction;
 import org.palladiosimulator.qualitymodel.Transformation;
-import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.core.models.PCMInstance;
+
 import de.uka.ipd.sdq.dsexplore.helper.EMFHelper;
 import de.uka.ipd.sdq.dsexplore.launch.DSEConstantsContainer;
 import de.uka.ipd.sdq.dsexplore.qml.contract.QMLContract.QMLContractPackage;
