@@ -15,8 +15,8 @@ import org.palladiosimulator.reliability.solver.pcm2markov.MarkovTransformationR
 import org.palladiosimulator.reliability.solver.pcm2markov.Pcm2MarkovStrategy;
 import org.palladiosimulator.reliability.solver.runconfig.PCMSolverReliabilityConfigurationBasedConfigBuilder;
 import org.palladiosimulator.reliability.solver.runconfig.RunPCMReliabilityAnalysisJob;
+import org.palladiosimulator.solver.core.runconfig.PCMSolverWorkflowRunConfiguration;
 import org.palladiosimulator.solver.runconfig.PCMSolverConfigurationBasedConfigBuilder;
-import org.palladiosimulator.solver.runconfig.PCMSolverWorkflowRunConfiguration;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
