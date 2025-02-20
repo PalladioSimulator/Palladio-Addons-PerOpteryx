@@ -13,6 +13,6 @@ Require-Bundle: de.uka.ipd.sdq.dsexplore,
  de.uka.ipd.sdq.dsexplore.qml;bundle-version="5.2.1",
  de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="5.2.1",
  org.palladiosimulator.analyzer.resultdecorator;bundle-version="1.0.0",
- org.palladiosimulator.solver;bundle-version="3.0.0"
+ org.palladiosimulator.solver.core;bundle-version="5.2.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: de.uka.ipd.sdq.dsexplore.tests
