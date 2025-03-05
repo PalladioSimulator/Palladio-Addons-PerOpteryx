@@ -2,8 +2,8 @@ package de.uka.ipd.sdq.dsexplore.analysis.lqn;
 
 import org.eclipse.core.runtime.CoreException;
 import org.opt4j.core.Criterion;
+import org.palladiosimulator.solver.core.models.PCMInstance;
 import org.palladiosimulator.solver.lqn.LqnModelType;
-import org.palladiosimulator.solver.models.PCMInstance;
 import org.palladiosimulator.solver.runconfig.MessageStrings;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;

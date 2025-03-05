@@ -3,8 +3,8 @@ package de.uka.ipd.sdq.dsexplore.analysis.lqn;
 import java.util.Map;
 
 import org.opt4j.core.Criterion;
+import org.palladiosimulator.solver.core.models.PCMInstance;
 import org.palladiosimulator.solver.lqn.LqnModelType;
-import org.palladiosimulator.solver.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AnalysisFailedException;
 import de.uka.ipd.sdq.dsexplore.analysis.IStatisticAnalysisResult;

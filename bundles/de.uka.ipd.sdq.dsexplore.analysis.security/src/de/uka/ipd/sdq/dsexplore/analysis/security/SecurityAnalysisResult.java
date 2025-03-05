@@ -5,10 +5,10 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.opt4j.core.Criterion;
+import org.palladiosimulator.solver.core.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.analysis.IAnalysisResult;
 import de.uka.ipd.sdq.dsexplore.qml.pcm.datastructures.EvaluationAspectWithContext;
-import org.palladiosimulator.solver.models.PCMInstance;
 
 public class SecurityAnalysisResult implements IAnalysisResult {
 	

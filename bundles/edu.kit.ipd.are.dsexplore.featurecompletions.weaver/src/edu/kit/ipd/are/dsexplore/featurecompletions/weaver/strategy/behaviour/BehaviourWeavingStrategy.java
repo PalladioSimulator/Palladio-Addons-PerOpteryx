@@ -9,8 +9,8 @@ import org.palladiosimulator.pcm.allocation.AllocationContext;
 import org.palladiosimulator.pcm.core.composition.AssemblyContext;
 import org.palladiosimulator.pcm.repository.OperationSignature;
 import org.palladiosimulator.pcm.repository.Repository;
-import org.palladiosimulator.solver.models.PCMInstance;
-import org.palladiosimulator.solver.transformations.EMFHelper;
+import org.palladiosimulator.solver.core.models.PCMInstance;
+import org.palladiosimulator.solver.core.transformations.EMFHelper;
 
 import FeatureCompletionModel.ComplementumVisnetis;
 import FeatureCompletionModel.CompletionComponent;

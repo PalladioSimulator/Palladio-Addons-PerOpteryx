@@ -34,8 +34,8 @@ import org.palladiosimulator.pcm.resourceenvironment.ResourceContainer;
 import org.palladiosimulator.pcm.resourcetype.ResourceType;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.SeffFactory;
-import org.palladiosimulator.solver.models.PCMInstance;
-import org.palladiosimulator.solver.transformations.EMFHelper;
+import org.palladiosimulator.solver.core.models.PCMInstance;
+import org.palladiosimulator.solver.core.transformations.EMFHelper;
 
 import de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes.TimeSeries;
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractPerformanceAnalysisResult;

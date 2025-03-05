@@ -11,14 +11,14 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
 import org.opt4j.core.Criterion;
-import org.palladiosimulator.analyzer.workflow.configurations.PCMWorkflowConfigurationBuilder;
+import org.palladiosimulator.analyzer.workflow.core.configurations.PCMWorkflowConfigurationBuilder;
 import org.palladiosimulator.solver.RunPCMAnalysisJob;
+import org.palladiosimulator.solver.core.models.PCMInstance;
+import org.palladiosimulator.solver.core.runconfig.PCMSolverWorkflowRunConfiguration;
 import org.palladiosimulator.solver.lqn.DocumentRoot;
 import org.palladiosimulator.solver.lqn.LqnModelType;
-import org.palladiosimulator.solver.models.PCMInstance;
 import org.palladiosimulator.solver.runconfig.MessageStrings;
 import org.palladiosimulator.solver.runconfig.PCMSolverConfigurationBasedConfigBuilder;
-import org.palladiosimulator.solver.runconfig.PCMSolverWorkflowRunConfiguration;
 import org.palladiosimulator.solver.transformations.SolverStrategy;
 import org.palladiosimulator.solver.transformations.pcm2lqn.LqnXmlHandler;
 import org.palladiosimulator.solver.transformations.pcm2lqn.Pcm2LqnStrategy;
@@ -31,7 +31,7 @@ import de.uka.ipd.sdq.dsexplore.analysis.PCMPhenotype;
 import de.uka.ipd.sdq.dsexplore.launch.DSEWorkflowConfiguration;
 import de.uka.ipd.sdq.workflow.jobs.JobFailedException;
 import de.uka.ipd.sdq.workflow.jobs.UserCanceledException;
-import de.uka.ipd.sdq.workflow.launchconfig.AbstractWorkflowConfigurationBuilder;
+import de.uka.ipd.sdq.workflow.launchconfig.core.configbuilder.AbstractWorkflowConfigurationBuilder;
 import de.uka.ipd.sdq.workflow.mdsd.blackboard.MDSDBlackboard;
 
 public abstract class AbstractLQNAnalysis extends AbstractAnalysis implements IAnalysis {

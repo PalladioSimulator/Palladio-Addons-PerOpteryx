@@ -7,7 +7,8 @@ import org.palladiosimulator.qes.qualityEffectSpecification.NumericValue;
 import org.palladiosimulator.qes.qualityEffectSpecification.QualityEffectSpecification;
 import org.palladiosimulator.qes.qualityEffectSpecification.TransformationSpecification;
 import org.palladiosimulator.qes.qualityEffectSpecification.TransformationType;
-import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.core.models.PCMInstance;
+
 import de.uka.ipd.sdq.dsexplore.analysis.qes.QesFinder;
 import de.uka.ipd.sdq.dsexplore.analysis.qes.QesHelper;
 import de.uka.ipd.sdq.dsexplore.analysis.qes.QesParser;

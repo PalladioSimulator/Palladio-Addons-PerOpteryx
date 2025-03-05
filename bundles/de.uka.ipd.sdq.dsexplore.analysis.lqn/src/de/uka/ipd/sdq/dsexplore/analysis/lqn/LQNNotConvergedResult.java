@@ -5,7 +5,7 @@ import org.opt4j.core.Constraint.Direction;
 import org.opt4j.core.Criterion;
 import org.opt4j.core.Objective;
 import org.opt4j.core.Objective.Sign;
-import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.core.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractPerformanceAnalysisResult;
 import de.uka.ipd.sdq.statistics.estimation.ConfidenceInterval;

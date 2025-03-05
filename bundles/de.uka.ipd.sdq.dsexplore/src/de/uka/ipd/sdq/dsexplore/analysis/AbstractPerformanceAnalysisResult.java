@@ -3,9 +3,9 @@ package de.uka.ipd.sdq.dsexplore.analysis;
 import org.palladiosimulator.analyzer.resultdecorator.ResultDecoratorRepository;
 import org.palladiosimulator.solver.context.aggregatedUsageContext.ComputedAggregatedUsage;
 import org.palladiosimulator.solver.context.computed_usage.ComputedUsageContext;
-import org.palladiosimulator.solver.models.PCMInstance;
-import org.palladiosimulator.solver.visitors.AggregatedContextUsageModelVisitor;
-import org.palladiosimulator.solver.visitors.UsageModelVisitor;
+import org.palladiosimulator.solver.core.models.PCMInstance;
+import org.palladiosimulator.solver.core.visitors.AggregatedContextUsageModelVisitor;
+import org.palladiosimulator.solver.core.visitors.UsageModelVisitor;
 
 import de.uka.ipd.sdq.dsexplore.opt4j.start.Opt4JStarter;
 

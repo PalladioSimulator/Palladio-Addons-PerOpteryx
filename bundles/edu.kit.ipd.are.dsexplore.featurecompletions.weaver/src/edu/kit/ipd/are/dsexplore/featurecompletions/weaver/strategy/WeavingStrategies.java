@@ -1,7 +1,7 @@
 package edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy;
 
 import org.palladiosimulator.pcm.repository.Repository;
-import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.core.models.PCMInstance;
 
 import FeatureCompletionModel.FeatureCompletion;
 import edu.kit.ipd.are.dsexplore.featurecompletions.weaver.strategy.adapter.AdapterStrategyExtension;

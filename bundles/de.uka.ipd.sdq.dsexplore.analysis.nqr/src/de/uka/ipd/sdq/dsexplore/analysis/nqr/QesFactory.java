@@ -16,7 +16,8 @@ import org.palladiosimulator.qes.qualityEffectSpecification.Reasoning;
 import org.palladiosimulator.qes.qualityEffectSpecification.Rule;
 import org.palladiosimulator.qes.qualityEffectSpecification.TransformationSpecification;
 import org.palladiosimulator.qes.qualityEffectSpecification.TransformationType;
-import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.core.models.PCMInstance;
+
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrFactory;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrProxy;
 import de.uka.ipd.sdq.dsexplore.analysis.nqr.solver.NqrReductionProxy;

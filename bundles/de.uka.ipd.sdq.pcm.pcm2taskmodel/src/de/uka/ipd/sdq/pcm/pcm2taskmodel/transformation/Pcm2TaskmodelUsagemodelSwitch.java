@@ -21,10 +21,10 @@ import org.palladiosimulator.pcm.usagemodel.UsageModel;
 import org.palladiosimulator.pcm.usagemodel.UsageScenario;
 import org.palladiosimulator.pcm.usagemodel.UsagemodelFactory;
 import org.palladiosimulator.pcm.usagemodel.util.UsagemodelSwitch;
-import org.palladiosimulator.solver.transformations.ContextWrapper;
-import org.palladiosimulator.solver.transformations.EMFHelper;
-import org.palladiosimulator.solver.utils.ManagedPMFParser;
-import org.palladiosimulator.solver.utils.StringNotPMFException;
+import org.palladiosimulator.solver.core.transformations.ContextWrapper;
+import org.palladiosimulator.solver.core.transformations.EMFHelper;
+import org.palladiosimulator.solver.core.utils.ManagedPMFParser;
+import org.palladiosimulator.solver.core.utils.StringNotPMFException;
 
 import de.uka.ipd.sdq.pcm.taskmodel.Task;
 import de.uka.ipd.sdq.pcm.taskmodel.TaskList;

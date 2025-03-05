@@ -3,7 +3,7 @@ package de.uka.ipd.sdq.dsexplore.facade;
 import java.util.List;
 
 import org.opt4j.genotype.ListGenotype;
-import org.palladiosimulator.solver.models.PCMInstance;
+import org.palladiosimulator.solver.core.models.PCMInstance;
 
 import de.uka.ipd.sdq.pcm.cost.CostRepository;
 import de.uka.ipd.sdq.pcm.designdecision.Choice;
