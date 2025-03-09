@@ -46,7 +46,7 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="nightly" refresh="true">
 <unit id="org.palladiosimulator.simulizar.feature.feature.group" version="0.0.0"/>
-<repository location="https://updatesite.palladio-simulator.com/palladio-analyzer-simulizar/branches/no_ui-workflow"/>
+<repository location="https://updatesite.palladio-simulator.com/palladio-analyzer-simulizar/branches/no_ui-workflow_dlim"/>
 </location>
 
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="release" refresh="true">
@@ -208,7 +208,7 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="nightly" refresh="true">
 <unit id="org.scaledl.usageevolution.feature.feature.group" version="0.0.0"/>
-<repository location="https://updatesite.palladio-simulator.com/palladio-thirdparty-cloudscaleusageevolution/branches/no_ui-workflow"/>
+<repository location="https://updatesite.palladio-simulator.com/palladio-thirdparty-cloudscaleusageevolution/branches/no_ui-workflow_dlim"/>
 </location>
 
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="release" refresh="true">
