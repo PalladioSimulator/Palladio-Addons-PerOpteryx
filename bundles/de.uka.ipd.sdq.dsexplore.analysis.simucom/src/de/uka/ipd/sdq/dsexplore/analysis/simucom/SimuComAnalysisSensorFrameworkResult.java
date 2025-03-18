@@ -33,7 +33,7 @@ import org.palladiosimulator.pcm.resourcetype.ResourceType;
 import org.palladiosimulator.pcm.seff.ExternalCallAction;
 import org.palladiosimulator.pcm.seff.ServiceEffectSpecification;
 import org.palladiosimulator.pcm.usagemodel.UsageScenario;
-import org.palladiosimulator.recorderframework.config.AbstractRecorderConfigurationFactory;
+import org.palladiosimulator.recorderframework.core.config.AbstractRecorderConfigurationFactory;
 import org.palladiosimulator.recorderframework.sensorframework.DatasourceConfigurationInvalidException;
 import org.palladiosimulator.recorderframework.sensorframework.SensorFrameworkRecorderConfigurationFactory;
 import org.palladiosimulator.solver.core.models.PCMInstance;
