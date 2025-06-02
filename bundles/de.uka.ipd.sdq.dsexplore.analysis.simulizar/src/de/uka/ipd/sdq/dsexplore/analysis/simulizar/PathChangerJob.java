@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.palladiosimulator.simulizar.runconfig.SimuLizarWorkflowConfiguration;
+import org.palladiosimulator.simulizar.core.runconfig.SimuLizarWorkflowConfiguration;
 
 import de.uka.ipd.sdq.workflow.jobs.CleanupFailedException;
 import de.uka.ipd.sdq.workflow.jobs.IJob;

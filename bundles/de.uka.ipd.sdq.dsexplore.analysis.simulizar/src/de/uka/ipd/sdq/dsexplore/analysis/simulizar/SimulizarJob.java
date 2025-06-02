@@ -3,7 +3,7 @@ package de.uka.ipd.sdq.dsexplore.analysis.simulizar;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.palladiosimulator.simulizar.SimuLizarPlatform;
-import org.palladiosimulator.simulizar.runconfig.SimuLizarWorkflowConfiguration;
+import org.palladiosimulator.simulizar.core.runconfig.SimuLizarWorkflowConfiguration;
 
 import de.uka.ipd.sdq.codegen.simucontroller.workflow.jobs.AbstractSimulationJob;
 import de.uka.ipd.sdq.workflow.jobs.CleanupFailedException;

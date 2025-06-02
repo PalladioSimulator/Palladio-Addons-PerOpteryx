@@ -17,8 +17,8 @@ import org.palladiosimulator.analyzer.workflow.core.configurations.PCMWorkflowCo
 import org.palladiosimulator.analyzer.workflow.core.jobs.LoadPCMModelsIntoBlackboardJob;
 import org.palladiosimulator.edp2.models.Repository.Repository;
 import org.palladiosimulator.pcm.core.entity.Entity;
+import org.palladiosimulator.simulizar.core.runconfig.SimuLizarWorkflowConfiguration;
 import org.palladiosimulator.simulizar.runconfig.SimuLizarLaunchConfigurationBasedConfigBuilder;
-import org.palladiosimulator.simulizar.runconfig.SimuLizarWorkflowConfiguration;
 import org.palladiosimulator.solver.core.models.PCMInstance;
 
 import de.uka.ipd.sdq.dsexplore.analysis.AbstractAnalysis;
