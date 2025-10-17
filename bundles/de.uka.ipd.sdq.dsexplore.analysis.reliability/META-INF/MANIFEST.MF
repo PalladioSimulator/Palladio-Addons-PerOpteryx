@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Reliability analysis for DSE
 Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore.analysis.reliability;singleton:=true
-Bundle-Version: 5.2.2
+Bundle-Version: 6.0.0.qualifier
 Bundle-Activator: de.uka.ipd.sdq.dsexplore.analysis.reliability.Activator
 Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.dsexplore,
