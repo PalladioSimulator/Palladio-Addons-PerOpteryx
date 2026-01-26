@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Facade
 Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore.facade
-Bundle-Version: 5.2.2
+Bundle-Version: 6.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: de.uka.ipd.sdq.dsexplore.facade
 Require-Bundle: de.uka.ipd.sdq.workflow.mdsd,
  de.uka.ipd.sdq.pcm.designdecision,
  org.opt4j,
- org.palladiosimulator.solver.core;bundle-version="5.2.2",
+ org.palladiosimulator.solver.core,
  de.uka.ipd.sdq.dsexplore.tools
 Automatic-Module-Name: de.uka.ipd.sdq.dsexplore.facade

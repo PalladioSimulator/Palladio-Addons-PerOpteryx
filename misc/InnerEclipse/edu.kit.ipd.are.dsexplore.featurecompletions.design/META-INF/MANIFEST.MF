@@ -7,7 +7,7 @@ Bundle-Activator: edu.kit.ipd.are.dsexplore.featurecompletions.design.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.sirius,
- org.palladiosimulator.pcm;bundle-version="4.1.0",
+ org.palladiosimulator.pcm,
  org.eclipse.ui.workbench,
  org.eclipse.ui.ide;bundle-version="3.11.0",
  org.eclipse.core.resources,
@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.ui,
  org.palladiosimulator.commons,
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
- org.palladiosimulator.mdsdprofiles.api;bundle-version="1.0.1",
+ org.palladiosimulator.mdsdprofiles.api,
  org.modelversioning.emfprofile;bundle-version="1.1.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-17

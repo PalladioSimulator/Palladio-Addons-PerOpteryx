@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Weaver
 Bundle-SymbolicName: edu.kit.ipd.are.dsexplore.featurecompletions.weaver
-Bundle-Version: 5.2.2
+Bundle-Version: 6.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-17
-Require-Bundle: org.palladiosimulator.solver.core;bundle-version="5.2.2",
+Require-Bundle: org.palladiosimulator.solver.core,
  de.uka.ipd.sdq.dsexplore.tools,
  de.uka.ipd.sdq.pcm.designdecision,
  org.palladiosimulator.analyzer.workflow,

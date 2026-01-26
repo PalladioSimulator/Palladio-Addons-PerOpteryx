@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SimuCom Analysis for DSE
 Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore.analysis.simucom;singleton:=true
-Bundle-Version: 5.2.2
+Bundle-Version: 6.0.0.qualifier
 Bundle-Activator: de.uka.ipd.sdq.dsexplore.analysis.simucom.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -15,26 +15,26 @@ Require-Bundle: org.eclipse.ui,
  de.uka.ipd.sdq.sensorframework.adapter,
  de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes,
  org.eclipse.debug.ui,
- de.uka.ipd.sdq.simucomframework;bundle-version="2.0.0",
+ de.uka.ipd.sdq.simucomframework,
  de.uka.ipd.sdq.statistics,
- org.palladiosimulator.solver.core;bundle-version="5.2.2",
+ org.palladiosimulator.solver.core,
  org.opt4j;bundle-version="2.5.0",
- de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="5.2.2",
+ de.uka.ipd.sdq.dsexplore.qml.handling,
  de.uka.ipd.sdq.dsexplore.qml,
- de.uka.ipd.sdq.simulation.abstractsimengine;bundle-version="1.0.0",
- de.uka.ipd.sdq.simulation;bundle-version="1.0.0",
- org.palladiosimulator.recorderframework;bundle-version="2.0.1",
- org.palladiosimulator.recorderframework.sensorframework;bundle-version="2.0.1",
+ de.uka.ipd.sdq.simulation.abstractsimengine,
+ de.uka.ipd.sdq.simulation,
+ org.palladiosimulator.recorderframework,
+ org.palladiosimulator.recorderframework.sensorframework,
  org.apache.commons.math;bundle-version="2.1.0",
  org.palladiosimulator.edp2,
- org.palladiosimulator.edp2.dao;bundle-version="1.0.0",
+ org.palladiosimulator.edp2.dao,
  org.palladiosimulator.metricspec,
  org.jscience,
  org.palladiosimulator.edp2.util,
- org.palladiosimulator.analyzer.workflow;bundle-version="1.0.0",
- org.palladiosimulator.analyzer.completions;bundle-version="1.0.0",
- org.palladiosimulator.analyzer.resultdecorator;bundle-version="1.0.0",
- org.palladiosimulator.solver.context;bundle-version="2.0.0"
+ org.palladiosimulator.analyzer.workflow,
+ org.palladiosimulator.analyzer.completions,
+ org.palladiosimulator.analyzer.resultdecorator,
+ org.palladiosimulator.solver.context
 Bundle-ActivationPolicy: lazy
 Export-Package: de.uka.ipd.sdq.dsexplore.analysis.simucom
 Bundle-RequiredExecutionEnvironment: JavaSE-17

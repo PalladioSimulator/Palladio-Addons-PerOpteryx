@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Nqr Model
 Bundle-SymbolicName: de.uka.ipd.sdq.pcm.nqr;singleton:=true
-Bundle-Version: 5.2.2
+Bundle-Version: 6.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-Localization: plugin
@@ -19,12 +19,12 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.dsexplore.qml;visibility:=reexport,
  de.uka.ipd.sdq.stoex;visibility:=reexport,
  de.uka.ipd.sdq.units;visibility:=reexport,
- de.uka.ipd.sdq.simucomframework.variables;bundle-version="1.0.0",
+ de.uka.ipd.sdq.simucomframework.variables,
  org.eclipse.emf.ecore.xmi,
  org.apache.log4j;bundle-version="1.2.13",
- de.uka.ipd.sdq.pcm.stochasticexpressions;bundle-version="2.0.0",
- de.uka.ipd.sdq.stoex.analyser;bundle-version="2.0.0",
- de.uka.ipd.sdq.simucomframework;bundle-version="1.0.0",
- de.uka.ipd.sdq.probfunction.math;bundle-version="2.0.0"
+ de.uka.ipd.sdq.pcm.stochasticexpressions,
+ de.uka.ipd.sdq.stoex.analyser,
+ de.uka.ipd.sdq.simucomframework,
+ de.uka.ipd.sdq.probfunction.math
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: de.uka.ipd.sdq.pcm.nqr

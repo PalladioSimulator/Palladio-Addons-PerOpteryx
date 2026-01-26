@@ -2,23 +2,23 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Cost Analysis Plugin
 Bundle-SymbolicName: de.uka.ipd.sdq.dsexplore.analysis.cost;singleton:=true
-Bundle-Version: 5.2.2
+Bundle-Version: 6.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-17
-Require-Bundle: de.uka.ipd.sdq.dsexplore;bundle-version="1.0.0",
+Require-Bundle: de.uka.ipd.sdq.dsexplore,
  org.eclipse.core.runtime;bundle-version="3.5.0",
  org.eclipse.debug.core;bundle-version="3.5.0",
- de.uka.ipd.sdq.workflow;bundle-version="1.1.0",
- de.uka.ipd.sdq.workflow.mdsd;bundle-version="1.0.0",
- de.uka.ipd.sdq.pcm.cost;bundle-version="5.2.2",
- de.uka.ipd.sdq.workflow.launchconfig;bundle-version="1.1.0",
- org.palladiosimulator.pcm;bundle-version="4.0.0",
- org.palladiosimulator.analyzer.workflow;bundle-version="1.0.0",
- org.palladiosimulator.analyzer.resultdecorator;bundle-version="1.0.0",
- org.palladiosimulator.solver.core;bundle-version="5.2.2",
+ de.uka.ipd.sdq.workflow,
+ de.uka.ipd.sdq.workflow.mdsd,
+ de.uka.ipd.sdq.pcm.cost,
+ de.uka.ipd.sdq.workflow.launchconfig,
+ org.palladiosimulator.pcm,
+ org.palladiosimulator.analyzer.workflow,
+ org.palladiosimulator.analyzer.resultdecorator,
+ org.palladiosimulator.solver.core,
  org.eclipse.debug.ui;bundle-version="3.5.1",
  org.eclipse.swt;bundle-version="3.5.1",
  org.opt4j;bundle-version="1.0.0",
- de.uka.ipd.sdq.dsexplore.qml.handling;bundle-version="5.2.2",
+ de.uka.ipd.sdq.dsexplore.qml.handling,
  de.uka.ipd.sdq.dsexplore.qml,
  org.palladiosimulator.qes,
  de.uka.ipd.sdq.dsexplore.facade
