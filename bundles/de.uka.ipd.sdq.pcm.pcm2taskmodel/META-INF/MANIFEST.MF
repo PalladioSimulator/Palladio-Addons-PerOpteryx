@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Pcm2Taskmodel
 Bundle-SymbolicName: de.uka.ipd.sdq.pcm.pcm2taskmodel;singleton:=true
 Bundle-Version: 6.0.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Require-Bundle: org.eclipse.debug.ui;bundle-version="3.5.2",
  de.uka.ipd.sdq.workflow.launchconfig,
  org.eclipse.core.runtime;bundle-version="3.5.0",
