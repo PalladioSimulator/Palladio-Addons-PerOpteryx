@@ -22,6 +22,6 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.units.edit;visibility:=reexport,
  org.palladiosimulator.pcm.ui,
  org.palladiosimulator.editors.commons.propertytabs
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: de.uka.ipd.sdq.pcm.cost.editor
