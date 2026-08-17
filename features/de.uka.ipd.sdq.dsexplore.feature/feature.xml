@@ -34,7 +34,7 @@ See http://sdqweb.ipd.uka.de/wiki/PerOpteryx for details.
       <import plugin="de.uka.ipd.sdq.sensorframework"/>
       <import plugin="de.uka.ipd.sdq.codegen.simudatavisualisation.datatypes"/>
       <import plugin="org.opt4j"/>
-      <import plugin="org.apache.commons.math" version="2.1.0" match="greaterOrEqual"/>
+      <import plugin="org.apache.commons.math3"/>
       <import plugin="org.palladiosimulator.edp2.dao"/>
       <import plugin="org.palladiosimulator.edp2.util"/>
       <import plugin="org.palladiosimulator.analyzer.completions"/>
